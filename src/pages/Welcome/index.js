@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import * as animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
 
 export default function Welcome() {
     const navigation = useNavigation();
+    const [animate, setAnimate] = useState(false);
+
+    const rotateImage = () => {
+        setAnimate(true);
+        setTimeout(() => {
+            setAnimate(false);
+        }, 1000);
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.containerLogo}>
-                <animatable.Image
-                    animation="flipInY"
-                    source={require('../../assets/logo.png')}
-                    style={{ width: '100%' }}
-                    resizeMode="contain"
-                />
+                <TouchableOpacity onPress={rotateImage}>
+                    <animatable.Image
+                        animation={animate ? { from: { rotateY: '0deg' }, to: { rotateY: '360deg' } } : null}
+                        easing="linear"
+                        duration={1000}
+                        source={require('../../assets/logo.png')}
+
+                    />
+                </TouchableOpacity>
             </View>
 
             <animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
@@ -76,12 +88,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-
     buttonText: {
         fontSize: 18,
         color: '#FFF',
         fontWeight: 'bold'
-
     }
 
 })

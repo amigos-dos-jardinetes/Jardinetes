@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native'
 
 
 
+
+
 export default function Welcome() {
     const navigation = useNavigation();
     return (

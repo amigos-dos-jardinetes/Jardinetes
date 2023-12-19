@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import * as Animatable from 'react-native-animatable';
@@ -26,15 +26,19 @@ export default function SignUp() {
     const handleRegister = async () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            console.log('Novo usuário registrado:', userCredential.user);
+
             navigation.navigate('Menu');
-            // Aqui você pode fazer algo após o registro, tal como navegar para outra tela
         } catch (error) {
-            console.error('Erro de registro:', error.message);
+
+            AlertRegister();
         }
     };
 
+    const AlertRegister = () =>
+        Alert.alert('Erro de Registro', 'Por favor, tente novamente.', [
 
+            { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ]);
 
     return (
         <View style={styles.container}>

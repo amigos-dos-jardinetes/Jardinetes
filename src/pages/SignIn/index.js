@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithCredential, } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 
@@ -26,19 +26,26 @@ export default function SignIn() {
     const handleLogin = async () => {
         try {
             const userLogin = await signInWithEmailAndPassword(auth, email, password);
-            console.log('Login realizado com sucesso!', userLogin.user);
             navigation.navigate('Menu');
 
         } catch (error) {
-            console.error('Erro de login:',
-             error.message);
-            navigation.navigate('Menu');
+
+            AlertLogin();
         }
     };
 
-
+    const AlertLogin = () =>
+        Alert.alert('Erro de Login', 'Email ou senha incorretos.', [
+            {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+            },
+            { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ]);
 
     return (
+
         <View style={styles.container}>
             <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
                 <Text style={styles.message}>Bem-vindo</Text>
