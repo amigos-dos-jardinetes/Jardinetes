@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import * as Animatable from 'react-native-animatable'
-import { useNavigation } from '@react-navigation/native'
+import { initializeApp } from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithCredential, } from 'firebase/auth';
+import * as Animatable from 'react-native-animatable';
+import { useNavigation } from '@react-navigation/native';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB_xs_i7evQkeMf5vC7yyX8u6CAKqDmmzU",
+    authDomain: "amigosdosjardinetes.firebaseapp.com",
+    projectId: "amigosdosjardinetes",
+    storageBucket: "amigosdosjardinetes.appspot.com",
+    messagingSenderId: "381072997535",
+    appId: "1:381072997535:web:157abb3a076162a90836aa"
+};
+
+
+const firebase_initialize = initializeApp(firebaseConfig);
+const auth = getAuth(firebase_initialize);
 
 export default function SignIn() {
     const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async () => {
+        try {
+            const userLogin = await signInWithEmailAndPassword(auth, email, password);
+            console.log('Login realizado com sucesso!', userLogin.user);
+            navigation.navigate('Menu');
+
+        } catch (error) {
+            console.error('Erro de login:',
+             error.message);
+            navigation.navigate('Menu');
+        }
+    };
+
+
+
     return (
         <View style={styles.container}>
             <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
@@ -17,6 +50,7 @@ export default function SignIn() {
                 <TextInput
                     placeholder="Digite um email"
                     style={styles.input}
+                    onChangeText={text => setEmail(text)}
 
                 />
 
@@ -24,10 +58,11 @@ export default function SignIn() {
                 <TextInput
                     placeholder="Sua senha"
                     style={styles.input}
+                    onChangeText={text => setPassword(text)}
                     secureTextEntry={true}
                 />
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleLogin}>
                     <Text style={styles.buttonText}>Acessar</Text>
                 </TouchableOpacity>
 
@@ -39,9 +74,6 @@ export default function SignIn() {
         </View>
     );
 }
-
-
-
 
 const styles = StyleSheet.create({
     container: {

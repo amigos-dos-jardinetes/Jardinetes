@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import * as Animatable from 'react-native-animatable';
+import { useNavigation } from '@react-navigation/native';
 
 const firebaseConfig = {
     apiKey: "AIzaSyB_xs_i7evQkeMf5vC7yyX8u6CAKqDmmzU",
@@ -18,6 +19,7 @@ const firebase_initialize = initializeApp(firebaseConfig);
 const auth = getAuth(firebase_initialize);
 
 export default function SignUp() {
+    const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -25,11 +27,14 @@ export default function SignUp() {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             console.log('Novo usuário registrado:', userCredential.user);
+            navigation.navigate('Menu');
             // Aqui você pode fazer algo após o registro, tal como navegar para outra tela
         } catch (error) {
             console.error('Erro de registro:', error.message);
         }
     };
+
+
 
     return (
         <View style={styles.container}>
