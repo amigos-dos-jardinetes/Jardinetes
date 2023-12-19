@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {  signInWithPopup, GoogleAuthProvider, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
+import { Button } from 'react-native-web';
 
 const firebaseConfig = {
     apiKey: "AIzaSyB_xs_i7evQkeMf5vC7yyX8u6CAKqDmmzU",
@@ -14,14 +15,34 @@ const firebaseConfig = {
     appId: "1:381072997535:web:157abb3a076162a90836aa"
 };
 
-
 const firebase_initialize = initializeApp(firebaseConfig);
 const auth = getAuth(firebase_initialize);
+auth.languageCode = 'it';
+const provider = new GoogleAuthProvider();
+
 
 export default function SignIn() {
     const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const google_login = () => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                const user = result.user;
+                console.log(user)
+                navigation.navigate('Menu');
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                const email = error.customData.email;
+                const credential = GoogleAuthProvider.credentialFromError(error);
+            });
+    }
+
 
     const handleLogin = async () => {
         try {
@@ -47,6 +68,7 @@ export default function SignIn() {
     return (
 
         <View style={styles.container}>
+
             <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
                 <Text style={styles.message}>Bem-vindo</Text>
             </Animatable.View>
@@ -71,6 +93,10 @@ export default function SignIn() {
 
                 <TouchableOpacity style={styles.button} onPress={handleLogin}>
                     <Text style={styles.buttonText}>Acessar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.button} onPress={google_login}>
+                    <Text style={styles.buttonText}>Acessar pelo Google</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate('SignUp')}>
