@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "381072997535",
+    "project_id": "amigosdosjardinetes",
+    "storage_bucket": "amigosdosjardinetes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381072997535:android:5035d5bfe2eca9320836aa",
+        "android_client_info": {
+          "package_name": "com.jardinetes.Amigos_dos_Jardinetes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381072997535-io5dbrisehrlo8a9vjejfmlm2k5n5fhf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5lDSx1peYV5ZhuKo7KMVttdJjrm5Dnsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381072997535-gisoqnq60tqksvm6sg1uc29244nem3te.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
