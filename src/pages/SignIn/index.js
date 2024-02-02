@@ -152,7 +152,6 @@ export default function SignIn() {
           </Text>
         )}
 
-
 <TouchableOpacity 
          style={styles.button}
         onPress={async () => {
