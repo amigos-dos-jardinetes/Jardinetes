@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Button } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as Animatable from 'react-native-animatable';
@@ -28,23 +28,19 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  async function handleSignINWithGoogle() {
-    try {
-        const user = await AsyncStorage.getItem('@user');
-        if (!user) {
-            if (response?.type === 'success' && response.authentication?.accessToken) {
-                await getUserInfo(response.authentication.accessToken);
-                
-            }
-        } else {
-            setUserInfo(JSON.parse(user));
-            navigation.navigate('Menu');
-        }
-    } catch (error) {
-        console.error('Error during Google login:', error);
-        // Log or handle the error appropriately
-    }
-}
+  WebBrowser.maybeCompleteAuthSession()
+
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    iosClientId: '<IOS_CLIENT_ID>',
+    androidClientId: '381072997535-926po31tefpm6knqfml8si4ki83hb9rj.apps.googleusercontent.com',
+    webClientId: '381072997535-ab8js7tf8aie1s2lplbkae4uummgpll1.apps.googleusercontent.com',
+    expoClientId: '381072997535-dduhtvsr4tt4apo5orl1pjhsccmom6mv.apps.googleusercontent.com',
+  },{
+    projectNameForProxy: "@jardinetes/Amigos_dos_Jardinetes",
+    redirectUri: "https://auth.expo.io/@jardinetes/Amigos_dos_Jardinetes/start"
+  });
+   
+
   const handleLoginPress = async () => {
     try {
       setError(null);
@@ -60,10 +56,7 @@ export default function SignIn() {
   };
 
   const [userInfo, setUserInfo] = useState(false);
-  const [request, response, promptAsync] = Google.useAuthRequest({
-      androidClientId: '381072997535-926po31tefpm6knqfml8si4ki83hb9rj.apps.googleusercontent.com',
-      webClientId: '381072997535-ab8js7tf8aie1s2lplbkae4uummgpll1.apps.googleusercontent.com',
-  });
+ 
   useEffect(() => {
       const checkLoggedInUser = async () => {
           try {
@@ -82,36 +75,59 @@ export default function SignIn() {
       checkLoggedInUser();
   }, [navigation]);
 
-  React.useEffect(() => {
-      handleSignINWithGoogle();
-  }, [response])
 
-  const getUserInfo = async (token) => {
-      if (!token) return;
-      try {
-          const response = await fetch(
-              "https://www.googleapis.com/userinfo/v2/me",
-              {
-                  headers: { Authorization: `Bearer ${token}` },
-              }
-          );
-  
-          if (!response.ok) {
-              throw new Error(`Google API request failed with status ${response.status}`);
-          }
-  
-          const user = await response.json();
-          await AsyncStorage.setItem("@user", JSON.stringify(user));
-          setUserInfo(user);
-      } catch (error) {
-          console.error('Error fetching user info from Google:', error);
-          // Log or handle the error appropriately
-      }
-  };
+
 
   useEffect(() => {
     checkLoggedInUser(auth, navigation);
   }, [navigation]);
+
+  async function handleSignINWithGoogle() {
+    try {
+        const user = await AsyncStorage.getItem('@user');
+        if (!user) {
+            if (response?.type === 'success' && response.authentication?.accessToken) {
+                await getUserInfo(response.authentication.accessToken);
+                
+            }
+        } else {
+            setUserInfo(JSON.parse(user));
+            navigation.navigate('Menu');
+        }
+    } catch (error) {
+        console.error('Error during Google login:', error);
+        // Log or handle the error appropriately
+    }
+};
+
+
+React.useEffect(() => {
+  handleSignINWithGoogle();
+}, [response])
+
+const getUserInfo = async (token) => {
+  if (!token) return;
+  try {
+      const response = await fetch(
+          "https://www.googleapis.com/userinfo/v2/me",
+          {
+              headers: { Authorization: `Bearer ${token}` },
+          }
+      );
+
+      if (!response.ok) {
+          throw new Error(`Google API request failed with status ${response.status}`);
+      }
+
+      const user = await response.json();
+      await AsyncStorage.setItem("@user", JSON.stringify(user));
+      setUserInfo(user);
+  } catch (error) {
+      console.error('Error fetching user info from Google:', error);
+      // Log or handle the error appropriately
+  }
+};
+
 
   return (
     <View style={styles.container}>
@@ -152,20 +168,13 @@ export default function SignIn() {
           </Text>
         )}
 
-<TouchableOpacity 
-         style={styles.button}
-        onPress={async () => {
-              const result = await promptAsync();
-              if (result.type === 'success') {
-                  // Handle success, possibly call getUserInfo with result.authentication.accessToken
-              } else if (result.type === 'cancel') {
-                  // Handle cancellation
-              } else {
-                  // Handle other cases
-              }
-          }}>
-            <Text style={styles.buttonText}>Acessar com o Google</Text>
-        </TouchableOpacity>        
+<TouchableOpacity style={styles.button} 
+      title='Sign in with Google'
+      onPress={() => promptAsync()}>
+ <Text style={styles.buttonText}>Acessar com o Google</Text>
+        
+      </TouchableOpacity>
+  
 
         <TouchableOpacity
           style={styles.buttonRegister}

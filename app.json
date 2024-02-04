@@ -29,13 +29,16 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "scheme": "com.jardinetes.Amigos_dos_Jardinetes",
+    "originalFullName": "@jardinetes/Amigos_dos_Jardinetes",
     "plugins": [
       "@react-native-firebase/app"
     ],
     "extra": {
       "eas": {
-        "projectId": "04c99d01-9264-4be3-8e81-01be85163034"
+        "projectId": "bd4342bd-8839-44be-b2d4-0744ef1a506e"
       }
-    }
+    },
+    "owner": "jardinetes"
   }
 }

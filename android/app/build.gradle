@@ -83,6 +83,7 @@ android {
 
     namespace 'com.jardinetes.Amigos_dos_Jardinetes'
     defaultConfig {
+        manifestPlaceholders = [appAuthRedirectScheme: 'com.jardinetes.Amigos_dos_Jardinetes']
         applicationId 'com.jardinetes.Amigos_dos_Jardinetes'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
