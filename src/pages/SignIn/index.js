@@ -146,7 +146,6 @@ const getUserInfo = async (token) => {
           ]}
           onChangeText={text => setEmail(text)}
         />
-
         <Text style={styles.title}>Senha</Text>
         <TextInput
           placeholder="Sua senha"
@@ -168,12 +167,12 @@ const getUserInfo = async (token) => {
           </Text>
         )}
 
-<TouchableOpacity style={styles.button} 
-      title='Sign in with Google'
-      onPress={() => promptAsync()}>
- <Text style={styles.buttonText}>Acessar com o Google</Text>
+        <TouchableOpacity style={styles.button} 
+              title='Sign in with Google'
+             onPress={() => promptAsync()}>
+        <Text style={styles.buttonText}>Acessar com o Google</Text>
         
-      </TouchableOpacity>
+        </TouchableOpacity>
   
 
         <TouchableOpacity
