@@ -31,5 +31,9 @@ const Login = () => {
         }
     }
     
-    return ('')
+    return (
+        <div>
+            {userLoggedIn && (<Navigate to ={'/Menu'} replace={true}/>)}
+        </div>
+    )
 }
