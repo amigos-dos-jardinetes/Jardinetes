@@ -22,7 +22,8 @@ const firebaseConfig = {
 const firebase_initialize = initializeApp(firebaseConfig);
 const auth = getAuth(firebase_initialize);
 
-export default function SignIn() {
+
+export default function SignIn()  {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -132,59 +133,60 @@ const getUserInfo = async (token) => {
   return (
     <View style={styles.container}>
       <Text>{JSON.stringify(userInfo, null, 2)}</Text>
-      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-        <Text style={styles.message}>Bem-vindo</Text>
-      </Animatable.View>
+    <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
+      <Text style={styles.message}>Bem-vindo</Text>
+    </Animatable.View>
 
-      <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-        <Text style={styles.title}>Email</Text>
-        <TextInput
-          placeholder="Digite um email"
-          style={[
-            styles.input,
-            error && styles.errorInput,
-          ]}
-          onChangeText={text => setEmail(text)}
-        />
-        <Text style={styles.title}>Senha</Text>
-        <TextInput
-          placeholder="Sua senha"
-          style={[
-            styles.input,
-            error && styles.errorInput,
-          ]}
-          onChangeText={text => setPassword(text)}
-          secureTextEntry={true}
-        />
+    <Animatable.View animation="fadeInUp" style={styles.containerForm}>
+      <Text style={styles.title}>Email</Text>
+      <TextInput
+        placeholder="Digite um email"
+        style={[
+          styles.input,
+          error && styles.errorInput,
+        ]}
+        onChangeText={text => setEmail(text)}
+      />
+      <Text style={styles.title}>Senha</Text>
+      <TextInput
+        placeholder="Sua senha"
+        style={[
+          styles.input,
+          error && styles.errorInput,
+        ]}
+        onChangeText={text => setPassword(text)}
+        secureTextEntry={true}
+      />
 
-        <TouchableOpacity style={styles.button} onPress={handleLoginPress}>
-          <Text style={styles.buttonText}>Acessar</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleLoginPress}>
+        <Text style={styles.buttonText}>Acessar</Text>
+      </TouchableOpacity>
 
-        {error && (
-          <Text style={styles.errorText}>
-            {error}
-          </Text>
-        )}
+      {error && (
+        <Text style={styles.errorText}>
+          {error}
+        </Text>
+      )}
 
-        <TouchableOpacity style={styles.button} 
-              title='Sign in with Google'
-             onPress={() => promptAsync()}>
-        <Text style={styles.buttonText}>Acessar com o Google</Text>
-        
-        </TouchableOpacity>
-  
-
-        <TouchableOpacity
-          style={styles.buttonRegister}
-          onPress={() => navigation.navigate('SignUp')}>
-          <Text>Cadastre-se</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.button} 
+            title='Sign in with Google'
+          onPress={() => promptAsync()}>
+      <Text style={styles.buttonText}>Acessar com o Google</Text>
+      
+      </TouchableOpacity>
 
 
-       
-      </Animatable.View>
+      <TouchableOpacity
+        style={styles.buttonRegister}
+        onPress={() => navigation.navigate('SignUp')}>
+        <Text>Cadastre-se</Text>
+      </TouchableOpacity>
+
+
+    
+    </Animatable.View>
     </View>
+
   );
 }
 
