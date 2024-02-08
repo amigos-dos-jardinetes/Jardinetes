@@ -26,13 +26,14 @@ export async function handleLogout(auth, navigation) {
   try {
     await signOut(auth);
     await AsyncStorage.removeItem('userToken');
+    await AsyncStorage.removeItem('@user');
     navigation.replace('Welcome');
   } catch (error) {
     console.error('Erro ao fazer logout:', error);
   }
 }
 
-export async function userSearchData(auth, firestore, storage, navigation, setUserName, setImageUrl) {
+export async function userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail) {
   const unsubscribe = onAuthStateChanged(auth, async (user) => {
     if (user) {
       try {
@@ -42,6 +43,11 @@ export async function userSearchData(auth, firestore, storage, navigation, setUs
         if (userSnapshot.exists()) {
           const userData = userSnapshot.data();
           setUserName(userData.username || 'Usuário');
+          setEmail(userData.email || 'Usuário');
+
+          // Adicionando o campo wallpaper
+          const wallpaperValue = userData.wallpaper || null;
+          setWallpaper(wallpaperValue);
 
           const profileImagePath = userData.imageUrl || '';
 
@@ -53,7 +59,7 @@ export async function userSearchData(auth, firestore, storage, navigation, setUs
                 setImageUrl(url);
               })
               .catch((error) => {
-                console.error('Erro ao obter a URL da imagem:', error);
+                console.error('Erro ao obter a URL da imagem de perfil:', error);
               });
           }
         }
@@ -63,6 +69,8 @@ export async function userSearchData(auth, firestore, storage, navigation, setUs
       }
     } else {
       setUserName('');
+      setEmail('');
+      setWallpaper(null);
       setImageUrl(null);
     }
   });

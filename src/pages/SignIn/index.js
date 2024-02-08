@@ -61,7 +61,7 @@ export default function SignIn()  {
   useEffect(() => {
       const checkLoggedInUser = async () => {
           try {
-              const user = await checkUserLoggedIn();
+              const user = await checkLoggedInUser();
               if (user) {
                   console.log('Usuário logado:', user);
                   navigation.replace('Menu');
@@ -89,7 +89,7 @@ export default function SignIn()  {
         if (!user) {
             if (response?.type === 'success' && response.authentication?.accessToken) {
                 await getUserInfo(response.authentication.accessToken);
-                
+                navigation.navigate('Menu');
             }
         } else {
             setUserInfo(JSON.parse(user));
@@ -132,7 +132,7 @@ const getUserInfo = async (token) => {
 
   return (
     <View style={styles.container}>
-      <Text>{JSON.stringify(userInfo, null, 2)}</Text>
+      
     <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
       <Text style={styles.message}>Bem-vindo</Text>
     </Animatable.View>

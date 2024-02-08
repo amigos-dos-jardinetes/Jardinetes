@@ -4,11 +4,12 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#195439',
+        padding: 20,
     },
     containerLogo: {
         flex: 2,
-        backgroundColor: '#195439',
-        justifyContent: 'center',
+        backgroundColor: 'transparent',  // Alteração aqui
+        padding: 50,
         alignItems: 'center',
     },
     containerForm: {
@@ -19,11 +20,12 @@ export const styles = StyleSheet.create({
         padding: 20,
     },
     title: {
-        fontSize: 24,
+        fontSize: 32,
         fontWeight: 'bold',
         marginTop: 20,
         marginBottom: 12,
         textAlign: 'center',
+        color: '#FFF'
     },
     logoutButton: {
         backgroundColor: '#FF6347',
@@ -31,21 +33,32 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
         marginTop: 20,
         alignItems: 'center',
+        marginBottom: 75
     },
     logoutButtonText: {
         color: '#FFF',
         fontSize: 18,
     },
     logoImage: {
-        width: 150,
-        height: 150,
-        borderRadius: 75,
+        width: 200,
+        height: 200,
+        borderRadius: 100,
     },
-    InicioButton: {
-        backgroundColor: 'green',
+    textButton: {
+        backgroundColor: '#FFF',
         padding: 12,
         borderRadius: 5,
         marginTop: 20,
         alignItems: 'center',
+
+    },
+    textInfo: {
+        fontSize: 20,
+        
+    },
+
+    buttons: {
+        alignContent: 'center',
+        
     },
 });

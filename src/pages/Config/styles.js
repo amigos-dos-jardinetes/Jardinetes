@@ -1,10 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+
     container: {
         flex: 1,
-        backgroundColor: '#195439'
+        backgroundColor: '#195439',
+
     },
+
     containerHeader: {
         marginTop: '14%',
         marginBottom: '8%',
@@ -48,33 +51,27 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold'
     },
-    buttonRegister: {
+
+    buttonVoltar: {
         marginTop: 15,
-        alignSelf: 'center',
+        alignSelf: 'center'
+
+    },
+    imagePickerButton: {
+        backgroundColor: '#195439',
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 20,
+
     },
 
-    errorInput: {
-        borderColor: 'red',
-        borderWidth: 1,
-      },
-    
-      // Estilo para mensagem de erro
-      errorText: {
-        color: 'red',
-        marginTop: 5, // Adapte conforme necessário
-        textAlign: 'center',
-      },
+    image: {
+        width: 200,
+        height: 200,
+        paddingTop: 25,
+        borderRadius: 100,
+        alignSelf: 'center',
+        justifyContent: 'center',
+    },
 
-      googleButton: {
-        backgroundColor: '#4285F4', // Cor azul do Google
-        padding: 15,
-        borderRadius: 5,
-        marginTop: 10,
-        alignItems: 'center',
-      },
-    
-      googleButtonText: {
-        color: 'white',
-        fontWeight: 'bold',
-      },
 });
