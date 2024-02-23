@@ -139,7 +139,7 @@ const getUserInfo = async (token) => {
           <View style={styles.button}>
             <TouchableOpacity
                 onPress={() => alert('aoba')}>
-                <Text style={styles.hudText}>   PÁGINA ÍNICIAL </Text>
+                <Text style={styles.hudText}>   PÁGINA INICIAL </Text>
             </TouchableOpacity> 
           </View>
           <View style={styles.button}>
