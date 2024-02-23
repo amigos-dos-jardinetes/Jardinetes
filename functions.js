@@ -33,7 +33,7 @@ export async function handleLogout(auth, navigation) {
   }
 }
 
-export async function userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail) {
+export async function userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas) {
   const unsubscribe = onAuthStateChanged(auth, async (user) => {
     if (user) {
       try {
@@ -43,7 +43,8 @@ export async function userSearchData(auth, firestore, storage, navigation, setUs
         if (userSnapshot.exists()) {
           const userData = userSnapshot.data();
           setUserName(userData.username || 'Usuário');
-          setEmail(userData.email || 'Usuário');
+          setEmail(userData.email || 'email');
+          setPracasSeguidas(userData.pracasSeguidas);
 
           // Adicionando o campo wallpaper
           const wallpaperValue = userData.wallpaper || null;
@@ -72,6 +73,7 @@ export async function userSearchData(auth, firestore, storage, navigation, setUs
       setEmail('');
       setWallpaper(null);
       setImageUrl(null);
+      setPracasSeguidas('');
     }
   });
 
