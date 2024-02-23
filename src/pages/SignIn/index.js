@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Button } from 'react-native';
+import { ImageBackground, View, Text, StyleSheet, TextInput, TouchableOpacity, Button } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as Animatable from 'react-native-animatable';
@@ -9,6 +9,8 @@ import { checkLoggedInUser } from '../../../functions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
+import Image from './assets/Fundo.png'
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
@@ -132,61 +134,74 @@ const getUserInfo = async (token) => {
 
   return (
     <View style={styles.container}>
-      
-    <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-      <Text style={styles.message}>Bem-vindo</Text>
-    </Animatable.View>
-
-    <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-      <Text style={styles.title}>Email</Text>
-      <TextInput
-        placeholder="Digite um email"
-        style={[
-          styles.input,
-          error && styles.errorInput,
-        ]}
-        onChangeText={text => setEmail(text)}
-      />
-      <Text style={styles.title}>Senha</Text>
-      <TextInput
-        placeholder="Sua senha"
-        style={[
-          styles.input,
-          error && styles.errorInput,
-        ]}
-        onChangeText={text => setPassword(text)}
-        secureTextEntry={true}
-      />
-
-      <TouchableOpacity style={styles.button} onPress={handleLoginPress}>
-        <Text style={styles.buttonText}>Acessar</Text>
-      </TouchableOpacity>
-
-      {error && (
-        <Text style={styles.errorText}>
-          {error}
-        </Text>
-      )}
-
-      <TouchableOpacity style={styles.button} 
-            title='Sign in with Google'
-          onPress={() => promptAsync()}>
-      <Text style={styles.buttonText}>Acessar com o Google</Text>
-      
-      </TouchableOpacity>
-
-
-      <TouchableOpacity
-        style={styles.buttonRegister}
-        onPress={() => navigation.navigate('SignUp')}>
-        <Text>Cadastre-se</Text>
-      </TouchableOpacity>
-
-
-    
-    </Animatable.View>
+      <ImageBackground source={Image} resizeMode="cover" style={styles.image}>
+        <View style={styles.containerMiddle}>
+          <View style={styles.button}>
+            <TouchableOpacity
+                onPress={() => alert('aoba')}>
+                <Text style={styles.hudText}>   PÁGINA ÍNICIAL </Text>
+            </TouchableOpacity> 
+          </View>
+          <View style={styles.button}>
+            <TouchableOpacity
+                onPress={() => alert('aoba')}>
+                <Text style={styles.hudText}>   AÇÕES SOCIAIS </Text>
+            </TouchableOpacity> 
+          </View>
+          <View style={styles.button}>
+            <TouchableOpacity
+                onPress={() => alert('aoba')}>
+                <Text style={styles.hudText}>   QUEM SOMOS </Text>
+            </TouchableOpacity> 
+          </View>
+          <View style={styles.button}>
+            <TouchableOpacity
+                onPress={() => alert('aoba')}>
+                <Text style={styles.hudText}>   CONTATO </Text>
+            </TouchableOpacity> 
+          </View>
+        </View>
+        <View style={styles.containerInput}>
+          <View style={styles.userInput}>
+            <TextInput
+              
+              style={[
+                styles.input,
+                error && styles.errorInput,
+              ]}
+              onChangeText={text => setEmail(text)}
+          />
+          </View>
+          <View style={styles.passwordInput}>
+            <TextInput
+              
+              style={[
+                styles.input,
+                error && styles.errorInput,
+              ]}
+              onChangeText={text => setPassword(text)}
+              secureTextEntry={true}
+            />
+          </View>
+          <View style={styles.containerBotton}>
+            <View style={styles.entrarButton}>
+              <TouchableOpacity onPress={handleLoginPress}>
+                <Text style={styles.entrartext}>ENTRAR</Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity style={styles.googleButton} 
+                title='Sign in with Google'
+                onPress={() => promptAsync()}>
+                <Text> </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.forgotPlace} 
+                onPress={() =>alert('infelizmente ainda não implementado. :(')}>
+                <Text style={styles.forgotText}> esqueci minha senha </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
     </View>
-
   );
 }
 
