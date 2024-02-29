@@ -88,4 +88,12 @@ export const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     fontSize: '10px',
   },
+  paginaAtual: {
+    paddingLeft: 15,
+    fontSize: 32,
+    fontFamily: 'Helvetica',
+    fontSize: '28px',
+    fontWeight: 'bold',
+    color: 'grey',
+  }
 });

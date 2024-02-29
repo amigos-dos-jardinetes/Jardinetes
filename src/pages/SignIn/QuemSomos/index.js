@@ -4,12 +4,12 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
-import { styles } from '../SignIn/styles';
-import { checkLoggedInUser } from '../../../functions';
+import { styles } from '../styles';
+import { checkLoggedInUser } from '../../../../functions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
-import Image from './assets/Fundo.png'
+import Image from '../assets/Fundo.png'
 
 
 const firebaseConfig = {
@@ -136,7 +136,10 @@ const getUserInfo = async (token) => {
     <View style={styles.container}>
       <ImageBackground source={Image} resizeMode="cover" style={styles.image}>
         <View style={styles.containerMiddle}>
-          <Text style={styles.paginaAtual}>  PÁGINA INICIAL</Text>
+          <TouchableOpacity
+                onPress={() => navigation.navigate('Página Inicial')}>
+                <Text style={styles.hudText}>   PÁGINA INICIAL </Text>
+            </TouchableOpacity> 
           <View style={styles.button}>
             <TouchableOpacity
                 onPress={() => navigation.navigate('Ações Sociais')}>
@@ -144,10 +147,7 @@ const getUserInfo = async (token) => {
             </TouchableOpacity> 
           </View>
           <View style={styles.button}>
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Quem Somos')}>
-                <Text style={styles.hudText}>   QUEM SOMOS </Text>
-            </TouchableOpacity> 
+            <Text style={styles.paginaAtual}>  QUEM SOMOS </Text>
           </View>
           <View style={styles.button}>
             <TouchableOpacity

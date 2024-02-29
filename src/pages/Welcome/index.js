@@ -12,9 +12,6 @@ import { rotateImage, checkUserLoggedIn, navigateToSignIn } from '../../../funct
 
 WebBrowser.maybeCompleteAuthSession();
 
-function NewSignIn() {
-    navigation.navigate('NewSignIn')
-}
 
 export default function Welcome() {
     const navigation = useNavigation();
@@ -41,7 +38,7 @@ export default function Welcome() {
                 <Text style={styles.text}>Faça o login para começar</Text>
                
 
-                <TouchableOpacity style={styles.button} onPress={() => navigateToSignIn(navigation)}>
+                <TouchableOpacity style={styles.button} onPress={() =>navigation.navigate('Página Inicial')}>
                     <Text style={styles.buttonText}>Acessar</Text>
                 </TouchableOpacity>
              

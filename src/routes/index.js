@@ -5,7 +5,10 @@ import SignIn from '../pages/SignIn'
 import SignUp from '../pages/SignUp'
 import Menu from '../pages/Menu'
 import Config from '../pages/Config'
-
+import Inventory from '../pages/inventory'
+import QuemSomos from '../pages/SignIn/QuemSomos'
+import AcoesSociais from '../pages/SignIn/AcoesSociais'
+import Contato from '../pages/SignIn/Contato'
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +24,7 @@ export default function Routes() {
             />
 
             <Stack.Screen
-                name="SignIn"
+                name="Página Inicial"
                 component={SignIn}
                 options={{ headerShown: false }}
 
@@ -42,6 +45,29 @@ export default function Routes() {
             <Stack.Screen
                 name="Menu"
                 component={Menu}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Inventory"
+                component={Inventory}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Quem Somos"
+                component={QuemSomos}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Ações Sociais"
+                component={AcoesSociais}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Contato"
+                component={Contato}
                 options={{ headerShown: false }}
             />
 
