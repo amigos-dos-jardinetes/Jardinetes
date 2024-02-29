@@ -136,7 +136,10 @@ const getUserInfo = async (token) => {
     <View style={styles.container}>
       <ImageBackground source={Image} resizeMode="cover" style={styles.image}>
         <View style={styles.containerMiddle}>
-          <Text style={styles.paginaAtual}>  PÁGINA INICIAL</Text>
+        <TouchableOpacity
+                onPress={() => navigation.navigate('PaginaInicial')}>
+                <Text style={styles.hudText}>   PÁGINA INICIAL </Text>
+            </TouchableOpacity> 
           <View style={styles.button}>
             <TouchableOpacity
                 onPress={() => navigation.navigate('Ações Sociais')}>

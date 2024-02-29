@@ -290,7 +290,7 @@ export default function Menu() {
         <TouchableOpacity onPress={() => navigation.navigate('Welcome')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Início</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')} style={styles.navi}>
+                <TouchableOpacity onPress={() => navigation.navigate('')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Inventário</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.navi}>

@@ -9,6 +9,8 @@ import Inventory from '../pages/inventory'
 import QuemSomos from '../pages/SignIn/QuemSomos'
 import AcoesSociais from '../pages/SignIn/AcoesSociais'
 import Contato from '../pages/SignIn/Contato'
+import PaginaInicial from '../pages/PaginaInicial';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +26,7 @@ export default function Routes() {
             />
 
             <Stack.Screen
-                name="Página Inicial"
+                name="SignIn"
                 component={SignIn}
                 options={{ headerShown: false }}
 
@@ -68,6 +70,12 @@ export default function Routes() {
             <Stack.Screen
                 name="Contato"
                 component={Contato}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="PaginaInicial"
+                component={PaginaInicial}
                 options={{ headerShown: false }}
             />
 
