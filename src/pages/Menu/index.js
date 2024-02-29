@@ -16,8 +16,8 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import markerImage from '../../assets/marker.png';
 import L from 'leaflet';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function Menu() {
     const auth = getAuth();
@@ -31,16 +31,21 @@ export default function Menu() {
     const [pracasSeguidas, setPracasSeguidas] = useState([]);
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const [refreshing, setRefreshing] = useState(false);  // Estado para controlar o RefreshControl
-    const [selectedPlace, setSelectedPlace] = useState(null);
+    const [mapKey, setMapKey] = useState(1);
+    const [mapRefresh, setMapRefresh] = useState(false);
+
     const [selectedMarker, setSelectedMarker] = useState(null);
-    
+    const [selectedPlaceCoordinates, setSelectedPlaceCoordinates] = useState(null);
+    const [MapLatitude, setMapLatitude] = useState(null);
+    const [MapLongitude, setMapLongitude] = useState(null);
+
+
     const markers = [
         { position: [-25.43925924548977, -49.268820908320194], name: 'Local 1', image: 'URL 1' },
         { position: [/* ... */], name: 'Local 2', image: 'URL 2' },
         // Adicione mais marcadores conforme necessário
     ];
-    
+  
     {markers.map((marker, index) => (
         <Marker
             key={index}
@@ -64,19 +69,27 @@ export default function Menu() {
         // Adicione mais objetos conforme necessário
     ];
    
+    const [carouselIndex, setCarouselIndex] = useState(0);
 
-    const renderCarouselItem = (item) => (
-        <div key={item.image} style={styles.carouselItem}>
+    const handleNextClick = () => {
+        setCarouselIndex((prevIndex) => (prevIndex + 1) % carouselData.length);
+    };
+
+    const handlePrevClick = () => {
+        setCarouselIndex((prevIndex) => (prevIndex - 1 + carouselData.length) % carouselData.length);
+    };
+
+    const renderCarouselItem = (item, index) => (
+        <div key={index} style={styles.carouselItem1}>
             <img
                 src={item.image}
                 alt={`Image ${item.image}`}
-                style={styles.carouselImage}
+                style={styles.carouselImage1}
             />
         </div>
     );
 
 
-   
 
     const [request, response, promptAsync] = Google.useAuthRequest({
         iosClientId: '<IOS_CLIENT_ID>',
@@ -134,8 +147,7 @@ export default function Menu() {
     });
 
 
-
-    
+ 
    
 
     useEffect(() => {
@@ -169,7 +181,7 @@ export default function Menu() {
                     const pracaDoc = await getDoc(doc(firestore, 'pracas', pracaId));
                     if (pracaDoc.exists()) {
                         const pracaData = pracaDoc.data();
-                        return { id: pracaId, nome: pracaData.nome, photourl: pracaData.photourl, coordendas: pracaData.coordenadas  };
+                        return { id: pracaId, nome: pracaData.nome, photourl: pracaData.photourl, coordenadas: pracaData.coordenadas  };
                         
                         
                     }
@@ -194,17 +206,35 @@ export default function Menu() {
         coordenadas: praca.coordenadas,
     }));
 
-    const renderCarouselItem1 = (item) => (
-        <div key={item.id} style={styles.carouselItem}>
-            <img
-                src={item.images}
-                alt={`Image ${item.id}`}
-                style={styles.carouselImage}
-            />
-            <p style={styles.carouselText}>{item.nome}</p>
-        </div>
-    );
+    const renderCarouselItem1 = (item) => {
+        const latitude = item.coordenadas[0];
+        const longitude = item.coordenadas[1];
+    
+        return (
+            <div
+                key={item.id}
+                style={styles.carouselItem}
+                onClick={() => {
+                    setSelectedPlaceCoordinates(item.coordenadas);
+                    setMapLatitude(latitude);
+                    setMapLongitude(longitude);
+                    // Atualize a chave para forçar a recriação do MapContainer
+                    setMapKey((prevKey) => prevKey + 1);
+                }}
+            >
+                <img
+                    src={item.images}
+                    alt={`Image ${item.id}`}
+                    style={styles.carouselImage}
+                />
+                <p style={styles.carouselText}>{item.nome}</p>
+            </div>
+        );
+    };
+    
+
     return (
+        
        <View  style={styles.container}>
         
         <View
@@ -224,7 +254,13 @@ export default function Menu() {
                     ) : (
                         <Text>Imagem não disponível</Text>
                     )}
+                       <View style={styles.buttons}>
+                     <TouchableOpacity style={styles.textButton2}>
+                        <Text style={styles.textInfo2}>Informações de perfil</Text>
+                    </TouchableOpacity>
+                    </View>
                 </View>
+                
                 <View style={styles.buttons}>
                     <Text>{JSON.stringify(userInfo.given_name, null, 2)}</Text>
                     <TouchableOpacity style={styles.textButton}>
@@ -251,13 +287,13 @@ export default function Menu() {
 
         <View style={styles.navbar}>     
         
-        <TouchableOpacity onPress={() => navigation.navigate('Welcome')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Welcome')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Início</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Inventário</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Minhas Análises</Text>
                 </TouchableOpacity>
                 
@@ -267,43 +303,117 @@ export default function Menu() {
                 <View style={styles.car}> 
                
                 <Text style={styles.textgen}>Gerenciar minhas fotos</Text>
-                <div style={styles.container1}>
-                    
-            <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={true}>
-                {carouselData.map(renderCarouselItem)}
-            </Carousel>
-          
-           
-        </div>
+                <View style={styles.car4}> 
+                <View style={styles.borderedContainer2}> 
+                <View style={styles.borderedContainer3}> 
+
+                <Carousel
+    showArrows={true}
+    showThumbs={false}
+    showStatus={false}
+    infiniteLoop={true}
+    autoPlay={true}
+    showIndicators={true}
+    renderArrowPrev={(onClickHandler, hasPrev, label) =>
+        hasPrev && (
+            <button type="button" onClick={onClickHandler} style={{ position: 'absolute', top: '25%', left: 0, zIndex: 2, background: 'rgba(0, 0, 0, 0.5)', border: 'none', color: 'white', padding: '10px', borderRadius: '20%' }}>
+                <FontAwesomeIcon icon={faChevronLeft} size="2x" />
+            </button>
+        )
+    }
+    renderArrowNext={(onClickHandler, hasNext, label) =>
+        hasNext && (
+            <button type="button" onClick={onClickHandler} style={{ position: 'absolute', top: '25%', right: 0, zIndex: 2, background: 'rgba(0, 0, 0, 0.5)', border: 'none', color: 'white', padding: '10px', borderRadius: '20%' }}>
+                <FontAwesomeIcon icon={faChevronRight} size="2x" />
+            </button>
+        )
+    }
+    renderIndicator={(onClickHandler, isSelected, index, label) => (
+        <li
+        style={{
+            display: 'inline-block',
+            margin: '0 0.8%',
+            padding: '5px', 
+            borderRadius: '50%',
+            background: isSelected ? 'white' : 'gray',
+            maxInlineSize: '1%',
+            maxHeight: '1%',
+            position: 'relative',
+            top: '-10vw',  // Ajuste esta propriedade para posicionar os indicadores na parte superior
+         
+            zIndex: 2
+        }}
+        onClick={onClickHandler}
+        key={index}
+    />
+    )}
+>
+    {carouselData.map(renderCarouselItem)}
+</Carousel>
+        </View>
                 </View>
-               
+                </View>
+                </View>
+                <View   style={styles.car2}> 
+                <Text style={styles.textgen2}>Praças que acompanho</Text>
+                <View   style={[styles.car3, styles.borderedContainer]}> 
                
                 <View style={styles.container_map}> 
+                
+    {MapLatitude !== null && MapLongitude !== null ? (
+    <MapContainer
+    key={mapKey}
+    center={[MapLatitude, MapLongitude]}
+    zoom={selectedPlaceCoordinates ? 16 : 13}
+    style={{ width: '90%', height: '90%', borderRadius: 10 }}
+>
+    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-                <MapContainer
-        center={[-25.43925924548977, -49.268820908320194]}
-        zoom={13}
-        style={{ width: '80%', height: '80%', borderRadius: 10}}
-        onClick={(e) => {
-            setSelectedPlace({ lat: e.latlng.lat, lng: e.latlng.lng });
-        }}
-    >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-   
-    </MapContainer>
-
-                </View>
+    {pracasData.map((praca) => (
+        <Marker
+            key={praca.id}
+            position={praca.coordenadas}
+            icon={customIcon}
+        >
+            <Popup>
+                <div>
+                    <p>{praca.nome}</p>
+                    <img src={praca.photourl} alt={`Image ${praca.id}`} style={styles.popupImage} />
+                </div>
+            </Popup>
+        </Marker>
+    ))}
+</MapContainer>
+    ) : (
+        <Text>Clique na imagem para ir ao local</Text>
+    )}
+</View>
 
                 <View style={styles.container_map1}>
-
-                <div style={styles.container2}>
-                <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={true}>
-                {carouselData1.map(renderCarouselItem1)}
-            </Carousel>
-            </div>
-            </View>
-                
+    <div style={styles.container2}>
+       
+        <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={true}   renderArrowPrev={(onClickHandler, hasPrev, label) =>
+        hasPrev && (
+            <button type="button" onClick={onClickHandler} style={{ position: 'absolute', top: '40%', left: 0, zIndex: 2, background: 'rgba(0, 0, 0, 0.5)', border: 'none', color: 'white', padding: '10px', borderRadius: '20%' }}>
+                <FontAwesomeIcon icon={faChevronLeft} size="2x" />
+            </button>
+        )
+    }
+    renderArrowNext={(onClickHandler, hasNext, label) =>
+        hasNext && (
+            <button type="button" onClick={onClickHandler} style={{ position: 'absolute', top: '40%', right: 0, zIndex: 2, background: 'rgba(0, 0, 0, 0.5)', border: 'none', color: 'white', padding: '10px', borderRadius: '20%' }}>
+                <FontAwesomeIcon icon={faChevronRight} size="2x" />
+            </button>
+        )
+    }>
+            {carouselData1.map(renderCarouselItem1)}
+        </Carousel>
+      
+       
+    </div>
+</View>
+</View>
+</View>
         </View>
                 
         
