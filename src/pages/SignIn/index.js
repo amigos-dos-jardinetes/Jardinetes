@@ -193,7 +193,7 @@ const getUserInfo = async (token) => {
                 <Text> </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.forgotPlace} 
-                onPress={() =>navigation.navigate('Inventory')}>
+                onPress={() =>navigation.navigate('')}>
                 <Text style={styles.forgotText}> esqueci minha senha </Text>
             </TouchableOpacity>
           </View>
