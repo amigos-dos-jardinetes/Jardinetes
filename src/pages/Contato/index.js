@@ -1,0 +1,75 @@
+import React, { useRef } from 'react';
+import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking } from 'react-native';
+import { styles } from '../Contato/styles';
+import { useNavigation } from '@react-navigation/native';
+
+export default function Contato() {
+  const navigation = useNavigation();
+  const scrollViewRef = useRef(null);
+
+  const openExternalLink = () => {
+    const externalLink = 'https://www.instagram.com/amigosdosjardinetes.ct/'; // Substitua com o link desejado
+
+    Linking.openURL(externalLink).catch((err) => console.error('Error opening link:', err));
+  };
+
+  const openEmailComposer = () => {
+    const email = 'amigos.dos.jardinetes@gmail.com';
+    const subject = 'Novas Informações!!!';
+
+    const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+
+    Linking.openURL(mailtoUrl).catch((err) => console.error('Error opening email:', err));
+  };
+
+  return (
+    <ScrollView
+      horizontal  // Enable horizontal scrolling
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContent}
+        ref={scrollViewRef}
+      >
+        <ImageBackground
+          source={require('../../assets/contato.jpg')}
+          style={styles.backgroundImage}
+        >
+
+          <View style={styles.navbar}>
+            <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')}>
+              <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate('')}>
+              <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate('')}>
+              <Text style={styles.navbarButton}>QUEM SOMOS</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate('Contato')}>
+              <Text style={styles.navbarButton}>CONTATO</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+              <Text style={styles.navbarButton}>LOGIN</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={openEmailComposer} style={styles.circularButton}>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.buttonContainer2}>
+            <TouchableOpacity onPress={openExternalLink} style={styles.circularButton}>
+            </TouchableOpacity>
+          </View>
+
+
+
+        </ImageBackground>
+      </ScrollView>
+    </ScrollView>
+  );
+}

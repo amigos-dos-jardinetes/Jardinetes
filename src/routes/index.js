@@ -7,6 +7,7 @@ import Menu from '../pages/Menu'
 import Config from '../pages/Config'
 import Inventory from '../pages/inventory'
 import PaginaInicial from '../pages/PaginaInicial';
+import Contato from '../pages/Contato';
 
 
 const Stack = createNativeStackNavigator();
@@ -56,6 +57,12 @@ export default function Routes() {
             <Stack.Screen
                 name="PaginaInicial"
                 component={PaginaInicial}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Contato"
+                component={Contato}
                 options={{ headerShown: false }}
             />
 
