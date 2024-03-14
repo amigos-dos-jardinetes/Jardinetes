@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { ImageBackground, View, Text, StyleSheet, TextInput, TouchableOpacity, Button } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { ScrollView, ImageBackground, View, Text, StyleSheet, TextInput, TouchableOpacity, Button, Image } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import * as Animatable from 'react-native-animatable';
+import * as animatable from 'react-native-animatable';
+import { rotateImage, checkUserLoggedIn, navigateToSignIn } from '../../../functions';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from '../SignIn/styles';
 import { checkLoggedInUser } from '../../../functions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
-import Image from './assets/Fundo.png'
-
+import image_login from '../../assets/login_page.png';
+import welcome from '../../assets/welcome.png';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
@@ -30,7 +31,7 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-
+  const [animate, setAnimate] = useState(false);
   WebBrowser.maybeCompleteAuthSession()
 
   const [request, response, promptAsync] = Google.useAuthRequest({
@@ -130,76 +131,60 @@ export default function SignIn() {
       // Log or handle the error appropriately
     }
   };
-
+  const scrollViewRef = useRef(null);
 
   return (
-    <View style={styles.container}>
-      <ImageBackground source={Image} resizeMode="cover" style={styles.image}>
-        <View style={styles.containerMiddle}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('PaginaInicial')}>
-            <Text style={styles.hudText}>   PÁGINA INICIAL </Text>
-          </TouchableOpacity>
-          <View style={styles.button}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Ações Sociais')}>
-              <Text style={styles.hudText}>   AÇÕES SOCIAIS </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.button}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Quem Somos')}>
-              <Text style={styles.hudText}>   QUEM SOMOS </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.button}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Contato')}>
-              <Text style={styles.hudText}>   CONTATO </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.containerInput}>
-          <View style={styles.userInput}>
-            <TextInput
+    <ScrollView
+      horizontal  // Configuração para permitir rolar horizontalmente
 
-              style={[
-                styles.input,
-                error && styles.errorInput,
-              ]}
-              onChangeText={text => setEmail(text)}
-            />
-          </View>
-          <View style={styles.passwordInput}>
-            <TextInput
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContent}
+        ref={scrollViewRef}
+      >
+        <ImageBackground source={image_login} resizeMode="cover" style={styles.image}>
+          <View style={styles.navbar}>
 
-              style={[
-                styles.input,
-                error && styles.errorInput,
-              ]}
-              onChangeText={text => setPassword(text)}
-              secureTextEntry={true}
-            />
-          </View>
-          <View style={styles.containerBotton}>
-            <View style={styles.entrarButton}>
-              <TouchableOpacity onPress={handleLoginPress}>
-                <Text style={styles.entrartext}>ENTRAR</Text>
-              </TouchableOpacity>
-            </View>
-            <TouchableOpacity style={styles.googleButton}
-              title='Sign in with Google'
-              onPress={() => promptAsync()}>
-              <Text> </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')}>
+              <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.forgotPlace}
-              onPress={() => navigation.navigate('')}>
-              <Text style={styles.forgotText}> esqueci minha senha </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('')}>
+              <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('')}>
+              <Text style={styles.navbarButton}>QUEM SOMOS</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Contato')}>
+              <Text style={styles.navbarButton}>CONTATO</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+              <Text style={styles.navbarButton}>LOGIN</Text>
+            </TouchableOpacity>
+            
           </View>
-        </View>
-      </ImageBackground>
+
+
+          <View style={styles.card}>
+    <View style={styles.containerwelcome}>
+        <Image source={require('../../assets/welcome.png')} style={styles.welcome} />
     </View>
+
+    <View style={styles.containerLogo}>
+        <TouchableOpacity onPress={() => rotateImage(setAnimate)}>
+            <animatable.Image
+                animation={animate ? { from: { rotateY: '0deg' }, to: { rotateY: '360deg' } } : null}
+                easing="linear"
+                duration={1000}
+                source={require('../../assets/logo.png')}
+                style={styles.imagelogo}
+            />
+        </TouchableOpacity>
+    </View>
+</View>
+
+        </ImageBackground>
+      </ScrollView>
+    </ScrollView>
   );
 }
 

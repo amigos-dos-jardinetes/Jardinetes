@@ -1,99 +1,72 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column'
   },
-  containerBotton: {
-    flex: 1,
-    flexDirection: 'column',
-    marginTop: '-1.5%',
-  },
+
   image: {
+    width: width, // Largura da tela
+    height: 1450, // Altura absoluta da imagem
     flex: 1,
     justifyContent: 'center',
+    position: 'relative', // Permite que os elementos posicionados dentro do contêiner sejam relativos à imagem
   },
-  containerMiddle: {
-    flex: 1,
-    flexDirection: 'row',
-    marginTop: '5%',
-    marginLeft: '14%',
-  },
-  button: {
-    paddingLeft: 15,
-    fontSize: 32,
-  },
-  containerInput: {
-    flex: 1,
-    flexDirection: 'column',
-    marginLeft: '38%',
-    marginTop: '-6%',
-  },
-  userInput: {
-    width: 300,
-    height: 32,
-    backgroundColor: '#B68F40',
-    borderRadius: 7,
-  },
-  passwordInput: {
-    marginTop: '4%',
-    width: 300,
-    height: 32,
-    backgroundColor: '#00B44A',
-    borderRadius: 7,
 
+  navbar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    zIndex: 2,
+    position: 'absolute', // Define a posição absoluta do componente
+    left: '12.7%',
+    width: width - 430,
+    top: 260, // Ajusta a posição vertical do componente
+    justifyContent: 'space-around',
   },
-  entrarButton: {
-    width: 218,
-    height: 27,
-    flexShrink: 0,
-    borderRadius: 30,
-    backgroundColor: '#166034',
-    marginLeft: '5%',
-    marginTop: '8%',
-  },
-  entrartext: {
-    marginTop: '0.25%',
-    marginLeft: '31%',
-    color: 'white',
-    fontFamily: 'monospace',
-    fontWeight: 'bold',
-    fontSize: '150%',
-  },
-  googleButton: {
-    marginTop: '1.7%',
-    marginLeft: '17.5%',
-    maxHeight: '10px',
-    maxWidth: '10px',
-  },
-  input: {
-    fontSize: 22,
-  },
-  googleLogo: {
-    color: '#4caf50',
-  },
-  hudText: {
+
+  navbarButton: {
     fontFamily: 'Helvetica',
-    fontSize: '28px',
+    fontSize: width * 0.018, // Não é necessário usar 'px' em React Native
     fontWeight: 'bold',
     color: '#271C00',
+    marginBottom: '50px',
+    marginRight: width * 0.015,
   },
-  forgotPlace: {
-    marginTop: '-11.2%',
-    marginLeft: '22.5%',
-    maxWidth: '100px',
+
+  card: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+    position: 'absolute', // Define a posição absoluta do componente
+    backgroundColor: '#FFFEF4', // Cor de fundo do card
+    borderRadius: 85, // Borda arredondada
+    top: 400,
+    width: 693,
+    height: 685,
+    left: width - (width / 1.44),
   },
-  forgotText: {
-    fontFamily: 'Helvetica',
-    fontSize: '10px',
+  containerLogo: {
+    flex: 1,
+    justifyContent: 'flex-start', // Alinhe o logo para o topo
+    alignItems: 'center',
+    marginTop: '-40%', // Mova o logo para cima ajustando a margem superior
   },
-  paginaAtual: {
-    paddingLeft: 15,
-    fontSize: 32,
-    fontFamily: 'Helvetica',
-    fontSize: '28px',
-    fontWeight: 'bold',
-    color: 'grey',
+  containerwelcome: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '-26%',
+  },
+  imagelogo: {
+    width: 200,
+    height: 200
+  },
+  welcome: {
+    width: 311,
+    height: 85,
   }
+
 });
