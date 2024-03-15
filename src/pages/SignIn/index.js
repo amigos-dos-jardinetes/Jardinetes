@@ -12,6 +12,10 @@ import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import image_login from '../../assets/login_page.png';
 import welcome from '../../assets/welcome.png';
+import { Ionicons } from '@expo/vector-icons'; // Importe os ícones desejados
+
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
@@ -32,6 +36,12 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [animate, setAnimate] = useState(false);
+  const [isChecked, setIsChecked] = useState(false); // Movido para dentro do componente SignIn
+
+  const toggleCheckbox = () => {
+    setIsChecked(!isChecked);
+  };
+
   WebBrowser.maybeCompleteAuthSession()
 
   const [request, response, promptAsync] = Google.useAuthRequest({
@@ -160,27 +170,86 @@ export default function SignIn() {
             <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
               <Text style={styles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
-            
+
           </View>
 
 
           <View style={styles.card}>
-    <View style={styles.containerwelcome}>
-        <Image source={require('../../assets/welcome.png')} style={styles.welcome} />
-    </View>
+            <View style={styles.containerwelcome}>
+              <Image source={require('../../assets/welcome.png')} style={styles.welcome} />
+            </View>
 
-    <View style={styles.containerLogo}>
-        <TouchableOpacity onPress={() => rotateImage(setAnimate)}>
-            <animatable.Image
-                animation={animate ? { from: { rotateY: '0deg' }, to: { rotateY: '360deg' } } : null}
-                easing="linear"
-                duration={1000}
-                source={require('../../assets/logo.png')}
-                style={styles.imagelogo}
-            />
-        </TouchableOpacity>
-    </View>
-</View>
+            <View style={styles.containerLogo}>
+              <TouchableOpacity onPress={() => rotateImage(setAnimate)}>
+                <animatable.Image
+                  animation={animate ? { from: { rotateY: '0deg' }, to: { rotateY: '360deg' } } : null}
+                  easing="linear"
+                  duration={1000}
+                  source={require('../../assets/logo.png')}
+                  style={styles.imagelogo}
+                />
+              </TouchableOpacity>
+
+              <View style={styles.textcont}>
+                <Text style={styles.inpText}>Email:</Text>
+              </View>
+              <TextInput
+
+                style={[
+                  styles.input,
+                  error && styles.errorInput,
+                ]}
+                onChangeText={text => setEmail(text)}
+              />
+
+              <View style={styles.textcont}>
+                <Text style={styles.inpText2}>Senha:</Text>
+              </View>
+
+              <TextInput
+
+                style={[
+                  styles.input2,
+                  error && styles.errorInput,
+                ]}
+                onChangeText={text => setPassword(text)}
+                secureTextEntry={true}
+              />
+
+
+              <View style={styles.checkcont}>
+                <TouchableOpacity onPress={toggleCheckbox} style={styles.checkboxContainer}>
+                  <Ionicons
+                    name={isChecked ? 'checkbox-outline' : 'square-outline'} // Use os ícones apropriados para representar o estado da checkbox
+                    size={24}
+                    color={isChecked ? 'green' : 'black'}
+                  />
+                  <Text style={styles.checkboxLabel}>Concordo com os termos</Text>
+                </TouchableOpacity>
+
+              </View>
+
+              <TouchableOpacity style={styles.forgot} >
+                <Text>Esqueci minha senha</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.buttonLogin} onPress={handleLoginPress}>
+                <Text style={styles.buttonTextLogin}>ENTRAR</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.buttonGoogle} >
+                <Image source={require('../../assets/google.png')} style={styles.imageGoogle} />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.signUp} onPress={() => navigation.navigate('SignUp')}>
+                <Text style={styles.signUpText} >Cadastre-se</Text>
+              </TouchableOpacity>
+            </View>
+
+
+
+
+          </View>
 
         </ImageBackground>
       </ScrollView>

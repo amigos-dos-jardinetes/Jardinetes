@@ -50,7 +50,6 @@ export const styles = StyleSheet.create({
   },
   containerLogo: {
     flex: 1,
-    justifyContent: 'flex-start', // Alinhe o logo para o topo
     alignItems: 'center',
     marginTop: '-40%', // Mova o logo para cima ajustando a margem superior
   },
@@ -67,6 +66,83 @@ export const styles = StyleSheet.create({
   welcome: {
     width: 311,
     height: 85,
-  }
+  },
 
+  input: {
+    width: '250%',
+    height: 32,
+    backgroundColor: '#B68F40',
+    borderRadius: 7,
+  },
+  input2: {
+    width: '250%',
+    marginTop: 4,
+    height: 32,
+    backgroundColor: '#00B44A',
+    borderRadius: 7,
+  },
+
+  inpText: {
+    marginBottom: 4,
+    borderRadius: 7,
+    fontSize: width * 0.01,
+    alignItems: 'flex-start',
+  },
+  inpText2: {
+    marginTop: 20,
+    borderRadius: 7,
+    fontSize: width * 0.01,
+    alignItems: 'flex-start',
+  },
+  textcont: {
+    left: '-112%'
+  },
+
+  checkboxContainer: {
+    flexDirection: 'row', // Alinha os itens na horizontal
+    alignItems: 'center', // Alinha os itens verticalmente ao centro
+  },
+  checkboxLabel: {
+    marginLeft: 8, // Adiciona um espaçamento entre o ícone e o texto
+  },
+
+  checkcont: {
+    marginTop: 5,
+    left: '-78%'
+  },
+
+  forgot: {
+    top: -23,
+    left: '91%'
+  },
+
+  buttonLogin: {
+    marginTop: 10,
+    backgroundColor: '#166034', // Cor de fundo do botão
+    color: 'white', // Cor do texto
+    paddingVertical: '2%', // Espaçamento vertical dentro do botão
+    paddingHorizontal: '50%', // Espaçamento horizontal dentro do botão
+    borderRadius: 30, // Bordas arredondadas
+  },
+  buttonTextLogin: {
+    color: 'white', // Cor do texto
+    textAlign: 'center', // Alinhamento do texto
+    fontWeight: 'bold', // Peso da fonte
+    fontSize: width*0.016,
+  },
+  buttonGoogle: {
+    marginTop: 10,
+  },
+  imageGoogle:{
+    width: 50,
+    height: 50,
+  },
+
+  signUp:{
+    marginTop: 10,
+  },
+
+  signUpText:{
+    fontSize: width * 0.01,
+  },
 });

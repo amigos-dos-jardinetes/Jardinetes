@@ -287,7 +287,7 @@ export default function Menu() {
 
         <View style={styles.navbar}>     
         
-        <TouchableOpacity onPress={() => navigation.navigate('Welcome')} style={styles.navi}>
+        <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Início</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Inventory')} style={styles.navi}>

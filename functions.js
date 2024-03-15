@@ -27,7 +27,7 @@ export async function handleLogout(auth, navigation) {
     await signOut(auth);
     await AsyncStorage.removeItem('userToken');
     await AsyncStorage.removeItem('@user');
-    navigation.replace('Welcome');
+    navigation.replace('SignIn');
   } catch (error) {
     console.error('Erro ao fazer logout:', error);
   }
@@ -84,24 +84,24 @@ export async function userSearchData(auth, firestore, storage, navigation, setUs
 
 //Funções da página Welcome
 export const rotateImage = (setAnimate) => {
-    setAnimate(true);
-    setTimeout(() => {
-        setAnimate(false);
-    }, 1000);
+  setAnimate(true);
+  setTimeout(() => {
+    setAnimate(false);
+  }, 1000);
 };
 
 export const checkUserLoggedIn = async () => {
-    try {
-        const userData = await AsyncStorage.getItem('userData');
-        return userData ? JSON.parse(userData) : null;
-    } catch (error) {
-        console.error('Erro ao verificar usuário logado:', error);
-        return null;
-    }
+  try {
+    const userData = await AsyncStorage.getItem('userData');
+    return userData ? JSON.parse(userData) : null;
+  } catch (error) {
+    console.error('Erro ao verificar usuário logado:', error);
+    return null;
+  }
 };
 
 export const navigateToSignIn = (navigation) => {
-    navigation.navigate('SignIn');
+  navigation.navigate('SignIn');
 };
 //Término das funções da página Welcome
 
@@ -126,19 +126,19 @@ export const AlertLogin = () =>
 
 
 
-  export const checkLoggedInUser = async (auth, navigation) => {
-    try {
-      const user = await auth.currentUser;
-      if (user) {
-        console.log('Usuário logado:', user);
-        navigation.replace('Menu');
-      } else {
-        console.log('Nenhum usuário logado');
-      }
-    } catch (error) {
-      console.error('Erro ao verificar usuário logado:', error);
+export const checkLoggedInUser = async (auth, navigation) => {
+  try {
+    const user = await auth.currentUser;
+    if (user) {
+      console.log('Usuário logado:', user);
+      navigation.replace('Menu');
+    } else {
+      console.log('Nenhum usuário logado');
     }
-  };
+  } catch (error) {
+    console.error('Erro ao verificar usuário logado:', error);
+  }
+};
 //Término das funções da página SignIn
 
 
@@ -146,56 +146,56 @@ export const AlertLogin = () =>
 //Funções da página SignUp
 export const checkUserLoggedInSignUp = async (auth) => {
   try {
-      const user = auth.currentUser;
-      return user ? user : null;
+    const user = auth.currentUser;
+    return user ? user : null;
   } catch (error) {
-      console.error('Erro ao verificar usuário logado:', error);
-      return null;
+    console.error('Erro ao verificar usuário logado:', error);
+    return null;
   }
 };
 
 export const handleRegister = async (auth, firestore, storage, email, password, username, selectedImage, navigation) => {
   try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      await AsyncStorage.setItem('userToken', userCredential.user.uid);
-      const imageUrl = await uploadImageToFirebase(storage, selectedImage);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    await AsyncStorage.setItem('userToken', userCredential.user.uid);
+    const imageUrl = await uploadImageToFirebase(storage, selectedImage);
 
-      await setDoc(doc(firestore, 'users', userCredential.user.uid), {
-          username: username,
-          email: email,
-          imageUrl: imageUrl,
-      });
+    await setDoc(doc(firestore, 'users', userCredential.user.uid), {
+      username: username,
+      email: email,
+      imageUrl: imageUrl,
+    });
 
-      navigation.reset({
-          index: 0,
-          routes: [{ name: 'Menu' }],
-      });
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Menu' }],
+    });
 
-      navigation.replace('Menu');
+    navigation.replace('Menu');
   } catch (error) {
-      console.error(error);
-      AlertRegister();
+    console.error(error);
+    AlertRegister();
   }
 };
 
 export const pickImageAsync = async () => {
   try {
-      let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
-          quality: 1,
-          aspect: [4, 4],
-      });
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+      aspect: [4, 4],
+    });
 
-      if (!result.canceled) {
-          return result.uri;
-      } else {
-          AlertImage();
-          return null;
-      }
-  } catch (error) {
-      console.error('Erro ao selecionar a imagem:', error);
+    if (!result.canceled) {
+      return result.uri;
+    } else {
+      AlertImage();
       return null;
+    }
+  } catch (error) {
+    console.error('Erro ao selecionar a imagem:', error);
+    return null;
   }
 };
 
@@ -203,29 +203,29 @@ export const uploadImageToFirebase = async (storage, uri) => {
   const storageRef = ref(storage, `images/${Math.random().toString(36).substring(7)}`);
 
   try {
-      const response = await fetch(uri);
-      const blob = await response.blob();
+    const response = await fetch(uri);
+    const blob = await response.blob();
 
-      // Faz o upload do arquivo blob para o Storage
-      const snapshot = await uploadBytes(storageRef, blob);
+    // Faz o upload do arquivo blob para o Storage
+    const snapshot = await uploadBytes(storageRef, blob);
 
-      // Obtém a URL da imagem carregada
-      const url = await getDownloadURL(snapshot.ref);
-      return url; // Retorna a URL da imagem carregada
+    // Obtém a URL da imagem carregada
+    const url = await getDownloadURL(snapshot.ref);
+    return url; // Retorna a URL da imagem carregada
   } catch (error) {
-      console.error('Erro ao enviar a imagem para o Storage:', error);
-      return null;
+    console.error('Erro ao enviar a imagem para o Storage:', error);
+    return null;
   }
 };
 
 const AlertRegister = () =>
   Alert.alert('Erro de Registro', 'Por favor, tente novamente.', [
-      { text: 'OK', onPress: () => console.log('OK Pressed') },
+    { text: 'OK', onPress: () => console.log('OK Pressed') },
   ]);
 
 const AlertImage = () =>
   Alert.alert('Erro!', 'Você não selecionou nenhuma imagem, por favor tente novamente.', [
-      { text: 'OK', onPress: () => console.log('OK Pressed') },
+    { text: 'OK', onPress: () => console.log('OK Pressed') },
   ]);
 
 //Término das funções da página SignUp
