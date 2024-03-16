@@ -4,16 +4,14 @@ const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column'
+    width: width,
+    height: '100%',
   },
 
   image: {
-    width: width, // Largura da tela
-    height: 1450, // Altura absoluta da imagem
-    flex: 1,
-    justifyContent: 'center',
-    position: 'relative', // Permite que os elementos posicionados dentro do contêiner sejam relativos à imagem
+    width: width,
+    height: (width * 1024) / 1440,
+    resizeMode: 'contain',
   },
 
   navbar: {
@@ -23,7 +21,7 @@ export const styles = StyleSheet.create({
     position: 'absolute', // Define a posição absoluta do componente
     left: '12.7%',
     width: width - 430,
-    top: 260, // Ajusta a posição vertical do componente
+    top: '18%', // Ajusta a posição vertical do componente
     justifyContent: 'space-around',
   },
 
@@ -43,39 +41,46 @@ export const styles = StyleSheet.create({
     position: 'absolute', // Define a posição absoluta do componente
     backgroundColor: '#FFFEF4', // Cor de fundo do card
     borderRadius: 85, // Borda arredondada
-    top: 400,
-    width: 693,
-    height: 685,
-    left: width - (width / 1.44),
-  },
-  containerLogo: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: '-40%', // Mova o logo para cima ajustando a margem superior
+    top: '28%',
+    width: '30%',
+    height: '50%',
+    left: width - (width / 1.52),
   },
   containerwelcome: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '-26%',
-  },
-  imagelogo: {
-    width: 200,
-    height: 200
-  },
-  welcome: {
-    width: 311,
-    height: 85,
+    marginTop: '-1%',
+    marginBottom: '5%',
   },
 
+
+  containerLogo: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: '-21%', // Mova o logo para cima ajustando a margem superior
+  
+  },
+
+  imagelogo: {
+    width: width * 0.104166666,
+    height: width * 0.104166666,
+  },
+  welcome: {
+    width: width * 0.16197916666,
+    height: width * 0.044270833333,
+  },
+
+
+
   input: {
-    width: '250%',
+    width: '75%',
     height: 32,
     backgroundColor: '#B68F40',
     borderRadius: 7,
   },
   input2: {
-    width: '250%',
+    width: '75%',
     marginTop: 4,
     height: 32,
     backgroundColor: '#00B44A',
@@ -95,7 +100,10 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   textcont: {
-    left: '-112%'
+    left: '-33.3%'
+  },
+  textcont2: {
+    left: '-32.5%'
   },
 
   checkboxContainer: {
@@ -104,45 +112,50 @@ export const styles = StyleSheet.create({
   },
   checkboxLabel: {
     marginLeft: 8, // Adiciona um espaçamento entre o ícone e o texto
+    fontSize: width * 0.0075,
   },
 
   checkcont: {
     marginTop: 5,
-    left: '-78%'
+    left: '-20.78%'
   },
 
   forgot: {
-    top: -23,
-    left: '91%'
+    top: -24,
+    left: '25.84%',
+  },
+
+  forgotText: {
+    fontSize: width * 0.0075,
   },
 
   buttonLogin: {
     marginTop: 10,
     backgroundColor: '#166034', // Cor de fundo do botão
     color: 'white', // Cor do texto
-    paddingVertical: '2%', // Espaçamento vertical dentro do botão
-    paddingHorizontal: '50%', // Espaçamento horizontal dentro do botão
+    paddingVertical: '1%', // Espaçamento vertical dentro do botão
+    paddingHorizontal: '12%', // Espaçamento horizontal dentro do botão
     borderRadius: 30, // Bordas arredondadas
   },
   buttonTextLogin: {
     color: 'white', // Cor do texto
     textAlign: 'center', // Alinhamento do texto
     fontWeight: 'bold', // Peso da fonte
-    fontSize: width*0.016,
+    fontSize: width * 0.016,
   },
   buttonGoogle: {
     marginTop: 10,
   },
-  imageGoogle:{
-    width: 50,
-    height: 50,
+  imageGoogle: {
+    width: width * 0.026041666666666,
+    height: width * 0.026041666666666,
   },
 
-  signUp:{
+  signUp: {
     marginTop: 10,
   },
 
-  signUpText:{
+  signUpText: {
     fontSize: width * 0.01,
   },
 });

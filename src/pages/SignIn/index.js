@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ScrollView, ImageBackground, View, Text, StyleSheet, TextInput, TouchableOpacity, Button, Image } from 'react-native';
+import { ScrollView, ImageBackground, View, Text, StyleSheet, TextInput, TouchableOpacity, Button, Image, Dimensions } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as animatable from 'react-native-animatable';
@@ -15,7 +15,7 @@ import welcome from '../../assets/welcome.png';
 import { Ionicons } from '@expo/vector-icons'; // Importe os ícones desejados
 
 
-
+const { width, height } = Dimensions.get('window');
 
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
@@ -188,11 +188,15 @@ export default function SignIn() {
                   source={require('../../assets/logo.png')}
                   style={styles.imagelogo}
                 />
+                
               </TouchableOpacity>
-
+              </View>
               <View style={styles.textcont}>
                 <Text style={styles.inpText}>Email:</Text>
               </View>
+
+
+            
               <TextInput
 
                 style={[
@@ -201,8 +205,9 @@ export default function SignIn() {
                 ]}
                 onChangeText={text => setEmail(text)}
               />
+                
 
-              <View style={styles.textcont}>
+              <View style={styles.textcont2}>
                 <Text style={styles.inpText2}>Senha:</Text>
               </View>
 
@@ -221,7 +226,7 @@ export default function SignIn() {
                 <TouchableOpacity onPress={toggleCheckbox} style={styles.checkboxContainer}>
                   <Ionicons
                     name={isChecked ? 'checkbox-outline' : 'square-outline'} // Use os ícones apropriados para representar o estado da checkbox
-                    size={24}
+                    size={width* 0.0125}
                     color={isChecked ? 'green' : 'black'}
                   />
                   <Text style={styles.checkboxLabel}>Concordo com os termos</Text>
@@ -230,7 +235,7 @@ export default function SignIn() {
               </View>
 
               <TouchableOpacity style={styles.forgot} >
-                <Text>Esqueci minha senha</Text>
+                <Text style={styles.forgotText}>Esqueci minha senha</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.buttonLogin} onPress={handleLoginPress}>
@@ -244,7 +249,7 @@ export default function SignIn() {
               <TouchableOpacity style={styles.signUp} onPress={() => navigation.navigate('SignUp')}>
                 <Text style={styles.signUpText} >Cadastre-se</Text>
               </TouchableOpacity>
-            </View>
+         
 
 
 

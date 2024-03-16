@@ -1,19 +1,17 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-
-
 const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
 
   scrollViewContent: {
-    width: width,  // Largura da tela
-    height: 1024, // Altura da imagem
+    width: width,
+    height: '100%',
   },
   backgroundImage: {
-    width: width, // Largura da tela
-    height: 1450,
-    resizeMode: 'contain', // ou 'stretch' dependendo do efeito desejado
+    width: width,
+    height: (width * 1024) / 1440,
+    resizeMode: 'contain',
   },
 
   navbar: {
@@ -24,41 +22,60 @@ export const styles = StyleSheet.create({
     backgroundColor: '#195439',
     position: 'absolute',
     top: 0,
-    right: 0, // Alinha a barra de navegação à direita
+    right: 0,
     width: '100%',
     zIndex: 2,
   },
 
   navbarButton: {
-
-    fontSize: 32, // Tamanho do texto dos botões
+    fontSize: 32,
     color: '#FFF',
     fontWeight: 'bold'
   },
 
-  buttonContainer: {
-   
-    borderRadius: '50%',
-    position: 'absolute',
-    top: '46.3%',
-    left: '32.7%',
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
     zIndex: 1,
-  },
-
-  buttonContainer2: {
-
-    borderRadius: '50%',
     position: 'absolute',
-    top: '46.9%',
-    right: '32.9%',
-    zIndex: 1,
+    justifyContent: 'space-around',
+    top: '44%',
+    left: '30%',
+    width: '40%',
+    height: '28%',
+  },
+  
+  buttonEmail: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
-  circularButton: {
-    padding: 125,
+  buttonInstagram: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
+  buttonText: {
+    textAlign: 'center', // Centraliza horizontalmente o texto dentro do botão
+    fontSize: 42,
+    color: 'black',
+    bottom: -10, // Ajuste para posicionar o texto no centro vertical do botão
+  },
+
+  buttonText2: {
+    textAlign: 'center', // Centraliza horizontalmente o texto dentro do botão
+    fontSize: 42,
+    color: 'black',
+    bottom: -10, // Ajuste para posicionar o texto no centro vertical do botão
+    right: '6%'
   },
 
 
-
+  
 });

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking } from 'react-native';
+import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image } from 'react-native';
 import { styles } from '../Contato/styles';
 import { useNavigation } from '@react-navigation/native';
 
@@ -56,17 +56,21 @@ export default function Contato() {
               <Text style={styles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={openEmailComposer} style={styles.circularButton}>
+
+
+          <View style={styles.card}>
+
+            <TouchableOpacity onPress={openEmailComposer}>
+              <Image source={require('../../assets/email.png')} style={styles.buttonEmail} />
+              <Text style={styles.buttonText}>Email</Text>
             </TouchableOpacity>
-          </View>
 
-          <View style={styles.buttonContainer2}>
-            <TouchableOpacity onPress={openExternalLink} style={styles.circularButton}>
+            <TouchableOpacity onPress={openExternalLink}>
+              <Image source={require('../../assets/instagram.png')} style={styles.buttonInstagram} />
+              <Text style={styles.buttonText2}>Instagram</Text>
             </TouchableOpacity>
+
           </View>
-
-
 
         </ImageBackground>
       </ScrollView>
