@@ -250,10 +250,23 @@ export default function SignIn() {
                 <Text style={styles.signUpText} >Cadastre-se</Text>
               </TouchableOpacity>
          
+          </View>
+
+          <View style={styles.treeView1}>
+          <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
+          </View>
+
+          <View style={styles.treeView2}>
+          <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
+          </View>
 
 
+          <View style={styles.treeView3}>
+          <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
+          </View>
 
-
+          <View style={styles.treeView4}>
+          <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
           </View>
 
         </ImageBackground>

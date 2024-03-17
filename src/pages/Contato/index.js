@@ -61,12 +61,12 @@ export default function Contato() {
           <View style={styles.card}>
 
             <TouchableOpacity onPress={openEmailComposer}>
-              <Image source={require('../../assets/email.png')} style={styles.buttonEmail} />
+              <Image source={require('../../assets/email1.png')} style={styles.buttonEmail} />
               <Text style={styles.buttonText}>Email</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={openExternalLink}>
-              <Image source={require('../../assets/instagram.png')} style={styles.buttonInstagram} />
+              <Image source={require('../../assets/instagram1.png')} style={styles.buttonInstagram} />
               <Text style={styles.buttonText2}>Instagram</Text>
             </TouchableOpacity>
 

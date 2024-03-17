@@ -17,17 +17,20 @@ export const styles = StyleSheet.create({
   navbar: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     zIndex: 2,
-    position: 'absolute', // Define a posição absoluta do componente
+    position: 'absolute', 
     left: '12.7%',
-    width: width - 430,
-    top: '18%', // Ajusta a posição vertical do componente
+    width: width * 0.7760416666666667,
+    top: '18%',
     justifyContent: 'space-around',
   },
 
   navbarButton: {
     fontFamily: 'Helvetica',
-    fontSize: width * 0.018, // Não é necessário usar 'px' em React Native
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: width * 0.018, 
     fontWeight: 'bold',
     color: '#271C00',
     marginBottom: '50px',
@@ -38,9 +41,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 1,
-    position: 'absolute', // Define a posição absoluta do componente
-    backgroundColor: '#FFFEF4', // Cor de fundo do card
-    borderRadius: 85, // Borda arredondada
+    position: 'absolute',
+    backgroundColor: '#FFFEF4', 
+    borderRadius: 85,
     top: '28%',
     width: '30%',
     height: '50%',
@@ -58,7 +61,7 @@ export const styles = StyleSheet.create({
   containerLogo: {
     flex: 1,
     alignItems: 'center',
-    marginTop: '-21%', // Mova o logo para cima ajustando a margem superior
+    marginTop: '-21%', 
   
   },
 
@@ -107,11 +110,11 @@ export const styles = StyleSheet.create({
   },
 
   checkboxContainer: {
-    flexDirection: 'row', // Alinha os itens na horizontal
-    alignItems: 'center', // Alinha os itens verticalmente ao centro
+    flexDirection: 'row',
+    alignItems: 'center', 
   },
   checkboxLabel: {
-    marginLeft: 8, // Adiciona um espaçamento entre o ícone e o texto
+    marginLeft: 8, 
     fontSize: width * 0.0075,
   },
 
@@ -121,7 +124,7 @@ export const styles = StyleSheet.create({
   },
 
   forgot: {
-    top: -24,
+    top: width * -0.0125,
     left: '25.84%',
   },
 
@@ -131,16 +134,16 @@ export const styles = StyleSheet.create({
 
   buttonLogin: {
     marginTop: 10,
-    backgroundColor: '#166034', // Cor de fundo do botão
-    color: 'white', // Cor do texto
-    paddingVertical: '1%', // Espaçamento vertical dentro do botão
-    paddingHorizontal: '12%', // Espaçamento horizontal dentro do botão
-    borderRadius: 30, // Bordas arredondadas
+    backgroundColor: '#166034', 
+    color: 'white', 
+    paddingVertical: '1%', 
+    paddingHorizontal: '12%', 
+    borderRadius: 30, 
   },
   buttonTextLogin: {
-    color: 'white', // Cor do texto
-    textAlign: 'center', // Alinhamento do texto
-    fontWeight: 'bold', // Peso da fonte
+    color: 'white', 
+    textAlign: 'center',
+    fontWeight: 'bold', 
     fontSize: width * 0.016,
   },
   buttonGoogle: {
@@ -157,5 +160,43 @@ export const styles = StyleSheet.create({
 
   signUpText: {
     fontSize: width * 0.01,
+  },
+
+  smallTree: {
+    width: width * 0.0630208333333333,
+    height: width * 0.1489583333333333,
+  },
+
+  bigTree: {
+    width: width * 0.090625,
+    height: width * 0.177484375,
+  },
+
+  treeView1: {
+    zIndex: 2,
+    position: 'absolute', 
+    left: '29%',
+    top: '63.5%',
+  },
+
+  treeView2: {
+    zIndex: 2,
+    position: 'absolute', 
+    right: '28.5%',
+    top: '63.5%', 
+  },
+
+  treeView3: {
+    zIndex: 2,
+    position: 'absolute', 
+    left: '18%',
+    top: '59.46%', 
+  },
+
+  treeView4: {
+    zIndex: 2,
+    position: 'absolute',
+    right: '17.21%',
+    top: '59.46%', 
   },
 });
