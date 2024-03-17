@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
   },
 
   navbarButton: {
-    fontSize: 32,
+    fontSize: width * 0.0166666666666667,
     color: '#FFF',
     fontWeight: 'bold'
   },
@@ -46,34 +46,32 @@ export const styles = StyleSheet.create({
   },
   
   buttonEmail: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
+    width: width * 0.09375,
+    height: width * 0.09375,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   buttonInstagram: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
+    width: width * 0.09375,
+    height: width * 0.09375,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   buttonText: {
     textAlign: 'center', // Centraliza horizontalmente o texto dentro do botão
-    fontSize: 42,
+    fontSize: width * 0.021875,
     color: 'black',
-    bottom: -10, // Ajuste para posicionar o texto no centro vertical do botão
+    bottom: width * -0.0052083333333333, 
   },
 
   buttonText2: {
     textAlign: 'center', // Centraliza horizontalmente o texto dentro do botão
-    fontSize: 42,
+    fontSize: width * 0.021875,
     color: 'black',
-    bottom: -10, // Ajuste para posicionar o texto no centro vertical do botão
-    right: '6%'
+    bottom: width * -0.0052083333333333, 
+    left: width * 0.001
   },
 
 
