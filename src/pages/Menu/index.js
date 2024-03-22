@@ -108,7 +108,10 @@ export default function Menu() {
             const user = await AsyncStorage.getItem('@user');
             if (!user) {
                 if (response?.type === 'success' && response.authentication?.accessToken) {
-                    await getUserInfo(response.authentication.accessToken);
+                    const userInfo = await getUserInfo(response.authentication.accessToken);
+                    await AsyncStorage.setItem('@user', JSON.stringify(userInfo));
+                    setUserInfo(userInfo);
+                    navigation.navigate('Menu');
                 }
             } else {
                 setUserInfo(JSON.parse(user));
@@ -118,11 +121,10 @@ export default function Menu() {
             console.error('Error during Google login:', error);
         }
     }
-
-    const handleLogoutFunc = () => {
+    const handleLogoutFunc = async () => {
+        await AsyncStorage.removeItem('@user');
         handleLogout(auth, navigation);
     };
-
 
 
     React.useEffect(() => {

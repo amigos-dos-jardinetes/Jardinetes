@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-google-maps/api": "^2.19.3",
@@ -45,12 +46,15 @@
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
     "react-native-snap-carousel": "^3.9.1",
+    "react-native-swiper": "^1.6.0",
+    "react-native-swiper-flatlist": "^3.2.3",
     "react-native-web": "~0.19.6",
     "react-native-web-maps": "^0.3.0",
     "react-native-webview": "13.2.2",
     "react-responsive-carousel": "^3.2.23",
     "react-slick": "^0.30.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

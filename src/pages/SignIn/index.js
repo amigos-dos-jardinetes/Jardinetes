@@ -155,19 +155,19 @@ export default function SignIn() {
         <ImageBackground source={image_login} resizeMode="cover" style={styles.image}>
           <View style={styles.navbar}>
 
-            <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')}>
+            <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
               <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('')}>
+            <TouchableOpacity onPress={() => navigation.replace('')}>
               <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('')}>
+            <TouchableOpacity onPress={() => navigation.replace('')}>
               <Text style={styles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Contato')}>
+            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
               <Text style={styles.navbarButton}>CONTATO</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+            <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
               <Text style={styles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
 
@@ -188,85 +188,85 @@ export default function SignIn() {
                   source={require('../../assets/logo.png')}
                   style={styles.imagelogo}
                 />
-                
+
               </TouchableOpacity>
-              </View>
-              <View style={styles.textcont}>
-                <Text style={styles.inpText}>Email:</Text>
-              </View>
+            </View>
+            <View style={styles.textcont}>
+              <Text style={styles.inpText}>Email:</Text>
+            </View>
 
 
-            
-              <TextInput
 
-                style={[
-                  styles.input,
-                  error && styles.errorInput,
-                ]}
-                onChangeText={text => setEmail(text)}
-              />
-                
+            <TextInput
 
-              <View style={styles.textcont2}>
-                <Text style={styles.inpText2}>Senha:</Text>
-              </View>
-
-              <TextInput
-
-                style={[
-                  styles.input2,
-                  error && styles.errorInput,
-                ]}
-                onChangeText={text => setPassword(text)}
-                secureTextEntry={true}
-              />
+              style={[
+                styles.input,
+                error && styles.errorInput,
+              ]}
+              onChangeText={text => setEmail(text)}
+            />
 
 
-              <View style={styles.checkcont}>
-                <TouchableOpacity onPress={toggleCheckbox} style={styles.checkboxContainer}>
-                  <Ionicons
-                    name={isChecked ? 'checkbox-outline' : 'square-outline'} // Use os ícones apropriados para representar o estado da checkbox
-                    size={width* 0.0125}
-                    color={isChecked ? 'green' : 'black'}
-                  />
-                  <Text style={styles.checkboxLabel}>Concordo com os termos</Text>
-                </TouchableOpacity>
+            <View style={styles.textcont2}>
+              <Text style={styles.inpText2}>Senha:</Text>
+            </View>
 
-              </View>
+            <TextInput
 
-              <TouchableOpacity style={styles.forgot} >
-                <Text style={styles.forgotText}>Esqueci minha senha</Text>
+              style={[
+                styles.input2,
+                error && styles.errorInput,
+              ]}
+              onChangeText={text => setPassword(text)}
+              secureTextEntry={true}
+            />
+
+
+            <View style={styles.checkcont}>
+              <TouchableOpacity onPress={toggleCheckbox} style={styles.checkboxContainer}>
+                <Ionicons
+                  name={isChecked ? 'checkbox-outline' : 'square-outline'} // Use os ícones apropriados para representar o estado da checkbox
+                  size={width * 0.0125}
+                  color={isChecked ? 'green' : 'black'}
+                />
+                <Text style={styles.checkboxLabel}>Concordo com os termos</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.buttonLogin} onPress={handleLoginPress}>
-                <Text style={styles.buttonTextLogin}>ENTRAR</Text>
-              </TouchableOpacity>
+            </View>
 
-              <TouchableOpacity style={styles.buttonGoogle} >
-                <Image source={require('../../assets/google.png')} style={styles.imageGoogle} />
-              </TouchableOpacity>
+            <TouchableOpacity style={styles.forgot} >
+              <Text style={styles.forgotText}>Esqueci minha senha</Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity style={styles.signUp} onPress={() => navigation.navigate('SignUp')}>
-                <Text style={styles.signUpText} >Cadastre-se</Text>
-              </TouchableOpacity>
-         
+            <TouchableOpacity style={styles.buttonLogin} onPress={handleLoginPress}>
+              <Text style={styles.buttonTextLogin}>ENTRAR</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.buttonGoogle} >
+              <Image source={require('../../assets/google.png')} style={styles.imageGoogle} />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.signUp} onPress={() => navigation.navigate('SignUp')}>
+              <Text style={styles.signUpText} >Cadastre-se</Text>
+            </TouchableOpacity>
+
           </View>
 
           <View style={styles.treeView1}>
-          <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
+            <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
           </View>
 
           <View style={styles.treeView2}>
-          <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
+            <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
           </View>
 
 
           <View style={styles.treeView3}>
-          <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
+            <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
           </View>
 
           <View style={styles.treeView4}>
-          <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
+            <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
           </View>
 
         </ImageBackground>

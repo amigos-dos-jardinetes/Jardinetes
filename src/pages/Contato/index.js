@@ -36,23 +36,23 @@ export default function Contato() {
         >
 
           <View style={styles.navbar}>
-            <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')}>
+            <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
               <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('')}>
+            <TouchableOpacity onPress={() => navigation.replace('')}>
               <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('')}>
+            <TouchableOpacity onPress={() => navigation.replace('')}>
               <Text style={styles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Contato')}>
+            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
               <Text style={styles.navbarButton}>CONTATO</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+            <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
               <Text style={styles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
           </View>
