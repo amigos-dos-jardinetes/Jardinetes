@@ -1,0 +1,140 @@
+Abacate_Persea americana
+Ácer_Acer negundo L.
+Açoita-cavalo_Luehea divaricata
+Agapanto_Agapanthus africanus
+Agave_Agave americana L.
+Agave-dragão_Agave attenuata
+Alamo_Populus nigra L.
+Alfeneiro_Ligustrum lucidum
+Amora_Morus nigra L.
+Amor-perfeito_Viola wittrockiana
+Andira_Andira humilis
+Angico_Parapiptadenia rigida
+Araçá_Psidium cattleyanum
+Araucária_Araucaria angustifolia
+Ardísia_Ardisia crenata
+Aroeira_Schinus terebinthifolius
+Aroeira-chorão_Schinus molle L.
+Avenca-japonesa_Nandina domestica
+Azaleia_Rhododendron simsii
+Babosa_Aloe vera
+Beijinho_Impatiens walleriana
+Beri-silvestre_Canna aureovittata
+Bico-de-papagaio_Euphorbia pulcherrima
+Boldo-de-jardim_Plectranthus barbatus
+Bracatinga_Mimosa scabrella
+Buxinho_Buxus sempervirens L.
+Cacto_Cactus sp.
+Cacto-candelabro_Euphorbia ingens
+Caliandra-rosa_Caliandra brevipes
+Calistemon_Callistemon citrinus
+Camboatá_Matayba elaeagnoides
+Camélia_Camelia japonica
+Canafístula_Peltophorum dubium
+Canudo-de-pito_Senna bicapsularis
+Capim-limão_Cymbopogon citratus
+Capororoca_Myrsine guianensis
+Capororoca_Myrsine umbellata
+Cássia-fastuosa_Cassia leptophylla
+Cássia_Senna macranthera
+Cássia-multijuga_Senna multijuga
+Casuarina_Casuarina equisetifolia
+Caterete_Machaerium paraguariense
+Cedro-europeu_Chamaecyparis obtusa
+Cedro-rosa_Cedrela fissilis
+Cereja-do-japão_Prunus serrulata
+Cheflera_Schefflera arboricola
+Chorão_Salix babylonica L.
+Cica_Cycas revoluta
+Cinamomo_Melia azedarach L.
+Cipreste_Cupressus lusitanica
+Clusia_Clusia fluminensis
+Coroa-de-cristo_Euphorbia milii
+Corticeira_Erythrina crista-galli L.
+Cotoneaster_Cotoneaster franchetti
+Criptoméria_Cryptomeria japonica
+Cróton_Codiaeum variegatum
+Dama-da-noite_Cestrum nocturnum L.
+Dedaleiro_Lafoensia pacari
+Dracena_Dracaena marginata
+Embuia_Ocotea porosa
+Erva-mate_Ilex paraguariensis
+Espirradeira_Nerium oleander L.
+Eucalipto_Eucalyptus cinearea
+Extremosa_Lagerstroemia indica L.
+Falso-hibisco_Malvaviscus arboreus
+Ficus_Ficus benjamina L.
+Ficus-variegata_Ficus benjamina
+Figueira_Ficus gomelleira
+Glicínia_Wisteria floribunda
+Goiaba_Psidium guajava L.
+Grama-Arachis repens
+Grama-preta_Aphiopogon japonicus
+Grama-são-carlos_Axonopus compressus
+Guabiroba_Campomanesia xanthocarpa
+Guapuruvu_Schizolobium parahyba
+Helicônia_Heliconia rostrata
+Hera_Hedera helix L.
+Hera-roxa_Hemigraphis alternata
+Hibísco_Hibiscus rosa-sinensis L.
+Hortênsia_Hydrangea macrophylla
+Ipê-amarelo-miúdo_Handroanthus chrysotrichus
+Ipê-amarelo-graúdo_Handroanthus albus
+Ipê-roxo_Handroanthus heptaphyllus
+Ipê-verde_Cybistax antisyphillitica
+Íris-amarelo_Iris pseudacorus L.
+Iuca-gigante_Yucca gigantea
+Jabuticaba_Plinia trunciflora
+Jacarandá-mimoso_Jacaranda mimosifolia    
+Jasmim-amarelo_Jasminum mesnyi
+Jasmim-dos-poetas_Jasminum polyanthum       
+Jerivá_Syagrus romanzoffiana
+Koleutéria_Koelreuteria paniculada
+Leiteiro_Sapium glandulosum
+Limão-rosa_Citrus limon
+Liquidambar_Liquidambar styraciflua L.
+Maçaranduba_Persea pyrifolia Nees
+Magnólia-branca_Magnolia grandiflora L.
+Manacá_Brunfelsia uniflora
+Monjoleiro_Anadenanthera colubrina
+Mulungú_Erythrina speciosa
+Nêspera_Eriobotrya japonica
+Oliveira_Olea europaea L.
+Paineira_Ceiba speciosa
+Palmeira-areca_Dypsis lutescens
+Palmeira-fenix_Phoenix roebelenii
+Palmeira-laca_Cyrstostachys renda
+Palmeira-leque_Licuala grandis
+Palmeira-real_Archontophoenix alexandrae
+Palmito_Euterpe edulis
+Pata-de-vaca_Bauhinia forficata
+Pau-brasil_Caesalpinia echinata
+Pau-ferro_Libidibia ferrea
+Pau-incenso_Pittosporum undulatum
+Paxiúba_Socratea exorrhiza
+Pingo-de-ouro_Duranta erecta L
+Pinheiro_Pinus elliottii
+Pinheiro_Pinus patula
+Pinheiro-bravo_Podocarpus lambertii
+Pinheiro-de-cook_Araucaria columnaris
+Piracanta_Pyracantha coccinea
+Pitanga_Eugenia uniflora L.
+Piteira_Opuntia sp.
+Piteira-do-caribe_Agave angustifolia
+Primavera_Bougainvillea glabra
+Primavera-árvore_Bougainvillea arborea
+Robínia_Robinea pseudoacacia L.
+Rosa_Rosa sp.
+Rosa-miniatura_Rosa chinensis
+Sabugueiro_Sambucus nigra
+Sálvia_Salvia splendens
+Serissa_Serissa foetida
+Sibipiruna_Caesalpinia pluviosaTagetes_Tagetes erecta L.
+Tarumã_Vitex megapotamica
+Timbaúva_Enterolobium contortislliquum
+Tipuana_Tipuana tipu
+Tuia_Thuja occidentalis L.
+Uva-do-japão_Hovenia dulcis
+Uvarana_Cordyline spectabilis     
+Vacum_Allophylus eduli
+Xaxim_Dicksonia sellowiana
