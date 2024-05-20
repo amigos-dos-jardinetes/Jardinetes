@@ -152,16 +152,16 @@ export default function SignIn() {
         <ImageBackground source={image_login} resizeMode="cover" style={styles.image}>
           <View style={styles.navbar}>
 
-            <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
+            <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')}>
               <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.replace('')}>
+            <TouchableOpacity onPress={() => navigation.navigate('')}>
               <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
+            <TouchableOpacity onPress={() => navigation.navigate('JardinetesMap')}>
               <Text style={styles.navbarButton}>FAÇA SUA PARTE</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.replace('')}>
+            <TouchableOpacity onPress={() => navigation.navigate('')}>
               <Text style={styles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.replace('Contato')}>

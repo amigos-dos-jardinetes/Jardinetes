@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
   button: {
     width: width * 0.15625, // 60 é a soma das margens horizontais (20 * 3)
     height: width * 0.15625, // Mantendo o mesmo tamanho para quadrados
-    backgroundColor: '#166034', // Cor de fundo verde
+    backgroundColor: '#809C30', // Cor de fundo verde
     borderRadius: width * 0.0104166666666667, // Bordas arredondadas
     marginBottom: width * 0.0104166666666667, // Espaçamento inferior entre os botões
   },
@@ -88,7 +88,7 @@ export const styles = StyleSheet.create({
   button1: {
     width: width * 0.15625, // 60 é a soma das margens horizontais (20 * 3)
     height: width * 0.15625, // Mantendo o mesmo tamanho para quadrados
-    backgroundColor: '#293037', // Cor de fundo verde
+    backgroundColor: '#1E6131', // Cor de fundo verde
     borderRadius: width * 0.0104166666666667, // Bordas arredondadas
     marginBottom: width * 0.0104166666666667, // Espaçamento inferior entre os botões
   },
