@@ -75,7 +75,20 @@ export default function Contato() {
             </TouchableOpacity>
 
           </View>
+          <View style={styles.imageContainer33}>
+          <Image source={require('../../assets/araucarias.png')}  style={styles.araucarias} />
+        
+      </View>
 
+          <View style={styles.imageContainer44}>
+          <Image source={require('../../assets/araucarias.png')}  style={styles.araucarias2} />
+        
+      </View>
+        <View style={styles.navbar2}>
+      <View style={styles.imageContainer22}>
+          <Image source={require('../../assets/UtfprBottom.png')}  style={styles.utfprImage} />
+      </View>
+      </View>
         </ImageBackground>
       </ScrollView>
     </ScrollView>

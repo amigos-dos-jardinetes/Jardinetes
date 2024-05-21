@@ -27,6 +27,63 @@ export const styles = StyleSheet.create({
     zIndex: 2,
   },
 
+  navbar2: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    height: width * 0.06814583333333333333333333333333,
+    backgroundColor: '#166034',
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: '100%',
+   bottom: 0,
+  },
+
+ 
+  araucarias: {
+    width: width * 0.1651041666666667,
+    height: width * 0.146875,
+    marginRight: width * 0.0260416666666667,
+  },
+
+  araucarias2: {
+    zIndex: -2,
+    width: width * 0.1155729166666667,
+    height: width * 0.1028125,
+
+  },
+
+  imageContainer22: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center', 
+
+  },
+
+  imageContainer33: {
+    top: width * 0.52,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    left: width * 0.1041666666666667,
+    marginRight: width * 0.1041666666666667,
+  },
+  imageContainer44: {
+    zIndex:-1,
+    top: width * 0.41,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginRight: width * 0.1380208333333333,
+  },
+
+  utfprImage: {
+    width: 144 * (width * 0.00067708333),
+    height:57 * (width * 0.00067708333),
+    marginLeft: width * 0.0208333333333333,
+  },
   navbarButton: {
     fontSize: width * 0.0166666666666667,
     color: '#FFF',
