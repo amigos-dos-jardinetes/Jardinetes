@@ -298,7 +298,7 @@ export default function Menu() {
                 <TouchableOpacity onPress={() => navigation.navigate('Accept')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Dados Gerais</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('AnaliseFinal')} style={styles.navi}>
+                <TouchableOpacity onPress={() => navigation.navigate('JardinetesMap')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Minhas Análises</Text>
                 </TouchableOpacity>
 

@@ -618,7 +618,7 @@ const updateSeguranca05Value = async (incrementValue) => {
       updateSeguranca05Value(seguranca05Value, 'seguranca_05');
       updatePessoasValue(pessoas, 'pessoas');
 
-      navigation.navigate('');
+      navigation.navigate('AnaliseFinal', { novoJardineteDocId });
   };
   
 
