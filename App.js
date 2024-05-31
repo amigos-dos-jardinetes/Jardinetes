@@ -15,6 +15,7 @@ import Impact from './src/pages/Impact';
 import MeusJardinetes from './src/pages/MeusJardinetes';
 import JardinetesMap from './src/pages/JardinetesMap';
 import ImpactSolo from './src/pages/ImpactSolo';
+import AnaliseFinal from './src/pages/AnaliseFinal';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,7 @@ export default function App() {
         <Stack.Screen name="Meus-jardinetes" component={MeusJardinetes} options={{ headerShown: false }} />
         <Stack.Screen name="JardinetesMap" component={JardinetesMap} options={{ headerShown: false }} />
         <Stack.Screen name="ImpactSolo" component={ImpactSolo} options={{ headerShown: false }} />
+        <Stack.Screen name="AnaliseFinal" component={AnaliseFinal} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

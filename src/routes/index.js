@@ -14,6 +14,7 @@ import Impact from '../pages/Impact';
 import MeusJardinetes from '../pages/MeusJardinetes';
 import JardinetesMap from '../pages/JardinetesMap';
 import ImpactSolo from '../pages/ImpactSolo';
+import AnaliseFinal from '../pages/AnaliseFinal';
 
 export default function AppRoutes() {
   return (
@@ -33,6 +34,7 @@ export default function AppRoutes() {
         <Route path="/meus-jardinetes" element={<MeusJardinetes />} />
         <Route path="/jardinetes-map" element={<JardinetesMap />} />
         <Route path="/impact-solo" element={<ImpactSolo />} />
+        <Route path="/AnaliseFinal" element={<AnaliseFinal />} />
       </Routes>
     </Router>
   );
