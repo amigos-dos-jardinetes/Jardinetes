@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
         right: 0,
         width: '100%',
         top: 1200,
-        marginTop: 200,
+        marginTop: 500,
     },
 
     imageContainer22: {
@@ -73,6 +73,7 @@ export const styles = StyleSheet.create({
         height: 57 * (width * 0.00067708333),
         marginLeft: width * 0.0208333333333333,
     },
+
 
     analise: {
         width: width * 0.290625,
@@ -244,14 +245,106 @@ export const styles = StyleSheet.create({
         transform: [{ rotate: '310deg' }]
     },
 
+    petala1000: {
+        top: -(240),
+        left: 0,
+        width: 805 * 0.57,
+        height: 456 * 0.57,
+        position: 'absolute',
+        transform: [{ rotate: '110deg' }]
+    },
+
+    petala1001: {
+        top: -70,
+        left: 140,
+        width: 805 * 0.57,
+        height: 456 * 0.57,
+        position: 'absolute',
+        transform: [{ rotate: '170deg' }]
+    },
+
+    petala1002: {
+        top: 140,
+        left: 80,
+        width: 805 * 0.57,
+        height: 456 * 0.57,
+        position: 'absolute',
+        transform: [{ rotate: '230deg' }]
+    },
+
+    petala1003: {
+        top: 140,
+        left: -(180),
+        width: 805 * 0.57,
+        height: 456 * 0.57,
+        position: 'absolute',
+        transform: [{ rotate: '310deg' }]
+    },
 
 
 
     centralContainer: {
-        top: 800,
+        top: 900,
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'relative',
+        position: 'absolute',
+      
+    },
+
+    infraContainer: {
+        top: 400,
+        left: 220,
+    },
+
+    infra: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        borderWidth: 10,
+        borderColor: '#FB9116',
+      
+    },
+
+    bemContainer: {
+        top: 660,
+        left: 530,
+    },
+
+    bem: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        borderWidth: 10,
+        borderColor: '#B781FD',
+      
+    },
+
+    segContainer: {
+        top: 1070,
+        left: 380,
+    },
+
+    seg: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        borderWidth: 10,
+        borderColor: '#FFBC10',
+      
+    },
+
+    pertContainer: {
+        top: 970,
+        right: 320,
+    },
+
+    pert: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        borderWidth: 10,
+        borderColor: '#FEACAC',
+      
     },
 
 

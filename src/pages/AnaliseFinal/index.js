@@ -57,16 +57,30 @@ export default function AnaliseFinal() {
 
       
           <Image source={require('../../assets/analise.png')}  style={styles.analise} />
-      
 
+            <View style={styles.infraContainer}>
+          <Image source={require('../../assets/infraIcon.png')}  style={styles.infra} />
+          </View>
+
+          <View style={styles.bemContainer}>
+          <Image source={require('../../assets/bemIcon.png')}  style={styles.bem} />
+          </View>
+
+          <View style={styles.segContainer}>
+          <Image source={require('../../assets/segIcon.png')}  style={styles.seg} />
+          </View>
+
+          <View style={styles.pertContainer}>
+          <Image source={require('../../assets/pertIcon.png')}  style={styles.pert} />
+          </View>
 
 
           <View style={styles.centralContainer}>
         <Image source={require('../../assets/folhas.png')} style={styles.folhas} />
-        <Image source={require('../../assets/petala20.png')} style={styles.petala200} />
-        <Image source={require('../../assets/petala40.png')} style={styles.petala401} />
-        <Image source={require('../../assets/petala60.png')} style={styles.petala602} />
-        <Image source={require('../../assets/petala80.png')} style={styles.petala803} />
+        <Image source={require('../../assets/petala100.png')} style={styles.petala1000} />
+        <Image source={require('../../assets/petala100.png')} style={styles.petala1001} />
+        <Image source={require('../../assets/petala100.png')} style={styles.petala1002} />
+        <Image source={require('../../assets/petala100.png')} style={styles.petala1003} />
         <Image source={require('../../assets/miolo.png')} style={styles.miolo} />
       </View>
 
