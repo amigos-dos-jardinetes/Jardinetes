@@ -15,6 +15,8 @@ import MeusJardinetes from '../pages/MeusJardinetes';
 import JardinetesMap from '../pages/JardinetesMap';
 import ImpactSolo from '../pages/ImpactSolo';
 import AnaliseFinal from '../pages/AnaliseFinal';
+import BemEstar from '../pages/BemEstar';
+import Infraestrutura from '../pages/Infraestrutura';
 
 export default function AppRoutes() {
   return (
@@ -35,6 +37,8 @@ export default function AppRoutes() {
         <Route path="/jardinetes-map" element={<JardinetesMap />} />
         <Route path="/impact-solo" element={<ImpactSolo />} />
         <Route path="/AnaliseFinal" element={<AnaliseFinal />} />
+        <Route path="/BemEstar" element={<BemEstar />} />
+        <Route path="/Infraestrutura" element={<Infraestrutura />} />
       </Routes>
     </Router>
   );

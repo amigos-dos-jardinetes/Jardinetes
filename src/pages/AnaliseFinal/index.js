@@ -24,7 +24,7 @@ export default function AnaliseFinal() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const route = useRoute();
-  const novoJardineteDocId = route.params.novoJardineteDocId;
+  const novoJardineteDocId = 'SgOYdO4exZP5nF0kVAQN';
 
   const [petalaImage, setPetalaImage] = useState(require('../../assets/petala20.png'));
   const [petalaStyle, setPetalaStyle] = useState(styles.petala200);
@@ -236,7 +236,7 @@ export default function AnaliseFinal() {
         <Image source={require('../../assets/analise.png')} style={styles.analise} />
 
         <View style={styles.infraContainer}>
-          <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Infraestrutura', { novoJardineteDocId })}>
             <Image source={require('../../assets/infraIcon.png')} style={styles.infra} />
           </TouchableOpacity>
           <View style={styles.infraContainer2}>
@@ -246,7 +246,7 @@ export default function AnaliseFinal() {
         </View>
 
         <View style={styles.bemContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BemEstar', { novoJardineteDocId })}>
             <Image source={require('../../assets/bemIcon.png')} style={styles.bem} />
           </TouchableOpacity>
           <View style={styles.bemContainer2}>

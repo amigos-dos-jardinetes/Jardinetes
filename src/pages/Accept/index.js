@@ -10,7 +10,7 @@ import { MapContainer, TileLayer, Marker, Popup, Circle, useMapEvents } from 're
 import { userSearchData } from '../../../functions';
 import { getStorage } from 'firebase/storage';
 import { getDistance } from 'geolib';
-import { Ionicons } from '@expo/vector-icons'; // Certifique-se de ter o pacote @expo/vector-icons instalado
+import { Ionicons } from '@expo/vector-icons';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",

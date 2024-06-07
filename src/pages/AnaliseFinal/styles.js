@@ -404,7 +404,7 @@ export const styles = StyleSheet.create({
 
     bemContainer: {
         top: width * 0.453125,
-        left: width * 0.7291666666666667,
+        left: width * 0.738,
         position: 'absolute',
         flexDirection: 'row',
         alignItems: 'center',
