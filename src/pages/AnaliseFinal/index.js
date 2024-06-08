@@ -24,7 +24,7 @@ export default function AnaliseFinal() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const route = useRoute();
-  const novoJardineteDocId = 'SgOYdO4exZP5nF0kVAQN';
+  const novoJardineteDocId = route.params.novoJardineteDocId;
 
   const [petalaImage, setPetalaImage] = useState(require('../../assets/petala20.png'));
   const [petalaStyle, setPetalaStyle] = useState(styles.petala200);
@@ -256,7 +256,7 @@ export default function AnaliseFinal() {
         </View>
 
         <View style={styles.segContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Seguranca', { novoJardineteDocId })}>
             <Image source={require('../../assets/segIcon.png')} style={styles.seg} />
           </TouchableOpacity>
           <View style={styles.segContainer2}>
@@ -270,7 +270,7 @@ export default function AnaliseFinal() {
             <Image source={require('../../assets/pertText.png')} style={styles.pertText} />
             <View style={styles.pertRet}></View>
           </View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Pertencimento', { novoJardineteDocId })}>
             <Image source={require('../../assets/pertIcon.png')} style={styles.pert} />
           </TouchableOpacity>
         </View>

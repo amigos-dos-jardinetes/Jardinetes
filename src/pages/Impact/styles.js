@@ -18,6 +18,17 @@ export const styles = StyleSheet.create({
       },
 
 
+      checkboxContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: width * 0.0052083333333333,
+    },
+    checkboxLabel: {
+        marginLeft: width * 0.0041666666666667,
+        fontSize: width * 0.0083333333333333,
+    },
+
+    
       navbar2: {
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -178,6 +189,7 @@ export const styles = StyleSheet.create({
     textContainer: {
         alignSelf: 'flex-start', 
         marginLeft: width * 0.028125,
+        flexDirection: 'row',
       },
 
       imageContainer2: {

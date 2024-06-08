@@ -266,7 +266,7 @@ export default function Infraestrutura() {
           </View>
         </View>
         <View style={styles.containerCircText3}>
-          <Text style={styles.textCirc3}>Os bancos são suficientes e estão em bom estado.</Text>
+          <Text style={styles.textCirc3}>Os bancos são suficientes e estão em bom estado</Text>
         </View>
 
         <View style={styles.containerCirc4}>

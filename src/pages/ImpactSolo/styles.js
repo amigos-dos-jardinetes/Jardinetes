@@ -16,6 +16,15 @@ export const styles = StyleSheet.create({
         width: '100%',
         zIndex: 2,
       },
+      checkboxContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: width * 0.0052083333333333,
+    },
+    checkboxLabel: {
+        marginLeft: width * 0.0041666666666667,
+        fontSize: width * 0.0083333333333333,
+    },
 
 
       navbar2: {

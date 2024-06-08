@@ -17,6 +17,8 @@ import ImpactSolo from '../pages/ImpactSolo';
 import AnaliseFinal from '../pages/AnaliseFinal';
 import BemEstar from '../pages/BemEstar';
 import Infraestrutura from '../pages/Infraestrutura';
+import Seguranca from '../pages/seguranca';
+import Pertencimento from '../pages/Pertencimento';
 
 export default function AppRoutes() {
   return (
@@ -39,6 +41,8 @@ export default function AppRoutes() {
         <Route path="/AnaliseFinal" element={<AnaliseFinal />} />
         <Route path="/BemEstar" element={<BemEstar />} />
         <Route path="/Infraestrutura" element={<Infraestrutura />} />
+        <Route path="/Seguranca" element={<Seguranca />} />
+        <Route path="/Pertencimento" element={<Pertencimento />} />
       </Routes>
     </Router>
   );

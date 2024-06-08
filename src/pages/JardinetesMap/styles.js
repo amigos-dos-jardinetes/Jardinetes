@@ -346,14 +346,22 @@ linearGradient: {
   justifyContent: 'center',
 },
 
-popupButton: {
-  backgroundColor: '#809C30',
-  borderRadius: width * 0.0052083333333333,
-  paddingVertical: width * 0.0052083333333333,
-  paddingHorizontal: width * 0.0104166666666667,
-  alignSelf: 'center',
+
+
+popupButtonContainer: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
   marginTop: width * 0.0052083333333333,
 },
+popupButton: {
+  flex: 1,
+  marginHorizontal: width * 0.0026041666666667,
+  paddingVertical: width * 0.0052083333333333,
+  backgroundColor: '#809C30',
+  borderRadius:  width * 0.0026041666666667,
+  alignItems: 'center',
+},
+
 popupButtonText: {
   color: '#ffffff',
   fontWeight: 'bold',

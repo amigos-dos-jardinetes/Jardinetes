@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native'; 
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, CheckBox  } from 'react-native'; 
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
@@ -65,6 +65,9 @@ export default function ImpactSolo() {
     const [pessoas, setPessoas] = useState(1);
     const [jardineteData, setJardineteData] = useState(null);
     const [nomeDoJardinete, setNomeDoJardinete] = useState('');
+    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked1, setIsChecked1] = useState(false);
+    const [isChecked2, setIsChecked2] = useState(false);
 
     useEffect(() => {
       const fetchJardineteData = async () => {
@@ -124,6 +127,27 @@ useEffect(() => {
             console.error('Erro ao atualizar valor de pessoas no Firebase:', error);
         }
     };
+
+    useEffect(() => {
+      if (isChecked) {
+        setSelectedButtonIndex7(null);
+        setInfraestrutura03Value(0);
+      }
+    }, [isChecked]);
+    
+    useEffect(() => {
+      if (isChecked1) {
+        setSelectedButtonIndex8(null);
+        setInfraestrutura04Value(0);
+      }
+    }, [isChecked1]);
+    
+    useEffect(() => {
+      if (isChecked2) {
+        setSelectedButtonIndex9(null);
+        setInfraestrutura05Value(0);
+      }
+    }, [isChecked2]);
 
       const updateBemEstar01Value = async (incrementValue) => {
         try {
@@ -1071,180 +1095,207 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
     </View>
-
     <View style={styles.textContainer}>
     <Text style={styles.formText2}>3. Sinto que os bancos são suficientes e estão em bom estado;</Text>
+      <View style={styles.checkboxContainer}>
+        <CheckBox
+          value={isChecked}
+          onValueChange={(newValue) => setIsChecked(newValue)}
+        />
+        <Text style={styles.formText2}>Não aplicável</Text>
+      </View>
     </View>
     <View style={styles.row}>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 4 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(4); setInfraestrutura03Value(1);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/red.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 4 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(4); setInfraestrutura03Value(1);}}>
-  <Image
-    source={require('../../assets/red.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 3 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(3); setInfraestrutura03Value(2);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/orange.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 2 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(2); setInfraestrutura03Value(3);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/yellow.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 3 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(3); setInfraestrutura03Value(2);}}>
-  <Image
-    source={require('../../assets/orange.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 1 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(1); setInfraestrutura03Value(4);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/green.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 2 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(2); setInfraestrutura03Value(3);}}>
-  <Image
-    source={require('../../assets/yellow.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 1 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(1); setInfraestrutura03Value(4);}}>
-  <Image
-    source={require('../../assets/green.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>    
-
-
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 0 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(0); setInfraestrutura03Value(5);}}>
-  <Image
-    source={require('../../assets/blue.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 0 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(0); setInfraestrutura03Value(5);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/blue.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
     </View>
 
     <View style={styles.textContainer}>
-    <Text style={styles.formText2}>4. Sinto que a academia ao ar livre ou o parque infantil estão em bom estado;</Text>
+      <Text style={styles.formText2}>4. Sinto que a academia ao ar livre ou o parque infantil estão em bom estado;</Text>
+      <View style={styles.checkboxContainer}>
+        <CheckBox
+          value={isChecked1}
+          onValueChange={(newValue) => setIsChecked1(newValue)}
+        />
+        <Text style={styles.formText2}>Não aplicável</Text>
+      </View>
     </View>
     <View style={styles.row}>
- 
- 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 4 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(4); setInfraestrutura04Value(1);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/red.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 4 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(4); setInfraestrutura04Value(1);}}>
-  <Image
-    source={require('../../assets/red.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 3 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(3); setInfraestrutura04Value(2);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/orange.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 2 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(2); setInfraestrutura04Value(3);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/yellow.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 1 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(1); setInfraestrutura04Value(4);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/green.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 3 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(3); setInfraestrutura04Value(2);}}>
-  <Image
-    source={require('../../assets/orange.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 2 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(2); setInfraestrutura04Value(3);}}>
-  <Image
-    source={require('../../assets/yellow.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 1 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(1); setInfraestrutura04Value(4);}}>
-  <Image
-    source={require('../../assets/green.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>    
-
-
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 0 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(0); setInfraestrutura04Value(5);}}>
-  <Image
-    source={require('../../assets/blue.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 0 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(0); setInfraestrutura04Value(5);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/blue.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
     </View>
 
     <View style={styles.textContainer}>
-    <Text style={styles.formText2}>5. Sinto que campos ou as quadras esportivas estão em bom estado.</Text>
+      <Text style={styles.formText2}>5. Sinto que campos ou as quadras esportivas estão em bom estado.</Text>
+      <View style={styles.checkboxContainer}>
+        <CheckBox
+          value={isChecked2}
+          onValueChange={(newValue) => setIsChecked2(newValue)}
+        />
+        <Text style={styles.formText2}>Não aplicável</Text>
+      </View>
     </View>
     <View style={styles.row}>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 4 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(4); setInfraestrutura05Value(1);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/red.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 3 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(3); setInfraestrutura05Value(2);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/orange.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 4 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(4); setInfraestrutura05Value(1);}}>
-  <Image
-    source={require('../../assets/red.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 2 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(2); setInfraestrutura05Value(3);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/yellow.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 3 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(3); setInfraestrutura05Value(2);}}>
-  <Image
-    source={require('../../assets/orange.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 1 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(1); setInfraestrutura05Value(4);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/green.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 2 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(2); setInfraestrutura05Value(3);}}>
-  <Image
-    source={require('../../assets/yellow.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 1 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(1); setInfraestrutura05Value(4);}}>
-  <Image
-    source={require('../../assets/green.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-   
-
-   <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 0 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(0); setInfraestrutura05Value(5);}}>
-  <Image
-    source={require('../../assets/blue.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 0 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(0); setInfraestrutura05Value(5);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/blue.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
     </View>
-
-    </View> 
-
+  </View>
 
     <View style={styles.pertence}>
         <Image source={require('../../assets/Pertencimento.png')} style={{width: '100%', height: '100%'}} />

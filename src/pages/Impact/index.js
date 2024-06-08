@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native'; 
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, CheckBox } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
@@ -63,10 +63,12 @@ export default function Impact() {
     const [seguranca04Value, setSeguranca04Value] = useState(0);
     const [seguranca05Value, setSeguranca05Value] = useState(0);
     const [pessoas, setPessoas] = useState(1);
-
+    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked1, setIsChecked1] = useState(false);
+    const [isChecked2, setIsChecked2] = useState(false);
     useEffect(() => {
         const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
-    
+   
         return () => {
           if (unsubscribe && typeof unsubscribe === 'function') {
             unsubscribe();
@@ -86,7 +88,7 @@ export default function Impact() {
                 await updateDoc(docRef, {
                     pessoas: newValue,
                 });
-    
+   
                 console.log('Valor de pessoas atualizado no Firebase com sucesso!');
             } else {
                 console.log('O documento não existe!');
@@ -96,6 +98,27 @@ export default function Impact() {
         }
     };
 
+    useEffect(() => {
+      if (isChecked) {
+        setSelectedButtonIndex7(null);
+        setInfraestrutura03Value(0);
+      }
+    }, [isChecked]);
+    
+    useEffect(() => {
+      if (isChecked1) {
+        setSelectedButtonIndex8(null);
+        setInfraestrutura04Value(0);
+      }
+    }, [isChecked1]);
+    
+    useEffect(() => {
+      if (isChecked2) {
+        setSelectedButtonIndex9(null);
+        setInfraestrutura05Value(0);
+      }
+    }, [isChecked2]);
+
       const updateBemEstar01Value = async (incrementValue) => {
         try {
             const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
@@ -104,12 +127,12 @@ export default function Impact() {
                 const data = docSnap.data();
                 const currentBemEstar01Value = data.bem_estar_01 || 0;
                 const newValue = currentBemEstar01Value + incrementValue;
-    
-  
+   
+ 
                 await updateDoc(docRef, {
                     bem_estar_01: newValue,
                 });
-    
+   
                 console.log('Valor de bem_estar_01 atualizado no Firebase com sucesso!');
             } else {
                 console.log('O documento não existe!');
@@ -127,11 +150,11 @@ export default function Impact() {
               const data = docSnap.data();
               const currentBemEstar02Value = data.bem_estar_02 || 0;
               const newValue = currentBemEstar02Value + incrementValue;
-  
+ 
               await updateDoc(docRef, {
                   bem_estar_02: newValue,
               });
-  
+ 
               console.log('Valor de bem_estar_02 atualizado no Firebase com sucesso!');
           } else {
               console.log('O documento não existe!');
@@ -150,7 +173,7 @@ export default function Impact() {
             const currentBemEstar03Value = data.bem_estar_03 || 0;
             const newValue = currentBemEstar03Value + incrementValue;
 
-    
+   
             await updateDoc(docRef, {
                 bem_estar_03: newValue,
             });
@@ -173,7 +196,7 @@ const updateBemEstar04Value = async (incrementValue) => {
           const currentBemEstar04Value = data.bem_estar_04 || 0;
           const newValue = currentBemEstar04Value + incrementValue;
 
-  
+ 
           await updateDoc(docRef, {
               bem_estar_04: newValue,
           });
@@ -196,7 +219,7 @@ const updateBemEstar05Value = async (incrementValue) => {
           const currentBemEstar05Value = data.bem_estar_05 || 0;
           const newValue = currentBemEstar05Value + incrementValue;
 
-  
+ 
           await updateDoc(docRef, {
               bem_estar_05: newValue,
           });
@@ -219,7 +242,7 @@ const updateInfraestrutura01Value = async (incrementValue) => {
           const currentInfraestrutura01Value = data.infraestrutura_01 || 0;
           const newValue = currentInfraestrutura01Value + incrementValue;
 
-        
+       
           await updateDoc(docRef, {
               infraestrutura_01: newValue,
           });
@@ -242,7 +265,7 @@ const updateInfraestrutura02Value = async (incrementValue) => {
           const currentInfraestrutura02Value = data.infraestrutura_02 || 0;
           const newValue = currentInfraestrutura02Value + incrementValue;
 
-        
+       
           await updateDoc(docRef, {
               infraestrutura_02: newValue,
           });
@@ -266,7 +289,7 @@ const updateInfraestrutura03Value = async (incrementValue) => {
           const currentInfraestrutura03Value = data.infraestrutura_03 || 0;
           const newValue = currentInfraestrutura03Value + incrementValue;
 
-        
+       
           await updateDoc(docRef, {
               infraestrutura_03: newValue,
           });
@@ -290,7 +313,7 @@ const updateInfraestrutura04Value = async (incrementValue) => {
           const currentInfraestrutura04Value = data.infraestrutura_04 || 0;
           const newValue = currentInfraestrutura04Value + incrementValue;
 
-        
+       
           await updateDoc(docRef, {
               infraestrutura_04: newValue,
           });
@@ -313,7 +336,7 @@ const updateInfraestrutura05Value = async (incrementValue) => {
           const currentInfraestrutura05Value = data.infraestrutura_05 || 0;
           const newValue = currentInfraestrutura05Value + incrementValue;
 
-        
+       
           await updateDoc(docRef, {
               infraestrutura_05: newValue,
           });
@@ -554,7 +577,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
         const sendVariablesToFirebase = async () => {
             try {
-                const docRef = doc(firestore, 'jardinetes', novoJardineteDocId); 
+                const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
                 await updateDoc(docRef, {
                     bem_estar_01: 0,
                     bem_estar_02: 0,
@@ -583,10 +606,10 @@ const updateSeguranca05Value = async (incrementValue) => {
                 console.error('Erro ao enviar variáveis para o Firebase:', error);
             }
         };
-    
+   
 
         sendVariablesToFirebase();
-    
+   
 
         return () => {
 
@@ -620,7 +643,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
       navigation.navigate('AnaliseFinal', { novoJardineteDocId });
   };
-  
+ 
 
   return (
     <ScrollView>
@@ -647,11 +670,11 @@ const updateSeguranca05Value = async (incrementValue) => {
     <View style={styles.um}>
       <Text style={styles.textNumber}>1</Text>
     </View>
-    
+   
     <View style={styles.dois}>
       <Text style={styles.textNumber}>2</Text>
     </View>
-    
+   
     <View style={styles.tres}>
       <Text style={styles.textNumber}>3</Text>
     </View>
@@ -669,14 +692,14 @@ const updateSeguranca05Value = async (incrementValue) => {
         <Image source={require('../../assets/bem_estar.png')} style={{width: '100%', height: '100%'}} />
     </View>
 
-    <View style={styles.card1}> 
+    <View style={styles.card1}>
     <View style={styles.textContainer}>
     <Text style={styles.formText}>1. A PAV melhora a qualidade da minha vida e das pessoas ao meu redor (vizinhos e familiares)</Text>
     </View>
 
     <View style={styles.row}>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex === 4 && styles.selectedButton]}
   onPress={() => {
       setSelectedButtonIndex(4);
@@ -688,7 +711,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex === 3 && styles.selectedButton]}
   onPress={() => {
       setSelectedButtonIndex(3);
@@ -698,10 +721,10 @@ const updateSeguranca05Value = async (incrementValue) => {
     source={require('../../assets/orange.png')}
     style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
   />
-</TouchableOpacity> 
+</TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex === 2 && styles.selectedButton]}
   onPress={() => {
       setSelectedButtonIndex(2);
@@ -714,7 +737,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
    
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex === 1 && styles.selectedButton]}
   onPress={() => {
       setSelectedButtonIndex(1);
@@ -729,7 +752,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
 
 
- <TouchableOpacity 
+ <TouchableOpacity
   style={[styles.button, selectedButtonIndex === 0 && styles.selectedButton]}
   onPress={() => {
       setSelectedButtonIndex(0);
@@ -750,7 +773,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex1 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex1(4); setBemEstar02Value(1);}}>
   <Image
@@ -761,7 +784,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
    
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex1 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex1(3); setBemEstar02Value(2);}}>
   <Image
@@ -770,7 +793,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex1 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex1(2); setBemEstar02Value(3);}}>
   <Image
@@ -780,7 +803,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex1 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex1(1); setBemEstar02Value(4);}}>
   <Image
@@ -791,7 +814,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
 
 
-   <TouchableOpacity 
+   <TouchableOpacity
   style={[styles.button, selectedButtonIndex1 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex1(0); setBemEstar02Value(5);}}>
   <Image
@@ -808,7 +831,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex2 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex2(4); setBemEstar03Value(1); }}>
   <Image
@@ -817,7 +840,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex2 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex2(3); setBemEstar03Value(2); }}>
   <Image
@@ -826,7 +849,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex2 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex2(2); setBemEstar03Value(3); }}>
   <Image
@@ -836,7 +859,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex2 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex2(1); setBemEstar03Value(4); }}>
   <Image
@@ -844,10 +867,10 @@ const updateSeguranca05Value = async (incrementValue) => {
     style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
   />
 </TouchableOpacity>
-    
+   
 
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex2 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex2(0); setBemEstar03Value(5); }}>
   <Image
@@ -865,7 +888,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     <View style={styles.row}>
 
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex3 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex3(4); setBemEstar04Value(1);}}>
   <Image
@@ -874,7 +897,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex3 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex3(3); setBemEstar04Value(2);}}>
   <Image
@@ -885,7 +908,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex3 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex3(2); setBemEstar04Value(3);}}>
   <Image
@@ -895,16 +918,16 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex3 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex3(1); setBemEstar04Value(4);}}>
   <Image
     source={require('../../assets/green.png')}
     style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
   />
-</TouchableOpacity>     
+</TouchableOpacity>    
 
- <TouchableOpacity 
+ <TouchableOpacity
   style={[styles.button, selectedButtonIndex3 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex3(0); setBemEstar04Value(5);}}>
   <Image
@@ -921,7 +944,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     <View style={styles.row}>
 
  
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex4 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex4(4); setBemEstar05Value(1);}}>
   <Image
@@ -930,7 +953,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex4 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex4(3); setBemEstar05Value(2);}}>
   <Image
@@ -939,7 +962,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex4 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex4(2); setBemEstar05Value(3);}}>
   <Image
@@ -948,7 +971,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex4 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex4(1); setBemEstar05Value(4);}}>
   <Image
@@ -957,7 +980,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>  
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex4 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex4(0); setBemEstar05Value(5);}}>
   <Image
@@ -968,19 +991,19 @@ const updateSeguranca05Value = async (incrementValue) => {
  
     </View>
 
-    </View> 
+    </View>
 
     <View style={styles.infra}>
         <Image source={require('../../assets/Infraestrutura.png')} style={{width: '100%', height: '100%'}} />
     </View>
 
-    <View style={styles.card2}> 
+    <View style={styles.card2}>
     <View style={styles.textContainer}>
     <Text style={styles.formText2}>1. Sinto que a prefeitura faz a manutenção corretamente do PAV;</Text>
     </View>
     <View style={styles.row}>
  
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex5 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex5(4); setInfraestrutura01Value(1);}}>
   <Image
@@ -989,7 +1012,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex5 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex5(3); setInfraestrutura01Value(2);}}>
   <Image
@@ -999,7 +1022,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex5 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex5(2); setInfraestrutura01Value(3);}}>
   <Image
@@ -1008,7 +1031,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex5 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex5(1); setInfraestrutura01Value(4);}}>
   <Image
@@ -1017,7 +1040,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex5 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex5(0); setInfraestrutura01Value(5);}}>
   <Image
@@ -1035,7 +1058,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     <View style={styles.row}>
 
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex6 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(4); setInfraestrutura02Value(1);}}>
   <Image
@@ -1044,7 +1067,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex6 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(3); setInfraestrutura02Value(2);}}>
   <Image
@@ -1054,7 +1077,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex6 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(2); setInfraestrutura02Value(3);}}>
   <Image
@@ -1063,8 +1086,8 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-  
-<TouchableOpacity 
+ 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex6 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(1); setInfraestrutura02Value(4);}}>
   <Image
@@ -1073,7 +1096,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex6 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(0); setInfraestrutura02Value(5);}}>
   <Image
@@ -1086,189 +1109,217 @@ const updateSeguranca05Value = async (incrementValue) => {
 
     <View style={styles.textContainer}>
     <Text style={styles.formText2}>3. Sinto que os bancos são suficientes e estão em bom estado;</Text>
+      <View style={styles.checkboxContainer}>
+        <CheckBox
+          value={isChecked}
+          onValueChange={(newValue) => setIsChecked(newValue)}
+        />
+        <Text style={styles.formText2}>Não aplicável</Text>
+      </View>
     </View>
     <View style={styles.row}>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 4 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(4); setInfraestrutura03Value(1);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/red.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 4 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(4); setInfraestrutura03Value(1);}}>
-  <Image
-    source={require('../../assets/red.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 3 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(3); setInfraestrutura03Value(2);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/orange.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 2 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(2); setInfraestrutura03Value(3);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/yellow.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 3 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(3); setInfraestrutura03Value(2);}}>
-  <Image
-    source={require('../../assets/orange.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 1 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(1); setInfraestrutura03Value(4);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/green.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 2 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(2); setInfraestrutura03Value(3);}}>
-  <Image
-    source={require('../../assets/yellow.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 1 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(1); setInfraestrutura03Value(4);}}>
-  <Image
-    source={require('../../assets/green.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>    
-
-
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex7 === 0 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex7(0); setInfraestrutura03Value(5);}}>
-  <Image
-    source={require('../../assets/blue.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex7 === 0 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex7(0); setInfraestrutura03Value(5);}}
+        disabled={isChecked}
+      >
+        <Image
+          source={require('../../assets/blue.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
     </View>
 
     <View style={styles.textContainer}>
-    <Text style={styles.formText2}>4. Sinto que a academia ao ar livre ou o parque infantil estão em bom estado;</Text>
+      <Text style={styles.formText2}>4. Sinto que a academia ao ar livre ou o parque infantil estão em bom estado;</Text>
+      <View style={styles.checkboxContainer}>
+        <CheckBox
+          value={isChecked1}
+          onValueChange={(newValue) => setIsChecked1(newValue)}
+        />
+        <Text style={styles.formText2}>Não aplicável</Text>
+      </View>
     </View>
     <View style={styles.row}>
- 
- 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 4 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(4); setInfraestrutura04Value(1);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/red.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 4 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(4); setInfraestrutura04Value(1);}}>
-  <Image
-    source={require('../../assets/red.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 3 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(3); setInfraestrutura04Value(2);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/orange.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 2 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(2); setInfraestrutura04Value(3);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/yellow.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 1 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(1); setInfraestrutura04Value(4);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/green.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 3 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(3); setInfraestrutura04Value(2);}}>
-  <Image
-    source={require('../../assets/orange.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 2 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(2); setInfraestrutura04Value(3);}}>
-  <Image
-    source={require('../../assets/yellow.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 1 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(1); setInfraestrutura04Value(4);}}>
-  <Image
-    source={require('../../assets/green.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>    
-
-
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex8 === 0 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex8(0); setInfraestrutura04Value(5);}}>
-  <Image
-    source={require('../../assets/blue.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex8 === 0 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex8(0); setInfraestrutura04Value(5);}}
+        disabled={isChecked1}
+      >
+        <Image
+          source={require('../../assets/blue.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
     </View>
 
     <View style={styles.textContainer}>
-    <Text style={styles.formText2}>5. Sinto que campos ou as quadras esportivas estão em bom estado.</Text>
+      <Text style={styles.formText2}>5. Sinto que campos ou as quadras esportivas estão em bom estado.</Text>
+      <View style={styles.checkboxContainer}>
+        <CheckBox
+          value={isChecked2}
+          onValueChange={(newValue) => setIsChecked2(newValue)}
+        />
+        <Text style={styles.formText2}>Não aplicável</Text>
+      </View>
     </View>
     <View style={styles.row}>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 4 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(4); setInfraestrutura05Value(1);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/red.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 3 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(3); setInfraestrutura05Value(2);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/orange.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-  <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 4 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(4); setInfraestrutura05Value(1);}}>
-  <Image
-    source={require('../../assets/red.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 2 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(2); setInfraestrutura05Value(3);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/yellow.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 3 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(3); setInfraestrutura05Value(2);}}>
-  <Image
-    source={require('../../assets/orange.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 1 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(1); setInfraestrutura05Value(4);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/green.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
 
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 2 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(2); setInfraestrutura05Value(3);}}>
-  <Image
-    source={require('../../assets/yellow.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-
-<TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 1 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(1); setInfraestrutura05Value(4);}}>
-  <Image
-    source={require('../../assets/green.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
-   
-
-   <TouchableOpacity 
-  style={[styles.button, selectedButtonIndex9 === 0 && styles.selectedButton]}
-  onPress={() => {setSelectedButtonIndex9(0); setInfraestrutura05Value(5);}}>
-  <Image
-    source={require('../../assets/blue.png')}
-    style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
-  />
-</TouchableOpacity>
-
+      <TouchableOpacity
+        style={[styles.button, selectedButtonIndex9 === 0 && styles.selectedButton]}
+        onPress={() => {setSelectedButtonIndex9(0); setInfraestrutura05Value(5);}}
+        disabled={isChecked2}
+      >
+        <Image
+          source={require('../../assets/blue.png')}
+          style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
+        />
+      </TouchableOpacity>
     </View>
-
-    </View> 
-
+  </View>
 
     <View style={styles.pertence}>
         <Image source={require('../../assets/Pertencimento.png')} style={{width: '100%', height: '100%'}} />
     </View>
 
-    <View style={styles.card1}> 
+    <View style={styles.card1}>
     <View style={styles.textContainer}>
-    <Text style={styles.formText}>1. Vou com frequência ao PAV. </Text>
+    <Text style={styles.formText}>1. Vou com frequência ao PAV. </Text>
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex10 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(4); setPertencimento01Value(1);}}>
   <Image
@@ -1277,7 +1328,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex10 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(3); setPertencimento01Value(2);}}>
   <Image
@@ -1287,16 +1338,16 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex10 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(2); setPertencimento01Value(3);}}>
   <Image
     source={require('../../assets/yellow.png')}
     style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
   />
-</TouchableOpacity> 
+</TouchableOpacity>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex10 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(1); setPertencimento01Value(4);}}>
   <Image
@@ -1306,7 +1357,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
- <TouchableOpacity 
+ <TouchableOpacity
   style={[styles.button, selectedButtonIndex10 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(0); setPertencimento01Value(5);}}>
   <Image
@@ -1324,7 +1375,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex11 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex11(4); setPertencimento02Value(1);}}>
   <Image
@@ -1333,7 +1384,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex11 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex11(3); setPertencimento02Value(2);}}>
   <Image
@@ -1342,7 +1393,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex11 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex11(2); setPertencimento02Value(3);}}>
   <Image
@@ -1352,7 +1403,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex11 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex11(1); setPertencimento02Value(4);}}>
   <Image
@@ -1360,9 +1411,9 @@ const updateSeguranca05Value = async (incrementValue) => {
     style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
   />
 </TouchableOpacity>
-    
+   
 
- <TouchableOpacity 
+ <TouchableOpacity
   style={[styles.button, selectedButtonIndex11 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex11(0); setPertencimento02Value(5);}}>
   <Image
@@ -1379,7 +1430,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex12 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex12(4); setPertencimento03Value(1);}}>
   <Image
@@ -1389,7 +1440,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
  
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex12 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex12(3); setPertencimento03Value(2);}}>
   <Image
@@ -1398,7 +1449,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex12 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex12(2); setPertencimento03Value(3);}}>
   <Image
@@ -1407,7 +1458,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex12 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex12(1); setPertencimento03Value(4);}}>
   <Image
@@ -1418,7 +1469,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
      
 
- <TouchableOpacity 
+ <TouchableOpacity
   style={[styles.button, selectedButtonIndex12 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex12(0); setPertencimento03Value(5);}}>
   <Image
@@ -1434,7 +1485,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex13 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex13(4); setPertencimento04Value(1);}}>
   <Image
@@ -1443,7 +1494,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex13 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex13(3); setPertencimento04Value(2);}}>
   <Image
@@ -1452,7 +1503,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex13 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex13(2); setPertencimento04Value(3);}}>
   <Image
@@ -1461,7 +1512,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex13 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex13(1); setPertencimento04Value(4);}}>
   <Image
@@ -1470,7 +1521,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>  
 
-   <TouchableOpacity 
+   <TouchableOpacity
   style={[styles.button, selectedButtonIndex13 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex13(0); setPertencimento04Value(5);}}>
   <Image
@@ -1482,11 +1533,11 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
 
     <View style={styles.textContainer}>
-    <Text style={styles.formText}>5. Quando tem muitas pessoas no PAV, eu fico animado/a para ir ; </Text>
+    <Text style={styles.formText}>5. Quando tem muitas pessoas no PAV, eu fico animado/a para ir ; </Text>
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex14 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex14(4); setPertencimento05Value(1);}}>
   <Image
@@ -1495,7 +1546,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex14 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex14(3); setPertencimento05Value(2);}}>
   <Image
@@ -1504,7 +1555,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex14 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex14(2); setPertencimento05Value(3);}}>
   <Image
@@ -1514,7 +1565,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex14 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex14(1); setPertencimento05Value(4);}}>
   <Image
@@ -1524,7 +1575,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-    <TouchableOpacity 
+    <TouchableOpacity
   style={[styles.button, selectedButtonIndex14 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex14(0); setPertencimento05Value(5);}}>
   <Image
@@ -1536,7 +1587,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
     </View>
 
-    </View> 
+    </View>
 
 
 
@@ -1545,13 +1596,13 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
 
 
-    <View style={styles.card3}> 
+    <View style={styles.card3}>
     <View style={styles.textContainer}>
     <Text style={styles.formText2}>1. Me sinto segura(o) enquanto frequento ou passo pela PAV;</Text>
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex15 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex15(4); setSeguranca01Value(1);}}>
   <Image
@@ -1562,7 +1613,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex15 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex15(3); setSeguranca01Value(2);}}>
   <Image
@@ -1571,7 +1622,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex15 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex15(2); setSeguranca01Value(3);}}>
   <Image
@@ -1580,7 +1631,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex15 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex15(1); setSeguranca01Value(4);}}>
   <Image
@@ -1589,7 +1640,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-     <TouchableOpacity 
+     <TouchableOpacity
   style={[styles.button, selectedButtonIndex15 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex15(0); setSeguranca01Value(5);}}>
   <Image
@@ -1605,7 +1656,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex16 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex16(4); setSeguranca02Value(1);}}>
   <Image
@@ -1614,7 +1665,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex16 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex16(3); setSeguranca02Value(2);}}>
   <Image
@@ -1623,7 +1674,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex16 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex16(2); setSeguranca02Value(3);}}>
   <Image
@@ -1632,16 +1683,16 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex16 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex16(1); setSeguranca02Value(4);}}>
   <Image
     source={require('../../assets/green.png')}
     style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
   />
-</TouchableOpacity> 
+</TouchableOpacity>
 
-   <TouchableOpacity 
+   <TouchableOpacity
   style={[styles.button, selectedButtonIndex16 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex16(0); setSeguranca02Value(5);}}>
   <Image
@@ -1659,7 +1710,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex17 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex17(4); setSeguranca03Value(1);}}>
   <Image
@@ -1668,7 +1719,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex17 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex17(3); setSeguranca03Value(2);}}>
   <Image
@@ -1677,7 +1728,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex17 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex17(2); setSeguranca03Value(3);}}>
   <Image
@@ -1686,7 +1737,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex17 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex17(1); setSeguranca03Value(4);}}>
   <Image
@@ -1695,7 +1746,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>    
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex17 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex17(0); setSeguranca03Value(5);}}>
   <Image
@@ -1710,9 +1761,9 @@ const updateSeguranca05Value = async (incrementValue) => {
     <Text style={styles.formText2}>4. Sei que acontecem atividades ilegais no PAV;</Text>
     </View>
     <View style={styles.row}>
-  
+ 
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex18 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex18(4); setSeguranca04Value(1);}}>
   <Image
@@ -1721,7 +1772,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex18 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex18(3); setSeguranca04Value(2);}}>
   <Image
@@ -1730,7 +1781,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex18 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex18(2); setSeguranca04Value(3);}}>
   <Image
@@ -1739,7 +1790,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex18 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex18(1); setSeguranca04Value(4);}}>
   <Image
@@ -1749,7 +1800,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
    
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex18 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex18(0); setSeguranca04Value(5);}}>
   <Image
@@ -1765,7 +1816,7 @@ const updateSeguranca05Value = async (incrementValue) => {
     </View>
     <View style={styles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[styles.button, selectedButtonIndex19 === 4 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex19(4); setSeguranca05Value(1);}}>
   <Image
@@ -1776,7 +1827,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex19 === 3 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex19(3); setSeguranca05Value(2);}}>
   <Image
@@ -1786,7 +1837,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex19 === 2 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex19(2); setSeguranca05Value(3);}}>
   <Image
@@ -1795,7 +1846,7 @@ const updateSeguranca05Value = async (incrementValue) => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[styles.button, selectedButtonIndex19 === 1 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex19(1); setSeguranca05Value(4);}}>
   <Image
@@ -1805,7 +1856,7 @@ const updateSeguranca05Value = async (incrementValue) => {
 </TouchableOpacity>
      
 
- <TouchableOpacity 
+ <TouchableOpacity
   style={[styles.button, selectedButtonIndex19 === 0 && styles.selectedButton]}
   onPress={() => {setSelectedButtonIndex19(0); setSeguranca05Value(5);}}>
   <Image
@@ -1816,8 +1867,8 @@ const updateSeguranca05Value = async (incrementValue) => {
 
     </View>
    
-    </View> 
-    
+    </View>
+   
 </View>
 
 <View style={styles.continuar}>
@@ -1827,7 +1878,7 @@ const updateSeguranca05Value = async (incrementValue) => {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={{
-                    borderRadius: width * 0.0260416666666667, 
+                    borderRadius: width * 0.0260416666666667,
                     paddingHorizontal: width * 0.0260416666666667,
                     paddingVertical: width * 0.0104166666666667,
                 }}>
@@ -1848,7 +1899,7 @@ const updateSeguranca05Value = async (incrementValue) => {
           <Image source={require('../../assets/UtfprBottom.png')}  style={styles.utfprImage} />
       </View>
 
-  
+ 
 
 </View>
 
