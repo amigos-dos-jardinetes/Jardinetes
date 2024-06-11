@@ -134,7 +134,7 @@ export default function Accept() {
     <View style={styles.container}>
       <View style={styles.navbar}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={width * 0.025} color="black" />
+          <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>
         <View style={styles.imageContainer}>
           {imageUrl ? (

@@ -76,10 +76,14 @@ export const styles = StyleSheet.create({
 
 
     analise: {
-        width: width * 0.290625,
-        height: width * 0.0359375,
+        width: width * 0.296875,
+        height: width * 0.0416666666666667,
         top: width * 0.1822916666666667,
     },
+
+    backButton: {
+        marginLeft: width * 0.0052083333333333,
+      },
 
     miolo: {
         width: (width * 0.1895833333333333) * 0.8,
@@ -545,6 +549,26 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#fff', 
+      },
+
+      backButtonGradient: {
+        position: 'absolute',
+
+        left: width * 0.6770833333333333,
+        borderRadius: width * 0.0052083333333333,
+        top: width * 1.03,
+
+      },
+      gradient: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: width * 0.0104166666666667,
+        paddingHorizontal: width * 0.0104166666666667,
+      },
+      backButtonText: {
+        color: 'white',
+        fontSize: width * 0.02,
+        marginLeft: width * 0.0026041666666667,
       },
     
 });

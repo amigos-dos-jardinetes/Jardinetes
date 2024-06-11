@@ -7,6 +7,7 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
 import { Ionicons } from '@expo/vector-icons'; 
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Pertencimento() {
 
@@ -215,7 +216,7 @@ export default function Pertencimento() {
       <View style={styles.container}>
         <View style={styles.navbar}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={width * 0.025} color="black" />
+          <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>
           <View style={styles.imageContainer}>
             {imageUrl ? (
@@ -296,6 +297,16 @@ export default function Pertencimento() {
           <Image source={pertencimentoPetalaImage4} style={pertencimentoPetalaStyle4} />
           <Image source={require('../../assets/miolo.png')} style={styles.miolo} />
         </View>
+
+        <TouchableOpacity style={styles.backButtonGradient} onPress={() => navigation.goBack()}>
+  <LinearGradient
+    colors={['#4C6523', '#99CB47']}
+    style={styles.gradient}
+  >
+    <Ionicons/>
+    <Text style={styles.backButtonText}>Voltar</Text>
+  </LinearGradient>
+</TouchableOpacity>
 
         <View style={styles.araucarias2}>
           <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />

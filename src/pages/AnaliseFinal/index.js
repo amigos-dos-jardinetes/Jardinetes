@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Image, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
+import { View, ScrollView, Image, TouchableOpacity, Text, ActivityIndicator, Dimensions } from 'react-native';
 import { styles } from '../AnaliseFinal/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 
 export default function AnaliseFinal() {
   const navigation = useNavigation();
@@ -25,7 +27,7 @@ export default function AnaliseFinal() {
   const [error, setError] = useState(null);
   const route = useRoute();
   const novoJardineteDocId = route.params.novoJardineteDocId;
-
+  const { width, height } = Dimensions.get('window');
   const [petalaImage, setPetalaImage] = useState(require('../../assets/petala20.png'));
   const [petalaStyle, setPetalaStyle] = useState(styles.petala200);
   const [bemEstarPetalaImage, setBemEstarPetalaImage] = useState(require('../../assets/petala20.png'));
@@ -210,6 +212,9 @@ export default function AnaliseFinal() {
     <ScrollView style={styles.scroll}>
       <View style={styles.container}>
         <View style={styles.navbar}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate("Menu")}>
+          <Ionicons name="arrow-back" size={width * 0.025} color="white" />
+        </TouchableOpacity>
           <View style={styles.imageContainer}>
             {imageUrl ? (
               <Image
@@ -296,6 +301,16 @@ export default function AnaliseFinal() {
         <View style={styles.araucarias2}>
           <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
         </View>
+
+        <TouchableOpacity style={styles.backButtonGradient} onPress={() => navigation.goBack()}>
+  <LinearGradient
+    colors={['#4C6523', '#99CB47']}
+    style={styles.gradient}
+  >
+    <Ionicons/>
+    <Text style={styles.backButtonText}>Voltar</Text>
+  </LinearGradient>
+</TouchableOpacity>
 
         <View style={styles.navbar2}>
           <View style={styles.imageContainer22}>

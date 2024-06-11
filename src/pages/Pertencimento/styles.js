@@ -543,4 +543,23 @@ export const styles = StyleSheet.create({
             alignItems: 'center',
             backgroundColor: '#fff', 
           },
+
+          backButtonGradient: {
+            position: 'absolute',
+            left: width * 0.6770833333333333,
+            borderRadius: width * 0.0052083333333333,
+            top: width * 0.69,
+    
+          },
+          gradient: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            borderRadius: width * 0.0104166666666667,
+            paddingHorizontal: width * 0.0104166666666667,
+          },
+          backButtonText: {
+            color: 'white',
+            fontSize: width * 0.02,
+            marginLeft: width * 0.0026041666666667,
+          },
 });
