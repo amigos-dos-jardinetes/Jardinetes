@@ -1,77 +1,98 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
+
 
 export const styles = StyleSheet.create({
 
-    container: {
-        flex: 1,
-        backgroundColor: '#195439',
+    image: {
+        width: width,
+        height: (width * 1024) / 1440,
+        resizeMode: 'contain',
+      },
 
-    },
+      container:{
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',  
+              
+      },
 
-    containerHeader: {
-        marginTop: '14%',
-        marginBottom: '8%',
-        paddingStart: '5%'
+      card:{
+        width: (800 / 1920) * width,
+        height: (900/ 1920) * width,
+        top: (250 / 1920) * width,
+        backgroundColor: '#F5F3E1',
+        borderRadius: (30 / 1920) * width,
+        posiiton: 'absolute',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+
+      gaiaContainer: {
+        flexDirection: 'column',
+           alignItems: 'center',
+           justifyContent: 'center',
+           top: (287 / 1920) * width,
+      },
+
+      gaia: {
+        width: (460 * 1.35 / 1920) * width,
+        height: (582 * 1.35 / 1920) * width,
+
+
+      },
+
+      bom: {
+        width: (340 * 1.3 / 1920) * width,
+        height: (30 * 1.3 / 1920) * width,
+        top: -(50 / 1920) * width
+      },
+
+      title: {
+        fontSize: (48 / 1920) * width,
+        marginBottom: (20 / 1920) * width,
     },
-    message: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#FFF'
+   
+    button: {
+        backgroundColor: '#166034',
+        padding: (15 / 1920) * width,
+        borderRadius: (5 / 1920) * width,
+        alignItems: 'center',
+        width: (400 / 1920) * width,
+        marginTop: (50 / 1920) * width
     },
-    containerForm: {
-        backgroundColor: '#FFF',
-        flex: 1,
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
-        paddingStart: '5%',
-        paddingEnd: '5%'
+    buttonText: {
+        color: 'white',
+        fontSize: (24 / 1920) * width,
     },
-    title: {
-        fontSize: 20,
-        marginTop: 28
+    inputContainer: {
+        width: '100%',
+        marginBottom: (20 / 1920) * width,
+        width: (700 / 1920) * width,
+    },
+    label: {
+        marginBottom: (5 / 1920) * width,
+        color: 'black',
+        fontSize: (24 / 1920) * width,
     },
     input: {
-        borderBottomWidth: 1,
-        height: 40,
-        marginBottom: 12,
-        fontSize: 16,
-    },
-    button: {
-        backgroundColor: '#195439',
         width: '100%',
-        borderRadius: 4,
-        paddingVertical: 8,
-        marginTop: 14,
-        justifyContent: 'center',
-        alignItems: 'center'
+        padding: (10 / 1920) * width,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        backgroundColor: '#4C6523',
+        color: 'white',
     },
 
-    buttonText: {
-        color: '#FFF',
-        fontSize: 18,
-        fontWeight: 'bold'
-    },
-
-    buttonVoltar: {
-        marginTop: 15,
-        alignSelf: 'center'
-
-    },
-    imagePickerButton: {
-        backgroundColor: '#195439',
-        padding: 10,
-        borderRadius: 5,
-        marginBottom: 20,
-
-    },
-
-    image: {
-        width: 200,
-        height: 200,
-        paddingTop: 25,
-        borderRadius: 100,
-        alignSelf: 'center',
-        justifyContent: 'center',
+    input2: {
+        width: '100%',
+        padding: (10 / 1920) * width,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        backgroundColor: '#166034',
+        color: 'white',
     },
 
     termsModalContainer: {
@@ -82,26 +103,33 @@ export const styles = StyleSheet.create({
     },
     termsModalContent: {
         backgroundColor: '#fff', // Cor de fundo do conteúdo do modal
-        borderRadius: 10,
-        padding: 20,
+        borderRadius: (10 / 1920) * width,
+        padding: (20 / 1920) * width,
         width: '80%', // Largura do conteúdo do modal
         maxHeight: '80%', // Altura máxima do conteúdo do modal
     },
     termsModalText: {
-        fontSize: 16,
-        lineHeight: 24,
-        marginBottom: 20,
+        fontSize: (16 / 1920) * width,
+        lineHeight: (24 / 1920) * width,
+        marginBottom: (20 / 1920) * width, 
     },
     agreeButton: {
         color: 'blue', // Cor do texto do botão Concordo
         textAlign: 'center',
         textDecorationLine: 'underline',
-        marginBottom: 10,
+        marginBottom: (10 / 1920) * width,
     },
     disagreeButton: {
         color: 'red', // Cor do texto do botão Não concordo
         textAlign: 'center',
         textDecorationLine: 'underline',
+    },
+    checkboxContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: (10 / 1920) * width,
+        alignSelf: 'flex-start',
+        marginLeft: (52 / 1920) * width,
     },
 
 });

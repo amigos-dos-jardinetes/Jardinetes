@@ -20,6 +20,7 @@ import Infraestrutura from '../pages/Infraestrutura';
 import Seguranca from '../pages/seguranca';
 import Pertencimento from '../pages/Pertencimento';
 
+
 export default function AppRoutes() {
   return (
     <Router>
@@ -43,6 +44,7 @@ export default function AppRoutes() {
         <Route path="/Infraestrutura" element={<Infraestrutura />} />
         <Route path="/Seguranca" element={<Seguranca />} />
         <Route path="/Pertencimento" element={<Pertencimento />} />
+
       </Routes>
     </Router>
   );

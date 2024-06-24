@@ -263,7 +263,10 @@ export default function Menu() {
                                 }}
                             />
                         ) : (
-                            <Text>Imagem não disponível</Text>
+                            <Image
+                            style={styles.logoImage}
+                            source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+                        />
                         )}
                         <View style={styles.buttons}>
                             <TouchableOpacity style={styles.textButton2}>

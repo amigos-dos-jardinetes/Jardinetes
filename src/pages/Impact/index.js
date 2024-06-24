@@ -659,7 +659,10 @@ const updateSeguranca05Value = async (incrementValue) => {
                   }}
                 />
               ) : (
-                <Text>Imagem não disponível</Text>
+                <Image
+                style={styles.logoImage}
+                source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+            />
               )}
             </View>
           </View>

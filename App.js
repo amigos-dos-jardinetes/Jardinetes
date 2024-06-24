@@ -21,6 +21,7 @@ import Infraestrutura from './src/pages/Infraestrutura';
 import Seguranca from './src/pages/seguranca';
 import Pertencimento from './src/pages/Pertencimento';
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
         <Stack.Screen name="Infraestrutura" component={Infraestrutura} options={{ headerShown: false }} />
         <Stack.Screen name="Seguranca" component={Seguranca} options={{ headerShown: false }} />
         <Stack.Screen name="Pertencimento" component={Pertencimento} options={{ headerShown: false }} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
