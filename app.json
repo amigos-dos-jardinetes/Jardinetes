@@ -27,7 +27,8 @@
       "package": "com.jardinetes.Amigos_dos_Jardinetes"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      
     },
     "scheme": "com.jardinetes.Amigos_dos_Jardinetes",
     "originalFullName": "@jardinetes/Amigos_dos_Jardinetes",

@@ -5,7 +5,7 @@ import SignIn from './src/pages/SignIn';
 import SignUp from './src/pages/SignUp';
 import Menu from './src/pages/Menu';
 import Config from './src/pages/Config';
-import Inventory from './src/pages/Inventory';
+import Inventory from './src/pages/inventory';
 import PaginaInicial from './src/pages/PaginaInicial';
 import Contato from './src/pages/Contato';
 import Accept from './src/pages/Accept';
@@ -18,7 +18,7 @@ import ImpactSolo from './src/pages/ImpactSolo';
 import AnaliseFinal from './src/pages/AnaliseFinal';
 import BemEstar from './src/pages/BemEstar';
 import Infraestrutura from './src/pages/Infraestrutura';
-import Seguranca from './src/pages/seguranca';
+import Seguranca from './src/pages/Seguranca';
 import Pertencimento from './src/pages/Pertencimento';
 
 

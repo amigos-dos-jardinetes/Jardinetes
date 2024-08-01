@@ -239,7 +239,7 @@ export default function Infraestrutura() {
         </View>
 
         <View style={styles.bemTitle}>
-          <Image source={require('../../assets/infraTitle.png')} style={styles.title}></Image>
+          <Image source={require('../../assets/InfraTitle.png')} style={styles.title}></Image>
         </View>
 
         <View style={styles.retExpli}>
