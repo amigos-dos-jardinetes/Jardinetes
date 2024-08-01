@@ -28,6 +28,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
+      "output": "static",
+      "bundler": "webpack",
+
       
     },
     "scheme": "com.jardinetes.Amigos_dos_Jardinetes",
