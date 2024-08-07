@@ -236,8 +236,7 @@ export default function AnaliseFinal() {
         <View style={styles.bigWheel}></View>
         <View style={styles.retGreen}>
           <Text style={styles.retGreenText}>
-         
-            Este é o gráfico onde cada pátala do Manacá representa uma área de impacto no seu jardinete. Clique nos ícones para ver cada área com mais detalhes.
+            Este é o gráfico onde cada pétala do Manacá representa uma área de impacto no seu jardinete. Clique nos ícones para ver cada área com mais detalhes.
           </Text>
         </View>
 
@@ -245,41 +244,50 @@ export default function AnaliseFinal() {
 
         <View style={styles.infraContainer}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Infraestrutura', { novoJardineteDocId })}>
-            <Image source={require('../../assets/infraIcon.png')} style={styles.infra} />
+            <Image source={require('../../assets/infraIcon.jpg')} style={styles.infra} />
           </TouchableOpacity>
           <View style={styles.infraContainer2}>
             <Image source={require('../../assets/infraText.png')} style={styles.infraText} />
-            <View style={styles.infraRet}></View>
+            <View style={styles.infraRet}>
+              <Text style={styles.baloonText}>
+              A infraestrutura da área verde na cidade é planejada para oferecer espaços de lazer e preservação ambiental. Além do gramado e da vegetação, podem conter bancos, parque infantil, academia ao ar livre e quadras esportivas.</Text>
+            </View>
           </View>
         </View>
 
         <View style={styles.bemContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BemEstar', { novoJardineteDocId })}>
-            <Image source={require('../../assets/bemIcon.png')} style={styles.bem} />
+            <Image source={require('../../assets/bemIcon.jpg')} style={styles.bem} />
           </TouchableOpacity>
           <View style={styles.bemContainer2}>
             <Image source={require('../../assets/bemText.png')} style={styles.bemText} />
-            <View style={styles.bemRet}></View>
+            <View style={styles.bemRet}>
+              <Text style={styles.baloonText}>As áreas verdes são essenciais para a saúde física e mental dos moradores, incentivando um estilo de vida ativo e proporcionando locais tranquilos que ajudam a reduzir o estresse e melhorar o humor. Além disso, promovem a interação social e fortalecem o vínculo da comunidade.</Text>
+            </View>
           </View>
         </View>
 
         <View style={styles.segContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Seguranca', { novoJardineteDocId })}>
-            <Image source={require('../../assets/segIcon.png')} style={styles.seg} />
+            <Image source={require('../../assets/segIcon.jpg')} style={styles.seg} />
           </TouchableOpacity>
           <View style={styles.segContainer2}>
             <Image source={require('../../assets/segText.png')} style={styles.segText} />
-            <View style={styles.segRet}></View>
+            <View style={styles.segRet}>
+              <Text style={styles.baloonText}>Espaços bem iluminados são essenciais para a segurança dentro das áreas verdes, proporcionando uma sensação de proteção aos usuários, ajudando a reduzir potenciais esconderijos para atividades ilícitas.</Text>
+            </View>
           </View>
         </View>
 
         <View style={styles.pertContainer}>
           <View style={styles.pertContainer2}>
             <Image source={require('../../assets/pertText.png')} style={styles.pertText} />
-            <View style={styles.pertRet}></View>
+            <View style={styles.pertRet}>
+              <Text style={styles.baloonText} >As áreas verdes desempenham um papel fundamental no fortalecimento do sentimento de pertencimento à comunidade, além de que o cuidado com esses espaços reforça o vínculo emocional com o local.</Text>
+            </View>
           </View>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Pertencimento', { novoJardineteDocId })}>
-            <Image source={require('../../assets/pertIcon.png')} style={styles.pert} />
+            <Image source={require('../../assets/pertIcon.jpg')} style={styles.pert} />
           </TouchableOpacity>
         </View>
 
@@ -299,21 +307,30 @@ export default function AnaliseFinal() {
             <View style={styles.circ}></View>
             <View style={styles.circ}></View>
           </View>
+          <Text style={styles.finalText}>As áreas verdes desempenham um papel crucial na relação entre a segurança urbana e os serviços ecossistêmicos, fornecendo benefícios essenciais para o bem-estar humano e a qualidade de vida nas cidades. Esses espaços não só contribuem para aumentar a resiliência urbana, mas também proporcionam um ambiente mais saudável e agradável para os moradores locais. Além disso, oferecem serviços ecossistêmicos valiosos, como regulação climática, purificação do ar e controle de enchentes.</Text>
         </View>
 
         <View style={styles.araucarias2}>
           <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
         </View>
 
-        <TouchableOpacity style={styles.backButtonGradient} onPress={() => navigation.goBack()}>
-  <LinearGradient
-    colors={['#4C6523', '#99CB47']}
-    style={styles.gradient}
-  >
-    <Ionicons/>
-    <Text style={styles.backButtonText}>Voltar</Text>
-  </LinearGradient>
-</TouchableOpacity>
+        <View style={styles.gradientButtonContainer}>
+                                <TouchableOpacity 
+                                    style={styles.gradientButton} 
+                                    onPress={() => navigation.navigate("Menu")}
+                                >
+                                    <LinearGradient
+                                        colors={['#4C6523', '#99CB47']}
+                                        start={{ x: 0, y: 0 }}
+                                        end={{ x: 1, y: 0 }}
+                                        style={styles.linearGradient}
+                                    >
+                                        <Text style={styles.gradientButtonText}>Voltar</Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </View>
+
+
 
         <View style={styles.navbar2}>
           <View style={styles.imageContainer22}>

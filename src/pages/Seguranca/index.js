@@ -236,6 +236,7 @@ export default function Seguranca() {
         </View>
 
         <View style={styles.retMore}>
+          <Text style={styles.retMoreText}>Espaços bem iluminados são essenciais para a segurança dentro das áreas verdes, proporcionando uma sensação de proteção aos usuários, ajudando a reduzir potenciais esconderijos para atividades ilícitas.</Text>
         </View>
 
         <View style={styles.bemTitle}>
@@ -301,15 +302,23 @@ export default function Seguranca() {
           <Image source={require('../../assets/miolo.png')} style={styles.miolo} />
         </View>
 
-        <TouchableOpacity style={styles.backButtonGradient} onPress={() => navigation.goBack()}>
-  <LinearGradient
-    colors={['#4C6523', '#99CB47']}
-    style={styles.gradient}
-  >
-    <Ionicons/>
-    <Text style={styles.backButtonText}>Voltar</Text>
-  </LinearGradient>
-</TouchableOpacity>
+     
+        <View style={styles.gradientButtonContainer}>
+                                <TouchableOpacity 
+                                    style={styles.gradientButton} 
+                                    onPress={() => navigation.goBack()}
+                                >
+                                    <LinearGradient
+                                        colors={['#4C6523', '#99CB47']}
+                                        start={{ x: 0, y: 0 }}
+                                        end={{ x: 1, y: 0 }}
+                                        style={styles.linearGradient}
+                                    >
+                                        <Text style={styles.gradientButtonText}>Voltar</Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </View>
+
 
         <View style={styles.araucarias2}>
           <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />

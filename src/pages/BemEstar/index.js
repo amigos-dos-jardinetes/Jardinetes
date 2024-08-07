@@ -236,6 +236,7 @@ export default function BemEstar() {
         </View>
 
         <View style={styles.retMore}>
+          <Text style={styles.retMoreText}>As áreas verdes são essenciais para a saúde física e mental dos moradores, incentivando um estilo de vida ativo e proporcionando locais tranquilos que ajudam a reduzir o estresse e melhorar o humor. Além disso, promovem a interação social e fortalecem o vínculo da comunidade.</Text>
         </View>
 
         <View style={styles.bemTitle}>
@@ -301,15 +302,21 @@ export default function BemEstar() {
           <Image source={require('../../assets/miolo.png')} style={styles.miolo} />
         </View>
 
-        <TouchableOpacity style={styles.backButtonGradient} onPress={() => navigation.goBack()}>
-  <LinearGradient
-    colors={['#4C6523', '#99CB47']}
-    style={styles.gradient}
-  >
-    <Ionicons/>
-    <Text style={styles.backButtonText}>Voltar</Text>
-  </LinearGradient>
-</TouchableOpacity>
+        <View style={styles.gradientButtonContainer}>
+                                <TouchableOpacity 
+                                    style={styles.gradientButton} 
+                                    onPress={() => navigation.goBack()}
+                                >
+                                    <LinearGradient
+                                        colors={['#4C6523', '#99CB47']}
+                                        start={{ x: 0, y: 0 }}
+                                        end={{ x: 1, y: 0 }}
+                                        style={styles.linearGradient}
+                                    >
+                                        <Text style={styles.gradientButtonText}>Voltar</Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </View>
 
         <View style={styles.araucarias2}>
           <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />

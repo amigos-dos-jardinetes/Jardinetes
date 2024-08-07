@@ -236,6 +236,7 @@ export default function Pertencimento() {
         </View>
 
         <View style={styles.retMore}>
+          <Text style={styles.retMoreText}>As áreas verdes desempenham um papel fundamental no fortalecimento do sentimento de pertencimento à comunidade, além de que o cuidado com esses espaços reforça o vínculo emocional com o local.</Text>
         </View>
 
         <View style={styles.bemTitle}>
@@ -252,7 +253,7 @@ export default function Pertencimento() {
           </View>
         </View>
         <View style={styles.containerCircText1}>
-          <Text style={styles.textCirc1}>Vou com frequência ao PAV</Text>
+          <Text style={styles.textCirc1}>Vou com frequência à PAV</Text>
         </View>
 
         <View style={styles.containerCirc2}>
@@ -279,7 +280,7 @@ export default function Pertencimento() {
           </View>
         </View>
         <View style={styles.containerCircText4}>
-          <Text style={styles.textCirc4}>Eu gostaria que o PAV perto da minha casa fosse mais frequentado</Text>
+          <Text style={styles.textCirc4}>Eu gostaria que a PAV perto da minha casa fosse mais frequentado</Text>
         </View>
 
         <View style={styles.containerCirc5}>
@@ -288,7 +289,7 @@ export default function Pertencimento() {
           </View>
         </View>
         <View style={styles.containerCircText5}>
-          <Text style={styles.textCirc5}>Quando tem muitas pessoas no PAV, eu fico animado(a) para ir</Text>
+          <Text style={styles.textCirc5}>Quando tem muitas pessoas na PAV, eu fico animado(a) para ir</Text>
         </View>
 
         <View style={styles.centralContainer}>
@@ -301,15 +302,21 @@ export default function Pertencimento() {
           <Image source={require('../../assets/miolo.png')} style={styles.miolo} />
         </View>
 
-        <TouchableOpacity style={styles.backButtonGradient} onPress={() => navigation.goBack()}>
-  <LinearGradient
-    colors={['#4C6523', '#99CB47']}
-    style={styles.gradient}
-  >
-    <Ionicons/>
-    <Text style={styles.backButtonText}>Voltar</Text>
-  </LinearGradient>
-</TouchableOpacity>
+        <View style={styles.gradientButtonContainer}>
+                                <TouchableOpacity 
+                                    style={styles.gradientButton} 
+                                    onPress={() => navigation.goBack()}
+                                >
+                                    <LinearGradient
+                                        colors={['#4C6523', '#99CB47']}
+                                        start={{ x: 0, y: 0 }}
+                                        end={{ x: 1, y: 0 }}
+                                        style={styles.linearGradient}
+                                    >
+                                        <Text style={styles.gradientButtonText}>Voltar</Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </View>
 
         <View style={styles.araucarias2}>
           <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />

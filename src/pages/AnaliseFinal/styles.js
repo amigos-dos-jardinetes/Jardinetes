@@ -346,6 +346,8 @@ export const styles = StyleSheet.create({
         borderRadius: width * 0.0104166666666667,
         backgroundColor: '#FB9116',
         marginTop: width * 0.0078125,
+        alignItems: 'center',
+        justifyContent: 'center',
 
     },
 
@@ -355,6 +357,8 @@ export const styles = StyleSheet.create({
         borderRadius: width * 0.0104166666666667,
         backgroundColor: '#B781FD',
         marginTop: width * 0.0078125,
+        alignItems: 'center',
+        justifyContent: 'center',
 
     },
 
@@ -364,6 +368,8 @@ export const styles = StyleSheet.create({
         borderRadius: width * 0.0104166666666667,
         backgroundColor: '#FFBC10',
         marginTop: width * 0.0078125,
+        alignItems: 'center',
+        justifyContent: 'center',
 
     },
 
@@ -373,7 +379,8 @@ export const styles = StyleSheet.create({
         borderRadius: width * 0.0104166666666667,
         backgroundColor: '#FEACAC',
         marginTop: width * 0.0078125,
-
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     infraText: {
@@ -470,6 +477,8 @@ export const styles = StyleSheet.create({
         marginBottom: width * 0.0260416666666667,
         position: 'absolute',
         flexDirection:  'row',
+        alignItems: 'center',
+        alignSelf: 'center',
     },
 
     circExp: {
@@ -500,10 +509,10 @@ export const styles = StyleSheet.create({
     },
 
     retGreen:{
-        top: width * 0.2604166666666667,
-        left: width * 0.1041666666666667,
+        top: width * 0.2916666666666667,
+        left: width * 0.0625,
         width: width * 0.2604166666666667,
-        height: width * 0.1041666666666667,
+        height: width * 0.234375,
         borderRadius: width * 0.0104166666666667,
         backgroundColor: '#4C6523',
         position: 'absolute',
@@ -512,11 +521,11 @@ export const styles = StyleSheet.create({
 
     retGreenText:{
        color:'white',
-       fontSize: width * 0.0125,
-       marginBottom: width * 0.0078125,
-       marginTop: width * 0.0078125,
-       marginRight: width * 0.0078125,
-       marginLeft: width * 0.0078125,
+       fontSize: width * 0.0145833333333333,
+       marginBottom: width * 0.0130208333333333,
+       marginTop: width * 0.0130208333333333,
+       marginRight: width * 0.0130208333333333,
+       marginLeft: width * 0.0130208333333333,
        textAlign: 'justify',
     },
 
@@ -551,24 +560,58 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff', 
       },
 
-      backButtonGradient: {
+      gradientButtonContainer: {
         position: 'absolute',
-
-        left: width * 0.6770833333333333,
-        borderRadius: width * 0.0052083333333333,
-        top: width * 1.03,
-
-      },
-      gradient: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        top: width * 1.0275,
+        alignSelf: 'center',
+        zIndex: 1,
         borderRadius: width * 0.0104166666666667,
-        paddingHorizontal: width * 0.0104166666666667,
       },
-      backButtonText: {
+      
+      gradientButton: {
+        width: width * 0.15625,
+        height: width * 0.05, 
+        left: width * 0.2083333333333333,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: width * 0.0104166666666667,
+        paddingVertical: width * 0.0052083333333333,
+      },
+      
+      gradientButtonText: {
+        fontSize: width * 0.0197916666666667, 
         color: 'white',
-        fontSize: width * 0.02,
-        marginLeft: width * 0.0026041666666667,
+      },
+      
+      linearGradient: {
+        width: '100%',
+        height: '100%',
+        borderRadius: width * 0.015625,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      
+      
+
+      finalText:{
+        color: 'white',
+       fontSize: width * 0.0145833333333333,
+       marginRight: width * 0.015625,
+       marginLeft: width * 0.015625,
+       textAlign: 'justify',
+       lineHeight: width * 0.0208333333333333,
+       marginTop: -(width * 0.0104166666666667),
+      },
+
+      baloonText:{
+        color: 'white',
+       fontSize: width * 0.0067708333333333,
+       marginRight: width * 0.0052083333333333,
+       marginLeft: width * 0.0052083333333333,
+       textAlign: 'justify',
+       marginTop: width * 0.0052083333333333,
+       lineHeight: width * 0.0104166666666667,
+       marginBottom: width * 0.0052083333333333,
       },
     
 });

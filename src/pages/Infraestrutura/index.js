@@ -236,6 +236,7 @@ export default function Infraestrutura() {
         </View>
 
         <View style={styles.retMore}>
+          <Text style={styles.retMoreText}>A infraestrutura da área verde na cidade é planejada para oferecer espaços de lazer e preservação ambiental. Além do gramado e da vegetação, podem conter bancos, parque infantil, academia ao ar livre e quadras esportivas.</Text>
         </View>
 
         <View style={styles.bemTitle}>
@@ -252,7 +253,7 @@ export default function Infraestrutura() {
           </View>
         </View>
         <View style={styles.containerCircText1}>
-          <Text style={styles.textCirc1}>A prefeitura faz a manutenção corretamente do PAV</Text>
+          <Text style={styles.textCirc1}>A prefeitura faz a manutenção corretamente da PAV</Text>
         </View>
 
         <View style={styles.containerCirc2}>
@@ -301,15 +302,22 @@ export default function Infraestrutura() {
           <Image source={require('../../assets/miolo.png')} style={styles.miolo} />
         </View>
 
-        <TouchableOpacity style={styles.backButtonGradient} onPress={() => navigation.goBack()}>
-  <LinearGradient
-    colors={['#4C6523', '#99CB47']}
-    style={styles.gradient}
-  >
-    <Ionicons/>
-    <Text style={styles.backButtonText}>Voltar</Text>
-  </LinearGradient>
-</TouchableOpacity>
+        <View style={styles.gradientButtonContainer}>
+                                <TouchableOpacity 
+                                    style={styles.gradientButton} 
+                                    onPress={() => navigation.goBack()}
+                                >
+                                    <LinearGradient
+                                        colors={['#4C6523', '#99CB47']}
+                                        start={{ x: 0, y: 0 }}
+                                        end={{ x: 1, y: 0 }}
+                                        style={styles.linearGradient}
+                                    >
+                                        <Text style={styles.gradientButtonText}>Voltar</Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </View>
+
 
 
         <View style={styles.araucarias2}>

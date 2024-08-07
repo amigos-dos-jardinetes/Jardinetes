@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, Linking } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
@@ -17,6 +17,10 @@ const firebaseConfig = {
   storageBucket: "amigosdosjardinetes.appspot.com",
   messagingSenderId: "381072997535",
   appId: "1:381072997535:web:157abb3a076162a90836aa"
+};
+
+const openIPPUCWebsite = () => {
+  Linking.openURL('https://www.ippuc.org.br');
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -119,6 +123,7 @@ export default function Form() {
       return;
     }
 
+  
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -180,14 +185,14 @@ export default function Form() {
           keyboardType="numeric"
         />
 
-        <Text style={styles.label}>O local possui bacias de rios?</Text>
+        <Text style={styles.label}>Em qual bacia de rios está localizado? (*)</Text>
         <TextInput
           style={styles.input2}
           onChangeText={text => setBacia(text)}
           value={bacia}
         />
 
-        <Text style={styles.label}>Qual a proporção de áreas verdes por habitantes?</Text>
+        <Text style={styles.label}>Qual a proporção de áreas verdes por habitantes do bairro onde está localizado este jardinete? (*)</Text>
         <TextInput
           style={styles.input}
           onChangeText={text => setPercapita(text)}
@@ -195,7 +200,7 @@ export default function Form() {
           keyboardType="numeric"
         />
 
-        <Text style={styles.label}>Qual é sua densidade demográfica?</Text>
+        <Text style={styles.label}>Qual é a densidade demográfica deste bairro? (*)</Text>
         <TextInput
           style={styles.input2}
           onChangeText={text => setDensidade(text)}
@@ -203,7 +208,7 @@ export default function Form() {
           keyboardType="numeric"
         />
 
-        <Text style={styles.label}>Qual a renda média dos habitantes próximos?</Text>
+        <Text style={styles.label}>Qual a renda média dos habitantes próximos a este jardinete? (*)</Text>
         <TextInput
           style={styles.input}
           onChangeText={text => setRenda(text)}
@@ -211,16 +216,23 @@ export default function Form() {
           keyboardType="numeric"
         />
 
-        <Text style={styles.label}>O jardinete possui algum patrimônio ambiental?</Text>
+        <Text style={styles.label}>O jardinete possui algum patrimônio ambiental? (*)</Text>
         <TextInput
           style={styles.input2}
           onChangeText={text => setPatrimonio(text)}
           value={patrimonio}
         />
-   
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText2}>Continuar</Text>
-        </TouchableOpacity>
+
+<Text style={styles.label}>
+                (*) Para Curitiba, essas informações podem ser obtidas no site da 
+                <Text></Text> {/* Espaço adicionado aqui */}
+                <TouchableOpacity onPress={openIPPUCWebsite}>
+                    <Text style={styles.link}>IPPUC</Text>
+                </TouchableOpacity>
+            </Text>
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                <Text style={styles.buttonText2}>Continuar</Text>
+            </TouchableOpacity>
 
     
       </View>

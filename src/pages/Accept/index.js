@@ -154,7 +154,7 @@ export default function Accept() {
       </View>
 
       <View style={styles.instructions}>
-          <Text style={styles.title2}>Por favor, selecione o local desejado para iniciar o envio do jardinete e verifique se é possível enviá-lo!</Text>
+          <Text style={styles.title2}>Por favor, selecione o local desejado para verfificar se é possível ser amigo(a) do jardinete!</Text>
       </View>
 
       <View style={styles.mapContainer}>

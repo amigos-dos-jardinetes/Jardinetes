@@ -544,22 +544,46 @@ export const styles = StyleSheet.create({
             backgroundColor: '#fff', 
           },
 
-          backButtonGradient: {
+          gradientButtonContainer: {
             position: 'absolute',
-            left: width * 0.6770833333333333,
-            borderRadius: width * 0.0052083333333333,
-            top: width * 0.69,
-    
-          },
-          gradient: {
-            flexDirection: 'row',
-            alignItems: 'center',
+            top: width * 0.675,
+            alignSelf: 'center',
+            zIndex: 1,
             borderRadius: width * 0.0104166666666667,
-            paddingHorizontal: width * 0.0104166666666667,
           },
-          backButtonText: {
+          
+          gradientButton: {
+            width: width * 0.15625,
+            height: width * 0.05, 
+            left: width * 0.2083333333333333,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: width * 0.0104166666666667,
+            paddingVertical: width * 0.0052083333333333,
+          },
+          
+          gradientButtonText: {
+            fontSize: width * 0.0197916666666667, 
             color: 'white',
-            fontSize: width * 0.02,
-            marginLeft: width * 0.0026041666666667,
+          },
+          
+          linearGradient: {
+            width: '100%',
+            height: '100%',
+            borderRadius: width * 0.015625,
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          
+          
+          retMoreText: {
+            fontSize: width * 0.009375,
+            color: '#271C00',
+            marginRight: width * 0.0052083333333333,
+            marginLeft: width * 0.0052083333333333,
+            textAlign: 'justify',
+            marginTop: width * 0.0052083333333333,
+            lineHeight: width * 0.015625,
+            marginBottom: width * 0.0052083333333333,
           },
 });

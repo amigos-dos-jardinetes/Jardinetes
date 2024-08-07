@@ -243,7 +243,7 @@ export default function Menu() {
         <View style={styles.container}>
 
             <View style={styles.backcontainer}>
-                <ImageBackground source={wallpaper ? { uri: wallpaper } : require('../../assets/default-background.jpg')} style={styles.container}>
+                <ImageBackground source={wallpaper ? { uri: wallpaper } : require('../../assets/default_background.png')} style={styles.container}>
                     <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
                     <Text style={styles.title}>Bem-vindo, {userName}</Text>
 
@@ -310,7 +310,7 @@ export default function Menu() {
 
             <View style={styles.car}>
 
-                <Text style={styles.textgen}>Gerenciar minhas fotos</Text>
+                <Text style={styles.textgen}>Minhas fotos</Text>
                 <View style={styles.car4}>
                     <View style={styles.borderedContainer2}>
                         <View style={styles.borderedContainer3}>
@@ -362,7 +362,7 @@ export default function Menu() {
                 </View>
             </View>
             <View style={styles.car2}>
-                <Text style={styles.textgen2}>Praças que acompanho</Text>
+                <Text style={styles.textgen2}>Jardinetes que sou amigo(a)</Text>
                 <View style={[styles.car3, styles.borderedContainer]}>
 
                     <View style={styles.container_map}>
