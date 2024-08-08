@@ -61,14 +61,26 @@ export default function Infraestrutura() {
           setDocumentData(data); // Armazenar dados do documento no estado
 
           const pessoas = data.pessoas;
+          const newPessoas = data.newPessoas;
 
-          if (pessoas !== undefined && data.infraestrutura_01 !== undefined && data.infraestrutura_02 !== undefined && data.infraestrutura_03 !== undefined && data.infraestrutura_04 !== undefined && data.infraestrutura_05 !== undefined) {
+          if (
+          
+  (data.infraestrutura_01 !== undefined || data.newInfraestrutura_01 !== undefined) &&
+  (data.infraestrutura_02 !== undefined || data.newInfraestrutura_02 !== undefined) &&
+  (data.infraestrutura_03 !== undefined || data.newInfraestrutura_03 !== undefined) &&
+  (data.infraestrutura_04 !== undefined || data.newInfraestrutura_04 !== undefined) &&
+  (data.infraestrutura_05 !== undefined || data.newInfraestrutura_05 !== undefined) &&
+  (pessoas !== undefined) || (newPessoas !== undefined) 
 
-            const infraestruturaAverage1 = Math.round((data.infraestrutura_01 / pessoas) * 20);
-            const infraestruturaAverage2 = Math.round((data.infraestrutura_02 / pessoas) * 20);
-            const infraestruturaAverage3 = Math.round((data.infraestrutura_03 / pessoas) * 20);
-            const infraestruturaAverage4 = Math.round((data.infraestrutura_04 / pessoas) * 20);
-            const infraestruturaAverage5 = Math.round((data.infraestrutura_05 / pessoas) * 20);
+          
+) 
+          {
+
+            const infraestruturaAverage1 = Math.round(((data.infraestrutura_01 + data.newInfraestrutura_01) / (pessoas + newPessoas)) * 20);
+            const infraestruturaAverage2 = Math.round(((data.infraestrutura_02 + data.newInfraestrutura_02) / (pessoas + newPessoas)) * 20);
+            const infraestruturaAverage3 = Math.round(((data.infraestrutura_03 + data.newInfraestrutura_03) / (pessoas + newPessoas)) * 20);
+            const infraestruturaAverage4 = Math.round(((data.infraestrutura_04 + data.newInfraestrutura_04) / (pessoas + newPessoas)) * 20);
+            const infraestruturaAverage5 = Math.round(((data.infraestrutura_05 + data.newInfraestrutura_05) / (pessoas + newPessoas)) * 20);
 
             setinfraestruturaAverages({
                 infraestruturaAverage1,

@@ -94,10 +94,11 @@ export default function ImpactSolo() {
     });
 
     const validateValues = () => {
-      // Verifica se algum valor de bem-estar ou pertencimento é 0
+      // Verifica se algum valor de bem-estar é 0
       const bemEstarInvalid = bemEstar01Value === 0 || bemEstar02Value === 0 || bemEstar03Value === 0 ||
                               bemEstar04Value === 0 || bemEstar05Value === 0;
     
+      // Verifica se algum valor de pertencimento é 0
       const pertencimentoInvalid = pertencimento01Value === 0 || pertencimento02Value === 0 || pertencimento03Value === 0 ||
                                    pertencimento04Value === 0 || pertencimento05Value === 0;
     
@@ -110,19 +111,22 @@ export default function ImpactSolo() {
       const infraestrutura04Invalid = infraestrutura04Value === 0 && !isChecked1;
       const infraestrutura05Invalid = infraestrutura05Value === 0 && !isChecked2;
     
+      // Verifica se algum valor de segurança é 0
+      const segurancaInvalid = seguranca01Value === 0 || seguranca02Value === 0 || seguranca03Value === 0 ||
+                               seguranca04Value === 0 || seguranca05Value === 0;
+    
       // Verifica se pessoas é 0
       const pessoasInvalid = pessoas === 0;
     
       // Retorna false se algum valor é inválido
       if (bemEstarInvalid || pertencimentoInvalid || infraestrutura01Invalid || infraestrutura02Invalid ||
-          infraestrutura03Invalid || infraestrutura04Invalid || infraestrutura05Invalid || pessoasInvalid) {
+          infraestrutura03Invalid || infraestrutura04Invalid || infraestrutura05Invalid || segurancaInvalid || pessoasInvalid) {
         return false;
       }
     
       // Se passou em todas as verificações, retorna true
       return true;
     };
-    
 
     useEffect(() => {
       const fetchJardineteData = async () => {
@@ -727,33 +731,113 @@ const updateSeguranca05Value = async (incrementValue) => {
 
    
 
-const handleContinuarPress = () => {
-  if (validateValues()) {
-    updateBemEstar01Value(bemEstar01Value, 'bem_estar_01');
-    updateBemEstar02Value(bemEstar02Value, 'bem_estar_02');
-    updateBemEstar03Value(bemEstar03Value, 'bem_estar_03');
-    updateBemEstar04Value(bemEstar04Value, 'bem_estar_04');
-    updateBemEstar05Value(bemEstar05Value, 'bem_estar_05');
-    updateInfraestrutura01Value(infraestrutura01Value, 'infraestrutura_01');
-    updateInfraestrutura02Value(infraestrutura02Value, 'infraestrutura_02');
-    updateInfraestrutura03Value(infraestrutura03Value, 'infraestrutura_03');
-    updateInfraestrutura04Value(infraestrutura04Value, 'infraestrutura_04');
-    updateInfraestrutura05Value(infraestrutura05Value, 'infraestrutura_05');
-    updatePertencimento01Value(pertencimento01Value, 'pertencimento_01');
-    updatePertencimento02Value(pertencimento02Value, 'pertencimento_02');
-    updatePertencimento03Value(pertencimento03Value, 'pertencimento_03');
-    updatePertencimento04Value(pertencimento04Value, 'pertencimento_04');
-    updatePertencimento05Value(pertencimento05Value, 'pertencimento_05');
-    updateSeguranca01Value(seguranca01Value, 'seguranca_01');
-    updateSeguranca02Value(seguranca02Value, 'seguranca_02');
-    updateSeguranca03Value(seguranca03Value, 'seguranca_03');
-    updateSeguranca04Value(seguranca04Value, 'seguranca_04');
-    updateSeguranca05Value(seguranca05Value, 'seguranca_05');
-    updatePessoasValue(pessoas, 'pessoas');
-
-    navigation.navigate('AnaliseFinal', { novoJardineteDocId });
+async function getCurrentUser() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  
+  if (user) {
+    return user;
   } else {
-    alert('Verifique os valores inseridos antes de continuar.');
+    throw new Error("Nenhum usuário logado.");
+  }
+}
+
+
+async function getUserJardinetes(userId) {
+  const db = getFirestore();
+  const userDocRef = doc(db, "users", userId);
+  const userDoc = await getDoc(userDocRef);
+  
+  if (userDoc.exists()) {
+    const userData = userDoc.data();
+    return userData.jardinetes || []; // Retorna o array de jardinetes ou um array vazio se não existir
+  } else {
+    throw new Error("Usuário não encontrado.");
+  }
+}
+
+async function sendDataToFirebase(novoJardineteDocId, value, key) {
+  const db = getFirestore();
+  const jardineteDocRef = doc(db, "jardinetes", novoJardineteDocId);
+
+  await updateDoc(jardineteDocRef, {
+    [key]: value
+  });
+}
+
+
+const handleContinuarPress = async () => {
+  try {
+    let jardineteExists = false;
+    let userJardinetes = [];
+
+    try {
+      const user = await getCurrentUser(); // Tenta obter o usuário logado
+
+      if (user) {
+        userJardinetes = await getUserJardinetes(user.uid); // Obtém o array de jardinetes do usuário
+        jardineteExists = userJardinetes.includes(novoJardineteDocId); // Verifica se o jardinete já está no array
+      }
+    } catch (error) {
+      console.warn("Nenhum usuário logado ou erro ao obter dados do usuário.");
+    }
+
+    if (validateValues()) {
+      if (jardineteExists) {
+        // Envia dados diferentes se o jardinete já existir
+        await sendDataToFirebase(novoJardineteDocId, bemEstar01Value, 'newBem_estar_01');
+        await sendDataToFirebase(novoJardineteDocId, bemEstar02Value, 'newBem_estar_02');
+        await sendDataToFirebase(novoJardineteDocId, bemEstar03Value, 'newBem_estar_03');
+        await sendDataToFirebase(novoJardineteDocId, bemEstar04Value, 'newBem_estar_04');
+        await sendDataToFirebase(novoJardineteDocId, bemEstar05Value, 'newBem_estar_05');
+        await sendDataToFirebase(novoJardineteDocId, infraestrutura01Value, 'newInfraestrutura_01');
+        await sendDataToFirebase(novoJardineteDocId, infraestrutura02Value, 'newInfraestrutura_02');
+        await sendDataToFirebase(novoJardineteDocId, infraestrutura03Value, 'newInfraestrutura_03');
+        await sendDataToFirebase(novoJardineteDocId, infraestrutura04Value, 'newInfraestrutura_04');
+        await sendDataToFirebase(novoJardineteDocId, infraestrutura05Value, 'newInfraestrutura_05');
+        await sendDataToFirebase(novoJardineteDocId, pertencimento01Value, 'newPertencimento_01');
+        await sendDataToFirebase(novoJardineteDocId, pertencimento02Value, 'newPertencimento_02');
+        await sendDataToFirebase(novoJardineteDocId, pertencimento03Value, 'newPertencimento_03');
+        await sendDataToFirebase(novoJardineteDocId, pertencimento04Value, 'newPertencimento_04');
+        await sendDataToFirebase(novoJardineteDocId, pertencimento05Value, 'newPertencimento_05');
+        await sendDataToFirebase(novoJardineteDocId, seguranca01Value, 'newSeguranca_01');
+        await sendDataToFirebase(novoJardineteDocId, seguranca02Value, 'newSeguranca_02');
+        await sendDataToFirebase(novoJardineteDocId, seguranca03Value, 'newSeguranca_03');
+        await sendDataToFirebase(novoJardineteDocId, seguranca04Value, 'newSeguranca_04');
+        await sendDataToFirebase(novoJardineteDocId, seguranca05Value, 'newSeguranca_05');
+        await sendDataToFirebase(novoJardineteDocId, pessoas, 'newPessoas');
+      } else {
+        // Envia os dados normalmente
+        updateBemEstar01Value(bemEstar01Value, 'bem_estar_01');
+        updateBemEstar02Value(bemEstar02Value, 'bem_estar_02');
+        updateBemEstar03Value(bemEstar03Value, 'bem_estar_03');
+        updateBemEstar04Value(bemEstar04Value, 'bem_estar_04');
+        updateBemEstar05Value(bemEstar05Value, 'bem_estar_05');
+        updateInfraestrutura01Value(infraestrutura01Value, 'infraestrutura_01');
+        updateInfraestrutura02Value(infraestrutura02Value, 'infraestrutura_02');
+        updateInfraestrutura03Value(infraestrutura03Value, 'infraestrutura_03');
+        updateInfraestrutura04Value(infraestrutura04Value, 'infraestrutura_04');
+        updateInfraestrutura05Value(infraestrutura05Value, 'infraestrutura_05');
+        updatePertencimento01Value(pertencimento01Value, 'pertencimento_01');
+        updatePertencimento02Value(pertencimento02Value, 'pertencimento_02');
+        updatePertencimento03Value(pertencimento03Value, 'pertencimento_03');
+        updatePertencimento04Value(pertencimento04Value, 'pertencimento_04');
+        updatePertencimento05Value(pertencimento05Value, 'pertencimento_05');
+        updateSeguranca01Value(seguranca01Value, 'seguranca_01');
+        updateSeguranca02Value(seguranca02Value, 'seguranca_02');
+        updateSeguranca03Value(seguranca03Value, 'seguranca_03');
+        updateSeguranca04Value(seguranca04Value, 'seguranca_04');
+        updateSeguranca05Value(seguranca05Value, 'seguranca_05');
+        updatePessoasValue(pessoas, 'pessoas');
+      }
+
+      navigation.navigate('AnaliseFinal', { novoJardineteDocId });
+    } else {
+      alert('Verifique os valores inseridos antes de continuar.');
+    }
+  } catch (error) {
+    console.error('Erro ao enviar dados:', error);
+    alert('Ocorreu um erro ao enviar os dados. Tente novamente.');
   }
 };
 

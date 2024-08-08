@@ -61,14 +61,22 @@ export default function BemEstar() {
           setDocumentData(data); // Armazenar dados do documento no estado
 
           const pessoas = data.pessoas;
+          const newPessoas = data.newPessoas;
 
-          if (pessoas !== undefined && data.bem_estar_01 !== undefined && data.bem_estar_02 !== undefined && data.bem_estar_03 !== undefined && data.bem_estar_04 !== undefined && data.bem_estar_05 !== undefined) {
+          if (
+            (data.bem_estar_01 !== undefined || data.newBem_estar_01 !== undefined) &&
+            (data.bem_estar_02 !== undefined || data.newBem_estar_02 !== undefined) &&
+            (data.bem_estar_03 !== undefined || data.newBem_estar_03 !== undefined) &&
+            (data.bem_estar_04 !== undefined || data.newBem_estar_04 !== undefined) &&
+            (data.bem_estar_05 !== undefined || data.newBem_estar_05 !== undefined) &&
+            (pessoas !== undefined) || (newPessoas !== undefined) 
+          ) {
 
-            const bemEstarAverage1 = Math.round((data.bem_estar_01 / pessoas) * 20);
-            const bemEstarAverage2 = Math.round((data.bem_estar_02 / pessoas) * 20);
-            const bemEstarAverage3 = Math.round((data.bem_estar_03 / pessoas) * 20);
-            const bemEstarAverage4 = Math.round((data.bem_estar_04 / pessoas) * 20);
-            const bemEstarAverage5 = Math.round((data.bem_estar_05 / pessoas) * 20);
+            const bemEstarAverage1 = Math.round(((data.bem_estar_01 + data.newBem_estar_01) / (pessoas + newPessoas)) * 20);
+            const bemEstarAverage2 = Math.round(((data.bem_estar_02 + data.newBem_estar_02) / (pessoas + newPessoas)) * 20);
+            const bemEstarAverage3 = Math.round(((data.bem_estar_03 + data.newBem_estar_03) / (pessoas + newPessoas)) * 20);
+            const bemEstarAverage4 = Math.round(((data.bem_estar_04 + data.newBem_estar_04) / (pessoas + newPessoas)) * 20);
+            const bemEstarAverage5 = Math.round(((data.bem_estar_05 + data.newBem_estar_05) / (pessoas + newPessoas)) * 20);
 
             setBemEstarAverages({
               bemEstarAverage1,

@@ -55,35 +55,39 @@ export default function AnaliseFinal() {
           setDocumentData(data); // Armazenar dados do documento no estado
 
           const pessoas = data.pessoas;
+          const newPessoas = data.newPessoas;
 
           if (
-            data.infraestrutura_01 !== undefined &&
-            data.infraestrutura_02 !== undefined &&
-            data.infraestrutura_03 !== undefined &&
-            data.infraestrutura_04 !== undefined &&
-            data.infraestrutura_05 !== undefined &&
-            pessoas !== undefined &&
-            data.bem_estar_01 !== undefined &&
-            data.bem_estar_02 !== undefined &&
-            data.bem_estar_03 !== undefined &&
-            data.bem_estar_04 !== undefined &&
-            data.bem_estar_05 !== undefined &&
-            data.pertencimento_01 !== undefined &&
-            data.pertencimento_02 !== undefined &&
-            data.pertencimento_03 !== undefined &&
-            data.pertencimento_04 !== undefined &&
-            data.pertencimento_05 !== undefined &&
-            data.seguranca_01 !== undefined &&
-            data.seguranca_02 !== undefined &&
-            data.seguranca_03 !== undefined &&
-            data.seguranca_04 !== undefined &&
-            data.seguranca_05 !== undefined 
+            (data.infraestrutura_01 !== undefined || data.newInfraestrutura_01 !== undefined) &&
+            (data.infraestrutura_02 !== undefined || data.newInfraestrutura_02 !== undefined) &&
+            (data.infraestrutura_03 !== undefined || data.newInfraestrutura_03 !== undefined) &&
+            (data.infraestrutura_04 !== undefined || data.newInfraestrutura_04 !== undefined) &&
+            (data.infraestrutura_05 !== undefined || data.newInfraestrutura_05 !== undefined) &&
+            (data.bem_estar_01 !== undefined || data.newBem_estar_01 !== undefined) &&
+            (data.bem_estar_02 !== undefined || data.newBem_estar_02 !== undefined) &&
+            (data.bem_estar_03 !== undefined || data.newBem_estar_03 !== undefined) &&
+            (data.bem_estar_04 !== undefined || data.newBem_estar_04 !== undefined) &&
+            (data.bem_estar_05 !== undefined || data.newBem_estar_05 !== undefined) &&
+            (data.pertencimento_01 !== undefined || data.newPertencimento_01 !== undefined) &&
+            (data.pertencimento_02 !== undefined || data.newPertencimento_02 !== undefined) &&
+            (data.pertencimento_03 !== undefined || data.newPertencimento_03 !== undefined) &&
+            (data.pertencimento_04 !== undefined || data.newPertencimento_04 !== undefined) &&
+            (data.pertencimento_05 !== undefined || data.newPertencimento_05 !== undefined) &&
+            (data.seguranca_01 !== undefined || data.newSeguranca_01 !== undefined) &&
+            (data.seguranca_02 !== undefined || data.newSeguranca_02 !== undefined) &&
+            (data.seguranca_03 !== undefined || data.newSeguranca_03 !== undefined) &&
+            (data.seguranca_04 !== undefined || data.newSeguranca_04 !== undefined) &&
+            (data.seguranca_05 !== undefined || data.newSeguranca_05 !== undefined) &&
+            (pessoas !== undefined) || (newPessoas !== undefined) 
+           
+          
           ) {
             // Calcular média para infraestrutura ajustada pela quantidade de pessoas
-            const infraSum = data.infraestrutura_01 + data.infraestrutura_02 + data.infraestrutura_03 + data.infraestrutura_04 + data.infraestrutura_05;
-            const infraAverage = (((infraSum / 5) / pessoas) * 20);
+            const infraSum = data.infraestrutura_01 + data.infraestrutura_02 + data.infraestrutura_03 + data.infraestrutura_04 + data.infraestrutura_05
+            + data.newInfraestrutura_01 + data.newInfraestrutura_02 + data.newInfraestrutura_03 + data.newInfraestrutura_04 + data.newInfraestrutura_05;
+            const infraAverage = (((infraSum / 5) / (pessoas + newPessoas)) * 20);
             console.log("infraAverage:", infraAverage);
-            const average = (((infraSum / 5) / pessoas) * 20);
+            const average = (((infraSum / 5) / (pessoas + newPessoas)) * 20);
             setInfraAverage(average);
 
             if (infraAverage <= 30) {
@@ -104,10 +108,11 @@ export default function AnaliseFinal() {
             }
 
             // Calcular média para bem-estar ajustada pela quantidade de pessoas
-            const bemEstarSum = data.bem_estar_01 + data.bem_estar_02 + data.bem_estar_03 + data.bem_estar_04 + data.bem_estar_05;
-            const bemEstarAverage = (((bemEstarSum / 5) / pessoas) * 20);
+            const bemEstarSum = data.bem_estar_01 + data.bem_estar_02 + data.bem_estar_03 + data.bem_estar_04 + data.bem_estar_05
+            + data.newBem_estar_01 + data.newBem_estar_02 + data.newBem_estar_03 + data.newBem_estar_04 + data.newBem_estar_05;
+            const bemEstarAverage = (((bemEstarSum / 5) / (pessoas + newPessoas)) * 20);
             console.log("bemEstarAverage:", bemEstarAverage);
-            const average1 = (((bemEstarSum / 5) / pessoas) * 20);
+            const average1 = (((bemEstarSum / 5) / (pessoas + newPessoas)) * 20);
             setBemEstarAverage(average1);
 
 
@@ -128,10 +133,11 @@ export default function AnaliseFinal() {
               setBemEstarPetalaStyle(styles.petala1001);
             }
 
-            const segSum = data.seguranca_01 + data.seguranca_02 + data.seguranca_03 + data.seguranca_04 + data.seguranca_05;
-            const segAverage = (((segSum / 5) / pessoas) * 20);
+            const segSum = data.seguranca_01 + data.seguranca_02 + data.seguranca_03 + data.seguranca_04 + data.seguranca_05
+            + data.newSeguranca_01 + data.newSeguranca_02 + data.newSeguranca_03 + data.newSeguranca_04 + data.newSeguranca_05;
+            const segAverage = (((segSum / 5) / (pessoas + newPessoas)) * 20);
             console.log("Segurancaaverage:", segAverage);
-            const average2 = (((segSum / 5) / pessoas) * 20);
+            const average2 = (((segSum / 5) / (pessoas + newPessoas)) * 20);
             setSegAverage(average2);
 
             if (segAverage <= 30) {
@@ -153,10 +159,11 @@ export default function AnaliseFinal() {
 
 
 
-            const pertSum = data.pertencimento_01 + data.pertencimento_02 + data.pertencimento_03 + data.pertencimento_04 + data.pertencimento_05;
-            const pertAverage = (((pertSum / 5) / pessoas) * 20);
+            const pertSum = data.pertencimento_01 + data.pertencimento_02 + data.pertencimento_03 + data.pertencimento_04 + data.pertencimento_05
+            + data.newPertencimento_01 + data.newPertencimento_02 + data.newPertencimento_03 + data.newPertencimento_04 + data.newPertencimento_05;
+            const pertAverage = (((pertSum / 5) / (pessoas + newPessoas)) * 20);
             console.log("Pertencimentoaverage:", pertAverage);
-            const average3 = (((pertSum / 5) / pessoas) * 20);
+            const average3 = (((pertSum / 5) / (pessoas + newPessoas)) * 20);
             setPertAverage(average3);
 
             if (pertAverage <= 30) {

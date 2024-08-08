@@ -61,14 +61,22 @@ export default function Seguranca() {
           setDocumentData(data); // Armazenar dados do documento no estado
 
           const pessoas = data.pessoas;
+          const newPessoas = data.newPessoas;
+          if (
+            (data.seguranca_01 !== undefined || data.newSeguranca_01 !== undefined) &&
+            (data.seguranca_02 !== undefined || data.newSeguranca_02 !== undefined) &&
+            (data.seguranca_03 !== undefined || data.newSeguranca_03 !== undefined) &&
+            (data.seguranca_04 !== undefined || data.newSeguranca_04 !== undefined) &&
+            (data.seguranca_05 !== undefined || data.newSeguranca_05 !== undefined) &&
+            (pessoas !== undefined) || (newPessoas !== undefined) 
 
-          if (pessoas !== undefined && data.seguranca_01 !== undefined && data.seguranca_02 !== undefined && data.seguranca_03 !== undefined && data.seguranca_04 !== undefined && data.seguranca_05 !== undefined) {
+          ) {
 
-            const segurancaAverage1 = Math.round((data.seguranca_01 / pessoas) * 20);
-            const segurancaAverage2 = Math.round((data.seguranca_02 / pessoas) * 20);
-            const segurancaAverage3 = Math.round((data.seguranca_03 / pessoas) * 20);
-            const segurancaAverage4 = Math.round((data.seguranca_04 / pessoas) * 20);
-            const segurancaAverage5 = Math.round((data.seguranca_05 / pessoas) * 20);
+            const segurancaAverage1 = Math.round(((data.seguranca_01 + data.newSeguranca_01) / (pessoas + newPessoas)) * 20);
+            const segurancaAverage2 = Math.round(((data.seguranca_02 + data.newSeguranca_02) / (pessoas + newPessoas)) * 20);
+            const segurancaAverage3 = Math.round(((data.seguranca_03 + data.newSeguranca_03) / (pessoas + newPessoas)) * 20);
+            const segurancaAverage4 = Math.round(((data.seguranca_04 + data.newSeguranca_04) / (pessoas + newPessoas)) * 20);
+            const segurancaAverage5 = Math.round(((data.seguranca_05 + data.newSeguranca_05) / (pessoas + newPessoas)) * 20);
 
             setsegurancaAverages({
                 segurancaAverage1,

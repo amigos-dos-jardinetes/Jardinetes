@@ -61,14 +61,22 @@ export default function Pertencimento() {
           setDocumentData(data); // Armazenar dados do documento no estado
 
           const pessoas = data.pessoas;
+          const newPessoas = data.newPessoas;
 
-          if (pessoas !== undefined && data.pertencimento_01 !== undefined && data.pertencimento_02 !== undefined && data.pertencimento_03 !== undefined && data.pertencimento_04 !== undefined && data.pertencimento_05 !== undefined) {
+          if (
+            (data.pertencimento_01 !== undefined || data.newPertencimento_01 !== undefined) &&
+            (data.pertencimento_02 !== undefined || data.newPertencimento_02 !== undefined) &&
+            (data.pertencimento_03 !== undefined || data.newPertencimento_03 !== undefined) &&
+            (data.pertencimento_04 !== undefined || data.newPertencimento_04 !== undefined) &&
+            (data.pertencimento_05 !== undefined || data.newPertencimento_05 !== undefined) &&
+            (pessoas !== undefined) || (newPessoas !== undefined) 
+          ) {
 
-            const pertencimentoAverage1 = Math.round((data.pertencimento_01 / pessoas) * 20);
-            const pertencimentoAverage2 = Math.round((data.pertencimento_02 / pessoas) * 20);
-            const pertencimentoAverage3 = Math.round((data.pertencimento_03 / pessoas) * 20);
-            const pertencimentoAverage4 = Math.round((data.pertencimento_04 / pessoas) * 20);
-            const pertencimentoAverage5 = Math.round((data.pertencimento_05 / pessoas) * 20);
+            const pertencimentoAverage1 = Math.round(((data.pertencimento_01 + data.newPertencimento_01) / (pessoas + newPessoas)) * 20);
+            const pertencimentoAverage2 = Math.round(((data.pertencimento_02 + data.newPertencimento_02) / (pessoas + newPessoas)) * 20);
+            const pertencimentoAverage3 = Math.round(((data.pertencimento_03 + data.newPertencimento_03) / (pessoas + newPessoas)) * 20);
+            const pertencimentoAverage4 = Math.round(((data.pertencimento_04 + data.newPertencimento_04) / (pessoas + newPessoas)) * 20);
+            const pertencimentoAverage5 = Math.round(((data.pertencimento_05 + data.newPertencimento_05) / (pessoas + newPessoas)) * 20);
 
             setpertencimentoAverages({
                 pertencimentoAverage1,
