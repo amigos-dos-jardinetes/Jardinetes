@@ -92,6 +92,36 @@ export default function ImpactSolo() {
       3: require('../../assets/green.png'),
       4: require('../../assets/blue.png'),
     });
+
+    const validateValues = () => {
+      // Verifica se algum valor de bem-estar ou pertencimento é 0
+      const bemEstarInvalid = bemEstar01Value === 0 || bemEstar02Value === 0 || bemEstar03Value === 0 ||
+                              bemEstar04Value === 0 || bemEstar05Value === 0;
+    
+      const pertencimentoInvalid = pertencimento01Value === 0 || pertencimento02Value === 0 || pertencimento03Value === 0 ||
+                                   pertencimento04Value === 0 || pertencimento05Value === 0;
+    
+      // Verifica se infraestrutura 1 e 2 são 0
+      const infraestrutura01Invalid = infraestrutura01Value === 0;
+      const infraestrutura02Invalid = infraestrutura02Value === 0;
+      
+      // Verifica se infraestrutura 3, 4 e 5 são 0 e a checkbox correspondente não está marcada
+      const infraestrutura03Invalid = infraestrutura03Value === 0 && !isChecked;
+      const infraestrutura04Invalid = infraestrutura04Value === 0 && !isChecked1;
+      const infraestrutura05Invalid = infraestrutura05Value === 0 && !isChecked2;
+    
+      // Verifica se pessoas é 0
+      const pessoasInvalid = pessoas === 0;
+    
+      // Retorna false se algum valor é inválido
+      if (bemEstarInvalid || pertencimentoInvalid || infraestrutura01Invalid || infraestrutura02Invalid ||
+          infraestrutura03Invalid || infraestrutura04Invalid || infraestrutura05Invalid || pessoasInvalid) {
+        return false;
+      }
+    
+      // Se passou em todas as verificações, retorna true
+      return true;
+    };
     
 
     useEffect(() => {
@@ -697,34 +727,35 @@ const updateSeguranca05Value = async (incrementValue) => {
 
    
 
+const handleContinuarPress = () => {
+  if (validateValues()) {
+    updateBemEstar01Value(bemEstar01Value, 'bem_estar_01');
+    updateBemEstar02Value(bemEstar02Value, 'bem_estar_02');
+    updateBemEstar03Value(bemEstar03Value, 'bem_estar_03');
+    updateBemEstar04Value(bemEstar04Value, 'bem_estar_04');
+    updateBemEstar05Value(bemEstar05Value, 'bem_estar_05');
+    updateInfraestrutura01Value(infraestrutura01Value, 'infraestrutura_01');
+    updateInfraestrutura02Value(infraestrutura02Value, 'infraestrutura_02');
+    updateInfraestrutura03Value(infraestrutura03Value, 'infraestrutura_03');
+    updateInfraestrutura04Value(infraestrutura04Value, 'infraestrutura_04');
+    updateInfraestrutura05Value(infraestrutura05Value, 'infraestrutura_05');
+    updatePertencimento01Value(pertencimento01Value, 'pertencimento_01');
+    updatePertencimento02Value(pertencimento02Value, 'pertencimento_02');
+    updatePertencimento03Value(pertencimento03Value, 'pertencimento_03');
+    updatePertencimento04Value(pertencimento04Value, 'pertencimento_04');
+    updatePertencimento05Value(pertencimento05Value, 'pertencimento_05');
+    updateSeguranca01Value(seguranca01Value, 'seguranca_01');
+    updateSeguranca02Value(seguranca02Value, 'seguranca_02');
+    updateSeguranca03Value(seguranca03Value, 'seguranca_03');
+    updateSeguranca04Value(seguranca04Value, 'seguranca_04');
+    updateSeguranca05Value(seguranca05Value, 'seguranca_05');
+    updatePessoasValue(pessoas, 'pessoas');
 
-    const handleContinuarPress = () => {
-      updateBemEstar01Value(bemEstar01Value, 'bem_estar_01');
-      updateBemEstar02Value(bemEstar02Value, 'bem_estar_02');
-      updateBemEstar03Value(bemEstar03Value, 'bem_estar_03');
-      updateBemEstar04Value(bemEstar04Value, 'bem_estar_04');
-      updateBemEstar05Value(bemEstar05Value, 'bem_estar_05');
-      updateBemEstar05Value(bemEstar05Value, 'bem_estar_05');
-      updateInfraestrutura01Value(infraestrutura01Value, 'infraestrutura_01');
-      updateInfraestrutura02Value(infraestrutura02Value, 'infraestrutura_02');
-      updateInfraestrutura03Value(infraestrutura03Value, 'infraestrutura_03');
-      updateInfraestrutura04Value(infraestrutura04Value, 'infraestrutura_04');
-      updateInfraestrutura05Value(infraestrutura05Value, 'infraestrutura_05');
-      updatePertencimento01Value(pertencimento01Value, 'pertencimento_01');
-      updatePertencimento02Value(pertencimento02Value, 'pertencimento_02');
-      updatePertencimento03Value(pertencimento03Value, 'pertencimento_03');
-      updatePertencimento04Value(pertencimento04Value, 'pertencimento_04');
-      updatePertencimento05Value(pertencimento05Value, 'pertencimento_05');
-      updateSeguranca01Value(seguranca01Value, 'seguranca_01');
-      updateSeguranca02Value(seguranca02Value, 'seguranca_02');
-      updateSeguranca03Value(seguranca03Value, 'seguranca_03');
-      updateSeguranca04Value(seguranca04Value, 'seguranca_04');
-      updateSeguranca05Value(seguranca05Value, 'seguranca_05');
-      updatePessoasValue(pessoas, 'pessoas');
-
-      navigation.navigate('AnaliseFinal', { novoJardineteDocId });
-  };
-  
+    navigation.navigate('AnaliseFinal', { novoJardineteDocId });
+  } else {
+    alert('Verifique os valores inseridos antes de continuar.');
+  }
+};
 
   return (
     <ScrollView>
