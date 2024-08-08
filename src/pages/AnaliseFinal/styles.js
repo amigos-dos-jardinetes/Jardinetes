@@ -613,5 +613,60 @@ export const styles = StyleSheet.create({
        lineHeight: width * 0.0104166666666667,
        marginBottom: width * 0.0052083333333333,
       },
+
+      retPorc: {
+        width: width * 0.0260416666666667,
+        height: width * 0.0260416666666667,
+        position: 'absolute',
+        backgroundColor: '#FFBC10',
+        borderRadius: width * 0.0052083333333333,
+        top: width * 0.0708333333333333,
+        right: width * 0.0104166666666667,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+
+      retPorc1: {
+        width: width * 0.0260416666666667,
+        height: width * 0.0260416666666667,
+        position: 'absolute',
+        backgroundColor: '#B781FD',
+        borderRadius: width * 0.0052083333333333,
+        top: width * 0.07,
+        right: width * 0.0104166666666667,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+
+      retPorc2: {
+        width: width * 0.0260416666666667,
+        height: width * 0.0260416666666667,
+        position: 'absolute',
+        backgroundColor: '#FB9116',
+        borderRadius: width * 0.0052083333333333,
+        top: width * 0.0708333333333333,
+        right: width * 0.0104166666666667,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+
+      retPorc3: {
+        width: width * 0.0260416666666667,
+        height: width * 0.0260416666666667,
+        position: 'absolute',
+        backgroundColor: '#FEACAC',
+        borderRadius: width * 0.0052083333333333,
+        top: width * 0.0708333333333333,
+        right: width * 0.008,
+        justifyContent: 'center',
+        alignItems: 'center',
+
+      },
+
+      textPerc:{
+        fontSize: 18,
+        color: 'white',
+        fontWeight: 'bold',
+      },
     
 });

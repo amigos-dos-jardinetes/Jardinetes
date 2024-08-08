@@ -14,6 +14,13 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
 
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+    marginVertical: 5,
+    textAlign: 'center',
+  },
+
   navbar: {
     flexDirection: 'row',
     alignItems: 'center',

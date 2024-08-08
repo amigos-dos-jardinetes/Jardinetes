@@ -14,7 +14,7 @@ const firebaseConfig = {
     storageBucket: "amigosdosjardinetes.appspot.com",
     messagingSenderId: "381072997535",
     appId: "1:381072997535:web:157abb3a076162a90836aa"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -28,12 +28,32 @@ export default function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showTermsModal, setShowTermsModal] = useState(false);
     const [agreedToTerms, setAgreedToTerms] = useState(false);
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     const scrollViewRef = useRef(null);
     const navigation = useNavigation();
 
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
     const handleRegister = async () => {
+        setEmailError('');
+        setPasswordError('');
+
         if (password !== confirmPassword) {
-            Alert.alert("Erro", "As senhas não coincidem.");
+            setPasswordError("As senhas não coincidem.");
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            setEmailError("Formato de email inválido.");
+            return;
+        }
+
+        if (password.length < 6) {
+            setPasswordError("A senha deve ter pelo menos 6 caracteres.");
             return;
         }
 
@@ -53,7 +73,11 @@ export default function SignUp() {
             Alert.alert("Sucesso", "Usuário registrado com sucesso!");
             navigation.navigate('Menu'); // Navegue para a tela de login ou qualquer outra tela após o registro
         } catch (error) {
-            Alert.alert("Erro", error.message);
+            if (error.code === 'auth/email-already-in-use') {
+                setEmailError("Este email já está cadastrado.");
+            } else {
+                Alert.alert("Erro", error.message);
+            }
         }
     };
 
@@ -77,10 +101,11 @@ export default function SignUp() {
                             <View style={styles.inputContainer}>
                                 <Text style={styles.label}>Email</Text>
                                 <TextInput
-                                    style={styles.input2}
+                                    style={[styles.input2, emailError ? { borderColor: 'red', borderWidth: 1 } : {}]}
                                     value={email}
                                     onChangeText={setEmail}
                                 />
+                                {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
                             </View>
 
                             <View style={styles.inputContainer}>
@@ -95,17 +120,18 @@ export default function SignUp() {
                             <View style={styles.inputContainer}>
                                 <Text style={styles.label}>Senha</Text>
                                 <TextInput
-                                    style={styles.input2}
+                                    style={[styles.input2, passwordError ? { borderColor: 'red', borderWidth: 1 } : {}]}
                                     secureTextEntry
                                     value={password}
                                     onChangeText={setPassword}
                                 />
+                                {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
                             </View>
 
                             <View style={styles.inputContainer}>
                                 <Text style={styles.label}>Confirmar Senha</Text>
                                 <TextInput
-                                    style={styles.input2}
+                                    style={[styles.input2, passwordError ? { borderColor: 'red', borderWidth: 1 } : {}]}
                                     secureTextEntry
                                     value={confirmPassword}
                                     onChangeText={setConfirmPassword}
@@ -118,7 +144,7 @@ export default function SignUp() {
                                 visible={showTermsModal}
                                 onRequestClose={() => setShowTermsModal(false)}
                             >
-                                <View style={styles.termsModalContainer}>
+                                 <View style={styles.termsModalContainer}>
                                     <View style={styles.termsModalContent}>
                                         <ScrollView>
                                               <Text style={styles.termsModalText}>

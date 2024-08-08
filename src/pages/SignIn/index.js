@@ -1,19 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ScrollView, ImageBackground, View, Text, StyleSheet, TextInput, TouchableOpacity, Button, Image, Dimensions } from 'react-native';
+import { ScrollView, ImageBackground, View, Text, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as animatable from 'react-native-animatable';
-import { rotateImage, checkUserLoggedIn, navigateToSignIn } from '../../../functions';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from '../SignIn/styles';
 import { checkLoggedInUser } from '../../../functions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
-import image_login from '../../assets/login_page.png';
-import welcome from '../../assets/welcome.png';
-import { Ionicons } from '@expo/vector-icons'; // Importe os ícones desejados
-
 
 const { width, height } = Dimensions.get('window');
 
@@ -29,7 +24,6 @@ const firebaseConfig = {
 const firebase_initialize = initializeApp(firebaseConfig);
 const auth = getAuth(firebase_initialize);
 
-
 export default function SignIn() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
@@ -37,9 +31,7 @@ export default function SignIn() {
   const [error, setError] = useState(null);
   const [animate, setAnimate] = useState(false);
 
-
-
-  WebBrowser.maybeCompleteAuthSession()
+  WebBrowser.maybeCompleteAuthSession();
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     iosClientId: '<IOS_CLIENT_ID>',
@@ -50,7 +42,6 @@ export default function SignIn() {
     projectNameForProxy: "@jardinetes/Amigos_dos_Jardinetes",
     redirectUri: "https://auth.expo.io/@jardinetes/Amigos_dos_Jardinetes/start"
   });
-
 
   const handleLoginPress = async () => {
     try {
@@ -86,9 +77,6 @@ export default function SignIn() {
     checkLoggedInUser();
   }, [navigation]);
 
-
-
-
   useEffect(() => {
     checkLoggedInUser(auth, navigation);
   }, [navigation]);
@@ -111,10 +99,9 @@ export default function SignIn() {
     }
   };
 
-
   React.useEffect(() => {
     handleSignINWithGoogle();
-  }, [response])
+  }, [response]);
 
   const getUserInfo = async (token) => {
     if (!token) return;
@@ -141,17 +128,13 @@ export default function SignIn() {
   const scrollViewRef = useRef(null);
 
   return (
-    <ScrollView
-      horizontal  // Configuração para permitir rolar horizontalmente
-
-    >
+    <ScrollView horizontal>
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         ref={scrollViewRef}
       >
-        <ImageBackground source={image_login} resizeMode="cover" style={styles.image}>
+        <ImageBackground source={require('../../assets/login_page.png')} resizeMode="cover" style={styles.image}>
           <View style={styles.navbar}>
-
             <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')}>
               <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
@@ -170,9 +153,7 @@ export default function SignIn() {
             <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
               <Text style={styles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
-
           </View>
-
 
           <View style={styles.card}>
             <View style={styles.containerwelcome}>
@@ -180,7 +161,7 @@ export default function SignIn() {
             </View>
 
             <View style={styles.containerLogo}>
-              <TouchableOpacity onPress={() => rotateImage(setAnimate)}>
+              <TouchableOpacity onPress={() => setAnimate(!animate)}>
                 <animatable.Image
                   animation={animate ? { from: { rotateY: '0deg' }, to: { rotateY: '360deg' } } : null}
                   easing="linear"
@@ -188,17 +169,13 @@ export default function SignIn() {
                   source={require('../../assets/logo.png')}
                   style={styles.imagelogo}
                 />
-
               </TouchableOpacity>
             </View>
             <View style={styles.textcont}>
               <Text style={styles.inpText}>Email:</Text>
             </View>
 
-
-
             <TextInput
-
               style={[
                 styles.input,
                 error && styles.errorInput,
@@ -206,13 +183,11 @@ export default function SignIn() {
               onChangeText={text => setEmail(text)}
             />
 
-
             <View style={styles.textcont2}>
               <Text style={styles.inpText2}>Senha:</Text>
             </View>
 
             <TextInput
-
               style={[
                 styles.input2,
                 error && styles.errorInput,
@@ -221,10 +196,11 @@ export default function SignIn() {
               secureTextEntry={true}
             />
 
+            {error && (
+              <Text style={styles.errorText}>{error}</Text>
+            )}
 
-           
-
-            <TouchableOpacity style={styles.forgot} >
+            <TouchableOpacity style={styles.forgot}>
               <Text style={styles.forgotText}>Esqueci minha senha</Text>
             </TouchableOpacity>
 
@@ -232,14 +208,13 @@ export default function SignIn() {
               <Text style={styles.buttonTextLogin}>ENTRAR</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonGoogle} >
+            <TouchableOpacity style={styles.buttonGoogle}>
               <Image source={require('../../assets/google.png')} style={styles.imageGoogle} />
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.signUp} onPress={() => navigation.navigate('SignUp')}>
-              <Text style={styles.signUpText} >Cadastre-se</Text>
+              <Text style={styles.signUpText}>Cadastre-se</Text>
             </TouchableOpacity>
-
           </View>
 
           <View style={styles.treeView1}>
@@ -250,7 +225,6 @@ export default function SignIn() {
             <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
           </View>
 
-
           <View style={styles.treeView3}>
             <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
           </View>
@@ -258,10 +232,8 @@ export default function SignIn() {
           <View style={styles.treeView4}>
             <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
           </View>
-
         </ImageBackground>
       </ScrollView>
     </ScrollView>
   );
 }
-

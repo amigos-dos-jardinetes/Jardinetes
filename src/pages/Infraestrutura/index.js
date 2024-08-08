@@ -267,7 +267,9 @@ export default function Infraestrutura() {
 
         <View style={styles.containerCirc3}>
           <View style={styles.circ}>
-            <Text style={styles.textPerc}>{infraestruturaAverages.infraestruturaAverage3}%</Text>
+          <Text style={styles.textPerc}>
+  {infraestruturaAverages.infraestruturaAverage3 === 0 ? 'NA' : `${infraestruturaAverages.infraestruturaAverage3}%`}
+</Text>
           </View>
         </View>
         <View style={styles.containerCircText3}>
@@ -276,7 +278,9 @@ export default function Infraestrutura() {
 
         <View style={styles.containerCirc4}>
           <View style={styles.circ}>
-            <Text style={styles.textPerc}>{infraestruturaAverages.infraestruturaAverage4}%</Text>
+            <Text style={styles.textPerc}>
+            {infraestruturaAverages.infraestruturaAverage4 === 0 ? 'NA' : `${infraestruturaAverages.infraestruturaAverage4}%`}
+              </Text>
           </View>
         </View>
         <View style={styles.containerCircText4}>
@@ -285,7 +289,9 @@ export default function Infraestrutura() {
 
         <View style={styles.containerCirc5}>
           <View style={styles.circ}>
-            <Text style={styles.textPerc}>{infraestruturaAverages.infraestruturaAverage5}%</Text>
+            <Text style={styles.textPerc}>
+            {infraestruturaAverages.infraestruturaAverage5 === 0 ? 'NA' : `${infraestruturaAverages.infraestruturaAverage5}%`}
+              </Text>
           </View>
         </View>
         <View style={styles.containerCircText5}>

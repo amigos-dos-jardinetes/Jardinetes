@@ -19,6 +19,11 @@ export const styles = StyleSheet.create({
               
       },
 
+      errorText: {
+        color: 'red',
+        marginTop: width * 0.0026041666666667,
+    },
+
       card:{
         width: (800 / 1920) * width,
         height: (900/ 1920) * width,

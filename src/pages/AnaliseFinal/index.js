@@ -36,6 +36,10 @@ export default function AnaliseFinal() {
   const [petalaStyle1, setPetalaStyle1] = useState(styles.petala203);
   const [petalaImage2, setPetalaImage2] = useState(require('../../assets/petala20.png'));
   const [petalaStyle2, setPetalaStyle2] = useState(styles.petala203);
+  const [infraAverage, setInfraAverage] = useState(0);
+  const [bemEstarAverage, setBemEstarAverage] = useState(0);
+  const [segAverage, setSegAverage] = useState(0);
+  const [pertAverage, setPertAverage] = useState(0);
 
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
@@ -79,6 +83,8 @@ export default function AnaliseFinal() {
             const infraSum = data.infraestrutura_01 + data.infraestrutura_02 + data.infraestrutura_03 + data.infraestrutura_04 + data.infraestrutura_05;
             const infraAverage = (((infraSum / 5) / pessoas) * 20);
             console.log("infraAverage:", infraAverage);
+            const average = (((infraSum / 5) / pessoas) * 20);
+            setInfraAverage(average);
 
             if (infraAverage <= 30) {
               setPetalaImage(require('../../assets/petala20.png'));
@@ -101,6 +107,9 @@ export default function AnaliseFinal() {
             const bemEstarSum = data.bem_estar_01 + data.bem_estar_02 + data.bem_estar_03 + data.bem_estar_04 + data.bem_estar_05;
             const bemEstarAverage = (((bemEstarSum / 5) / pessoas) * 20);
             console.log("bemEstarAverage:", bemEstarAverage);
+            const average1 = (((bemEstarSum / 5) / pessoas) * 20);
+            setBemEstarAverage(average1);
+
 
             if (bemEstarAverage <= 30) {
               setBemEstarPetalaImage(require('../../assets/petala20.png'));
@@ -122,6 +131,8 @@ export default function AnaliseFinal() {
             const segSum = data.seguranca_01 + data.seguranca_02 + data.seguranca_03 + data.seguranca_04 + data.seguranca_05;
             const segAverage = (((segSum / 5) / pessoas) * 20);
             console.log("Segurancaaverage:", segAverage);
+            const average2 = (((segSum / 5) / pessoas) * 20);
+            setSegAverage(average2);
 
             if (segAverage <= 30) {
               setPetalaImage1(require('../../assets/petala20.png'));
@@ -145,6 +156,8 @@ export default function AnaliseFinal() {
             const pertSum = data.pertencimento_01 + data.pertencimento_02 + data.pertencimento_03 + data.pertencimento_04 + data.pertencimento_05;
             const pertAverage = (((pertSum / 5) / pessoas) * 20);
             console.log("Pertencimentoaverage:", pertAverage);
+            const average3 = (((pertSum / 5) / pessoas) * 20);
+            setPertAverage(average3);
 
             if (pertAverage <= 30) {
               setPetalaImage2(require('../../assets/petala20.png'));
@@ -212,7 +225,16 @@ export default function AnaliseFinal() {
     <ScrollView style={styles.scroll}>
       <View style={styles.container}>
         <View style={styles.navbar}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate("Menu")}>
+        <TouchableOpacity style={styles.backButton}
+          onPress={() => {
+            const currentUser = getAuth().currentUser;
+            if (currentUser) {
+              navigation.navigate("Menu");
+            } else {
+              navigation.navigate("SignIn");
+            }
+          }}>
+        
           <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>
           <View style={styles.imageContainer}>
@@ -253,6 +275,9 @@ export default function AnaliseFinal() {
               A infraestrutura da área verde na cidade é planejada para oferecer espaços de lazer e preservação ambiental. Além do gramado e da vegetação, podem conter bancos, parque infantil, academia ao ar livre e quadras esportivas.</Text>
             </View>
           </View>
+          <View style={styles.retPorc2}>
+          <Text style={styles.textPerc}>{infraAverage.toFixed(0)}%</Text>
+             </View>
         </View>
 
         <View style={styles.bemContainer}>
@@ -265,18 +290,29 @@ export default function AnaliseFinal() {
               <Text style={styles.baloonText}>As áreas verdes são essenciais para a saúde física e mental dos moradores, incentivando um estilo de vida ativo e proporcionando locais tranquilos que ajudam a reduzir o estresse e melhorar o humor. Além disso, promovem a interação social e fortalecem o vínculo da comunidade.</Text>
             </View>
           </View>
+          <View style={styles.retPorc1}> 
+          <Text style={styles.textPerc}>{bemEstarAverage.toFixed(0)}%</Text>
+          </View>
         </View>
 
         <View style={styles.segContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Seguranca', { novoJardineteDocId })}>
             <Image source={require('../../assets/segIcon.jpg')} style={styles.seg} />
           </TouchableOpacity>
+
+       
+
           <View style={styles.segContainer2}>
+      
             <Image source={require('../../assets/segText.png')} style={styles.segText} />
             <View style={styles.segRet}>
               <Text style={styles.baloonText}>Espaços bem iluminados são essenciais para a segurança dentro das áreas verdes, proporcionando uma sensação de proteção aos usuários, ajudando a reduzir potenciais esconderijos para atividades ilícitas.</Text>
             </View>
+           
           </View>
+          <View style={styles.retPorc}>
+          <Text style={styles.textPerc}>{segAverage.toFixed(0)}%</Text>
+             </View>
         </View>
 
         <View style={styles.pertContainer}>
@@ -285,10 +321,14 @@ export default function AnaliseFinal() {
             <View style={styles.pertRet}>
               <Text style={styles.baloonText} >As áreas verdes desempenham um papel fundamental no fortalecimento do sentimento de pertencimento à comunidade, além de que o cuidado com esses espaços reforça o vínculo emocional com o local.</Text>
             </View>
+           
           </View>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Pertencimento', { novoJardineteDocId })}>
             <Image source={require('../../assets/pertIcon.jpg')} style={styles.pert} />
           </TouchableOpacity>
+          <View style={styles.retPorc3}>
+          <Text style={styles.textPerc}>{pertAverage.toFixed(0)}%</Text>
+             </View>
         </View>
 
         <View style={styles.centralContainer}>
@@ -315,20 +355,27 @@ export default function AnaliseFinal() {
         </View>
 
         <View style={styles.gradientButtonContainer}>
-                                <TouchableOpacity 
-                                    style={styles.gradientButton} 
-                                    onPress={() => navigation.navigate("Menu")}
-                                >
-                                    <LinearGradient
-                                        colors={['#4C6523', '#99CB47']}
-                                        start={{ x: 0, y: 0 }}
-                                        end={{ x: 1, y: 0 }}
-                                        style={styles.linearGradient}
-                                    >
-                                        <Text style={styles.gradientButtonText}>Voltar</Text>
-                                    </LinearGradient>
-                                </TouchableOpacity>
-                            </View>
+  <TouchableOpacity
+    style={styles.gradientButton}
+    onPress={() => {
+      const currentUser = getAuth().currentUser;
+      if (currentUser) {
+        navigation.navigate("Menu");
+      } else {
+        navigation.navigate("SignIn");
+      }
+    }}
+  >
+    <LinearGradient
+      colors={['#4C6523', '#99CB47']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      style={styles.linearGradient}
+    >
+      <Text style={styles.gradientButtonText}>Voltar</Text>
+    </LinearGradient>
+  </TouchableOpacity>
+</View>
 
 
 
