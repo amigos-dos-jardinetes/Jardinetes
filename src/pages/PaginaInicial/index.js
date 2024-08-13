@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Image } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text, Image, Linking, } from 'react-native';
 import { styles } from '../PaginaInicial/styles';
 import { useNavigation } from '@react-navigation/native';
 
@@ -9,148 +9,134 @@ export default function PaginaInicial() {
   const navigation = useNavigation();
   const scrollViewRef = useRef(null);
 
+  const handlePress = () => {
+    Linking.openURL('https://www.instagram.com/amigosdosjardinetes.ct/'); // Substitua pelo link desejado
+  };
+
   const scrollToTop = () => {
-    console.log('Scrolling to top');
     if (scrollViewRef.current) {
-      scrollViewRef.current.scrollTo({ y: 0, animated: true });
+      scrollViewRef.current.scrollTo({
+        y: 0,
+        animated: true,
+      });
     }
   };
 
+
   return (
-    <ScrollView
-      horizontal  // Configuração para permitir rolar horizontalmente
-
-    >
-      <ScrollView
-        contentContainerStyle={styles.scrollViewContent}
-        ref={scrollViewRef}
-      >
-        <ImageBackground
-          source={require('../../assets/PaginaFinal.png')}
-          style={styles.backgroundImage}
-        >
-
-          <View style={styles.navbar}>
-
+    <ScrollView ref={scrollViewRef}  style={styles.container3}>
+    <View style={styles.container}>
+        <View style={styles.navbar}>
             <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
-              <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
+                <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('')}>
-              <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
+                <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
+
             <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
-              <Text style={styles.navbarButton}>FAÇA SUA PARTE</Text>
+                <Text style={styles.navbarButton}>FAÇA SUA PARTE</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('')}>
-              <Text style={styles.navbarButton}>QUEM SOMOS</Text>
+                <Text style={styles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-              <Text style={styles.navbarButton}>CONTATO</Text>
+                <Text style={styles.navbarButton}>CONTATO</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
-              <Text style={styles.navbarButton}>LOGIN</Text>
+                <Text style={styles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
-
-          </View>
-
-          <Image
-            source={require('../../assets/utfpr.jpeg')}
-            style={styles.overlayImage}
-          />
-
-          <Image
-            source={require('../../assets/keep.png')}
-            style={styles.keep}
-          />
-
-          <Image
-            source={require('../../assets/mascote.jpg')}
-            style={styles.mascote}
-          />
-
-          <View style={styles.utfprBox}>
-            <Text style={styles.whiteTextBoxText1}>Sobre a UTFPR{"\n"}O que podemos escrever?</Text>
-          </View>
+        </View>
 
 
-          <View style={styles.quadBox1}>
-            <Text style={styles.quadboxText1}>Como o projeto nasceu</Text>
-          </View>
+<View style={styles.titleView}>
+<Image source={require('../../assets/amigosTitle.png')}  style={styles.amigosTitle} />
+<Image source={require('../../assets/utfpr.jpeg')}  style={styles.utfprImage} />
+<Image source={require('../../assets/oneProject.png')}  style={styles.projetoUTFPR} />
+<View style={styles.orangeRet}><Text style={styles.orangeText}>A Universidade Tecnológica Federal do Paraná (UTFPR) é uma instituição pública de ensino superior com foco em ciência e tecnologia. Tem como missão desenvolver a educação tecnológica de excelência, construir e compartilhar o conhecimento voltado à solução dos reais desafios da sociedade.</Text></View>
+<Image source={require('../../assets/illustration.png')}  style={styles.illustration} />
+<Image source={require('../../assets/sobreProjeto.png')}  style={styles.sobreProjeto} />
+<View style={styles.row}>
+  <View style={styles.retBig}>
+    <Text style={styles.retBigText}>   Os jardinetes são espaços mantidos pela administração municipal.{"\n"}</Text>
+    <Text style={styles.retBigText}>   No entanto, a conservação dessas áreas poderia ser reforçada com a participação de estudantes voluntários, os quais podem auxiliar na coleta de resíduos, na rega de árvores em crescimento e na valorização dos espaços próximos às suas residências.{"\n"}</Text>
+    <Text style={styles.retBigText}>   Os jardinetes fazem parte das unidades de proteção integral da cidade, visando preservar a natureza e permitindo apenas o uso indireto de seus recursos naturais.{"\n"}</Text>
+    <Text style={styles.retBigText}>   Para este projeto, são selecionados espaços de até 700m², conforme a medição disponível no site da prefeitura. Além dos jardinetes, praças, largos, núcleos ambientais e áreas de manutenção públicas também podem ser considerados.</Text>
+  </View>
+<View style={styles.column}>
+  <View style={styles.retMenor}>
+      <Text style={styles.retMenorText}>O projeto está sintonizado com os ODS 3 - Saúde e bem-estar, ODS 4 - Educação de qualidade e ODS 11 - Cidades e comunidades sustentáveis.</Text>
+  </View>
+  <View style={styles.retMenor2}>
+      <Text style={styles.retMenorText}>Objetivo do projeto: Reconectar as pessoas aos espaços urbanos por meio do cuidado dos jardinetes e demais áreas verdes das cidades.</Text>
+  </View>
+  <View style={styles.retMenor}>
+      <Text style={styles.retMenorText3}>O projeto contribui para a “ecologia e democracia local”, por meio das ações: (1) participação de pessoas interessadas; (2) educação ambiental; (3) novos modelos de habitação e vizinhança.</Text>
+  </View>
+  </View>
+</View>
+
+<Image source={require('../../assets/conheca.png')}  style={styles.conheca} />
+
+<View style={styles.row}>
+
+<Image source={require('../../assets/gaiaInicial.png')}  style={styles.gaiaInicial} />
+<View style={styles.column}>
+<View style={styles.row}>
+<View style={styles.ponta}></View>
+<View style={styles.ponta2}></View>
+</View>
+<View style={styles.quadro}>
+  <Text style={styles.gaiaTitle}>Gaia</Text>
+  <Text style={styles.gaiaText}>  Olá! Meu nome é Gaia, eu estudo Engenharia Ambiental e Sanitária, na UTFPR.{"\n"}</Text>
+  <Text style={styles.gaiaText}>  Adoro passar meu tempo ao ar livre, observando a beleza da vida e aprendendo sobre práticas sustentáveis.{"\n"}</Text>
+  <Text style={styles.gaiaText}>  Estou sempre pronta para enfrentar desafios e fazer a diferença no mundo!</Text>
+</View>
+</View>
+
+</View>
 
 
-          <View style={styles.quadBox2}>
-            <Text style={styles.quadboxText2}>Acrescentar algumas frases bem pequenas e importantes que ajudaram a criar o projeto. Pequenos sonhos.</Text>
-          </View>
+<Image source={require('../../assets/curiosidadesTitle.png')}  style={styles.curiosidadestitle} />
+<View style={styles.curioText}>
+<Text style={styles.curiosidades}>1. Sou defensora das áreas verdes e estou sempre dedicada em preservar e proteger a biodiversidade.</Text>
+<Text style={styles.curiosidades}>2. Sou especialista em reciclagem e reutilização de materiais, promovo práticas sustentáveis de consumo e de redução de resíduos.</Text>
+<Text style={styles.curiosidades}>3. Estou sempre pronta para oferecer orientação e inspiração para aqueles que desejam fazer a diferença no mundo.</Text>
+<Text style={styles.curiosidades}>4. Tenho compromisso com a preservação ambiental e me empenho para garantir um futuro sustentável para as próximas gerações.</Text>
+<Text style={styles.curiosidades}>5. Adoro ser fonte de inspirações para ações positivas, pois cada pequena ação pode fazer uma grande diferença na proteção do planeta.</Text>
+</View>
 
-          <View style={styles.quadBox3}>
-            <Text style={styles.quadboxText3}>Texto falando do objetivo.</Text>
-          </View>
+<View style={styles.row}>
+    <Image source={require('../../assets/bigTree.png')}  style={styles.bigTree} />
+    <Image source={require('../../assets/smallTree.png')}  style={styles.smallTree} />
+    <TouchableOpacity onPress={scrollToTop}>
+              <Image source={require('../../assets/final.png')} style={styles.final} />
+    </TouchableOpacity>
 
-          <View style={styles.quadBox4}>
-            <Text style={styles.quadboxText4}>Texto.</Text>
-          </View>
-
-
-          <View style={styles.valbox}>
-            <Text style={styles.valboxtext}>NOSSOS VALORES</Text>
-          </View>
-
-          <View style={styles.valbox1}>
-            <Text style={styles.valboxtext1}>"Sonhamos o voo, mas tememos as alturas. Para voar é preciso amar o vazio. Porque o voo só acontece se houver o vazio. O vazio é o espaço da liberdade, a ausência de certezas. Os homens querem voar, mas temem o vazio. Não podem viver sem certezas. Por isso trocam o voo por gaiolas. As gaiolas são o lugar onde as certezas moram."</Text>
-          </View>
-
-          <View style={styles.valbox2}>
-            <Text style={styles.valboxtext2}>Rubem Alves</Text>
-          </View>
-
-          <View style={styles.valx}>
-            <Text style={styles.valxtext}>Desenho com valor tal e uma leve explicação sobre.</Text>
-          </View>
-
-          <View style={styles.valy}>
-            <Text style={styles.valytext}>Desenho simbolisando valor Y.</Text>
-          </View>
-
-          <View style={styles.whiteTextBox}>
-            <Text style={styles.whiteTextBoxText}>Nome</Text>
-          </View>
-
-
-          <View style={styles.blackTextBox}>
-            <Text style={styles.blackTextBoxText}>Estudante de Engenharia Ambiental na UTFPR que está em seu terceiro período. Descrever sua interação com o curso e os amigos e com o que se identifica; O curso e o que mais gosta de estudar atualmente!</Text>
-          </View>
-
-          <View style={styles.cur}>
-            <Text style={styles.curtext}>Curiosidades sobre mim:</Text>
-          </View>
-
-          <View style={styles.textbox5}>
-            <Text style={styles.text5}>5. “As pessoas são solitárias porque constroem muros ao invés de pontes.”
-              Como dito anteriormente, o medo pode se tornar uma barreira diante do convívio com o outro. Tal fator, pode gerar ou alimentar problemas, como a depressão, por isso, o isolamento nunca é a melhor saída. Os laços que criamos com outras pessoas podem ajudar e nos fortalecer em momentos de dificuldade.</Text>
-          </View>
-
-          <View style={styles.textbox14}>
-            <Text style={styles.text14}>14. “Para enxergar claro, bastar mudar a direção do olhar.”
-              Quantas vezes você já tentou mudar a direção das coisas, mas focando apenas em um caminho?  Refletimos, anteriormente, que a vida é cheia de caminhos para trilhar. Sendo assim, às vezes é necessário apenas olhar para uma nova direção, tomar um novo rumo. Insistir naquilo que não está funcionando pode não ser a melhor solução.</Text>
-          </View>
-
-          <View style={styles.topButtonContainer}>
-            <TouchableOpacity
-              style={styles.topButton}
-              onPress={scrollToTop}
-            >
-
+    <View style={styles.column}>
+    <TouchableOpacity style={styles.ret1} onPress={handlePress}>
+              <Text style={styles.noticias}>Mais notícias</Text>
             </TouchableOpacity>
-          </View>
+      <View style={styles.ret2}></View>
+    </View>
 
-        </ImageBackground>
+</View>
 
 
-      </ScrollView>
-    </ScrollView>
+</View>
+
+
+<View style={styles.navbar2}>
+      <View style={styles.imageContainer22}>
+          <Image source={require('../../assets/UtfprBottom.png')}  style={styles.utfprImage3} />
+      </View>
+      </View>
+
+        </View>
+        </ScrollView>
   );
 }

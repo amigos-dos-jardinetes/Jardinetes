@@ -6,281 +6,318 @@ const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
 
-  scrollViewContent: {
-    width: width,  // Largura da tela
-    height: 10000, // Altura da imagem
-  },
-  backgroundImage: {
-    width: width, // Largura da tela
-    height: 10000,
-    resizeMode: 'contain', // ou 'stretch' dependendo do efeito desejado
-  },
-  content: {
-    // Adicione estilos para o conteúdo da sua página, como margens, preenchimentos, etc.
-  },
+  container:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
 
-  navbar: {
+},
+
+container3:{
+  backgroundColor: '#FFFEF4',
+
+},
+
+navbar: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    height: '140px',
+    height: width * 0.0729166666666667,
     backgroundColor: '#195439',
     position: 'absolute',
     top: 0,
-    right: 0, // Alinha a barra de navegação à direita
+    right: 0,
     width: '100%',
     zIndex: 2,
   },
 
   navbarButton: {
-
-    fontSize: 32, // Tamanho do texto dos botões
+    fontSize: width * 0.0166666666666667,
     color: '#FFF',
     fontWeight: 'bold'
   },
 
-  overlayImage: {
+  titleView:{
+    top: width * 0.1041666666666667,
     position: 'absolute',
-    width: 1620,
-    height: 709,
-    left: (width - 1595) / 2,
-    top: 609,
-
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  keep: {
-    position: 'absolute',
-    width: 1250, // Defina a largura desejada
-    height: 660,    // Deixe a altura como 0 para ajustar automaticamente
-    aspectRatio: 1782 / 934, // Proporção original da imagem
-    left: (width - 1250) / 2,
-    top: 2520,
+
+  amigosTitle: {
+    marginTop: width * 0.0260416666666667,
+    width: width * 0.6494791666666667,
+    height: width * 0.0640625,
   },
 
 
-  mascote: {
-    position: 'absolute',
-    width: 730, // Defina a largura desejada
-    height: 902,    // Deixe a altura como 0 para ajustar automaticamente
-    aspectRatio: 521 / 644, // Proporção original da imagem
-    left: 96,
-    top: 6913,
+  utfprImage:{
+    marginTop: width * 0.0260416666666667,
+    width: width * 0.7734375,
+    height: width * 0.4333333333333333,
+    borderWidth: width * 0.0078125,
+    borderColor: '#271C00',
+    borderRadius: 10,
   },
 
-  blackTextBox: {
-    position: 'absolute',
-    left: 1046, // Ajuste a largura da caixa de texto conforme necessário
-    top: 7270,
-    right: 282,
-  },
-  blackTextBoxText: {
-    fontSize: 42,
-    color: '#271c00',
-    textAlign: 'justify',
-  },
-  whiteTextBox: {
-    position: 'absolute',
-    left: 1026, // Ajuste a largura da caixa de texto conforme necessário
-    top: 7170,
-    right: 282,
-  },
-  whiteTextBoxText: {
-    fontSize: 64,
-    color: '#FFF',
-    textAlign: 'center',
+projetoUTFPR: {
 
-  },
-  whiteTextBoxText1: {
-    fontSize: 80,
-    color: '#FFF',
-    textAlign: 'left',
-    lineHeight: 100,
+  marginTop: width * 0.0260416666666667,
+  width: width * 0.609375,
+  height: width * 0.0260416666666667,
+},
 
-  },
+orangeRet: {
+  marginTop: width * 0.0520833333333333,
+  width: width * 0.3385416666666667,
+  height: width * 0.15625,
+  backgroundColor: '#B68F40',
+  borderRadius: 10,
 
-  utfprBox: {
-    position: 'absolute',
-    left: '24%', // Centraliza horizontalmente
-    right: '25%',
-    top: '18%',
+},
 
-  },
+orangeText: {
+  color: 'white',
+  fontSize: width * 0.0145833333333333,
+  textAlign: 'justify',
+  marginLeft: width * 0.0104166666666667,
+  marginRight: width * 0.0104166666666667,
+  marginTop: width * 0.0104166666666667,
 
-  quadBox1: {
-    position: 'absolute',
-    left: '12%', // Centraliza horizontalmente
-    right: '60%',
-    top: '39%',
-  },
+},
 
-  quadboxText1: {
-    fontSize: 64,
-    color: '#FFF',
-    textAlign: 'left',
-  },
+illustration: {
+  marginTop: width * 0.0520833333333333,
+  width: width * 0.425,
+  height: width * 0.5864583333333333,
+},
 
-  quadBox2: {
-    position: 'absolute',
-    left: '69%', // Centraliza horizontalmente
-    right: '12%',
-    top: '36.5%',
-  },
+sobreProjeto: {
+  marginTop: width * 0.0260416666666667,
+  width: width * 0.4135416666666667,
+  height: width * 0.0494791666666667,
+},
 
-  quadboxText2: {
-    fontSize: 32,
-    color: '#FFF',
-    textAlign: 'left',
-  },
+row: {
+  flexDirection: 'row',
 
 
-  quadBox3: {
-    position: 'absolute',
-    left: '53%', // Centraliza horizontalmente
-    right: '30%',
-    top: '41.5%',
+},
+
+column: {
+  flexDirection: 'column',
+  
+},
+
+retBig: {
+  marginTop: width * 0.0390625,
+  backgroundColor: '#B68F40',
+  borderRadius: width * 0.0052083333333333,
+  width: width * 0.390625,
+  height: width * 0.546875,
+  right: width * 0.1041666666666667,
+},
+
+retMenor: {
+  left: width * 0.1041666666666667,
+  marginTop: width * 0.0390625,
+  backgroundColor: '#B68F40',
+  borderRadius: 10,
+  borderColor:  '#271C00',
+  borderWidth: width * 0.0104166666666667,
+  width: width * 0.15625,
+  height: width * 0.15625,
+},
+
+retMenor2: {
+  right: width * 0.1145833333333333,
+  marginTop: width * 0.0390625,
+  backgroundColor: '#B68F40',
+  borderRadius: 10,
+  borderColor:  '#271C00',
+  borderWidth: width * 0.0104166666666667,
+  width: width * 0.15625,
+  height: width * 0.15625,
+},
+
+retBigText: {
+  color: 'white',
+  fontSize: width * 0.015625,
+  textAlign: 'center',
+  marginLeft: width * 0.0208333333333333,
+  marginRight: width * 0.0208333333333333,
+  marginTop: width * 0.0390625,
+},
+
+retMenorText: {
+  color: 'white',
+  fontSize: width * 0.0104166666666667,
+  textAlign: 'center',
+  marginLeft: width * 0.0104166666666667,
+  marginRight: width * 0.0104166666666667,
+  marginTop: width * 0.0104166666666667,
+},
+
+retMenorText3: {
+  color: 'white',
+  fontSize: width * 0.0098958333333333,
+  textAlign: 'center',
+  marginLeft: width * 0.0104166666666667,
+  marginRight: width * 0.0104166666666667,
+  marginTop: width * 0.0104166666666667,
+},
+
+conheca: {
+  marginTop: width * 0.1302083333333333,
+  width: width * 0.6578125,
+  height: width * 0.0682291666666667,
+},
+
+gaiaInicial: {
+  right: width * 0.0520833333333333,
+  marginTop: width * 0.0260416666666667,
+  width: width * 0.2713541666666667,
+  height: width * 0.3354166666666667,
+},
+
+quadro: {
+  left: width * 0.0520833333333333,
+  width: width * 0.3125,
+  height: width * 0.2833333333333333,
+  borderWidth: width * 0.0078125,
+  borderColor: '#271C00',
+  borderRadius: 10,
+  backgroundColor: '#B68F40',
+  alignItems: 'center',
+
+},
+
+ponta: {
+  marginTop: width * 0.0260416666666667,
+left: width * 0.1041666666666667,
+width: width * 0.0052083333333333,
+height: width * 0.0520833333333333,
+backgroundColor: '#271C00',
+},
+
+ponta2: {
+  marginTop: width * 0.0260416666666667,
+  left: width * 0.3020833333333333,
+  width: width * 0.0052083333333333,
+  height: width * 0.0520833333333333,
+  backgroundColor: '#271C00',
   },
 
-  quadboxText3: {
-    fontSize: 32,
-    color: '#FFF',
-    textAlign: 'left',
-  },
+  gaiaTitle: {
+   fontSize: width * 0.0354166666666667,
+   color: 'white',
+   marginTop: width * 0.007,
+    },
 
-  quadBox4: {
-    position: 'absolute',
-    left: '72%', // Centraliza horizontalmente
-    right: '12%',
-    top: '46.5%',
-  },
+    gaiaText: {
+      fontSize: width * 0.0145833333333333,
+      color: 'white',
+      marginTop: width * 0.015625,
+      marginLeft: width * 0.0104166666666667,
+      marginRight: width * 0.0104166666666667,
+      textAlign: 'justify',
 
-  quadboxText4: {
-    fontSize: 32,
-    color: '#FFF',
-    textAlign: 'left',
-  },
+       },
 
-  valbox: {
-    position: 'absolute',
-    left: '14.5%', // Centraliza horizontalmente
-    right: '40%',
-    top: '52.15%',
-  },
+       curiosidadestitle: {
+        marginTop: width * 0.0520833333333333,
+        width: width * 0.6973958333333333,
+        height: width * 0.0640625,
+       },
 
-  valboxtext: {
-    fontSize: 64,
-    color: '#FFF',
-    textAlign: 'justify',
-  },
+       curiosidades: {
+        marginTop: width * 0.0520833333333333,
+        fontSize: width * 0.021875,
+        color: 'black',
+        textAlign: 'justify',
+  
+         },
 
-  valbox1: {
-    position: 'absolute',
-    left: '20%', // Centraliza horizontalmente
-    right: '14%',
-    top: '53.35%',
-  },
+       curioText: {
+        maxWidth: width * 0.5208333333333333,
+        marginLeft: width * 0.15625,
+        marginRight: width * 0.15625,
+         },
 
-  valboxtext1: {
-    fontSize: 58,
-    color: '#271c00',
-    textAlign: 'justify',
-    lineHeight: 66,
-  },
+         bigTree:{
+          right: width * 0.0572916666666667,
+          marginTop: width * 0.0520833333333333,
+          width: width * 0.0927083333333333,
+          height: width * 0.1786458333333333,
+         },
 
-  valbox2: {
-    position: 'absolute',
-    left: '57%', // Centraliza horizontalmente
-    right: '24%',
-    top: '58.8%',
-  },
+         smallTree:{
+          right: width * 0.0572916666666667,
+          marginTop: width * 0.0817708333333333,
+          width: width * 0.0630208333333333,
+          height: width * 0.1489583333333333,
+         },
 
-  valboxtext2: {
-    fontSize: 58,
-    color: '#271c00',
-    textAlign: 'justify',
-    lineHeight: 66,
-  },
+         final:{
+          marginTop: width * 0.0520833333333333,
+          width: width * 0.1359375,
+          height: width * 0.1291666666666667,
+         },
 
-  valx: {
-    position: 'absolute',
-    left: '35%', // Centraliza horizontalmente
-    right: '14%',
-    top: '60.7%',
-  },
+         ret1: {
+            left: width * 0.0625,
+            marginTop: width * 0.1041666666666667,
+            width: width * 0.2604166666666667,
+            height: width * 0.0520833333333333,
+            backgroundColor: '#166034',
+            borderRadius: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+         },
 
-  valxtext: {
-    fontSize: 58,
-    color: '#271c00',
-    textAlign: 'justify',
-    lineHeight: 66,
-  },
+         ret2: {
+          left: width * 0.0625,
+          marginTop: -(width * 0.0625),
+          zIndex: -1,
+          width:  width * 0.2604166666666667,
+          height: width * 0.0520833333333333,
+          backgroundColor: '#B68F40',
+          borderRadius: 50,
+       },
 
-  valy: {
-    position: 'absolute',
-    left: '35%', // Centraliza horizontalmente
-    right: '14%',
-    top: '63%',
-  },
+       imageContainer22: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center', 
+    },
 
-  valytext: {
-    fontSize: 58,
-    color: '#271c00',
-    textAlign: 'justify',
-    lineHeight: 66,
-  },
+    utfprImage3: {
+        width: 144 * (width * 0.00067708333),
+        height: 57 * (width * 0.00067708333),
+        marginLeft: width * 0.0208333333333333,
+    },
 
-  cur: {
-    position: 'absolute',
-    left: '13%', // Centraliza horizontalmente
-    right: '64%',
-    top: '79.55%',
-  },
+    
 
-  curtext: {
-    fontSize: 68,
-    color: '#FFF',
-    textAlign: 'justify',
-    lineHeight: 76,
-  },
+      navbar2: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: width * 0.06814583333333333333333333333333,
+        backgroundColor: '#166034',
+        position: 'absolute',
+        bottom: 0,
+        top: width * 3.776041666666667,
+        right: 0,
+        width: '100%',
 
-  textbox5: {
-    position: 'absolute',
-    left: '15%', // Centraliza horizontalmente
-    right: '21%',
-    top: '82.1%',
-  },
+      },
 
-  text5: {
-    fontSize: 42,
-    color: 'black',
-    textAlign: 'justify',
-    lineHeight: 57,
-  },
-
-  textbox14: {
-    position: 'absolute',
-    left: '13.28%', // Centraliza horizontalmente
-    right: '22.5%',
-    top: '87.06%',
-  },
-
-  text14: {
-    fontSize: 42,
-    color: 'black',
-    textAlign: 'justify',
-    lineHeight: 48,
-  },
-
-  topButtonContainer: {
-    position: 'absolute',
-    top: '93.9%',
-    left: '28%',
-    zIndex: 1, // Para garantir que o botão fique acima do conteúdo
-  },
-  topButton: {
-
-    borderRadius: '50%',
-    padding: 165
-  },
-
+      noticias: {
+        color: 'white',
+        fontSize: width * 0.025,
+      },
 
 
 });
