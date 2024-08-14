@@ -16,8 +16,8 @@ export const styles = StyleSheet.create({
 
 
     card: {
-        width: 1400,
-        height: 600,
+        width: width * 0.7291666666666667,
+        height: width * 0.3125,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -32,66 +32,66 @@ export const styles = StyleSheet.create({
 
     barra: {
         width: 2,
-        height: 500,
+        height: width * 0.2604166666666667,
         backgroundColor: '#271C00',
-        marginLeft: 200,
-        marginTop: 100,
+        marginLeft: width * 0.1041666666666667,
+        marginTop: width * 0.0520833333333333,
     },
 
     circ: {
         backgroundColor: '#166034',
-        marginTop: 150,
-        width: 300,
-        height: 300,
-        borderRadius: 150,
-        marginLeft: 200,
+        marginTop: width * 0.078125,
+        width: width * 0.15625,
+        height: width * 0.15625,
+        borderRadius: width * 0.078125,
+        marginLeft: width * 0.1041666666666667,
     },
 
     textCirc: {
         color: 'white',
-        fontSize: 28,
+        fontSize: width * 0.0145833333333333,
         textAlign: 'center',
-        marginTop: 100,
-        marginLeft: 20,
-        marginRight: 20,
+        marginTop: width * 0.0520833333333333,
+        marginLeft: width * 0.0104166666666667,
+        marginRight: width * 0.0104166666666667,
     },
 
 
     bigTree:{
-        left: 50,
+        left: width * 0.0260416666666667,
         width: width * 0.0927083333333333 * 0.75,
         height: width * 0.1786458333333333 * 0.75,
        },
 
        smallTree:{
-        marginTop: 57 * 0.75,
-        left: 100,
+        marginTop: width * 0.0296875 * 0.75,
+        left:  width * 0.0520833333333333,
         width: width * 0.0630208333333333 * 0.75,
         height: width * 0.1489583333333333 * 0.75,
        },
 
        textRec: {
-            fontSize: 32,
+            fontSize: width * 0.0166666666666667,
             color: '#271C00',
-            marginTop: 100,
-            marginLeft: 50,
-            marginRight: 50,
+            marginTop:  width * 0.0520833333333333,
+            marginLeft: width * 0.0260416666666667,
+            marginRight: width * 0.0260416666666667,
             textAlign: 'justify',
 
        },
 
        textRecContainer: {
-        width: 600,
-        height: 200, 
-        marginLeft: 50,
-        marginRight: 50,
+        width: width * 0.3125,
+        height: width * 0.1041666666666667, 
+        marginLeft: width * 0.0260416666666667,
+        marginRight: width * 0.0260416666666667,
         textAlign: 'justify',
 
    },
 
        input: {
-        width: 450,
-        height: 50,
+        width: width * 0.234375,
+        height: width * 0.0260416666666667,
         borderColor: '#999',
         borderWidth: 1,
         borderRadius: 5,
@@ -100,27 +100,27 @@ export const styles = StyleSheet.create({
       },
 
       inputContainer: {
-        width: 600,
-        height: 300, 
-        marginLeft: 50,
-        marginRight: 50,
-        marginTop: 150,
+        width: width * 0.3125,
+        height: width * 0.15625,
+        marginLeft: width * 0.0260416666666667,
+        marginRight: width * 0.0260416666666667,
+        marginTop: width * 0.078125,
       alignItems: 'center',
 
 
    },
 
    button: {
-    marginTop: 50,
-    width: 300,
-    height: 50,
+    marginTop: width * 0.0260416666666667,
+    width: width * 0.15625,
+    height: width * 0.0260416666666667,
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center'
   },
   buttonText: {
     color: '#FFF',
-    fontSize: 24,
+    fontSize: width * 0.0125,
   },
 
   errorText: {
