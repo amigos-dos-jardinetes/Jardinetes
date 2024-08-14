@@ -20,7 +20,7 @@ import BemEstar from './src/pages/BemEstar';
 import Infraestrutura from './src/pages/Infraestrutura';
 import Seguranca from './src/pages/Seguranca';
 import Pertencimento from './src/pages/Pertencimento';
-
+import Redefinir from './src/pages/redefinir';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,7 +47,7 @@ export default function App() {
         <Stack.Screen name="Infraestrutura" component={Infraestrutura} options={{ headerShown: false }} />
         <Stack.Screen name="Seguranca" component={Seguranca} options={{ headerShown: false }} />
         <Stack.Screen name="Pertencimento" component={Pertencimento} options={{ headerShown: false }} />
-
+        <Stack.Screen name="Redefinir" component={Redefinir} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

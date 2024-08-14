@@ -200,7 +200,7 @@ export default function SignIn() {
               <Text style={styles.errorText}>{error}</Text>
             )}
 
-            <TouchableOpacity style={styles.forgot}>
+            <TouchableOpacity style={styles.forgot} onPress={() => navigation.navigate('Redefinir')}>
               <Text style={styles.forgotText}>Esqueci minha senha</Text>
             </TouchableOpacity>
 

@@ -4,7 +4,7 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Menu from '../pages/Menu';
 import Config from '../pages/Config';
-import Inventory from '../pages/Inventory';
+import Inventory from '../pages/inventory';
 import PaginaInicial from '../pages/PaginaInicial';
 import Contato from '../pages/Contato';
 import Accept from '../pages/Accept';
@@ -17,9 +17,9 @@ import ImpactSolo from '../pages/ImpactSolo';
 import AnaliseFinal from '../pages/AnaliseFinal';
 import BemEstar from '../pages/BemEstar';
 import Infraestrutura from '../pages/Infraestrutura';
-import Seguranca from '../pages/seguranca';
+import Seguranca from '../pages/Seguranca';
 import Pertencimento from '../pages/Pertencimento';
-
+import Redefinir from '../pages/redefinir';
 
 export default function AppRoutes() {
   return (
@@ -44,7 +44,7 @@ export default function AppRoutes() {
         <Route path="/Infraestrutura" element={<Infraestrutura />} />
         <Route path="/Seguranca" element={<Seguranca />} />
         <Route path="/Pertencimento" element={<Pertencimento />} />
-
+        <Route path="/redefinir" element={<Redefinir />} />
       </Routes>
     </Router>
   );
