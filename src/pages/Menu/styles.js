@@ -115,10 +115,11 @@ export const styles = StyleSheet.create({
         backgroundColor: '#195439',
         position: 'absolute',
         top: 0,
-        right: 0, // Alinha a barra de navegação à direita
+        right: 0,
         width: '63%',
         zIndex: 2,
     },
+    
 
     navbarButton: {
 
@@ -209,7 +210,7 @@ export const styles = StyleSheet.create({
         height: '60%', // Defina a altura desejada para os itens do carrossel
         borderRadius: '8px',
         overflow: 'hidden',
-        left: 300,
+
         alignItems: 'center',
         justifyContent: 'center', // Centraliza verticalmente e horizontalmente
         overflow: 'hidden',
@@ -250,7 +251,7 @@ export const styles = StyleSheet.create({
     },
     carouselContainer: {
         position: 'relative',
-        borderRadius: width * 0.00416666666666666666666666666667,  // Define a borda do carrossel
+        borderRadius: width * 0.00416666666666666666666666666667,
         overflow: 'hidden',
     },
     textgen: {
@@ -305,6 +306,29 @@ export const styles = StyleSheet.create({
         width: '200px',
         height: '130px',
     },
+
+    
+
+popupButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: width * 0.0052083333333333,
+  },
+  popupButton: {
+    flex: 1,
+    marginHorizontal: width * 0.0026041666666667,
+    paddingVertical: width * 0.0052083333333333,
+    backgroundColor: '#809C30',
+    borderRadius:  width * 0.0026041666666667,
+    alignItems: 'center',
+  },
+  
+  popupButtonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+    fontSize: width * 0.00625,
+    textAlign: 'center',
+  },
 
     mapContainer: {
         // Estilos compartilhados para ambos container_map e container_map1

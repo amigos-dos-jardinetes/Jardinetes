@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         height: '90%',
         position: 'absolute',
-        width: '60%',
+        width: '100%',
         marginLeft: width * 0.0260416666666667,
         marginTop: width * 0.0177083333333333,
 

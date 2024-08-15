@@ -233,7 +233,8 @@ export default function Menu() {
                 style={{
                     width: '100%',  // Define a largura da imagem
                     height: width * 0.15625, // Define a altura da imagem
-                    objectFit: 'cover', // Ajusta a imagem para preencher a área, cortando se necessário
+                    objectFit: 'cover',
+                    overflow: 'hidden'
                   
                 }}
             />
@@ -313,11 +314,11 @@ export default function Menu() {
             </View>
 
 
-            <View style={[styles.car, { alignItems: 'center' }]}>
+            <View style={[styles.car, { alignItems: 'center',  overflow: 'hidden',  }]}>
     <Text style={styles.textgen}>Jardinetes que sou amigo(a)</Text>
-    <View style={[styles.car4, { alignItems: 'center'  }]}>
-        <View style={[styles.borderedContainer2, { alignItems: 'center'  }]}>
-            <View style={[styles.borderedContainer3,]}>
+    <View style={[styles.car4, { alignItems: 'center',  overflow: 'hidden',   }]}>
+        <View style={[styles.borderedContainer2, { alignItems: 'center',  overflow: 'hidden',    }]}>
+            <View style={[styles.borderedContainer3, { overflow: 'hidden', }]}>
                 <Carousel
                     showThumbs={false}
                     showStatus={false}
@@ -377,15 +378,15 @@ export default function Menu() {
                 <Text style={styles.textgen2}>Mapa</Text>
                 <View style={[styles.car3, styles.borderedContainer]}>
 
-                    <View style={styles.container_map}>
+                <View style={[styles.container_map, { position: 'relative' }]}>
 
                         {MapLatitude !== null && MapLongitude !== null ? (
                             <MapContainer
-                                key={mapKey}
-                                center={[MapLatitude, MapLongitude]}
-                                zoom={selectedPlaceCoordinates ? 16 : 13}
-                                style={{ width: '90%', height: '90%', borderRadius: 10 }}
-                            >
+                            key={mapKey}
+                            center={[MapLatitude, MapLongitude]}
+                            zoom={selectedPlaceCoordinates ? 16 : 13}
+                            style={{ width: '100%', height: '100%', borderRadius: 10 }}
+                          >
                                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
                                 {pracasData.map((praca) => (
@@ -398,6 +399,19 @@ export default function Menu() {
                                             <div>
                                                 <p>{praca.nome}</p>
                                                 <img src={praca.jardinetePhoto} alt={`Image ${praca.id}`} style={styles.popupImage} />
+                                                <View style={styles.popupButtonContainer}>
+                                                    <TouchableOpacity 
+                                                   onPress={() => navigation.navigate('ImpactSolo', { novoJardineteDocId: praca.id })} 
+                                                    style={styles.popupButton}>
+                                                        <Text style={styles.popupButtonText}>Selecionar Jardinete</Text>
+                                                    </TouchableOpacity>
+                                                    <TouchableOpacity 
+                                                            onPress={() => navigation.navigate('AnaliseFinal', { novoJardineteDocId: praca.id })} 
+                                                            style={styles.popupButton}
+                                                    >
+                                                             <Text style={styles.popupButtonText}>Gráfico do Jardinete</Text>
+                                                    </TouchableOpacity>
+                                                </View>
                                             </div>
                                         </Popup>
                                     </Marker>
@@ -408,14 +422,7 @@ export default function Menu() {
                         )}
                     </View>
 
-                    <View style={styles.container_map1}>
-                        <div style={styles.container2}>
-
-                     
-
-
-                        </div>
-                    </View>
+                   
                 </View>
             </View>
         </View>
