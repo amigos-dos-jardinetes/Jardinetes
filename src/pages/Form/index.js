@@ -7,23 +7,23 @@ import { styles } from '../Form/styles';
 import * as ImagePicker from 'expo-image-picker';
 import { getStorage, ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { Ionicons } from '@expo/vector-icons';
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps, getApp } from 'firebase/app';
 import { userSearchData } from '../../../functions';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
-  authDomain: "amigosdosjardinetes.firebaseapp.com",
-  projectId: "amigosdosjardinetes",
-  storageBucket: "amigosdosjardinetes.appspot.com",
-  messagingSenderId: "381072997535",
-  appId: "1:381072997535:web:157abb3a076162a90836aa"
+  // suas configurações do Firebase
 };
 
 const openIPPUCWebsite = () => {
   Linking.openURL('https://www.ippuc.org.br');
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
+let firebaseApp;
+if (getApps().length === 0) {
+  firebaseApp = initializeApp(firebaseConfig);
+} else {
+  firebaseApp = getApp(); // Use o app já inicializado
+}
 
 export default function Form() {
   const navigation = useNavigation();
@@ -46,7 +46,7 @@ export default function Form() {
   const firestore = getFirestore(firebaseApp);
   const storage = getStorage();
   const auth = getAuth(firebaseApp);
-  const { width, height } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
 
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
@@ -123,7 +123,6 @@ export default function Form() {
       return;
     }
 
-  
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -147,9 +146,9 @@ export default function Form() {
             />
           ) : (
             <Image
-                            style={styles.logoImage}
-                            source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
-                        />
+              style={styles.logoImage}
+              source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+            />
           )}
         </View>
       </View>
@@ -157,11 +156,20 @@ export default function Form() {
       <Image source={require('../../assets/vamoscomecar.png')} style={styles.vamos} />
 
       <View style={styles.container}>
-        <Text style={styles.label}>Selecione uma imagem para o jardinete:</Text>
-        {imagem && <Image source={{ uri: imagem }} style={{ width: (200 / 1920) * width, height: (200 / 1920) * width, marginTop: (10 / 1920) * width }} />}
-        <TouchableOpacity style={styles.button1} onPress={selecionarImagem}>
-          <Text style={styles.buttonText}>Selecionar Imagem</Text>
-        </TouchableOpacity>
+     
+
+        {imagem ? (
+          <TouchableOpacity onPress={selecionarImagem}>
+            <Image
+              source={{ uri: imagem }}
+              style={{ width: (355.5555555555556 / 1920) * width, height: (200 / 1920) * width, marginTop: (10 / 1920) * width, alignSelf: 'center' }}
+            />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.button1} onPress={selecionarImagem}>
+            <Text style={styles.buttonText}>Selecione uma imagem para o jardinete</Text>
+          </TouchableOpacity>
+        )}
 
         <Text style={styles.label}>Qual a localização do jardinete?</Text>
         <TextInput
@@ -177,7 +185,16 @@ export default function Form() {
           value={nome}
         />
 
-        <Text style={styles.label}>Nos informe também a sua área (m²)</Text>
+        <Text style={styles.label}>
+          Nos informe também a sua área (m²) → Essas informações podem ser obtidas no{' '}
+          <Text
+            style={styles.link}
+            onPress={() => Linking.openURL('https://www.curitiba.pr.gov.br/conteudo/parques-e-bosques-de-curitiba/267')}
+          >
+            Site da Prefeitura
+          </Text>.
+        </Text>
+
         <TextInput
           style={styles.input}
           onChangeText={text => setArea(text)}
@@ -223,37 +240,31 @@ export default function Form() {
           value={patrimonio}
         />
 
-<Text style={styles.label}>
-                (*) Para Curitiba, essas informações podem ser obtidas no site da 
-                <Text></Text> {/* Espaço adicionado aqui */}
-                <TouchableOpacity onPress={openIPPUCWebsite}>
-                    <Text style={styles.link}>IPPUC</Text>
-                </TouchableOpacity>
-            </Text>
-            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                <Text style={styles.buttonText2}>Continuar</Text>
-            </TouchableOpacity>
+        <Text style={styles.label}>
+          (*) Para Curitiba, essas informações podem ser obtidas no site da{' '}
+          <TouchableOpacity onPress={openIPPUCWebsite}>
+            <Text style={styles.link}>IPPUC</Text>
+          </TouchableOpacity>.
+        </Text>
 
-    
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText2}>Continuar</Text>
+        </TouchableOpacity>
       </View>
 
-  
+      <View style={styles.bola3}></View>
+      <View style={styles.bola2}></View>
+      <View style={styles.bola}></View>
 
-        <View style={styles.bola3}></View>
-        <View style={styles.bola2}></View>
-        <View style={styles.bola}></View>
-
-        <View style={styles.imageContainer33}>
-          <Image source={require('../../assets/araucarias.png')}  style={styles.araucarias} />
+      <View style={styles.imageContainer33}>
+        <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
       </View>
 
       <View style={styles.navbar2}>
-        
-      
-      <View style={styles.imageContainer22}>
-          <Image source={require('../../assets/UtfprBottom.png')}  style={styles.utfprImage} />
-      </View>
+        <View style={styles.imageContainer22}>
+          <Image source={require('../../assets/UtfprBottom.png')} style={styles.utfprImage} />
+        </View>
       </View>
     </ScrollView>
   );
-};
+}

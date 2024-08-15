@@ -11,11 +11,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
+
 },
 
 container3:{
   backgroundColor: '#FFFEF4',
-
+    overflow: 'hidden',
 },
 
 navbar: {
@@ -319,5 +320,84 @@ ponta2: {
         fontSize: width * 0.025,
       },
 
+      greenCircle: {
+        width: width * 0.2083333333333333,
+        height: width * 0.2083333333333333,
+        borderRadius: width * 0.1041666666666667,
+        zIndex: -2,
+        backgroundColor: '#809C30',
+        right: '50%',
+        top: width * 0.7291666666666667,
+
+      },
+
+      borderCircle: {
+        width: width * 0.2083333333333333,
+        height: width * 0.2083333333333333,
+        borderRadius: width * 0.1041666666666667,
+        zIndex: -1,
+        backgroundColor: 'transparent',
+        borderWidth: 10,
+        borderColor: '#B68F40',
+        right: '50%',
+        top: 1200,
+
+      },
+
+        greenCircle2: {
+        width: width * 0.2083333333333333,
+        height: width * 0.2083333333333333,
+        borderRadius: width * 0.1041666666666667,
+        zIndex: -1,
+        backgroundColor: '#1E6131',
+        left: '50%',
+        top: width * 0.625,
+      },
+
+      borderCircle2: {
+        width: width * 0.2083333333333333,
+        height: width * 0.2083333333333333,
+        borderRadius: width * 0.1041666666666667,
+        zIndex: -1,
+        backgroundColor: 'transparent',
+        borderWidth: 10,
+        borderColor: '#B68F40',
+        left: '50%',
+        top: width * 0.525,
+
+      },
+
+      greenCircle3: {
+        width: width * 0.3645833333333333,
+        height: width * 0.3645833333333333,
+        borderRadius: width * 0.1822916666666667,
+        zIndex: -1,
+        backgroundColor: '#4C6523',
+        right: '50%',
+        top: width * 1.25,
+      },
+
+
+      greenCircle4: {
+        width: width * 0.3125,
+        height: width * 0.3125,
+        borderRadius: width * 0.15625,
+        zIndex: -2,
+        backgroundColor: '#1E6131',
+        right: '50%',
+        top: width * 1.770833333333333,
+
+      },
+
+
+      greenCircle5: {
+        width: width * 0.2604166666666667,
+        height: width * 0.2604166666666667,
+        borderRadius: width * 0.1302083333333333,
+        zIndex: -1,
+        backgroundColor: '#4C6523',
+        left: '50%',
+        top: width * 1.822916666666667,
+      },
 
 });

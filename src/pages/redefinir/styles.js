@@ -12,10 +12,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#166034',
+        overflow: 'hidden',
       },
 
 
     card: {
+        top: width * 0.078125,
         width: width * 0.7291666666666667,
         height: width * 0.3125,
         justifyContent: 'center',
@@ -129,5 +131,45 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
+  circCanto: {
+      zIndex: -1,
+      backgroundColor: '#FFFEF4',
+      width: width * 0.1302083333333333,
+      height: width * 0.1302083333333333,
+      borderRadius: width * 0.0651041666666667,
+      bottom: width * 0.0520833333333333,
+      right: '50%',
+  },  
+
+  circBorda: {
+    zIndex: -1,
+    backgroundColor: 'transparent',
+    borderWidth: 10,
+    borderColor: '#B68F40',
+    width: width * 0.1302083333333333,
+    height:width * 0.1302083333333333,
+    borderRadius: width * 0.0651041666666667,
+    top: width * 0.0520833333333333,
+    left: '50%',
+
+}, 
+
+circBorda1: {
+
+  backgroundColor: 'transparent',
+  borderWidth: 10,
+  borderColor: '#B68F40',
+  width: width * 0.1302083333333333,
+  height: width * 0.1302083333333333,
+  borderRadius: width * 0.0651041666666667,
+  bottom: 0,
+  right: '50%',
+}, 
+
+backButton: {
+  top: width * 0.1302083333333333,
+  right: '47%',
+
+},
 
 });

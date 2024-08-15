@@ -195,7 +195,7 @@ export default function JardinetesMap() {
                                     </View>
                                 )}
                                 <TextInput
-                                    style={[styles.searchBar, { paddingLeft: 40 }]}
+                                    style={[styles.searchBar, { paddingLeft: width * 0.0260416666666667, fontSize: width * 0.0072916666666667 }]}
                                     placeholder="Busque um jardinete"
                                     onChangeText={text => setSearchText(text)}
                                     value={searchText}

@@ -341,8 +341,8 @@ export const styles = StyleSheet.create({
     },
 
     infraRet:{
-        width: width * 0.15625,
-        height: width * 0.078125,
+        width: width * 0.22,
+        height: width * 0.11,
         borderRadius: width * 0.0104166666666667,
         backgroundColor: '#FB9116',
         marginTop: width * 0.0078125,
@@ -352,8 +352,8 @@ export const styles = StyleSheet.create({
     },
 
     bemRet:{
-        width: width * 0.15625,
-        height: width * 0.078125,
+        width: width * 0.17,
+        height: width * 0.175,
         borderRadius: width * 0.0104166666666667,
         backgroundColor: '#B781FD',
         marginTop: width * 0.0078125,
@@ -363,8 +363,8 @@ export const styles = StyleSheet.create({
     },
 
     segRet:{
-        width: width * 0.15625,
-        height: width * 0.078125,
+        width: width * 0.21,
+        height: width * 0.115,
         borderRadius: width * 0.0104166666666667,
         backgroundColor: '#FFBC10',
         marginTop: width * 0.0078125,
@@ -374,8 +374,8 @@ export const styles = StyleSheet.create({
     },
 
     pertRet:{
-        width: width * 0.15625,
-        height: width * 0.078125,
+        width: width * 0.195,
+        height: width * 0.115,
         borderRadius: width * 0.0104166666666667,
         backgroundColor: '#FEACAC',
         marginTop: width * 0.0078125,
@@ -605,14 +605,14 @@ export const styles = StyleSheet.create({
 
       baloonText:{
         color: 'white',
-       fontSize: width * 0.0067708333333333,
-       marginRight: width * 0.0052083333333333,
-       marginLeft: width * 0.0052083333333333,
-       textAlign: 'justify',
-       marginTop: width * 0.0052083333333333,
-       lineHeight: width * 0.0104166666666667,
-       marginBottom: width * 0.0052083333333333,
-      },
+        fontSize: width * 0.0114583333333333,
+        marginRight: width * 0.0052083333333333,
+        marginLeft: width * 0.0052083333333333,
+        textAlign: 'justify',
+        marginTop: width * 0.0052083333333333,
+        lineHeight: width * 0.015, // Aumente esse valor para aumentar o espaçamento entre linhas
+        marginBottom: width * 0.0052083333333333,
+    },
 
       retPorc: {
         width: width * 0.0260416666666667,

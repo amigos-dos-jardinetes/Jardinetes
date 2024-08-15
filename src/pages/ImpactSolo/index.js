@@ -1786,7 +1786,7 @@ const handleContinuarPress = async () => {
     </View>
 
     <View style={styles.textContainer}>
-    <Text style={styles.formText2}>3. A PAV que eu frequento possui animais abandonados.</Text>
+    <Text style={styles.formText2}>3. A PAV que eu frequento não possui animais abandonados.</Text>
     </View>
     <View style={styles.row}>
 
@@ -1838,7 +1838,7 @@ const handleContinuarPress = async () => {
     </View>
 
     <View style={styles.textContainer}>
-    <Text style={styles.formText2}>4. Sei que acontecem atividades ilegais na PAV;</Text>
+    <Text style={styles.formText2}>4. Sei que apenas acontecem atividades legais na PAV;</Text>
     </View>
     <View style={styles.row}>
   

@@ -104,8 +104,8 @@ export const styles = StyleSheet.create({
 
     },
     encontreImage:{
-      width: width * 0.6171875,
-      height: width * 0.0354166666666667,
+      width: width * 0.6692708333333333,
+      height: width * 0.0453125,
 
 
 },
@@ -365,7 +365,7 @@ popupButton: {
 popupButtonText: {
   color: '#ffffff',
   fontWeight: 'bold',
-  fontSize: width * 0.0083333333333333,
+  fontSize: width * 0.00625,
   textAlign: 'center',
 },
 

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, Image, Alert } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, Image, Alert, Dimensions } from 'react-native';
 import { styles } from '../redefinir/styles';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import { Ionicons } from '@expo/vector-icons';
 
+
+const { width, height } = Dimensions.get('window');
 // Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
@@ -58,6 +61,10 @@ export default function Redefinir() {
 
   return (
     <View style={styles.container}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={width * 0.035} color="white" />
+        </TouchableOpacity>
+  <View style={styles.circBorda}></View>
       <LinearGradient colors={['#FFFEF4', '#166034']} style={styles.card}>
         <View style={styles.row}>
           <View style={styles.column}>
@@ -108,6 +115,9 @@ export default function Redefinir() {
           </View>
         </View>
       </LinearGradient>
+      <View style={styles.circBorda1}></View>
+      <View style={styles.circCanto}></View>
+     
     </View>
   );
 }

@@ -175,7 +175,7 @@ export const styles = StyleSheet.create({
         height: '100%',
         position: 'absolute',
         right: 0,
-        width: '50%',
+        width: '100%',
 
     },
 
@@ -209,7 +209,7 @@ export const styles = StyleSheet.create({
         height: '60%', // Defina a altura desejada para os itens do carrossel
         borderRadius: '8px',
         overflow: 'hidden',
-        boxShadow: '0 0 8px rgba(0,0,0,0.1)',
+        left: 300,
         alignItems: 'center',
         justifyContent: 'center', // Centraliza verticalmente e horizontalmente
         overflow: 'hidden',
@@ -219,6 +219,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         position: 'relative',
+        objectFit: 'cover', 
     },
 
     carouselItem: {
@@ -227,12 +228,19 @@ export const styles = StyleSheet.create({
         height: '100%', // Defina a altura desejada para os itens do carrossel
         borderRadius: '8px',
         overflow: 'hidden',
-        boxShadow: '0 0 8px rgba(0,0,0,0.1)',
+        objectFit: 'cover', 
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    
     },
     carouselImage: {
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover', // Ajuste para 'contain' se preferir que a imagem seja totalmente visível
+       
+        width: '70%',
+        height: '70%',
+        objectFit: 'cover', 
+        alignSelf: 'center',
+        justifyContent: 'center',
     },
     overlayContent: {
         textAlign: 'center',
@@ -324,6 +332,9 @@ export const styles = StyleSheet.create({
         borderRadius: width * 0.00625,  // ou qualquer valor desejado para a borda arredondada
         height: '100%',
         width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+   
     },
     car4: {
         flexDirection: 'row',
@@ -344,12 +355,12 @@ export const styles = StyleSheet.create({
     },
 
     borderedContainer3: {
-        top: '35%',
-        left: '5%',
+        top: 0,
+        left: '0%',
         bottom: '1%',
         borderRadius: width * 0.00625,  // ou qualquer valor desejado para a borda arredondada
-        height: '90%',
-        width: '90%',
+        height: '100%',
+        width: '70%',
         alignItems: 'center',
         justifyContent: 'center',
 

@@ -52,6 +52,13 @@ export default function PaginaInicial() {
             </TouchableOpacity>
         </View>
 
+<View style={styles.greenCircle}></View>
+<View style={styles.borderCircle}></View>
+<View style={styles.greenCircle2}></View>
+<View style={styles.borderCircle2}></View>
+<View style={styles.greenCircle3}></View>
+<View style={styles.greenCircle4}></View>
+<View style={styles.greenCircle5}></View>
 
 <View style={styles.titleView}>
 <Image source={require('../../assets/amigosTitle.png')}  style={styles.amigosTitle} />

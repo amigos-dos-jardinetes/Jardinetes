@@ -122,20 +122,23 @@ export const styles = StyleSheet.create({
     marginTop: (10 / 1920) * width,
   },
   button1: {
-    backgroundColor: '#6f8a3b', // verde do botão
-    paddingVertical: (10 / 1920) * width,
-    paddingHorizontal: (20 / 1920) * width,
-    borderRadius: (5 / 1920) * width,
-    width: (185 / 1920) * width,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#166034',
+    width: (350 / 1920) * width,  
+    paddingVertical: (50 / 1920) * width, 
+    paddingHorizontal: (15 / 1920) * width, 
+    borderRadius: (5 / 1920) * width, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
     marginBottom: (10 / 1920) * width,
     marginTop: (10 / 1920) * width,
+    alignSelf: 'center',
   },
+
   buttonText: {
     color: 'white',
     fontSize: (16 / 1920) * width,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   buttonText2: {
     color: 'white',

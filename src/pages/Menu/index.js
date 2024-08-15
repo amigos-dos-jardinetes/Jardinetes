@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, ScrollView, RefreshControl, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, ScrollView, RefreshControl, FlatList, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
@@ -39,7 +39,7 @@ export default function Menu() {
     const [selectedPlaceCoordinates, setSelectedPlaceCoordinates] = useState(null);
     const [MapLatitude, setMapLatitude] = useState(null);
     const [MapLongitude, setMapLongitude] = useState(null);
-
+    const { width, height } = Dimensions.get('window');
 
     const markers = [
         { position: [-25.43925924548977, -49.268820908320194], name: 'Local 1', image: 'URL 1' },
@@ -163,7 +163,7 @@ export default function Menu() {
                 if (user) {
                     const userDoc = await getDoc(doc(firestore, 'users', user.uid));
                     if (userDoc.exists()) {
-                        const userPracasSeguidas = userDoc.data().pracasSeguidas || [];
+                        const userPracasSeguidas = userDoc.data().jardinetes || [];
                         setPracasSeguidas(userPracasSeguidas);
                     }
                 } else {
@@ -183,10 +183,10 @@ export default function Menu() {
         const fetchPracasData = async () => {
             try {
                 const promises = pracasSeguidas.map(async (pracaId) => {
-                    const pracaDoc = await getDoc(doc(firestore, 'pracas', pracaId));
+                    const pracaDoc = await getDoc(doc(firestore, 'jardinetes', pracaId));
                     if (pracaDoc.exists()) {
                         const pracaData = pracaDoc.data();
-                        return { id: pracaId, nome: pracaData.nome, photourl: pracaData.photourl, coordenadas: pracaData.coordenadas };
+                        return { id: pracaId, nome: pracaData.nome, jardinetePhoto: pracaData.jardinetePhoto, coordenadas: pracaData.coordenadas };
 
 
                     }
@@ -207,7 +207,7 @@ export default function Menu() {
     const carouselData1 = pracasData.map(praca => ({
         id: praca.id,
         nome: praca.nome,
-        images: praca.photourl,
+        images: praca.jardinetePhoto,
         coordenadas: praca.coordenadas,
     }));
 
@@ -217,23 +217,28 @@ export default function Menu() {
 
         return (
             <div
-                key={item.id}
-                style={styles.carouselItem}
-                onClick={() => {
-                    setSelectedPlaceCoordinates(item.coordenadas);
-                    setMapLatitude(latitude);
-                    setMapLongitude(longitude);
-                    // Atualize a chave para forçar a recriação do MapContainer
-                    setMapKey((prevKey) => prevKey + 1);
+            key={item.id}
+            style={styles.carouselItem}
+            onClick={() => {
+                setSelectedPlaceCoordinates(item.coordenadas);
+                setMapLatitude(latitude);
+                setMapLongitude(longitude);
+                // Atualize a chave para forçar a recriação do MapContainer
+                setMapKey((prevKey) => prevKey + 1);
+            }}
+        >
+            <img
+                src={item.images}
+                alt={`Image ${item.id}`}
+                style={{
+                    width: '100%',  // Define a largura da imagem
+                    height: width * 0.15625, // Define a altura da imagem
+                    objectFit: 'cover', // Ajusta a imagem para preencher a área, cortando se necessário
+                  
                 }}
-            >
-                <img
-                    src={item.images}
-                    alt={`Image ${item.id}`}
-                    style={styles.carouselImage}
-                />
-                <p style={styles.carouselText}>{item.nome}</p>
-            </div>
+            />
+            <p style={styles.carouselText}>{item.nome}</p>
+        </div>
         );
     };
 
@@ -308,61 +313,68 @@ export default function Menu() {
             </View>
 
 
-            <View style={styles.car}>
-
-                <Text style={styles.textgen}>Minhas fotos</Text>
-                <View style={styles.car4}>
-                    <View style={styles.borderedContainer2}>
-                        <View style={styles.borderedContainer3}>
-
-                            <Carousel
-                                showArrows={true}
-                                showThumbs={false}
-                                showStatus={false}
-                                infiniteLoop={true}
-                                autoPlay={true}
-                                showIndicators={true}
-                                renderArrowPrev={(onClickHandler, hasPrev, label) =>
-                                    hasPrev && (
-                                        <button type="button" onClick={onClickHandler} style={{ position: 'absolute', top: '25%', left: 0, zIndex: 2, background: 'rgba(0, 0, 0, 0.5)', border: 'none', color: 'white', padding: '10px', borderRadius: '20%' }}>
-                                            <FontAwesomeIcon icon={faChevronLeft} size="2x" />
-                                        </button>
-                                    )
-                                }
-                                renderArrowNext={(onClickHandler, hasNext, label) =>
-                                    hasNext && (
-                                        <button type="button" onClick={onClickHandler} style={{ position: 'absolute', top: '25%', right: 0, zIndex: 2, background: 'rgba(0, 0, 0, 0.5)', border: 'none', color: 'white', padding: '10px', borderRadius: '20%' }}>
-                                            <FontAwesomeIcon icon={faChevronRight} size="2x" />
-                                        </button>
-                                    )
-                                }
-                                renderIndicator={(onClickHandler, isSelected, index, label) => (
-                                    <li
-                                        style={{
-                                            display: 'inline-block',
-                                            margin: '0 0.8%',
-                                            padding: '5px',
-                                            borderRadius: '50%',
-                                            background: isSelected ? 'white' : 'gray',
-                                            maxInlineSize: '1%',
-                                            maxHeight: '1%',
-                                            position: 'relative',
-                                            top: '-10vw',
-                                            zIndex: 2
-                                        }}
-                                        onClick={onClickHandler}
-                                        key={index}
-                                    />
-                                )}
+            <View style={[styles.car, { alignItems: 'center' }]}>
+    <Text style={styles.textgen}>Jardinetes que sou amigo(a)</Text>
+    <View style={[styles.car4, { alignItems: 'center'  }]}>
+        <View style={[styles.borderedContainer2, { alignItems: 'center'  }]}>
+            <View style={[styles.borderedContainer3,]}>
+                <Carousel
+                    showThumbs={false}
+                    showStatus={false}
+                    infiniteLoop={true}
+                    autoPlay={true}
+                    renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                        hasPrev && (
+                            <button
+                                type="button"
+                                onClick={onClickHandler}
+                                style={{
+                                    position: 'absolute',
+                                    top: '40%',
+                                    left: 0,
+                                    zIndex: 2,
+                                    background: 'rgba(0, 0, 0, 0.5)',
+                                    border: 'none',
+                                    color: 'white',
+                                    padding: '10px',
+                                    borderRadius: '20%',
+                                }}
                             >
-                                {carouselData.map(renderCarouselItem)}
-                            </Carousel>
-                        </View>
-                    </View>
-                </View>
+                                <FontAwesomeIcon icon={faChevronLeft} size="2x" />
+                            </button>
+                        )
+                    }
+                    renderArrowNext={(onClickHandler, hasNext, label) =>
+                        hasNext && (
+                            <button
+                                type="button"
+                                onClick={onClickHandler}
+                                style={{
+                                    position: 'absolute',
+                                    top: '40%',
+                                    right: 0,
+                                    zIndex: 2,
+                                    background: 'rgba(0, 0, 0, 0.5)',
+                                    border: 'none',
+                                    color: 'white',
+                                    padding: '10px',
+                                    borderRadius: '20%',
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faChevronRight} size="2x" />
+                            </button>
+                        )
+                    }
+                >
+                    {carouselData1.map(renderCarouselItem1)}
+                </Carousel>
             </View>
+        </View>
+    </View>
+</View>
+
             <View style={styles.car2}>
-                <Text style={styles.textgen2}>Jardinetes que sou amigo(a)</Text>
+                <Text style={styles.textgen2}>Mapa</Text>
                 <View style={[styles.car3, styles.borderedContainer]}>
 
                     <View style={styles.container_map}>
@@ -385,7 +397,7 @@ export default function Menu() {
                                         <Popup>
                                             <div>
                                                 <p>{praca.nome}</p>
-                                                <img src={praca.photourl} alt={`Image ${praca.id}`} style={styles.popupImage} />
+                                                <img src={praca.jardinetePhoto} alt={`Image ${praca.id}`} style={styles.popupImage} />
                                             </div>
                                         </Popup>
                                     </Marker>
@@ -399,22 +411,7 @@ export default function Menu() {
                     <View style={styles.container_map1}>
                         <div style={styles.container2}>
 
-                            <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={true} renderArrowPrev={(onClickHandler, hasPrev, label) =>
-                                hasPrev && (
-                                    <button type="button" onClick={onClickHandler} style={{ position: 'absolute', top: '40%', left: 0, zIndex: 2, background: 'rgba(0, 0, 0, 0.5)', border: 'none', color: 'white', padding: '10px', borderRadius: '20%' }}>
-                                        <FontAwesomeIcon icon={faChevronLeft} size="2x" />
-                                    </button>
-                                )
-                            }
-                                renderArrowNext={(onClickHandler, hasNext, label) =>
-                                    hasNext && (
-                                        <button type="button" onClick={onClickHandler} style={{ position: 'absolute', top: '40%', right: 0, zIndex: 2, background: 'rgba(0, 0, 0, 0.5)', border: 'none', color: 'white', padding: '10px', borderRadius: '20%' }}>
-                                            <FontAwesomeIcon icon={faChevronRight} size="2x" />
-                                        </button>
-                                    )
-                                }>
-                                {carouselData1.map(renderCarouselItem1)}
-                            </Carousel>
+                     
 
 
                         </div>
