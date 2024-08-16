@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
     },
 
     mapContainer: {
-      width: '100%',
+      width: '60%',
       height: '100%',
       borderRadius: width * 0.0052083333333333,
       borderColor: '#271C00',
