@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         height: '90%',
         position: 'absolute',
-        width: '100%',
+        width: '60%',
         marginLeft: width * 0.0260416666666667,
         marginTop: width * 0.0177083333333333,
 
@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
     },
 
     mapContainer: {
-      width: '60%',
+      width: '100%',
       height: '100%',
       borderRadius: width * 0.0052083333333333,
       borderColor: '#271C00',

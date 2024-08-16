@@ -95,13 +95,14 @@ export default function JardinetesMap() {
 
     const sortResults = (text, results) => {
         return results.filter(jardim =>
-            jardim.nome.toLowerCase().startsWith(text)
+            jardim.nome && jardim.nome.toLowerCase().startsWith(text)
         ).sort((a, b) => {
-            const aName = a.nome.toLowerCase();
-            const bName = b.nome.toLowerCase();
+            const aName = a.nome ? a.nome.toLowerCase() : '';
+            const bName = b.nome ? b.nome.toLowerCase() : '';
             return aName.localeCompare(bName);
         });
     };
+    
 
     const customIcon = new L.Icon({
         iconUrl: markerImage,
