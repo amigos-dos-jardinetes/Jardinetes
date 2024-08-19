@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image } from 'react-native';
+import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image, Dimensions } from 'react-native';
 import { styles } from '../inventory/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Inventory() {
   const [userInfo, setUserInfo] = useState(false);
@@ -23,7 +24,8 @@ export default function Inventory() {
   const novoJardineteDocId = route.params.novoJardineteDocId;
   const navigation = useNavigation();
   const scrollViewRef = useRef(null);
-
+  const { width, height } = Dimensions.get('window');
+  
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -472,6 +474,12 @@ export default function Inventory() {
           </View>
 
           <View style={styles.navbar}>
+
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={width * 0.025} color="white" />
+        </TouchableOpacity>
+
+
             <View style={styles.imageContainer}>
               {imageUrl ? (
                 <Image

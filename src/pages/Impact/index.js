@@ -7,6 +7,7 @@ import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
 import { styles } from '../Impact/styles';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Impact() {
     const [userInfo, setUserInfo] = useState(false);
@@ -866,6 +867,12 @@ const handleContinuarPress = async () => {
 
 
 <View style={styles.navbar}>
+
+  
+<TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={width * 0.025} color="white" />
+        </TouchableOpacity>
+
             <View style={styles.imageContainer}>
               {imageUrl ? (
                 <Image

@@ -175,4 +175,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: width * 0.0104166666666667, // Adiciona margem à direita
   },
+
+  
+backButton: {
+  marginLeft: width * 0.0052083333333333,
+},
 });

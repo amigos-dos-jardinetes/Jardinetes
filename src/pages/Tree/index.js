@@ -374,6 +374,12 @@ export default function Tree() {
     return (
         <ScrollView contentContainerStyle={styles.container} style={{ backgroundColor: '#FFFEF4' }}>
             <View style={styles.navbar}>
+
+            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={width * 0.025} color="white" />
+        </TouchableOpacity>
+
+        
                 <View style={styles.imageContainer1}>
                     {imageUrl ? (
                         <Image

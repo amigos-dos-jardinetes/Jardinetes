@@ -10,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { userSearchData } from '../../../functions';
 
+
 const firebaseConfig = {
   // suas configurações do Firebase
 };
@@ -138,6 +139,11 @@ export default function Form() {
   return (
     <ScrollView contentContainerStyle={styles.container1}>
       <View style={styles.navbar}>
+
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={width * 0.025} color="white" />
+        </TouchableOpacity>
+
         <View style={styles.imageContainer}>
           {imageUrl ? (
             <Image

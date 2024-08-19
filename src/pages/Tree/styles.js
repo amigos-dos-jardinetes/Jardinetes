@@ -262,5 +262,9 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FF0000', // Altere para a cor vermelha que desejar
     },
 
+    backButton: {
+        marginLeft: width * 0.0052083333333333,
+      },
+
 });
 

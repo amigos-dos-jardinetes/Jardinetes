@@ -220,5 +220,9 @@ export const styles = StyleSheet.create({
   
 },
 
+backButton: {
+  marginLeft: width * 0.0052083333333333,
+},
+
 
 });
