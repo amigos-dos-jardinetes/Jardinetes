@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         width: width * 0.9,
         height: width * 0.3125,
-        top: width * 0.2083333333333333,
+        top: width * 0.245,
         borderRadius: width * 0.0052083333333333,
         borderColor: '#271C00',
         borderWidth: width * 0.003125,
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
 
       
   imageContainer33: {
-    top: width * 0.555,
+    top: width * 0.57,
     position: 'absolute',
     flexDirection: 'row',
     alignItems: 'center',
@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#166034',
         position: 'absolute',
         bottom: 0,
-        top: width * 0.6510416666666667,
+        top: width * 0.67,
         right: 0,
         width: '100%',
 
@@ -125,7 +125,7 @@ export const styles = StyleSheet.create({
       },
 
       title1: {
-        top: width * 0.5416666666666667,
+        top: width * 0.57,
         alignItems: 'center',
         position: 'absolute',
       },
@@ -163,37 +163,42 @@ export const styles = StyleSheet.create({
 
     searchContainer: {
       position: 'absolute',
-      top: width * 0.12, // Ajuste a posição do container de busca
-      width: width * 0.8,
+      top: width * 0.2, // Ajuste a posição do container de busca
+      width: width * 0.9,
       flexDirection: 'row',
       alignItems: 'center',
-      backgroundColor: '#FFF',
-      borderRadius: width * 0.02,
-      padding: width * 0.02,
+      backgroundColor: '#FFFEF4',
+      borderRadius: width * 0.005,
       zIndex: 3, // Certifique-se de que a barra de busca fique acima do mapa
+
     },
     
     searchInput: {
       flex: 1,
-      height: width * 0.1,
+      height: width * 0.035,
       borderColor: '#ccc',
       borderWidth: 1,
-      borderRadius: width * 0.02,
+      borderRadius: width * 0.005,
       paddingHorizontal: width * 0.03,
-      fontSize: width * 0.035,
+      fontSize: width * 0.018,
+   
     },
     
     searchButton: {
       marginLeft: width * 0.02,
       backgroundColor: '#166034',
-      paddingVertical: width * 0.02,
-      paddingHorizontal: width * 0.04,
-      borderRadius: width * 0.02,
+      paddingVertical: width * 0.01,
+      paddingHorizontal: width * 0.01,
+      height: width * 0.035,
+      borderRadius: width * 0.005,
+      alignItems: 'center',
+      justifyContent: 'center',
+
     },
     
     searchButtonText: {
       color: 'white',
-      fontSize: width * 0.04,
+      fontSize: width * 0.02,
       fontWeight: 'bold',
     },
 
