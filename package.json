@@ -44,6 +44,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-leaflet": "^4.2.1",
+    "react-leaflet-geosearch": "^0.3.4",
     "react-native": "0.72.10",
     "react-native-animatable": "^1.4.0",
     "react-native-fs": "^2.20.0",

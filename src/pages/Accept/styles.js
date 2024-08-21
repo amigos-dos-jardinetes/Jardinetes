@@ -161,4 +161,40 @@ export const styles = StyleSheet.create({
         height: '130px',
     },
 
+    searchContainer: {
+      position: 'absolute',
+      top: width * 0.12, // Ajuste a posição do container de busca
+      width: width * 0.8,
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: '#FFF',
+      borderRadius: width * 0.02,
+      padding: width * 0.02,
+      zIndex: 3, // Certifique-se de que a barra de busca fique acima do mapa
+    },
+    
+    searchInput: {
+      flex: 1,
+      height: width * 0.1,
+      borderColor: '#ccc',
+      borderWidth: 1,
+      borderRadius: width * 0.02,
+      paddingHorizontal: width * 0.03,
+      fontSize: width * 0.035,
+    },
+    
+    searchButton: {
+      marginLeft: width * 0.02,
+      backgroundColor: '#166034',
+      paddingVertical: width * 0.02,
+      paddingHorizontal: width * 0.04,
+      borderRadius: width * 0.02,
+    },
+    
+    searchButtonText: {
+      color: 'white',
+      fontSize: width * 0.04,
+      fontWeight: 'bold',
+    },
+
 });

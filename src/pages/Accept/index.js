@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Image, Text, TouchableOpacity, TextInput, StyleSheet, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, addDoc, updateDoc, doc, arrayUnion, getDocs } from 'firebase/firestore';
 import { styles } from '../Accept/styles';
 import markerImage from '../../assets/marker.png';
-import { MapContainer, TileLayer, Marker, Popup, Circle, useMapEvents } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Circle, useMapEvents, useMap } from 'react-leaflet';
 import { userSearchData } from '../../../functions';
 import { getStorage } from 'firebase/storage';
 import { getDistance } from 'geolib';
@@ -27,12 +27,28 @@ const customIcon = new L.Icon({
   iconAnchor: [16, 16],
 });
 
+const redIcon = new L.Icon({
+  iconUrl: require('../../assets/redMarker.png'), // Substitua pelo caminho do seu ícone vermelho
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+});
+
 function MapWithClick({ onClick }) {
   useMapEvents({
     click(e) {
       onClick(e.latlng);
     },
   });
+  return null;
+}
+
+function MapComponent({ center }) {
+  const map = useMap();
+
+  useEffect(() => {
+    map.setView(center, 14); // 14 é o nível de zoom; ajuste conforme necessário
+  }, [center]);
+
   return null;
 }
 
@@ -52,7 +68,11 @@ export default function Accept() {
   const [pracasSeguidas, setPracasSeguidas] = useState([]);
   const [verificationMessage, setVerificationMessage] = useState('');
   const [isVerificationSuccessful, setIsVerificationSuccessful] = useState(false);
+  const [searchText, setSearchText] = useState('');
   const { width, height } = Dimensions.get('window');
+  const [mapCenter, setMapCenter] = useState([-25.4284, -49.2733]); // Ponto inicial
+  const [showRedMarker, setShowRedMarker] = useState(false);
+
 
   useEffect(() => {
     const fetchJardinetes = async () => {
@@ -130,6 +150,33 @@ export default function Accept() {
     navigation.navigate('Menu');
   };
 
+
+  const handleSearch = async () => {
+    const address = searchText; // `searchText` é o estado onde você armazenou o valor do TextInput
+  
+    if (!address) {
+      console.log('Nenhum endereço inserido.');
+      return;
+    }
+  
+    try {
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+      const data = await response.json();
+  
+      if (data.length > 0) {
+        const { lat, lon } = data[0];
+        setMapCenter([parseFloat(lat), parseFloat(lon)]); // Centraliza o mapa nas coordenadas encontradas
+        setShowRedMarker(true); // Mostra o marcador vermelho
+      } else {
+        console.log('Endereço não encontrado.');
+        setShowRedMarker(false); // Não mostra o marcador vermelho se o endereço não for encontrado
+      }
+    } catch (error) {
+      console.error('Erro ao buscar o endereço:', error);
+      setShowRedMarker(false); // Não mostra o marcador vermelho em caso de erro
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.navbar}>
@@ -157,54 +204,69 @@ export default function Accept() {
           <Text style={styles.title2}>Por favor, selecione o local desejado para verfificar se é possível ser amigo(a) do jardinete!</Text>
       </View>
 
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Digite o endereço"
+          value={searchText}
+          onChangeText={setSearchText}
+        />
+ <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
+  <Text style={styles.searchButtonText}>Buscar</Text>
+</TouchableOpacity>
+      </View>
+
+
       <View style={styles.mapContainer}>
-        <MapContainer
-          center={[-25.4284, -49.2733]}
-          zoom={14}
-          style={{ width: '100%', height: '100%', borderRadius: 10 }}
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <MapContainer
+  center={mapCenter}
+  zoom={14}
+  style={{ width: '100%', height: '100%', borderRadius: 10 }}
+>
+  <MapComponent center={mapCenter} />
+  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-          {jardinetes.map((jardinete, index) => (
-            <React.Fragment key={index}>
-              <Marker position={[jardinete.coordenadas[0], jardinete.coordenadas[1]]} icon={customIcon}>
-                <Popup>
-                  <div>
-                    <p>{jardinete.nome}</p>
-                    <img src={jardinete.jardinetePhoto} alt={`Foto de ${jardinete.nome}`} style={styles.popupImage} />
-                    <TouchableOpacity onPress={() => handleDetailsPress(jardinete)} style={styles.popupButton}>
-                  
-                    </TouchableOpacity>
-                  </div>
-                </Popup>
-              </Marker>
-              <Circle
-                center={[jardinete.coordenadas[0], jardinete.coordenadas[1]]}
-                radius={28.28}
-                color="blue"
-                fillColor="blue"
-                fillOpacity={0.2}
-              />
-            </React.Fragment>
-          ))}
+  {jardinetes.map((jardinete, index) => (
+    <React.Fragment key={index}>
+      <Marker position={[jardinete.coordenadas[0], jardinete.coordenadas[1]]} icon={customIcon}>
+        <Popup>
+          <div>
+            <p>{jardinete.nome}</p>
+            <img src={jardinete.jardinetePhoto} alt={`Foto de ${jardinete.nome}`} style={styles.popupImage} />
+            <TouchableOpacity onPress={() => handleDetailsPress(jardinete)} style={styles.popupButton}>
+            </TouchableOpacity>
+          </div>
+        </Popup>
+      </Marker>
+      <Circle
+        center={[jardinete.coordenadas[0], jardinete.coordenadas[1]]}
+        radius={28.28}
+        color="blue"
+        fillColor="blue"
+        fillOpacity={0.2}
+      />
+    </React.Fragment>
+  ))}
 
-          <MapWithClick onClick={setTempMarkerPosition} />
+  <MapWithClick onClick={setTempMarkerPosition} />
 
-          {tempMarkerPosition && (
-            <>
-              <Marker position={tempMarkerPosition} icon={customIcon}>
-              
-              </Marker>
-              <Circle
-                center={tempMarkerPosition}
-                radius={28.28}
-                color="red"
-                fillColor="red"
-                fillOpacity={0.2}
-              />
-            </>
-          )}
-        </MapContainer>
+  {tempMarkerPosition && (
+    <>
+      <Marker position={tempMarkerPosition} icon={customIcon}>
+      </Marker>
+      <Circle
+        center={tempMarkerPosition}
+        radius={28.28}
+        color="red"
+        fillColor="red"
+        fillOpacity={0.2}
+      />
+    </>
+  )}
+
+  {/* Adicionando o marcador vermelho condicionalmente */}
+  {showRedMarker && <Marker position={mapCenter} icon={redIcon} />}
+</MapContainer>
       </View>
       <View style={styles.title1}>
         <TouchableOpacity style={styles.button} onPress={verificarProximidade}>
