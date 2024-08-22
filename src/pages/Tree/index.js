@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, Image, Dimensions, Linking, ScrollView, Alert } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, Image, Dimensions, Linking, ScrollView, Alert, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../Tree/styles';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,6 +9,11 @@ import { getStorage, getDownloadURL, uploadBytes, ref } from 'firebase/storage';
 import { getFirestore, addDoc, collection, deleteDoc, getDocs, updateDoc, doc, getDoc, arrayRemove, FieldValue, firestore } from 'firebase/firestore';
 import { userSearchData } from '../../../functions';
 import * as ImagePicker from 'expo-image-picker';
+import Cropper from 'react-easy-crop';
+import Slider from '@mui/material/Slider'; 
+import { MdZoomIn, MdZoomOut } from 'react-icons/md';
+import ImageEditor from "@react-native-community/image-editor";
+import * as ImageManipulator from 'expo-image-manipulator';
 
 const { width } = Dimensions.get('window');
 
@@ -27,31 +32,35 @@ const SelectedResultCard = ({ id, name, treeUrl, onRemoveResult, onSelectImage, 
 
     return (
         <View style={styles.selectedResultCard}>
-            <View style={styles.textContainer}>
-                <Text style={styles.selectedResultText}>{`${name}`}</Text>
-            </View>
-            <TouchableOpacity onPress={onRemoveResult} style={styles.closeButton}>
-                <Ionicons name="close" size={width * 0.01302083333333333333333333333333} color="#271C00" />
-            </TouchableOpacity>
+        <View style={styles.textContainer}>
+            <Text style={styles.selectedResultText}>{`${name}`}</Text>
+        </View>
+        <TouchableOpacity onPress={onRemoveResult} style={styles.closeButton}>
+            <Ionicons name="close" size={width * 0.01302083333333333333333333333333} color="#271C00" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleSelectImage(id)} style={styles.sendImageButton}>
             {treeUrl ? (
                 <Image
                     source={{ uri: treeUrl }}
-                    style={styles.sendImageButton}
+                    style={{ 
+                        flex: 1, 
+                        width: '100%', 
+                        height: '100%', 
+                        resizeMode: 'cover', 
+                        borderRadius: 5, // Define o arredondamento nas laterais da imagem
+                    }} 
                 />
             ) : (
-                <>
-
-                    <TouchableOpacity onPress={handleSelectImage} style={styles.sendImageButton}>
-                        <Text style={styles.sendImageButtonText}>Enviar imagem</Text>
-                    </TouchableOpacity>
-                </>
+                <Text style={styles.sendImageButtonText}>Enviar imagem</Text>
             )}
-        </View>
+        </TouchableOpacity>
+    </View>
     )
 };
 
 
 export default function Tree() {
+    const [imagem, setImagem] = useState(null);
     const [searchText, setSearchText] = useState('');
     const [filteredTrees, setFilteredTrees] = useState([]);
     const [allTrees, setAllTrees] = useState([]);
@@ -77,6 +86,14 @@ export default function Tree() {
     const navigation = useNavigation();
     const route = useRoute();
     const novoJardineteDocId = route.params.novoJardineteDocId;
+    const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+    const [user, setUser] = useState(null);
+    const [crop, setCrop] = useState({ x: 0, y: 0 });
+    const [zoom, setZoom] = useState(1);
+    const [showCropper, setShowCropper] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedResultId, setSelectedResultId] = useState(null); // Armazena o ID do resultado selecionado
+
 
     const toggleNotSendingTrees = async () => {
         clearSearch();
@@ -260,24 +277,28 @@ export default function Tree() {
     };
 
 
-    const pickImage = async (id) => {
-        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (permissionResult.granted === false) {
-            Alert.alert('Permissão negada para acessar a galeria');
-            return;
-        }
+  const pickImage = async (id) => {
+    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (permissionResult.granted === false) {
+        Alert.alert('Permissão negada para acessar a galeria');
+        return;
+    }
 
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: 'Images',
-            allowsEditing: true,
-            quality: 1,
-        });
+    let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: 'Images',
+        allowsEditing: true,
+        quality: 1,
+    });
 
-        if (!result.canceled && result.assets.length > 0) {
-            const imageUri = result.assets[0].uri;
-            handleSelectImage(imageUri, id);
-        }
-    };
+    if (!result.canceled && result.assets.length > 0) {
+        const imageUri = result.assets[0].uri;
+        setSelectedImage(imageUri);
+        setSelectedResultId(id); // Armazena o ID do resultado selecionado
+        setShowCropper(true);
+    }
+};
+
+
     const handleSelectImage = async (imageUri, id) => {
         try {
             const storageRef = ref(storage, `trees/${Date.now()}`);
@@ -286,7 +307,8 @@ export default function Tree() {
             await uploadBytes(storageRef, blob);
             const treeUrl = await getDownloadURL(storageRef);
 
-            setSelectedTreeImageUrl(treeUrl); // Atualiza a URL da imagem selecionada
+            setSelectedTreeImageUrl(treeUrl);
+
 
             const selectedResult = selectedResults.find(result => result.id === id);
             if (!selectedResult) {
@@ -370,6 +392,71 @@ export default function Tree() {
             </View>
         );
     };
+    const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+        setCroppedAreaPixels(croppedAreaPixels);
+    }, []);
+
+
+ const cropImage = async () => {
+    try {
+        if (selectedImage && croppedAreaPixels && selectedResultId) {
+            const manipResult = await ImageManipulator.manipulateAsync(
+                selectedImage,
+                [
+                    {
+                        crop: {
+                            originX: croppedAreaPixels.x,
+                            originY: croppedAreaPixels.y,
+                            width: croppedAreaPixels.width,
+                            height: croppedAreaPixels.height,
+                        },
+                    },
+                ],
+                { compress: 1, format: ImageManipulator.SaveFormat.JPEG }
+            );
+
+            const { uri: croppedUri } = manipResult;
+            const response = await fetch(croppedUri);
+            const blob = await response.blob();
+            const storageRef = ref(storage, `tree/croppedImage.jpg`);
+            await uploadBytes(storageRef, blob);
+            const croppedImageUrl = await getDownloadURL(storageRef);
+
+            console.log('Cropped Image URL:', croppedImageUrl);
+
+            // Atualiza a imagem no Firebase
+            const selectedResult = selectedResults.find(result => result.id === selectedResultId);
+            if (!selectedResult) {
+                console.error("Não foi possível encontrar o resultado selecionado com o ID:", selectedResultId);
+                return;
+            }
+            const docId = selectedResult.docId;
+
+            await updateDoc(doc(collection(firestore, 'tree'), docId), {
+                treeUrl: croppedImageUrl,
+            });
+
+            setSelectedResults(prevResults => {
+                return prevResults.map(result => {
+                    if (result.id === selectedResultId) {
+                        return {
+                            ...result,
+                            treeUrl: croppedImageUrl,
+                        };
+                    }
+                    return result;
+                });
+            });
+
+            setShowCropper(false);
+        } else {
+            console.error('Imagem selecionada, área de corte ou ID do resultado não definida.');
+        }
+    } catch (error) {
+        console.error('Erro ao cortar e salvar a imagem:', error);
+    }
+};
+
 
     return (
         <ScrollView contentContainerStyle={styles.container} style={{ backgroundColor: '#FFFEF4' }}>
@@ -479,6 +566,52 @@ export default function Tree() {
             </TouchableOpacity>
             )}
             {selectedResults.length > 0 && renderSelectedResults()}
+
+
+            <Modal visible={showCropper} animationType="slide">
+  <View style={styles.cropperContainer}>
+    
+    {/* Slider e botões de zoom */}
+    <View style={styles.controlsContainer}>
+      <Slider
+        value={zoom}
+        min={1}
+        max={3}
+        step={0.1}
+        onChange={(e, newValue) => setZoom(newValue)}
+        aria-labelledby="zoom-slider"
+        style={styles.slider}
+      />
+      <View style={styles.zoomButtons}>
+        <TouchableOpacity onPress={() => setZoom(zoom + 0.1)}>
+          <MdZoomIn size={24} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setZoom(zoom - 0.1)}>
+          <MdZoomOut size={24} />
+        </TouchableOpacity>
+      </View>
+    </View>
+
+    {/* Área de corte da imagem */}
+    <View style={styles.cropperWrapper}>
+    <Cropper
+    image={selectedImage}
+    crop={crop}
+    zoom={zoom}
+    aspect={16 / 9}
+    onCropChange={setCrop}
+    onCropComplete={onCropComplete}
+    onZoomChange={setZoom}
+/>
+    </View>
+
+    {/* Botão para cortar a imagem */}
+    <TouchableOpacity style={styles.cropButton} onPress={cropImage}>
+      <Text style={styles.cropButtonText}>Escolher Imagem</Text>
+    </TouchableOpacity>
+  </View>
+</Modal>
+
         </ScrollView>
     );
 };

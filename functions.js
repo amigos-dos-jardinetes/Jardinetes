@@ -44,7 +44,7 @@ export async function userSearchData(auth, firestore, storage, navigation, setUs
           const userData = userSnapshot.data();
           setUserName(userData.username || 'Usuário');
           setEmail(userData.email || 'email');
-          setPracasSeguidas(userData.pracasSeguidas);
+          setPracasSeguidas(userData.jardinetes);
 
           // Adicionando o campo wallpaper
           const wallpaperValue = userData.wallpaper || null;
