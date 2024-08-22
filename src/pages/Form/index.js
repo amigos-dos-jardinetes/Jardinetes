@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, Linking } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, Linking, Modal } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { styles } from '../Form/styles';
 import * as ImagePicker from 'expo-image-picker';
-import { getStorage, ref, uploadString, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Ionicons } from '@expo/vector-icons';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { userSearchData } from '../../../functions';
-
+import Cropper from 'react-easy-crop';
+import Slider from '@mui/material/Slider'; 
+import { MdZoomIn, MdZoomOut } from 'react-icons/md';
+import ImageEditor from "@react-native-community/image-editor";
+import * as ImageManipulator from 'expo-image-manipulator';
 
 const firebaseConfig = {
   // suas configurações do Firebase
@@ -48,6 +52,13 @@ export default function Form() {
   const storage = getStorage();
   const auth = getAuth(firebaseApp);
   const { width } = Dimensions.get('window');
+  
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [user, setUser] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [showCropper, setShowCropper] = useState(false);
 
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
@@ -90,10 +101,6 @@ export default function Form() {
   const handleSubmit = async () => {
     try {
       if (imagem) {
-        const storageRef = ref(getStorage(), `jardinetes/${novoJardineteDocId}/imagem.jpg`);
-        await uploadString(storageRef, imagem, 'data_url');
-        const imageUrl = await getDownloadURL(storageRef);
-  
         const jardineteRef = doc(getFirestore(), 'jardinetes', novoJardineteDocId);
         const formData = {
           localizacao,
@@ -104,7 +111,7 @@ export default function Form() {
           densidade,
           renda,
           patrimonio,
-          jardinetePhoto: imageUrl
+          jardinetePhoto: imagem  // Usa a imagem cortada
         };
         await updateDoc(jardineteRef, formData);
         console.log('Dados do jardinete atualizados com sucesso!');
@@ -126,13 +133,58 @@ export default function Form() {
 
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
+      allowsEditing: false,
       aspect: [4, 3],
       quality: 1,
     });
 
     if (!result.canceled) {
-      setImagem(result.uri);
+      setSelectedImage(result.uri);
+      setShowCropper(true);  // Mostra o modal de corte
+    }
+  };
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+
+  const cropImage = async () => {
+    try {
+      if (selectedImage && croppedAreaPixels) {
+        // Usando o ImageManipulator para cortar a imagem
+        const manipResult = await ImageManipulator.manipulateAsync(
+          selectedImage,
+          [
+            {
+              crop: {
+                originX: croppedAreaPixels.x,
+                originY: croppedAreaPixels.y,
+                width: croppedAreaPixels.width,
+                height: croppedAreaPixels.height,
+              },
+            },
+          ],
+          { compress: 1, format: ImageManipulator.SaveFormat.JPEG }
+        );
+
+        const { uri: croppedUri } = manipResult;
+
+        // Faça o upload da imagem cortada
+        const response = await fetch(croppedUri);
+        const blob = await response.blob();
+        const storageRef = ref(storage, `jardinetes/${novoJardineteDocId}/croppedImage.jpg`);
+        await uploadBytes(storageRef, blob);
+
+        const croppedImageUrl = await getDownloadURL(storageRef);
+        console.log('Cropped Image URL:', croppedImageUrl);
+        setImagem(croppedImageUrl);
+        setShowCropper(false);
+      } else {
+        console.error('Imagem selecionada ou área de corte não definida.');
+      }
+    } catch (error) {
+      console.error('Erro ao cortar e salvar a imagem:', error);
     }
   };
 
@@ -164,18 +216,23 @@ export default function Form() {
       <View style={styles.container}>
      
 
-        {imagem ? (
-          <TouchableOpacity onPress={selecionarImagem}>
-            <Image
-              source={{ uri: imagem }}
-              style={{ width: (355.5555555555556 / 1920) * width, height: (200 / 1920) * width, marginTop: (10 / 1920) * width, alignSelf: 'center' }}
-            />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity style={styles.button1} onPress={selecionarImagem}>
-            <Text style={styles.buttonText}>Selecione uma imagem para o jardinete</Text>
-          </TouchableOpacity>
-        )}
+      {imagem ? (
+  <TouchableOpacity onPress={selecionarImagem}>
+    <Image
+      source={{ uri: imagem }}
+      style={{ 
+        width: (355.5555555555556 / 1920) * width, 
+        height: (200 / 1920) * width, 
+        marginTop: (10 / 1920) * width, 
+        alignSelf: 'center' 
+      }}
+    />
+  </TouchableOpacity>
+) : (
+  <TouchableOpacity style={styles.button1} onPress={selecionarImagem}>
+    <Text style={styles.buttonText}>Selecione uma imagem para o jardinete</Text>
+  </TouchableOpacity>
+)}
 
         <Text style={styles.label}>Qual a localização do jardinete?</Text>
         <TextInput
@@ -271,6 +328,52 @@ export default function Form() {
           <Image source={require('../../assets/UtfprBottom.png')} style={styles.utfprImage} />
         </View>
       </View>
+
+      <Modal visible={showCropper} animationType="slide">
+  <View style={styles.cropperContainer}>
+    
+    {/* Slider e botões de zoom */}
+    <View style={styles.controlsContainer}>
+      <Slider
+        value={zoom}
+        min={1}
+        max={3}
+        step={0.1}
+        onChange={(e, newValue) => setZoom(newValue)}
+        aria-labelledby="zoom-slider"
+        style={styles.slider}
+      />
+      <View style={styles.zoomButtons}>
+        <TouchableOpacity onPress={() => setZoom(zoom + 0.1)}>
+          <MdZoomIn size={24} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setZoom(zoom - 0.1)}>
+          <MdZoomOut size={24} />
+        </TouchableOpacity>
+      </View>
+    </View>
+
+    {/* Área de corte da imagem */}
+    <View style={styles.cropperWrapper}>
+      <Cropper
+        image={selectedImage}
+        crop={crop}
+        zoom={zoom}
+        aspect={4 / 3}
+        onCropChange={setCrop}
+        onCropComplete={onCropComplete}
+        onZoomChange={setZoom}
+      />
+    </View>
+
+    {/* Botão para cortar a imagem */}
+    <TouchableOpacity style={styles.cropButton} onPress={cropImage}>
+      <Text style={styles.cropButtonText}>Escolher Imagem</Text>
+    </TouchableOpacity>
+  </View>
+</Modal>
+
+
     </ScrollView>
   );
 }

@@ -74,4 +74,16 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
+    cropperContainer: {
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      cropActions: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%',
+        padding: 20,
+      },
 });
