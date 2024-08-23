@@ -581,6 +581,18 @@ export default function Tree() {
         onChange={(e, newValue) => setZoom(newValue)}
         aria-labelledby="zoom-slider"
         style={styles.slider}
+        sx={{
+          color: '#166034', // Cor principal do slider (trilha mínima e polegar)
+          '& .MuiSlider-thumb': {
+            backgroundColor: '#166034', // Cor do polegar
+          },
+          '& .MuiSlider-track': {
+            backgroundColor: '68A180', // Cor da trilha ativa (mínima)
+          },
+          '& .MuiSlider-rail': {
+            backgroundColor: '#d3d3d3', // Cor da trilha inativa (máxima)
+          },
+        }}
       />
       <View style={styles.zoomButtons}>
         <TouchableOpacity onPress={() => setZoom(zoom + 0.1)}>
@@ -594,15 +606,15 @@ export default function Tree() {
 
     {/* Área de corte da imagem */}
     <View style={styles.cropperWrapper}>
-    <Cropper
-    image={selectedImage}
-    crop={crop}
-    zoom={zoom}
-    aspect={16 / 9}
-    onCropChange={setCrop}
-    onCropComplete={onCropComplete}
-    onZoomChange={setZoom}
-/>
+      <Cropper
+        image={selectedImage}
+        crop={crop}
+        zoom={zoom}
+        aspect={4 / 3}
+        onCropChange={setCrop}
+        onCropComplete={onCropComplete}
+        onZoomChange={setZoom}
+      />
     </View>
 
     {/* Botão para cortar a imagem */}

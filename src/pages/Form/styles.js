@@ -236,7 +236,7 @@ controlsContainer: {
   marginBottom: 10,
 },
 slider: {
-  width: 200,
+  width: width * 0.1041666666666667,
 },
 zoomButtons: {
   flexDirection: 'row',
@@ -244,7 +244,7 @@ zoomButtons: {
 },
 cropperWrapper: {
   width: '80%', // Ajuste a largura do container do Cropper
-  height: 400, // Defina a altura para limitar o tamanho da imagem
+  height: width * 0.2083333333333333, // Defina a altura para limitar o tamanho da imagem
   backgroundColor: '#f0f0f0', // Cor de fundo para o wrapper
   overflow: 'hidden', // Garante que o Cropper não ultrapasse os limites
   borderRadius: 10, // Adiciona bordas arredondadas
@@ -252,7 +252,7 @@ cropperWrapper: {
 cropButton: {
   marginTop: 20,
   padding: 10,
-  backgroundColor: '#007BFF',
+  backgroundColor: '#166034',
   borderRadius: 5,
 },
 cropButtonText: {

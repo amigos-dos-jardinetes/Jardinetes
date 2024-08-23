@@ -17,9 +17,9 @@ export const styles = StyleSheet.create({
 
 
     card: {
-        top: width * 0.078125,
-        width: width * 0.7291666666666667,
-        height: width * 0.3125,
+        top: width * 0.07,
+        width: width * 0.8333333333333333,
+        height: width * 0.390625,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
         borderColor: '#999',
         borderWidth: 1,
         borderRadius: 5,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
 
       },
 
@@ -137,7 +137,7 @@ export const styles = StyleSheet.create({
       width: width * 0.1302083333333333,
       height: width * 0.1302083333333333,
       borderRadius: width * 0.0651041666666667,
-      bottom: width * 0.0520833333333333,
+      bottom: width * 0.08,
       right: '50%',
   },  
 
@@ -167,7 +167,7 @@ circBorda1: {
 }, 
 
 backButton: {
-  top: width * 0.1302083333333333,
+  top: width * 0.19,
   right: '47%',
 
 },

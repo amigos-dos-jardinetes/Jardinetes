@@ -86,7 +86,7 @@ export default function Redefinir() {
                     
             <View style={styles.inputContainer}> 
               <TextInput
-                style={styles.input}
+                style={[styles.input, { fontSize: width * 0.0135416666666667 }]}
                 placeholder="E-mail"
                 placeholderTextColor="#999"
                 value={email}

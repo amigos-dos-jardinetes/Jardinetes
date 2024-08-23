@@ -138,7 +138,7 @@ export default function Accept() {
     });
 
     if (isTooClose) {
-      setVerificationMessage('Já existe um jardinete próximo ao local selecionado.');
+      setVerificationMessage('Aqui já existe um Amigo do Jardinete próximo ao local selecionado. Que tal escolher outro?');
       setIsVerificationSuccessful(false);
     } else {
       setVerificationMessage('');

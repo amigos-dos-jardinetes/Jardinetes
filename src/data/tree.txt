@@ -1,3 +1,4 @@
+Abacateiro_Persea americana
 Abacate_Persea americana
 Ácer_Acer negundo L.
 Açoita-cavalo_Luehea divaricata
@@ -6,13 +7,15 @@ Agave_Agave americana L.
 Agave-dragão_Agave attenuata
 Alamo_Populus nigra L.
 Alfeneiro_Ligustrum lucidum
-Amora_Morus nigra L.
 Amor-perfeito_Viola wittrockiana
+Amora_Morus nigra L.
 Andira_Andira humilis
+Andiroba_Carapa guianensis
 Angico_Parapiptadenia rigida
 Araçá_Psidium cattleyanum
 Araucária_Araucaria angustifolia
 Ardísia_Ardisia crenata
+Aroeira_Schinus terebinthifolius
 Aroeira_Schinus terebinthifolius
 Aroeira-chorão_Schinus molle L.
 Avenca-japonesa_Nandina domestica
@@ -23,84 +26,150 @@ Beri-silvestre_Canna aureovittata
 Bico-de-papagaio_Euphorbia pulcherrima
 Boldo-de-jardim_Plectranthus barbatus
 Bracatinga_Mimosa scabrella
+Bugreiro_Lithraea brasiliensis
+Buriti_Mauritia flexuosa
 Buxinho_Buxus sempervirens L.
+Cabeludinha_Myrciariaglazioviana
 Cacto_Cactus sp.
 Cacto-candelabro_Euphorbia ingens
+Cajueiro_Anacardium occidentale
 Caliandra-rosa_Caliandra brevipes
 Calistemon_Callistemon citrinus
+Cambará_Piptocarpha axillaris
+Camboatá_Cupaniavernalis
 Camboatá_Matayba elaeagnoides
+Cambroé_Casearia lasiophylla 
+Cambuí_Myrciamultiflora
+Cambuí_Myrciaria floribunda
 Camélia_Camelia japonica
+Canafístula_Cassiaferruginea
 Canafístula_Peltophorum dubium
+Canela fedida_Ocotea bicolor Vattimo
+Canela sebo_Nectandra megapotamica
+Canela sebo_Ocotea puberula
+Canela_Ocoteaodorifera
+Canela_sassáfras Ocotea odorifera
+Canjerana_Cabralea canjerana
+Canjuja_Clethra scabra
 Canudo-de-pito_Senna bicapsularis
 Capim-limão_Cymbopogon citratus
 Capororoca_Myrsine guianensis
 Capororoca_Myrsine umbellata
-Cássia-fastuosa_Cassia leptophylla
+Capororoca_Rapanea umbellata
+Capororocão_Myrsine umbellata
+Capororoquinha_Myrsine coriacea
+Carne de vaca_Styrax leprosus
+Caroba_Jacaranda puberula
 Cássia_Senna macranthera
+Cássia-fastuosa_Cassia leptophylla
 Cássia-multijuga_Senna multijuga
+Castanheira-do-Brasil_Bertholletia excelsa
 Casuarina_Casuarina equisetifolia
 Caterete_Machaerium paraguariense
 Cedro-europeu_Chamaecyparis obtusa
 Cedro-rosa_Cedrela fissilis
 Cereja-do-japão_Prunus serrulata
+Cerejeira_do_Rio_Grande_Eugeniainvolucrata
+Cerejeira-do-japão_Prunus serrulata
+Chá_de_Bugre_Caseariasylvestris
+Chal_Chal_Allophyllusedulis
 Cheflera_Schefflera arboricola
 Chorão_Salix babylonica L.
 Cica_Cycas revoluta
 Cinamomo_Melia azedarach L.
 Cipreste_Cupressus lusitanica
 Clusia_Clusia fluminensis
+Cocão_Erythroxylum deciduum
+Copaíba_Copaifera langsdorffii
+Coracão de bugre_Maytenus evonymoides
 Coroa-de-cristo_Euphorbia milii
 Corticeira_Erythrina crista-galli L.
 Cotoneaster_Cotoneaster franchetti
+Craveiro Pimenta_pseudocaryophyllus
 Criptoméria_Cryptomeria japonica
 Cróton_Codiaeum variegatum
+Cuvatã_Cupania vernalis Cambess.
 Dama-da-noite_Cestrum nocturnum L.
 Dedaleiro_Lafoensia pacari
 Dracena_Dracaena marginata
 Embuia_Ocotea porosa
-Erva-mate_Ilex paraguariensis
+Erva mate_Ilex paraguariensis
+
 Espirradeira_Nerium oleander L.
 Eucalipto_Eucalyptus cinearea
 Extremosa_Lagerstroemia indica L.
+Falso Barbatimão_Cassia leptophylla
 Falso-hibisco_Malvaviscus arboreus
 Ficus_Ficus benjamina L.
 Ficus-variegata_Ficus benjamina
 Figueira_Ficus gomelleira
+Figueira_Ficus organensis
 Glicínia_Wisteria floribunda
 Goiaba_Psidium guajava L.
+Goiabeira_Psidium guajava L.
 Grama-Arachis repens
 Grama-preta_Aphiopogon japonicus
 Grama-são-carlos_Axonopus compressus
+Grápia_Apuleialeiocarpa
+Guabiju_Myrcianthespungens
 Guabiroba_Campomanesia xanthocarpa
+Guabirobeira_Campomanesia xanthocarpa
+Guaçatunga_Casearia decandra
+Guaçatunga_Casearia sylvestris
+Guamirim_Eugenia capitulifera
+Guamirim_Myrcia rostrata
 Guapuruvu_Schizolobium parahyba
+Guavirova_Campomanesia xanthocarpa
 Helicônia_Heliconia rostrata
 Hera_Hedera helix L.
 Hera-roxa_Hemigraphis alternata
 Hibísco_Hibiscus rosa-sinensis L.
 Hortênsia_Hydrangea macrophylla
-Ipê-amarelo-miúdo_Handroanthus chrysotrichus
+Ingá_Ingaedulis
+Ingá-feijão_Inga marginata
+Ipê mirim_Cybistax antisyphilitica
+Ipê_Amarelo_Handroanthusalbus
+Ipê_da_Serra_Tecomastans
+Ipê_Roxo_Handroanthusimpetiginosus
 Ipê-amarelo-graúdo_Handroanthus albus
+Ipê-amarelo-miúdo_Handroanthus chrysotrichus
 Ipê-roxo_Handroanthus heptaphyllus
 Ipê-verde_Cybistax antisyphillitica
 Íris-amarelo_Iris pseudacorus L.
 Iuca-gigante_Yucca gigantea
 Jabuticaba_Plinia trunciflora
+Jabuticabeira_Plinia trunciflora
+Jacarandá_Jacaranda mimosifolia
 Jacarandá-mimoso_Jacaranda mimosifolia    
 Jasmim-amarelo_Jasminum mesnyi
 Jasmim-dos-poetas_Jasminum polyanthum       
+Jatobá_Hymenaea courbaril
+Jequitiba-rosa_Cariniana legalis
 Jerivá_Syagrus romanzoffiana
+Juvevê_Celtis pubescens
 Koleutéria_Koelreuteria paniculada
+Leiteiro_Sapium glandulatum  
 Leiteiro_Sapium glandulosum
 Limão-rosa_Citrus limon
 Liquidambar_Liquidambar styraciflua L.
 Maçaranduba_Persea pyrifolia Nees
 Magnólia-branca_Magnolia grandiflora L.
+Mamica_Zanthoxylum rhoifolium 
 Manacá_Brunfelsia uniflora
+Manacá-da-serra_Tibouchina mutabilis
+Manacá-da-serra-anão_Tibouchina mutabilis var. Nana
+Manacá-da-serra-rosa_Tibouchina granulosa
+Manacá-de-cheiro_Brunfelsia uniflora
+Manacá-de-jardim_Brunfelsia latifolia
+Mangueira_Mangifera indica
+Marmeleiro_Dalbergia brasiliensis 
+Miguel pintado_Matayba elaeagnoides 
 Monjoleiro_Anadenanthera colubrina
 Mulungú_Erythrina speciosa
 Nêspera_Eriobotrya japonica
 Oliveira_Olea europaea L.
 Paineira_Ceiba speciosa
+Paineira_Rosa_Chorisiaspeciosa
 Palmeira-areca_Dypsis lutescens
 Palmeira-fenix_Phoenix roebelenii
 Palmeira-laca_Cyrstostachys renda
@@ -108,33 +177,51 @@ Palmeira-leque_Licuala grandis
 Palmeira-real_Archontophoenix alexandrae
 Palmito_Euterpe edulis
 Pata-de-vaca_Bauhinia forficata
+Pau incenso_Pittosporum undulatum 
+Pau pombo_Rhamnus sphaerosperma 
+Pau_de_Balsa_Ochromapyramidale
+Pau_de_Jangada_Heliocarpusamericanus
+Pau_de_Vinho_Cytharexyllummyrianthum
+Pau_Ferro_Caesalpiniaferrea
+Pau_Jacaré_Piptadeniagonoacantha
+Pau_Marfim_Balfourodendronriedelianum
 Pau-brasil_Caesalpinia echinata
 Pau-ferro_Libidibia ferrea
 Pau-incenso_Pittosporum undulatum
 Paxiúba_Socratea exorrhiza
+Pessegueiro-bravo_Prunus brasiliensis
+Pimenteira_Cinamodendron dinisii
 Pingo-de-ouro_Duranta erecta L
 Pinheiro_Pinus elliottii
 Pinheiro_Pinus patula
 Pinheiro-bravo_Podocarpus lambertii
 Pinheiro-de-cook_Araucaria columnaris
 Piracanta_Pyracantha coccinea
-Pitanga_Eugenia uniflora L.
+Pitanga_Eugenia uniflora L
+Pitangueira_Eugenia uniflora L.
 Piteira_Opuntia sp.
 Piteira-do-caribe_Agave angustifolia
 Primavera_Bougainvillea glabra
 Primavera-árvore_Bougainvillea arborea
+Quina_Solanum pseudoquina
 Robínia_Robinea pseudoacacia L.
 Rosa_Rosa sp.
 Rosa-miniatura_Rosa chinensis
 Sabugueiro_Sambucus nigra
 Sálvia_Salvia splendens
+Sassafraz-do-campo_Ocotea elegans
 Serissa_Serissa foetida
+Sete_Capotes_Campomanesiaguazumaefolia
 Sibipiruna_Caesalpinia pluviosaTagetes_Tagetes erecta L.
+Sucará_Xylosma pseudosalzmanii
 Tarumã_Vitex megapotamica
 Timbaúva_Enterolobium contortislliquum
 Tipuana_Tipuana tipu
 Tuia_Thuja occidentalis L.
+Uva Japão_Hovenia dulcis
 Uva-do-japão_Hovenia dulcis
 Uvarana_Cordyline spectabilis     
 Vacum_Allophylus eduli
+Vacum_Allophylus edulis
+Vassourão branco_Piptocarpha angustifolia
 Xaxim_Dicksonia sellowiana

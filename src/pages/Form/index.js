@@ -342,6 +342,18 @@ export default function Form() {
         onChange={(e, newValue) => setZoom(newValue)}
         aria-labelledby="zoom-slider"
         style={styles.slider}
+        sx={{
+          color: '#166034', // Cor principal do slider (trilha mínima e polegar)
+          '& .MuiSlider-thumb': {
+            backgroundColor: '#166034', // Cor do polegar
+          },
+          '& .MuiSlider-track': {
+            backgroundColor: '68A180', // Cor da trilha ativa (mínima)
+          },
+          '& .MuiSlider-rail': {
+            backgroundColor: '#d3d3d3', // Cor da trilha inativa (máxima)
+          },
+        }}
       />
       <View style={styles.zoomButtons}>
         <TouchableOpacity onPress={() => setZoom(zoom + 0.1)}>

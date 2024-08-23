@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   container: {
     width: width,
     height: '100%',
+    resizeMode: 'contain',
   },
 
   image: {
