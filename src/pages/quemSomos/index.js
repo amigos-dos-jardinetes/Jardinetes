@@ -7,12 +7,13 @@ import { useNavigation } from '@react-navigation/native';
 export default function quemSomos() {
 
   const navigation = useNavigation();
-
+  const scrollViewRef = useRef(null);
 
 
 
   return (
-   
+    <ScrollView ref={scrollViewRef}  style={styles.container3}>
+        
     <View style={styles.container}>
         <View style={styles.navbar}>
             <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
@@ -43,7 +44,7 @@ export default function quemSomos() {
 
         <Image source={require('../../assets/conhecaTitle.png')}  style={styles.title} />
 
-
+        
 
         <View style={styles.cards}>
             <View style={styles.card1}>
@@ -63,7 +64,30 @@ export default function quemSomos() {
             </View>
         </View>
 
+
+        <View style={styles.circContainer}>
+            <View style={styles.circVerde1}></View>
+            <View style={styles.circVerde2}></View>
+            <View style={styles.circVerde3}></View>
+            <View style={styles.circVerde4}></View>
         </View>
-     
+
+        <View style={styles.araucariaContainer}>
+             <Image source={require('../../assets/araucarias.png')}  style={styles.araucarias} />
+             <Image source={require('../../assets/araucarias.png')}  style={styles.araucarias2} />
+        </View>
+
+
+        <View style={styles.navbar2}>
+      <View style={styles.imageContainer22}>
+          <Image source={require('../../assets/UtfprBottom.png')}  style={styles.utfprImage3} />
+      </View>
+      </View>
+      <View style={styles.retBackground}></View>
+        </View>
+
+        
+        </ScrollView>
+        
   );
 }
