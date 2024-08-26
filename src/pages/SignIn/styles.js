@@ -89,6 +89,7 @@ export const styles = StyleSheet.create({
     height: 32,
     backgroundColor: '#B68F40',
     borderRadius: 7,
+    fontSize: width * 0.0104166666666667,
   },
   input2: {
     width: '75%',
@@ -96,6 +97,7 @@ export const styles = StyleSheet.create({
     height: 32,
     backgroundColor: '#00B44A',
     borderRadius: 7,
+    fontSize: width * 0.0104166666666667,
   },
 
   inpText: {

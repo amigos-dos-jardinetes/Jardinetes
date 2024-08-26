@@ -69,9 +69,9 @@ Caterete_Machaerium paraguariense
 Cedro-europeu_Chamaecyparis obtusa
 Cedro-rosa_Cedrela fissilis
 Cereja-do-japão_Prunus serrulata
-Cerejeira_do_Rio_Grande_Eugeniainvolucrata
+Cerejeira-do-Rio-Grande_Eugeniainvolucrata
 Cerejeira-do-japão_Prunus serrulata
-Chá_de_Bugre_Caseariasylvestris
+Chá-de-Bugre_Caseariasylvestris
 Chal_Chal_Allophyllusedulis
 Cheflera_Schefflera arboricola
 Chorão_Salix babylonica L.
@@ -94,7 +94,6 @@ Dedaleiro_Lafoensia pacari
 Dracena_Dracaena marginata
 Embuia_Ocotea porosa
 Erva mate_Ilex paraguariensis
-
 Espirradeira_Nerium oleander L.
 Eucalipto_Eucalyptus cinearea
 Extremosa_Lagerstroemia indica L.
@@ -149,7 +148,6 @@ Jerivá_Syagrus romanzoffiana
 Juvevê_Celtis pubescens
 Koleutéria_Koelreuteria paniculada
 Leiteiro_Sapium glandulatum  
-Leiteiro_Sapium glandulosum
 Limão-rosa_Citrus limon
 Liquidambar_Liquidambar styraciflua L.
 Maçaranduba_Persea pyrifolia Nees

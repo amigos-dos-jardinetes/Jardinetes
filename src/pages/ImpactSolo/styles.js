@@ -290,5 +290,9 @@ quatro: {
         alignItems: 'center',
         marginTop: width * 0.0520833333333333,
     },
+
+    backButton: {
+      marginLeft: width * 0.0052083333333333,
+    },
     
 });

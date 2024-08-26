@@ -18,13 +18,19 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    height: '140px',
+    height: width * 0.0729166666666667,
     backgroundColor: '#195439',
     position: 'absolute',
     top: 0,
     right: 0,
     width: '100%',
     zIndex: 2,
+  },
+
+  navbarButton: {
+    fontSize: width * 0.0166666666666667,
+    color: '#FFF',
+    fontWeight: 'bold'
   },
 
   navbar2: {
@@ -83,11 +89,6 @@ export const styles = StyleSheet.create({
     width: 144 * (width * 0.00067708333),
     height:57 * (width * 0.00067708333),
     marginLeft: width * 0.0208333333333333,
-  },
-  navbarButton: {
-    fontSize: width * 0.0166666666666667,
-    color: '#FFF',
-    fontWeight: 'bold'
   },
 
   card: {

@@ -297,7 +297,7 @@ export const styles = StyleSheet.create({
 
     infraContainer: {
         top: width * 0.2604166666666667,
-        left: width * 0.6041666666666667,
+        left: width * 0.62,
         position: 'absolute',
         flexDirection: 'row',
         alignItems: 'center',
@@ -615,7 +615,7 @@ export const styles = StyleSheet.create({
     },
 
       retPorc: {
-        width: width * 0.0260416666666667,
+        width: width * 0.038,
         height: width * 0.0260416666666667,
         position: 'absolute',
         backgroundColor: '#FFBC10',
@@ -627,7 +627,7 @@ export const styles = StyleSheet.create({
       },
 
       retPorc1: {
-        width: width * 0.0260416666666667,
+        width: width * 0.038,
         height: width * 0.0260416666666667,
         position: 'absolute',
         backgroundColor: '#B781FD',
@@ -639,7 +639,7 @@ export const styles = StyleSheet.create({
       },
 
       retPorc2: {
-        width: width * 0.0260416666666667,
+        width: width * 0.038,
         height: width * 0.0260416666666667,
         position: 'absolute',
         backgroundColor: '#FB9116',
@@ -651,7 +651,7 @@ export const styles = StyleSheet.create({
       },
 
       retPorc3: {
-        width: width * 0.0260416666666667,
+        width: width * 0.038,
         height: width * 0.0260416666666667,
         position: 'absolute',
         backgroundColor: '#FEACAC',

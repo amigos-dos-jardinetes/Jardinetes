@@ -144,7 +144,7 @@ export default function SignIn() {
             <TouchableOpacity onPress={() => navigation.navigate('JardinetesMap')}>
               <Text style={styles.navbarButton}>FAÇA SUA PARTE</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('')}>
+            <TouchableOpacity onPress={() => navigation.navigate('quemSomos')}>
               <Text style={styles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.replace('Contato')}>
@@ -172,7 +172,7 @@ export default function SignIn() {
               </TouchableOpacity>
             </View>
             <View style={styles.textcont}>
-              <Text style={styles.inpText}>Email:</Text>
+              <Text style={styles.inpText}>E-mail:</Text>
             </View>
 
             <TextInput

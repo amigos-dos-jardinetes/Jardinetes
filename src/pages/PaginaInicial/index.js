@@ -39,7 +39,7 @@ export default function PaginaInicial() {
                 <Text style={styles.navbarButton}>FAÇA SUA PARTE</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.replace('')}>
+            <TouchableOpacity onPress={() => navigation.replace('quemSomos')}>
                 <Text style={styles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
 
