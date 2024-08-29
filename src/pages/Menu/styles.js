@@ -227,7 +227,6 @@ export const styles = StyleSheet.create({
         position: 'relative',
         width: '100%',
         height: '100%', // Defina a altura desejada para os itens do carrossel
-        borderRadius: '8px',
         overflow: 'hidden',
         objectFit: 'cover', 
         alignSelf: 'center',
@@ -338,24 +337,18 @@ popupButtonContainer: {
 
     },
     borderedContainer: {
-        borderTopWidth: width * 0.00520833333333333333333333333333,
-        borderBottomWidth: width * 0.00520833333333333333333333333333,
-        borderRightWidth: width * 0.0078125,
-        borderLeftWidth: width * 0.0078125,
+        borderWidth: width * 0.0078125,
         borderColor: '#271c00',  // ou qualquer cor desejada para a borda
         borderRadius: width * 0.00625,  // ou qualquer valor desejado para a borda arredondada
 
     },
 
     borderedContainer2: {
-        borderTopWidth: width * 0.00416666666666666666666666666667,
-        borderBottomWidth: width * 0.0078125,
-        borderRightWidth: width * 0.0078125,
-        borderLeftWidth: width * 0.0078125,
+        borderWidth: width * 0.007,
         borderColor: '#271c00',  // ou qualquer cor desejada para a borda
         borderRadius: width * 0.00625,  // ou qualquer valor desejado para a borda arredondada
-        height: '100%',
-        width: '100%',
+        height: '93%',
+        width: '70%',
         alignItems: 'center',
         justifyContent: 'center',
    
@@ -382,9 +375,9 @@ popupButtonContainer: {
         top: 0,
         left: '0%',
         bottom: '1%',
-        borderRadius: width * 0.00625,  // ou qualquer valor desejado para a borda arredondada
+
         height: '100%',
-        width: '70%',
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
 
