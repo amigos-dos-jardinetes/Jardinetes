@@ -120,7 +120,7 @@ retBig: {
 },
 
 retMenor: {
-  left: width * 0.1041666666666667,
+  left: width * 0.05,
   marginTop: width * 0.0390625,
   backgroundColor: '#B68F40',
   borderRadius: 10,
@@ -131,7 +131,18 @@ retMenor: {
 },
 
 retMenor2: {
-  right: width * 0.1145833333333333,
+  right: width * 0.225,
+  marginTop: width * 0.0390625,
+  backgroundColor: '#B68F40',
+  borderRadius: 10,
+  borderColor:  '#271C00',
+  borderWidth: width * 0.0104166666666667,
+  width: width * 0.15625,
+  height: width * 0.15625,
+},
+
+retMenor3: {
+  left: width * 0.15,
   marginTop: width * 0.0390625,
   backgroundColor: '#B68F40',
   borderRadius: 10,
@@ -169,7 +180,7 @@ retMenorText3: {
 },
 
 conheca: {
-  marginTop: width * 0.1302083333333333,
+  marginTop: width * 0.01,
   width: width * 0.6578125,
   height: width * 0.0682291666666667,
 },
@@ -309,7 +320,7 @@ ponta2: {
         backgroundColor: '#166034',
         position: 'absolute',
         bottom: 0,
-        top: width * 3.776041666666667,
+        top: width * 4.11,
         right: 0,
         width: '100%',
 
@@ -399,5 +410,124 @@ ponta2: {
         left: '50%',
         top: width * 1.822916666666667,
       },
+
+      cidades: {
+          width: width * 0.1041666666666667,
+          height: width * 0.1041666666666667,
+          alignSelf: 'center',
+          top: width * 0.0234375,
+          left: width * 0.027,
+      },
+
+      educacao: {
+        width: width * 0.1041666666666667,
+        height: width * 0.1041666666666667,
+        left: width * 0.0572916666666667,
+        alignSelf: 'center',
+        top: width * 0.0208333333333333,
+    },
+    
+     saude: {
+      width: width * 0.1041666666666667,
+      height: width * 0.1041666666666667,
+      right: width * 0.133,
+      top: width * 0.0651041666666667,
+  },
+
+  nossosValores: {
+    marginTop: width * 0.0520833333333333,
+      width: width * 0.4130208333333333,
+      height: width * 0.0380208333333333,
+  },
+
+  sustentaInicIcon: {
+        width: width * 0.1244791666666667,
+        height: width * 0.1041666666666667,
+  
+  },
+
+  coletividadeInicIcon: {
+      width: width * 0.1515625,
+      height: width * 0.1046875,
+      left: width * 0.1302083333333333,
+  },
+
+  bemInicIcon: {
+    width: width * 0.1098958333333333,
+    height: width * 0.1015625,
+  },
+
+  desenvolvimentoInicIcon: {
+      width: width * 0.125,
+      height: width * 0.1380208333333333,
+  },
+
+  educaInicIcon: {
+      width: width * 0.128125,
+      height: width * 0.1145833333333333,
+      right: width * 0.1302083333333333,
+  },
+
+  column1: {
+      flexDirection: 'column',
+      marginTop: width * 0.0260416666666667,
+      alignItems: 'center',
+      justifyContent: 'center',
+      right: width * 0.15625,
+  },
+
+  column2: {
+    flexDirection: 'column',
+    marginTop: width * 0.0260416666666667,
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+
+column3: {
+  flexDirection: 'column',
+  marginTop: width * 0.0260416666666667,
+  alignItems: 'center',
+  justifyContent: 'center',
+  left: width * 0.15625,
+},
+
+    valoresText: {
+      marginTop: width * 0.0104166666666667,
+        color: 'black',
+        fontSize: width * 0.0166666666666667,
+        marginBottom: width * 0.0260416666666667,
+    },
+
+    valoresText1: {
+      marginTop: width * 0.0104166666666667,
+        color: 'black',
+        fontSize: width * 0.0166666666666667,
+        marginBottom: width * 0.0260416666666667,
+        left: width * 0.1302083333333333,
+        
+    },
+
+    valoresText2: {
+      marginTop: width * 0.0104166666666667,
+        color: 'black',
+        fontSize: width * 0.0166666666666667,
+        marginBottom: width * 0.0260416666666667,
+    },
+
+    valoresText3: {
+      marginTop: width * 0.0104166666666667,
+        color: 'black',
+        fontSize: width * 0.0166666666666667,
+        marginBottom: width * 0.0260416666666667,
+    },
+
+    valoresText4: {
+      marginTop: width * 0.0104166666666667,
+        color: 'black',
+        fontSize: width * 0.0166666666666667,
+        marginBottom: width * 0.0260416666666667,
+        right: width * 0.1302083333333333,
+    },
+
 
 });

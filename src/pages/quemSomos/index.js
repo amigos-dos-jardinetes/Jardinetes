@@ -20,7 +20,7 @@ export default function quemSomos() {
                 <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.replace('')}>
+            <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
                 <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
 
@@ -51,16 +51,21 @@ export default function quemSomos() {
                 <View style={styles.imageContainer}>
                     <Image source={require('../../assets/profePhoto.png')}  style={styles.photoContainer} />
                 </View>
+            <Text style={styles.titleText}>Professora</Text>
+            <Text style={styles.text}>  Professora, engenheira, mãe e entusiasta das pequenas áreas verdes.</Text>
             </View>
             <View style={styles.card2}>
                 <View style={styles.imageContainer}>
                     <Image source={require('../../assets/programmerPhoto.png')}  style={styles.photoContainer} />
                 </View>
+            <Text style={styles.titleText}>Programador</Text>
+            <Text style={styles.text}>  Técnico em informática, programador Full Stack, cursando Engenharia Mecatrônica.</Text>
             </View>
             <View style={styles.card3}>
                 <View style={styles.imageContainer}>
                     <Image source={require('../../assets/designerPhoto.png')}  style={styles.photoContainer} />
                 </View>
+                <Text style={styles.titleText}>Designer</Text>
             </View>
         </View>
 

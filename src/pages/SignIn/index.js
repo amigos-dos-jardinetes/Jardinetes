@@ -138,7 +138,7 @@ export default function SignIn() {
             <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')}>
               <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('')}>
+            <TouchableOpacity onPress={() => navigation.navigate('acoesSociais')}>
               <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('JardinetesMap')}>

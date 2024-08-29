@@ -22,6 +22,7 @@ import Seguranca from './src/pages/Seguranca';
 import Pertencimento from './src/pages/Pertencimento';
 import Redefinir from './src/pages/redefinir';
 import quemSomos from './src/pages/quemSomos';
+import acoesSociais from './src/pages/acoesSociais';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,7 @@ export default function App() {
         <Stack.Screen name="Pertencimento" component={Pertencimento} options={{ headerShown: false }} />
         <Stack.Screen name="Redefinir" component={Redefinir} options={{ headerShown: false }} />
         <Stack.Screen name="quemSomos" component={quemSomos} options={{ headerShown: false }} />
+        <Stack.Screen name="acoesSociais" component={acoesSociais} options={{ headerShown: false }} />
 
       </Stack.Navigator>
     </NavigationContainer>

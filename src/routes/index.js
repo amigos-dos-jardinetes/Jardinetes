@@ -21,6 +21,7 @@ import Seguranca from '../pages/Seguranca';
 import Pertencimento from '../pages/Pertencimento';
 import Redefinir from '../pages/redefinir';
 import quemSomos from '../pages/quemSomos';
+import acoesSociais from '../pages/acoesSociais';
 
 export default function AppRoutes() {
   return (
@@ -47,6 +48,7 @@ export default function AppRoutes() {
         <Route path="/Pertencimento" element={<Pertencimento />} />
         <Route path="/redefinir" element={<Redefinir />} />
         <Route path="/quemSomos" element={<quemSomos />} />
+        <Route path="/acoesSociais" element={<acoesSociais />} />
       </Routes>
     </Router>
   );

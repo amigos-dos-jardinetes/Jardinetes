@@ -208,6 +208,22 @@ export const styles = StyleSheet.create({
         width: '100%',
 
       },
+
+      titleText: {
+        fontSize: width * 0.0145833333333333,
+        color: 'white',
+        marginTop: width * 0.0104166666666667,
+      },
+
+      text: {
+        fontSize: width * 0.0104166666666667,
+        color: 'white',
+        marginTop: width * 0.0104166666666667,
+        alignSelf: 'center',
+        marginRight: width * 0.015625,
+        marginLeft: width * 0.015625,
+        textAlign: 'justify',
+      },
     
     
 });

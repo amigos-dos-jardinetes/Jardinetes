@@ -40,7 +40,7 @@ export default function Contato() {
               <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.replace('')}>
+            <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
               <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
 

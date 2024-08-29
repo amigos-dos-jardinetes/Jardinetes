@@ -31,7 +31,7 @@ export default function PaginaInicial() {
                 <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.replace('')}>
+            <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
                 <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
 
@@ -75,17 +75,52 @@ export default function PaginaInicial() {
     <Text style={styles.retBigText}>   Para este projeto, são selecionados espaços de até 700m², conforme a medição disponível no site da prefeitura. Além dos jardinetes, praças, largos, núcleos ambientais e áreas de manutenção públicas também podem ser considerados.</Text>
   </View>
 <View style={styles.column}>
-  <View style={styles.retMenor}>
-      <Text style={styles.retMenorText}>O projeto está sintonizado com os ODS 3 - Saúde e bem-estar, ODS 4 - Educação de qualidade e ODS 11 - Cidades e comunidades sustentáveis.</Text>
-  </View>
-  <View style={styles.retMenor2}>
-      <Text style={styles.retMenorText}>Objetivo do projeto: Reconectar as pessoas aos espaços urbanos por meio do cuidado dos jardinetes e demais áreas verdes das cidades.</Text>
-  </View>
-  <View style={styles.retMenor}>
-      <Text style={styles.retMenorText3}>O projeto contribui para a “ecologia e democracia local”, por meio das ações: (1) participação de pessoas interessadas; (2) educação ambiental; (3) novos modelos de habitação e vizinhança.</Text>
-  </View>
+    <View style={styles.row}>
+         <Image source={require('../../assets/cidades.png')}  style={styles.cidades} />
+         <View style={styles.retMenor}>
+            <Text style={styles.retMenorText}>O projeto está sintonizado com os ODS 3 - Saúde e bem-estar, ODS 4 - Educação de qualidade e ODS 11 - Cidades e comunidades sustentáveis.</Text>
+         </View>
+    </View>
+    <View style={styles.row}>
+         <Image source={require('../../assets/educacao.png')}  style={styles.educacao} />
+         <View style={styles.retMenor2}>
+            <Text style={styles.retMenorText}>Objetivo do projeto: Reconectar as pessoas aos espaços urbanos por meio do cuidado dos jardinetes e demais áreas verdes das cidades.</Text>
+        </View>
+    </View>
+    <View style={styles.row}>
+        <View style={styles.retMenor3}>
+          <Text style={styles.retMenorText3}>O projeto contribui para a “ecologia e democracia local”, por meio das ações: (1) participação de pessoas interessadas; (2) educação ambiental; (3) novos modelos de habitação e vizinhança.</Text>
+        </View>
+        <Image source={require('../../assets/saude.png')}  style={styles.saude} />
+    </View>
   </View>
 </View>
+
+
+
+<Image source={require('../../assets/nossosValores.png')}  style={styles.nossosValores} />
+<View style={styles.row}>   
+<View style={styles.column1}>
+    <Image source={require('../../assets/sustentaInicIcon.png')}  style={styles.sustentaInicIcon} />
+    <Text style={styles.valoresText}>Sustentabilidade</Text>
+    <Image source={require('../../assets/coletividadeInicIcon.png')}  style={styles.coletividadeInicIcon} />
+    <Text style={styles.valoresText1}>Coletividade</Text>
+</View>
+<View style={styles.column2}>
+    <Image source={require('../../assets/desenvolvimentoInicIcon.png')}  style={styles.desenvolvimentoInicIcon} />
+    <Text style={styles.valoresText2}>Desenvolvimento</Text>
+</View>
+<View style={styles.column3}>
+    <Image source={require('../../assets/bemInicIcon.png')}  style={styles.bemInicIcon} />
+    <Text style={styles.valoresText3}>Bem estar</Text>
+    <Image source={require('../../assets/educaInicIcon.png')}  style={styles.educaInicIcon} />
+    <Text style={styles.valoresText4}>Educação</Text>
+</View>
+</View>
+
+
+
+
 
 <Image source={require('../../assets/conheca.png')}  style={styles.conheca} />
 
@@ -106,6 +141,9 @@ export default function PaginaInicial() {
 </View>
 
 </View>
+
+
+
 
 
 <Image source={require('../../assets/curiosidadesTitle.png')}  style={styles.curiosidadestitle} />
