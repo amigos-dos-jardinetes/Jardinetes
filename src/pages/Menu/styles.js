@@ -273,10 +273,10 @@ export const styles = StyleSheet.create({
         bottom: '10px',
         width: '100%',
         background: 'rgba(255, 255, 255, 0.8)',
-        color: 'white',
+        color: 'black',
         padding: '5%',
         margin: '0',
-        fontSize: '20px',
+        fontSize: width * 0.0166666666666667,
         textAlign: 'center',
 
     },
