@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { ScrollView, ImageBackground, View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Image, Modal, CheckBox } from 'react-native';
+import { ScrollView, ImageBackground, View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Image, Modal, CheckBox, Dimensions } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, setDoc, doc } from 'firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 import cadPage from '../../assets/cadPage.png';
 import { styles } from '../SignUp/styles';
+import { Ionicons } from '@expo/vector-icons'; 
 
 const firebaseConfig = {
     apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
@@ -19,6 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
+const { width, height } = Dimensions.get('window');
 
 export default function SignUp() {
     const [username, setUsername] = useState('');
@@ -86,6 +88,9 @@ export default function SignUp() {
             <ScrollView contentContainerStyle={styles.scrollViewContent} ref={scrollViewRef}>
                 <ImageBackground source={cadPage} resizeMode="cover" style={styles.image}>
                     <View style={styles.container}>
+                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={width * 0.025} color="white" />
+        </TouchableOpacity>
                         <View style={styles.card}>
                             <Text style={styles.title}>Cadastro</Text>
 

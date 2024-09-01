@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
         bottom: 0,
         right: 0,
         width: '100%',
-       top: width * 0.8854166666666667,
+       top: width * 0.58,
       },
 
       imageContainer22: {
@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         width: width,
-        height: width * 0.3645833333333333,    
+        height: width * 0.277,    
 
       },
 
@@ -79,7 +79,7 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         width: '60%',
         marginLeft: width * 0.0260416666666667,
-        marginTop: width * 0.0177083333333333,
+        marginTop: width * 0.025,
 
       
     },
@@ -153,11 +153,11 @@ araucarias: {
 },
 
 imageContainer33: {
-  top: width * 0.3645833333333333,
   flexDirection: 'row',
   justifyContent: 'flex-end',
   alignItems: 'center',
   marginRight: width * 0.0104166666666667, 
+  top: width * 0.13,
 },
 
 
@@ -184,7 +184,7 @@ imageContainer33: {
         borderRadius: width * 0.0260416666666667,
         flexDirection: 'column',
         width: width * 0.32,
-        height: width * 0.33,
+        height: width * 0.25,
        alignItems: 'flex-start',
 
 
@@ -227,7 +227,7 @@ imageContainer33: {
 resultItem: {
   justifyContent: 'flex-start',
   marginTop: width * 0.0104166666666667,
-marginBottom: width * 0.0104166666666667,
+  marginBottom: width * 0.0104166666666667,
    width: width * 0.22,
     height: width * 0.0416666666666667,
     borderRadius: width * 0.0104166666666667,
@@ -284,7 +284,7 @@ detailsContainer: {
   width: width * 0.28,
   right: width * 0.0192708333333333,
   position: 'absolute',
-  bottom: width * 0.13,
+  bottom: width * 0.088,
   backgroundColor: '#FFFFFF',
   borderRadius: width * 0.0052083333333333,
   padding: width * 0.0104166666666667,

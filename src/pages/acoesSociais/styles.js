@@ -184,7 +184,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#166034',
         position: 'absolute',
         bottom: 0,
-        top: width * 0.82,
+        top: width * 0.81,
         right: 0,
         width: '100%',
 

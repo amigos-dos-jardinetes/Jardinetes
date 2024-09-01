@@ -66,8 +66,15 @@ export const styles = StyleSheet.create({
         borderRadius: (5 / 1920) * width,
         alignItems: 'center',
         width: (400 / 1920) * width,
-        marginTop: (50 / 1920) * width
+        marginTop: (50 / 1920) * width,
+        marginBottom: (10 / 1920) * width,
     },
+
+    backButton: {
+        marginLeft: width * 0.004,
+        top: -(width * 0.2)
+      },
+
     buttonText: {
         color: 'white',
         fontSize: (24 / 1920) * width,

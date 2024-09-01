@@ -237,11 +237,7 @@ export default function JardinetesMap() {
                 </View>
             </View>
 
-            <View style={styles.container_gaia}>
-                <Image source={require('../../assets/gaia.png')} style={styles.image} />
-                <Image source={require('../../assets/linha.png')} style={styles.linha} />
-                <Image source={require('../../assets/balao.png')} style={styles.balao} />
-            </View>
+        
 
             <View style={styles.imageContainer33}>
                 <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
