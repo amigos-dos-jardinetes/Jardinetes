@@ -17,8 +17,8 @@ export const styles = StyleSheet.create({
 
   errorText: {
     color: 'red',
-    fontSize: 14,
-    marginVertical: 5,
+    fontSize: width * 0.0072916666666667,
+    marginVertical: width * 0.0026041666666667,
     textAlign: 'center',
   },
 
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     zIndex: 1,
     position: 'absolute',
     backgroundColor: '#FFFEF4', 
-    borderRadius: 85,
+    borderRadius: width * 0.0442708333333333,
     top: '28%',
     width: '30%',
     height: '50%',
@@ -86,29 +86,29 @@ export const styles = StyleSheet.create({
 
   input: {
     width: '75%',
-    height: 32,
+    height: width * 0.02,
     backgroundColor: '#B68F40',
-    borderRadius: 7,
+    borderRadius: width * 0.0036458333333333,
     fontSize: width * 0.0104166666666667,
   },
   input2: {
     width: '75%',
-    marginTop: 4,
-    height: 32,
+    marginTop: width * 0.0020833333333333,
+    height: width * 0.02,
     backgroundColor: '#00B44A',
-    borderRadius: 7,
+    borderRadius: width * 0.0036458333333333,
     fontSize: width * 0.0104166666666667,
   },
 
   inpText: {
-    marginBottom: 4,
-    borderRadius: 7,
+    marginBottom: width * 0.0020833333333333,
+    borderRadius:  width * 0.0036458333333333,
     fontSize: width * 0.01,
     alignItems: 'flex-start',
   },
   inpText2: {
-    marginTop: 20,
-    borderRadius: 7,
+    marginTop: width * 0.0104166666666667,
+    borderRadius: width * 0.0036458333333333,
     fontSize: width * 0.01,
     alignItems: 'flex-start',
   },
@@ -124,12 +124,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center', 
   },
   checkboxLabel: {
-    marginLeft: 8, 
+    marginLeft: width * 0.0041666666666667, 
     fontSize: width * 0.0075,
   },
 
   checkcont: {
-    marginTop: 5,
+    marginTop: width * 0.0026041666666667,
     left: '-20.78%'
   },
 
@@ -143,12 +143,12 @@ export const styles = StyleSheet.create({
   },
 
   buttonLogin: {
-    marginTop: 30,
+    marginTop: width * 0.015625,
     backgroundColor: '#166034', 
     color: 'white', 
     paddingVertical: '1%', 
     paddingHorizontal: '12%', 
-    borderRadius: 30, 
+    borderRadius: width * 0.015625,
   },
   buttonTextLogin: {
     color: 'white', 
@@ -157,7 +157,7 @@ export const styles = StyleSheet.create({
     fontSize: width * 0.016,
   },
   buttonGoogle: {
-    marginTop: 10,
+    marginTop: width * 0.0052083333333333,
   },
   imageGoogle: {
     width: width * 0.026041666666666,
@@ -165,7 +165,7 @@ export const styles = StyleSheet.create({
   },
 
   signUp: {
-    marginTop: 10,
+    marginTop: width * 0.0052083333333333,
   },
 
   signUpText: {
