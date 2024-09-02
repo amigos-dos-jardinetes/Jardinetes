@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, TouchableOpacity, Text, Image, Linking, ActivityIndicator } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text, Image, Linking, ActivityIndicator, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Importa o CSS necessário
@@ -14,7 +14,8 @@ export default function acoesSociais() {
   const scrollViewRef = useRef(null);
   const [jardinetes, setJardinetes] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const { width, height } = Dimensions.get('window');
+  
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
@@ -144,14 +145,14 @@ export default function acoesSociais() {
     renderIndicator={(onClickHandler, isSelected, index, label) => {
       const indicatorStyle = {
         position: 'relative',
-        bottom: '20px',  // Ajusta essa propriedade para mover para cima
+        bottom: width * 0.0104166666666667,  // Ajusta essa propriedade para mover para cima
         transform: 'translateX(-50%)',
         display: 'inline-block',
         marginRight: '8px',
         cursor: 'pointer',
         borderRadius: '50%',
-        width: isSelected ? '12px' : '10px',
-        height: isSelected ? '12px' : '10px',
+        width: isSelected ? width * 0.00625 : width * 0.0052083333333333,
+        height: isSelected ? width * 0.00625 : width * 0.0052083333333333,
         backgroundColor: isSelected ? '#fff' : '#ccc',
       };
 

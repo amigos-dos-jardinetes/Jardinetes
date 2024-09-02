@@ -52,6 +52,7 @@ export default function quemSomos() {
                     <Image source={require('../../assets/profePhoto.png')}  style={styles.photoContainer} />
                 </View>
             <Text style={styles.titleText}>Professora</Text>
+            <Text style={styles.titleText2}>SIMONE CROCETTI</Text>
             <Text style={styles.text}>  Professora, engenheira, mãe e entusiasta das pequenas áreas verdes.</Text>
             </View>
             <View style={styles.card2}>
@@ -59,6 +60,7 @@ export default function quemSomos() {
                     <Image source={require('../../assets/programmerPhoto.png')}  style={styles.photoContainer} />
                 </View>
             <Text style={styles.titleText}>Programador</Text>
+            <Text style={styles.titleText2}>VICTOR PERCIO</Text>
             <Text style={styles.text}>  Técnico em informática, programador Full Stack, cursando Engenharia Mecatrônica.</Text>
             </View>
             <View style={styles.card3}>
@@ -66,6 +68,8 @@ export default function quemSomos() {
                     <Image source={require('../../assets/designerPhoto.png')}  style={styles.photoContainer} />
                 </View>
                 <Text style={styles.titleText}>Designer</Text>
+                <Text style={styles.titleText2}>JORDANA DE OLIVEIRA FURLAN</Text>
+                <Text style={styles.text}>  Me chamo Jordana, sou estudante de Design Gráfico na UTFPR e atualmente participo do projeto de extensão como UI-UX designer, uma área na qual me apaixonei profundamente. Também sou muralista e ilustradora, acredito que essas experiências externas contribuiram muito com meu apredizado dentro da equipe.</Text>
             </View>
         </View>
 

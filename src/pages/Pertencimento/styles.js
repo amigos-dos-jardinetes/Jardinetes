@@ -50,8 +50,8 @@ export const styles = StyleSheet.create({
     },
 
     title: {
-        width: width * 0.3307291666666667,
-        height: width * 0.0338541666666667,
+        width: width * 0.4723958333333333,
+        height: width * 0.0458333333333333,
     },
 
     bemTitle: {

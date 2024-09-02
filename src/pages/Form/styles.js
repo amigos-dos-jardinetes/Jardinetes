@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
   },
 
   vamos:{
-    width: (630 / 1920) * width,
-    height: (69 / 1920) * width,
+    width: (699 / 1920) * width,
+    height: (77 / 1920) * width,
     top: (350 / 1920) * width,
     position: 'absolute',
   },
@@ -66,6 +66,7 @@ export const styles = StyleSheet.create({
     marginBottom: (20 / 1920) * width,
     backgroundColor: '#166034',
     color: 'white',
+    fontSize: (20 / 1920) * width,
   },
   bola:{
     zIndex: -1,
@@ -111,6 +112,7 @@ export const styles = StyleSheet.create({
     marginBottom: (20 / 1920) * width,
     backgroundColor: '#4C6523', 
     color: 'white',
+    fontSize: (20 / 1920) * width,
   },
   button: {
     backgroundColor: '#6f8a3b', // verde do botão

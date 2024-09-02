@@ -50,12 +50,12 @@ export const styles = StyleSheet.create({
     },
 
     title: {
-        width: width * 0.2395833333333333,
-        height: width * 0.0401041666666667,
+        width: width * 0.3489583333333333,
+        height: width * 0.0651041666666667,
     },
 
     bemTitle: {
-        top: width * 0.1041666666666667,
+        top: width * 0.0965,
         position: 'absolute',
     },
 

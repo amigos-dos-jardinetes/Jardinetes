@@ -76,7 +76,7 @@ export const styles = StyleSheet.create({
 
 
     analise: {
-        width: width * 0.296875,
+        width: width * 0.3505208333333333,
         height: width * 0.0416666666666667,
         top: width * 0.1822916666666667,
     },
@@ -399,7 +399,7 @@ export const styles = StyleSheet.create({
     },
 
     pertText: {
-        width: (width * 0.1416666666666667) * 1.15,
+        width: (width * 0.153125) * 1.15,
         height: (width * 0.0145833333333333) * 1.15,
     },
 
@@ -664,7 +664,7 @@ export const styles = StyleSheet.create({
       },
 
       textPerc:{
-        fontSize: 18,
+        fontSize: width * 0.009375,
         color: 'white',
         fontWeight: 'bold',
       },

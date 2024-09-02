@@ -87,8 +87,8 @@ export const styles = StyleSheet.create({
       },
 
       parceirosTitle: {
-        width: width * 0.2859375,
-        height: width * 0.021875,
+        width: width * 0.3052083333333333,
+        height: width * 0.025,
       },
 
       retOrange: {
@@ -228,7 +228,7 @@ export const styles = StyleSheet.create({
       // Estilo para o texto do nome do jardinete
       carouselText: {
         position: 'absolute',
-        bottom: '10px',
+        bottom: '20px',
         width: '100%',
         background: 'rgba(255, 255, 255, 0.8)',
         color: 'black',

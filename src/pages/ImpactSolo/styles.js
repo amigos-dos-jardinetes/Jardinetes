@@ -110,8 +110,8 @@ export const styles = StyleSheet.create({
 
     seguranca: {
         marginTop: width * 0.05,
-        width: width * 0.3067708333333333,
-        height: width * 0.0510416666666667,
+        width: width * 0.3520833333333333,
+        height: width * 0.0588541666666667,
     },
 
     card1:{
@@ -278,7 +278,7 @@ quatro: {
 },
 
     textNumber:{
-      fontSize: 64,
+      fontSize: width * 0.0333333333333333,
       color: "white",
     },
 
