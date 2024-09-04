@@ -11,7 +11,6 @@ import Accept from '../pages/Accept';
 import Form from '../pages/Form';
 import Tree from '../pages/Tree';
 import Impact from '../pages/Impact';
-import MeusJardinetes from '../pages/MeusJardinetes';
 import JardinetesMap from '../pages/JardinetesMap';
 import ImpactSolo from '../pages/ImpactSolo';
 import AnaliseFinal from '../pages/AnaliseFinal';
@@ -22,6 +21,7 @@ import Pertencimento from '../pages/Pertencimento';
 import Redefinir from '../pages/redefinir';
 import quemSomos from '../pages/quemSomos';
 import acoesSociais from '../pages/acoesSociais';
+import minhasAnalises from '../pages/minhasAnalises';
 
 export default function AppRoutes() {
   return (
@@ -38,7 +38,6 @@ export default function AppRoutes() {
         <Route path="/form" element={<Form />} />
         <Route path="/tree" element={<Tree />} />
         <Route path="/impact" element={<Impact />} />
-        <Route path="/meus-jardinetes" element={<MeusJardinetes />} />
         <Route path="/jardinetes-map" element={<JardinetesMap />} />
         <Route path="/impact-solo" element={<ImpactSolo />} />
         <Route path="/AnaliseFinal" element={<AnaliseFinal />} />
@@ -49,6 +48,7 @@ export default function AppRoutes() {
         <Route path="/redefinir" element={<Redefinir />} />
         <Route path="/quemSomos" element={<quemSomos />} />
         <Route path="/acoesSociais" element={<acoesSociais />} />
+        <Route path="/minhasAnalises" element={<minhasAnalises />} />
       </Routes>
     </Router>
   );

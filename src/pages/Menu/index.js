@@ -307,7 +307,7 @@ export default function Menu() {
                 <TouchableOpacity onPress={() => navigation.navigate('Accept')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Criar Jardinete</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('JardinetesMap')} style={styles.navi}>
+                <TouchableOpacity onPress={() => navigation.navigate('minhasAnalises')} style={styles.navi}>
                     <Text style={styles.navbarButton}>Minhas Análises</Text>
                 </TouchableOpacity>
 
