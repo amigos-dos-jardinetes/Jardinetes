@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, TouchableOpacity, Text, Image, Dimensions } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text, Image, Dimensions, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from '../minhasAnalises/styles.js';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayRemove} from 'firebase/firestore';
 import { Ionicons } from '@expo/vector-icons';
 import { userSearchData } from '../../../functions';
 import { getStorage } from 'firebase/storage';
@@ -13,28 +13,19 @@ export default function minhasAnalises() {
   const scrollViewRef = useRef(null);
   const [jardinetes, setJardinetes] = useState([]);
   const [imageUrl, setImageUrl] = useState(null);
-  const [currentPage, setCurrentPage] = useState(0); // Estado para a paginação
+  const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 3;
   const auth = getAuth();
   const firestore = getFirestore();
   const storage = getStorage();
+  const { width } = Dimensions.get('window');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedJardineteId, setSelectedJardineteId] = useState(null); // Estado para armazenar o ID do jardinete selecionado para exclusão
   const [userName, setUserName] = useState('');
   const [wallpaper, setWallpaper] = useState(null);
   const [email, setEmail] = useState('');
   const [pracasSeguidas, setPracasSeguidas] = useState([]);
-  const { width, height } = Dimensions.get('window');
-  const [novoJardineteDocId, setNovoJardineteDocId] = useState(null);
   
-  useEffect(() => {
-    const unsubscribe = userSearchData(auth, firestore, storage, navigation, setJardinetes, setImageUrl);
-
-    return () => {
-      if (unsubscribe && typeof unsubscribe === 'function') {
-        unsubscribe();
-      }
-    };
-  }, []);
-
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -46,7 +37,16 @@ export default function minhasAnalises() {
   }, []);
 
 
-  // Função para buscar os detalhes dos jardinetes na coleção 'jardinetes'
+  useEffect(() => {
+    const unsubscribe = userSearchData(auth, firestore, storage, navigation, setJardinetes, setImageUrl);
+
+    return () => {
+      if (unsubscribe && typeof unsubscribe === 'function') {
+        unsubscribe();
+      }
+    };
+  }, []);
+
   const fetchJardineteDetails = async () => {
     const userRef = doc(firestore, 'users', auth.currentUser.uid);
     const userSnap = await getDoc(userRef);
@@ -68,19 +68,17 @@ export default function minhasAnalises() {
       setJardinetes(jardinetesData.filter(j => j));
     }
   };
-  
+
   useEffect(() => {
     fetchJardineteDetails();
   }, []);
 
-  // Função para calcular os jardinetes a serem mostrados na página atual
   const jardinetesToShow = Array.isArray(jardinetes)
     ? jardinetes.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
     : [];
 
   const totalPages = Math.ceil(jardinetes.length / itemsPerPage);
 
-  // Funções para navegação de páginas
   const goToNextPage = () => {
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
@@ -90,6 +88,33 @@ export default function minhasAnalises() {
   const goToPreviousPage = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // Função para abrir o modal e definir o ID do jardinete a ser excluído
+  const openDeleteModal = (jardineteId) => {
+    setSelectedJardineteId(jardineteId);
+    setModalVisible(true);
+  };
+
+  // Função para excluir o jardinete selecionado
+  const deleteJardinete = async () => {
+    try {
+      // Exclui o documento do jardinete
+      await deleteDoc(doc(firestore, 'jardinetes', selectedJardineteId));
+  
+      // Remove o ID do jardinete do array de jardinetes no documento do usuário
+      const userRef = doc(firestore, 'users', auth.currentUser.uid);
+      await updateDoc(userRef, {
+        jardinetes: arrayRemove(selectedJardineteId),
+      });
+  
+      // Atualiza o estado local, removendo o jardinete excluído
+      setJardinetes((prevJardinetes) => prevJardinetes.filter((j) => j.id !== selectedJardineteId));
+  
+      setModalVisible(false); // Fecha o modal após a exclusão
+    } catch (error) {
+      console.error('Erro ao excluir o jardinete:', error);
     }
   };
 
@@ -105,34 +130,38 @@ export default function minhasAnalises() {
           </TouchableOpacity>
 
           <View style={styles.imageContainer}>
-              {imageUrl ? (
-                <Image
-                  style={styles.logoImage}
-                  source={{
-                    uri: imageUrl,
-                  }}
-                />
-              ) : (
-                <Image
+            {imageUrl ? (
+              <Image
                 style={styles.logoImage}
-                source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
-            />
-              )}
-            </View>
+                source={{ uri: imageUrl }}
+              />
+            ) : (
+              <Image
+                style={styles.logoImage}
+                source={require('../../assets/defaultImage.png')}
+              />
+            )}
           </View>
+        </View>
 
         <View style={styles.card}>
           <View style={styles.jardinetesContainer}>
             {jardinetesToShow.length > 0 ? (
               jardinetesToShow.map((jardinete, index) => (
                 <View key={index} style={styles.jardineteWrapper}>
-                  {/* Quadrado do jardinete */}
                   <View style={styles.jardineteItem}>
-                    <Text style={styles.jardineteName}>{jardinete.nome}</Text> {/* Nome acima da imagem */}
+                    {/* Botão de exclusão */}
+                    <TouchableOpacity
+                      style={styles.deleteButton}
+                      onPress={() => openDeleteModal(jardinete.id)}
+                    >
+                      <Ionicons name="close" size={width * 0.0166666666666667} color="red" />
+                    </TouchableOpacity>
+
+                    <Text style={styles.jardineteName}>{jardinete.nome}</Text>
                     <Image style={styles.jardinetePhoto} source={{ uri: jardinete.jardinetePhoto }} />
                   </View>
 
-                  {/* Novo quadrado com botões de visualizar e editar fora do quadrado do jardinete */}
                   <View style={styles.jardineteActions}>
                     <TouchableOpacity
                       style={styles.viewButton}
@@ -142,14 +171,11 @@ export default function minhasAnalises() {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-  style={styles.editButton}
-  onPress={() => {
-    console.log("Jardinete ID:", jardinete.id); // Log do ID do jardinete
-    navigation.navigate('Form', { novoJardineteDocId: jardinete.id });
-  }}
->
-  <Text style={styles.buttonText}>Editar</Text>
-</TouchableOpacity>
+                      style={styles.editButton}
+                      onPress={() => navigation.navigate('Form', { novoJardineteDocId: jardinete.id })}
+                    >
+                      <Text style={styles.buttonText}>Editar</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
               ))
@@ -164,7 +190,7 @@ export default function minhasAnalises() {
                 <Ionicons name="arrow-back" size={width * 0.0260416666666667} color={currentPage === 0 ? "#ccc" : "#271C00"} />
               </TouchableOpacity>
 
-              <Text style={styles.pageNumberText}>{currentPage + 1}</Text> {/* Número da página atual */}
+              <Text style={styles.pageNumberText}>{currentPage + 1}</Text>
 
               <TouchableOpacity onPress={goToNextPage} disabled={currentPage === totalPages - 1}>
                 <Ionicons name="arrow-forward" size={width * 0.0260416666666667} color={currentPage === totalPages - 1 ? "#ccc" : "#271C00"} />
@@ -183,6 +209,36 @@ export default function minhasAnalises() {
           </View>
         </View>
       </View>
+
+      {/* Modal de confirmação de exclusão */}
+      <Modal
+  visible={modalVisible}
+  transparent={true}
+  animationType="fade"
+  onRequestClose={() => setModalVisible(false)}
+>
+  <View style={styles.modalContainer}>
+    <View style={styles.modalContent}>
+      <Text style={styles.modalText}>Tem certeza que deseja excluir este jardinete?</Text>
+
+      <View style={styles.modalButtons}>
+        <TouchableOpacity
+          style={styles.cancelButton}
+          onPress={() => setModalVisible(false)}
+        >
+          <Text style={styles.buttonText2}>Cancelar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.confirmButton}
+          onPress={deleteJardinete}
+        >
+          <Text style={styles.buttonText2}>Excluir</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </View>
+</Modal>
     </ScrollView>
   );
 }

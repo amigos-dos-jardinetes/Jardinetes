@@ -186,6 +186,9 @@ jardineteName: {
   textAlign: 'center',
   fontSize: width * 0.0145833333333333,
   fontWeight: 'bold',
+  backgroundColor: '#B68F40',
+  padding: width * 0.0036458333333333,
+  borderRadius: width * 0.003125,
 },
 paginationContainer: {
   flexDirection: 'row',
@@ -231,4 +234,60 @@ buttonText: {
   color: 'white',
   fontSize: width * 0.0135416666666667,
 },
+
+deleteButton: {
+  position: 'absolute',
+  top: width * 0.0026041666666667,
+  right: width * 0.0026041666666667,
+  backgroundColor: '#271C00',
+  padding: width * 0.0015625,
+  borderRadius: width * 0.0026041666666667,
+},
+
+modalContainer: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semi-transparente para destacar o modal
+},
+
+modalContent: {
+  width: '80%', // Define a largura do modal como 80% da tela
+  height: '40%', // Define a altura do modal como 40% da tela
+  backgroundColor: 'white',
+  borderRadius: width * 0.0052083333333333, // Borda arredondada
+  padding: width * 0.0104166666666667, // Espaçamento interno
+  justifyContent: 'center', // Centraliza o conteúdo verticalmente
+  alignItems: 'center', // Centraliza o conteúdo horizontalmente
+},
+modalText: {
+  fontSize: width * 0.009375,
+  marginBottom: width * 0.0104166666666667,
+  textAlign: 'center',
+},
+modalButtons: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  width: '100%',
+},
+cancelButton: {
+  backgroundColor: '#ccc',
+  padding: width * 0.0052083333333333,
+  borderRadius: width * 0.0026041666666667,
+  flex: 1,
+  marginRight: width * 0.0052083333333333,
+  alignItems: 'center',
+},
+confirmButton: {
+  backgroundColor: 'red',
+  padding: width * 0.0052083333333333,
+  borderRadius: width * 0.0026041666666667,
+  flex: 1,
+  alignItems: 'center',
+},
+buttonText2: {
+  color: 'white',
+  fontSize: width * 0.0083333333333333,
+},
+
 });
