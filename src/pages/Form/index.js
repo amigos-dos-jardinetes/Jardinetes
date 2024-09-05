@@ -85,6 +85,11 @@ export default function Form() {
           setDensidade(jardineteData.densidade || '');
           setRenda(jardineteData.renda || '');
           setPatrimonio(jardineteData.patrimonio || '');
+  
+          // Verifica se o documento possui uma imagem e a define
+          if (jardineteData.jardinetePhoto) {
+            setImagem(jardineteData.jardinetePhoto);
+          }
         } else {
           console.error('O documento do jardinete não foi encontrado.');
         }
@@ -92,11 +97,12 @@ export default function Form() {
         console.error('Erro ao carregar os dados do jardinete:', error);
       }
     };
-
+  
     if (novoJardineteDocId) {
       loadJardineteData();
     }
   }, [novoJardineteDocId]);
+  
 
   const handleSubmit = async () => {
     try {
@@ -219,7 +225,7 @@ export default function Form() {
       {imagem ? (
   <TouchableOpacity onPress={selecionarImagem}>
     <Image
-      source={{ uri: imagem }}
+      source={{ uri: imagem }}  // Exibe a imagem já existente
       style={{ 
         width: (355.5555555555556 / 1920) * width, 
         height: (200 / 1920) * width, 

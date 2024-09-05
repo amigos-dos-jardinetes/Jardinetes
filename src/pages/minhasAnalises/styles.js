@@ -144,16 +144,91 @@ araucarias: {
 },
 
 giantRet: {
-        top: -300,
-        width: 3000,
-        height: 800,
+        top: -(width * 0.1041666666666667),
+        width: width * 0.6770833333333333,
+        height: width * 0.4166666666666667,
         overflow: 'hidden',
         backgroundColor: '#4C6523',
         position: 'absolute',
         zIndex: -2,
         transform: [{ rotate: '-140deg' }],
-
+        right: -(width * 0.2604166666666667),
 
 },
   
+
+jardinetesContainer: {
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexWrap: 'wrap',
+},
+jardineteItem: {
+  margin: width * 0.0052083333333333,
+  alignItems: 'center',
+  borderWidth: width * 0.0052083333333333,
+  borderColor: '#271C00',
+  borderRadius: width * 0.0052083333333333,
+  backgroundColor: '#FFFEF4',
+},
+jardinetePhoto: {
+  width: width * 0.1822916666666667,
+  height: width * 0.1025390625,
+  marginLeft: width * 0.0130208333333333,
+  marginRight: width * 0.0130208333333333,
+  marginBottom: width * 0.0130208333333333,
+  marginTop: width * 0.0052083333333333,
+
+
+},
+jardineteName: {
+  marginTop: width * 0.0052083333333333,
+  textAlign: 'center',
+  fontSize: width * 0.0145833333333333,
+  fontWeight: 'bold',
+},
+paginationContainer: {
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: -(width * 0.0052083333333333),
+},
+pageNumberText: {
+  fontSize: width * 0.021875,
+  fontWeight: 'bold',
+  marginHorizontal: width * 0.0052083333333333,
+  color: '#271C00',
+},
+
+jardineteWrapper: {
+  marginBottom: width * 0.015625, 
+  alignItems: 'center'
+},
+jardineteActions: {
+  flexDirection: 'column',
+  marginTop: width * 0.0078125,
+  backgroundColor: '#271C00',
+  padding: width * 0.0052083333333333,
+  borderRadius: width * 0.0052083333333333,
+  width: '96%'
+},
+viewButton: {
+  backgroundColor: '#4C6523',
+  padding: width * 0.0052083333333333,
+  borderRadius: width * 0.0052083333333333,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+editButton: {
+  backgroundColor: '#4C6523',
+  padding: width * 0.0052083333333333,
+  borderRadius: width * 0.0052083333333333,
+  marginTop: width * 0.0078125,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+buttonText: {
+  color: 'white',
+  fontSize: width * 0.0135416666666667,
+},
 });
