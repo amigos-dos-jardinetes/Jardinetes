@@ -401,7 +401,7 @@ export default function Menu() {
                                                 <img src={praca.jardinetePhoto} alt={`Image ${praca.id}`} style={styles.popupImage} />
                                                 <View style={styles.popupButtonContainer}>
                                                     <TouchableOpacity 
-                                                   onPress={() => navigation.navigate('ImpactSolo', { novoJardineteDocId: praca.id })} 
+                                                   onPress={() => navigation.navigate('Impact', { novoJardineteDocId: praca.id })} 
                                                     style={styles.popupButton}>
                                                         <Text style={styles.popupButtonText}>Selecionar Jardinete</Text>
                                                     </TouchableOpacity>
