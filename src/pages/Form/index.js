@@ -46,7 +46,7 @@ export default function Form() {
   const [percapita, setPercapita] = useState('');
   const [densidade, setDensidade] = useState('');
   const [renda, setRenda] = useState('');
-  const [patrimonio, setPatrimonio] = useState('');
+  const [patrimonio, setPatrimonio] = useState('possui'); 
   const [userName, setUserName] = useState('');
   const [wallpaper, setWallpaper] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -120,7 +120,7 @@ export default function Form() {
           percapita,
           densidade,
           renda,
-          patrimonio,
+          patrimonio: patrimonio || 'possui',
           jardinetePhoto: imagem  // Usa a imagem cortada
         };
         await updateDoc(jardineteRef, formData);
