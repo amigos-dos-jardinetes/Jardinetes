@@ -22,6 +22,7 @@ import Redefinir from '../pages/redefinir';
 import quemSomos from '../pages/quemSomos';
 import acoesSociais from '../pages/acoesSociais';
 import minhasAnalises from '../pages/minhasAnalises';
+import moreInfo from '../pages/moreInfo';
 
 export default function AppRoutes() {
   return (
@@ -49,6 +50,7 @@ export default function AppRoutes() {
         <Route path="/quemSomos" element={<quemSomos />} />
         <Route path="/acoesSociais" element={<acoesSociais />} />
         <Route path="/minhasAnalises" element={<minhasAnalises />} />
+        <Route path="/moreInfo" element={<moreInfo />} />
       </Routes>
     </Router>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, Linking, Modal } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, Linking, Modal, Picker} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
@@ -21,6 +21,10 @@ const firebaseConfig = {
 
 const openIPPUCWebsite = () => {
   Linking.openURL('https://www.ippuc.org.br');
+};
+
+const openPrefeituraWebsite = () => {
+  Linking.openURL('https://www.curitiba.pr.gov.br/conteudo/parques-e-bosques-de-curitiba/267');
 };
 
 let firebaseApp;
@@ -239,78 +243,99 @@ export default function Form() {
     <Text style={styles.buttonText}>Selecione uma imagem para o jardinete</Text>
   </TouchableOpacity>
 )}
+<View style={styles.textRow}>
+  <Text style={styles.label}>O nome do jardinete é</Text>
+  <TextInput
+    style={[styles.inputInline, styles.textInputCorrido]}
+    onChangeText={text => setNome(text)}
+    value={nome}
+  />
+  
+  <Text style={styles.label}> e fica no bairro </Text>
+  <TextInput
+    style={[styles.inputInline, styles.textInputCorrido]}
+    onChangeText={text => setLocalizacao(text)}
+    value={localizacao}
+  />
+  <Text style={styles.label}>. (**)</Text>
+</View>
 
-        <Text style={styles.label}>Qual a localização do jardinete?</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setLocalizacao(text)}
-          value={localizacao}
-        />
+<View style={styles.textRow}>
+  <Text style={styles.label}>Sua área é de </Text>
+  <TextInput
+    style={[styles.inputInline, styles.textInputCorrido]}
+    onChangeText={text => setArea(text)}
+    value={area}
+    keyboardType="numeric"
+  />
+  <Text style={styles.label}> m². (*)</Text>
+</View>
 
-        <Text style={styles.label}>Qual é o nome do jardinete?</Text>
-        <TextInput
-          style={styles.input2}
-          onChangeText={text => setNome(text)}
-          value={nome}
-        />
+<View style={styles.textRow}>
+  <Text style={styles.label}>Faz parte da bacia do rio </Text>
+  <TextInput
+    style={[styles.inputInline, styles.textInputCorrido]}
+    onChangeText={text => setBacia(text)}
+    value={bacia}
+  />
+   <Text style={styles.label}>. (*)</Text>
+</View>
 
-        <Text style={styles.label}>
-          Nos informe também a sua área (m²) → Essas informações podem ser obtidas no{' '}
-          <Text
-            style={styles.link}
-            onPress={() => Linking.openURL('https://www.curitiba.pr.gov.br/conteudo/parques-e-bosques-de-curitiba/267')}
-          >
-            Site da Prefeitura
-          </Text>.
+<View style={styles.textRow}>
+  <Text style={styles.label}>A proporção de áreas verdes por habitante é de </Text>
+  <TextInput
+    style={[styles.inputInline, styles.textInputCorrido]}
+    onChangeText={text => setPercapita(text)}
+    value={percapita}
+    keyboardType="numeric"
+  />
+  <Text style={styles.label}> m²/habitante. (**)</Text>
+</View>
+
+<View style={styles.textRow}>
+  <Text style={styles.label}>A densidade demográfica é de </Text>
+  <TextInput
+    style={[styles.inputInline, styles.textInputCorrido]}
+    onChangeText={text => setDensidade(text)}
+    value={densidade}
+    keyboardType="numeric"
+  />
+  <Text style={styles.label}> habitantes/mês. (**)</Text>
+</View>
+
+<View style={styles.textRow}>
+  <Text style={styles.label}>A renda média é de R$ </Text>
+  <TextInput
+    style={[styles.inputInline, styles.textInputCorrido]}
+    onChangeText={text => setRenda(text)}
+    value={renda}
+    keyboardType="numeric"
+  />
+   <Text style={styles.label}>. (*)</Text>
+</View>
+
+<View style={styles.textRow}>
+  <Text style={styles.label}>O jardinete </Text>
+  <Picker
+    selectedValue={patrimonio}
+    style={styles.picker}
+    onValueChange={(itemValue) => setPatrimonio(itemValue)}
+  >
+    <Picker.Item label="possui" value="possui" />
+    <Picker.Item label="não possui" value="não possui" />
+  </Picker>
+  <Text style={styles.label}> algum patrimônio ambiental.</Text>
+</View>
+      
+<Text style={styles.label1}>
+          (*) Essas informações podem ser obtidas no{' '}
+          <TouchableOpacity onPress={openPrefeituraWebsite}>
+            <Text style={styles.link}>Site da Prefeitura</Text>
+          </TouchableOpacity>.
         </Text>
 
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setArea(text)}
-          value={area}
-          keyboardType="numeric"
-        />
-
-        <Text style={styles.label}>Em qual bacia de rios está localizado? (*)</Text>
-        <TextInput
-          style={styles.input2}
-          onChangeText={text => setBacia(text)}
-          value={bacia}
-        />
-
-        <Text style={styles.label}>Qual a proporção de áreas verdes por habitantes do bairro onde está localizado este jardinete? (*)</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setPercapita(text)}
-          value={percapita}
-          keyboardType="numeric"
-        />
-
-        <Text style={styles.label}>Qual é a densidade demográfica deste bairro? (*)</Text>
-        <TextInput
-          style={styles.input2}
-          onChangeText={text => setDensidade(text)}
-          value={densidade}
-          keyboardType="numeric"
-        />
-
-        <Text style={styles.label}>Qual a renda média dos habitantes próximos a este jardinete? (*)</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setRenda(text)}
-          value={renda}
-          keyboardType="numeric"
-        />
-
-        <Text style={styles.label}>O jardinete possui algum patrimônio ambiental? (*)</Text>
-        <TextInput
-          style={styles.input2}
-          onChangeText={text => setPatrimonio(text)}
-          value={patrimonio}
-        />
-
-        <Text style={styles.label}>
-          (*) Para Curitiba, essas informações podem ser obtidas no site da{' '}
+        <Text style={styles.label1}>
+          (**) Para Curitiba, essas informações podem ser obtidas no site da{' '}
           <TouchableOpacity onPress={openIPPUCWebsite}>
             <Text style={styles.link}>IPPUC</Text>
           </TouchableOpacity>.

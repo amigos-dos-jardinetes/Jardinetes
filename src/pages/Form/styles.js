@@ -53,9 +53,20 @@ export const styles = StyleSheet.create({
   },
   label: {
     marginBottom: (5 / 1920) * width,
-    fontSize: (16 / 1920) * width,
+    fontSize: (28 / 1920) * width,
     fontWeight: 'bold',
     color: '#271C00', // cor do texto das labels
+    flexDirection: 'row',
+  
+  },
+
+  label1: {
+    marginBottom: (5 / 1920) * width,
+    fontSize: (28 / 1920) * width,
+    fontWeight: 'bold',
+    color: '#271C00', // cor do texto das labels
+    flexDirection: 'row',
+    marginTop: (25 / 1920) * width,
   
   },
   input: {
@@ -67,7 +78,44 @@ export const styles = StyleSheet.create({
     backgroundColor: '#166034',
     color: 'white',
     fontSize: (20 / 1920) * width,
+    flexDirection: 'row',
+    width: (400 / 1920) * width,
   },
+
+  textRow: {
+    flexDirection: 'row',   
+    flexWrap: 'wrap',        
+    alignItems: 'center',    
+    marginTop: (25 / 1920) * width,
+  },
+
+  textInputCorrido: {
+    borderBottomWidth: 1,   
+    borderBottomColor: '#000', 
+    padding: 0,              
+    marginHorizontal: (5 / 1920) * width,  
+    fontSize: (24 / 1920) * width,        
+    width: (250 / 1920) * width,           
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#166034', 
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
+  picker: {
+    height: (50 / 1920) * width, 
+    width: (150  / 1920) * width,
+    marginHorizontal: (5  / 1920) * width,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: (24 / 1920) * width,   
+    fontWeight: 'bold',
+    color: '#166034', 
+  
+  },
+
   bola:{
     zIndex: -1,
     backgroundColor: '#809C30',
@@ -103,6 +151,11 @@ export const styles = StyleSheet.create({
     borderRadius: '50%',
   },
 
+  rowContainer: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginVertical: 8,
+  },
 
   input2: {
     height: (40 / 1920) * width,
@@ -113,6 +166,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#4C6523', 
     color: 'white',
     fontSize: (20 / 1920) * width,
+    flexDirection: 'row',
   },
   button: {
     backgroundColor: '#6f8a3b', // verde do botão
@@ -121,7 +175,7 @@ export const styles = StyleSheet.create({
     borderRadius: (5 / 1920) * width,
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: (10 / 1920) * width,
+    marginTop: (20 / 1920) * width,
   },
   button1: {
     backgroundColor: '#166034',

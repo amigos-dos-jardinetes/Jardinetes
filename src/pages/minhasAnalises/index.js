@@ -165,7 +165,7 @@ export default function minhasAnalises() {
                   <View style={styles.jardineteActions}>
                     <TouchableOpacity
                       style={styles.viewButton}
-                      onPress={() => navigation.navigate('', { novoJardineteDocId: jardinete.id })}
+                      onPress={() => navigation.navigate('moreInfo', { novoJardineteDocId: jardinete.id })}
                     >
                       <Text style={styles.buttonText}>Visualizar</Text>
                     </TouchableOpacity>

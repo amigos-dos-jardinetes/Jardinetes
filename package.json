@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@expo-google-fonts/lemon": "^0.2.3",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -35,6 +36,7 @@
     "expo-crypto": "~12.4.1",
     "expo-file-system": "~15.4.5",
     "expo-firebase-recaptcha": "^2.3.1",
+    "expo-font": "~11.4.0",
     "expo-google-app-auth": "~8.3.0",
     "expo-image-manipulator": "~11.3.0",
     "expo-image-picker": "~14.3.2",

@@ -23,6 +23,7 @@ import Redefinir from './src/pages/redefinir';
 import quemSomos from './src/pages/quemSomos';
 import acoesSociais from './src/pages/acoesSociais';
 import minhasAnalises from './src/pages/minhasAnalises';
+import moreInfo from './src/pages/moreInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,6 +53,7 @@ export default function App() {
         <Stack.Screen name="quemSomos" component={quemSomos} options={{ headerShown: false }} />
         <Stack.Screen name="acoesSociais" component={acoesSociais} options={{ headerShown: false }} />
         <Stack.Screen name="minhasAnalises" component={minhasAnalises} options={{ headerShown: false }} />
+        <Stack.Screen name="moreInfo" component={moreInfo} options={{ headerShown: false }} />
 
       </Stack.Navigator>
     </NavigationContainer>
