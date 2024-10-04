@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, TextInputBase } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -243,5 +243,38 @@ navbar2: {
     left: 0,
 
   },
+
+  row4: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: width * 0.078125,
+},
+
+  bt1: {
+    backgroundColor: '#B68F40',
+    borderRadius: width * 0.0260416666666667,
+    width: width * 0.1041666666666667,
+    height: width * 0.0260416666666667,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  bt2: {
+    backgroundColor: '#99CB47',
+    borderRadius: width * 0.0260416666666667,
+    width: width * 0.1041666666666667,
+    height: width * 0.0260416666666667,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: -(width * 0.3125),
+  },
+
+  textBt: {
+    fontSize: width * 0.0145833333333333,
+    color: 'white',
+  },
+
+
 
 });

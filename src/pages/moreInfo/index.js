@@ -12,6 +12,8 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'; 
 import L from 'leaflet';
 import markerImage from '../../assets/marker.png';
 import markerImage2 from '../../assets/redMarker.png';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 export default function moreInfo() {
   const navigation = useNavigation();
@@ -52,7 +54,7 @@ export default function moreInfo() {
   const [densidade, setDensidade] = useState('');
   const [renda, setRenda] = useState('');
   const [patrimonio, setPatrimonio] = useState('');
-
+  const novoJardineteDocId = route.params.novoJardineteDocId;
   // Carrega a fonte Lemon
   const [fontsLoaded] = useFonts({
     Lemon: require('../../assets/fonts/Lemon-Regular.ttf'),
@@ -256,6 +258,30 @@ function MapCenter({ center }) {
                   <Image style={[styles.inventoryImage, getImageStyle(estica)]} source={require('../../assets/estica.png')} />
                   <Image style={[styles.inventoryImage, getImageStyle(pavimentada)]} source={require('../../assets/pavimentada.jpg')} />
                 </View>
+                <View style={styles.row4}>
+  <TouchableOpacity onPress={() => navigation.goBack()}>
+    <LinearGradient
+      colors={['#271C00', '#FEE7AC']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      style={styles.bt1}
+    >
+      <Text style={styles.textBt}>Voltar</Text>
+    </LinearGradient>
+  </TouchableOpacity>
+
+  <TouchableOpacity onPress={() => navigation.navigate('Impact', { novoJardineteDocId })} >
+    <LinearGradient
+      colors={['#4C6523', '#99CB47']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      style={styles.bt2}
+    >
+      <Text style={styles.textBt}>Impacto</Text>
+    </LinearGradient>
+  </TouchableOpacity>
+</View>
+                
 
               </View>
             </View>
