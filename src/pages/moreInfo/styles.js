@@ -254,8 +254,8 @@ navbar2: {
   bt1: {
     backgroundColor: '#B68F40',
     borderRadius: width * 0.0260416666666667,
-    width: width * 0.1041666666666667,
-    height: width * 0.0260416666666667,
+    width: width * 0.109,
+    height: width * 0.04,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -263,11 +263,21 @@ navbar2: {
   bt2: {
     backgroundColor: '#99CB47',
     borderRadius: width * 0.0260416666666667,
-    width: width * 0.1041666666666667,
-    height: width * 0.0260416666666667,
+    width: width * 0.109,
+    height: width * 0.04,
     alignItems: 'center',
     justifyContent: 'center',
     right: -(width * 0.3125),
+  },
+
+  bt3: {
+    backgroundColor: '#99CB47',
+    borderRadius: width * 0.0260416666666667,
+    width: width * 0.109,
+    height: width * 0.04,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: -(width * 0.15625),
   },
 
   textBt: {

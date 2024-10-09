@@ -233,14 +233,7 @@ export default function AnaliseFinal() {
       <View style={styles.container}>
         <View style={styles.navbar}>
         <TouchableOpacity style={styles.backButton}
-          onPress={() => {
-            const currentUser = getAuth().currentUser;
-            if (currentUser) {
-              navigation.navigate("Menu");
-            } else {
-              navigation.navigate("SignIn");
-            }
-          }}>
+          onPress={() => navigation.goBack()}>
         
           <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>

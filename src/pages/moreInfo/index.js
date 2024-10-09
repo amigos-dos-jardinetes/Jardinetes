@@ -275,9 +275,23 @@ function MapCenter({ center }) {
       colors={['#4C6523', '#99CB47']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
+      style={styles.bt3}
+    >
+      <Text style={styles.textBt}>Impacto</Text>
+      <Text style={styles.textBt}>Avaliação</Text>
+      
+    </LinearGradient>
+  </TouchableOpacity>
+
+  <TouchableOpacity onPress={() => navigation.navigate('AnaliseFinal', { novoJardineteDocId })} >
+    <LinearGradient
+      colors={['#4C6523', '#99CB47']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
       style={styles.bt2}
     >
       <Text style={styles.textBt}>Impacto</Text>
+      <Text style={styles.textBt}>Resultados</Text>
     </LinearGradient>
   </TouchableOpacity>
 </View>
