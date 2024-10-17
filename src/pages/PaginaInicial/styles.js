@@ -417,6 +417,8 @@ ponta2: {
           alignSelf: 'center',
           top: width * 0.0234375,
           left: width * 0.027,
+          borderColor: '#271C00',
+          borderWidth: width * 0.0078125,
       },
 
       educacao: {
@@ -425,6 +427,8 @@ ponta2: {
         left: width * 0.0572916666666667,
         alignSelf: 'center',
         top: width * 0.0208333333333333,
+        borderColor: '#271C00',
+          borderWidth: width * 0.0078125,
     },
     
      saude: {
@@ -432,6 +436,8 @@ ponta2: {
       height: width * 0.1041666666666667,
       right: width * 0.133,
       top: width * 0.0651041666666667,
+      borderColor: '#271C00',
+          borderWidth: width * 0.0078125,
   },
 
   nossosValores: {

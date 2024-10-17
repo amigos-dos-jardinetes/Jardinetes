@@ -15,9 +15,13 @@ export const styles = StyleSheet.create({
         overflow: 'hidden',
       },
 
+      scroll: {
+        backgroundColor: '#FFFEF4',
+    },
+
 
     card: {
-        top: width * 0.07,
+        top: -(width * 0.0625),
         width: width * 0.8333333333333333,
         height: width * 0.390625,
         justifyContent: 'center',
@@ -131,15 +135,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
-  circCanto: {
-      zIndex: -1,
-      backgroundColor: '#FFFEF4',
-      width: width * 0.1302083333333333,
-      height: width * 0.1302083333333333,
-      borderRadius: width * 0.0651041666666667,
-      bottom: width * 0.08,
-      right: '50%',
-  },  
+
 
   circBorda: {
     zIndex: -1,
@@ -149,26 +145,17 @@ export const styles = StyleSheet.create({
     width: width * 0.1302083333333333,
     height:width * 0.1302083333333333,
     borderRadius: width * 0.0651041666666667,
-    top: width * 0.0520833333333333,
+    top: -((width * 0.1302083333333333) /1.5),
     left: '50%',
 
 }, 
 
-circBorda1: {
 
-  backgroundColor: 'transparent',
-  borderWidth: 10,
-  borderColor: '#B68F40',
-  width: width * 0.1302083333333333,
-  height: width * 0.1302083333333333,
-  borderRadius: width * 0.0651041666666667,
-  bottom: 0,
-  right: '50%',
-}, 
 
 backButton: {
   top: width * 0.19,
   right: '47%',
+  top: width * 0.0208333333333333,
 
 },
 

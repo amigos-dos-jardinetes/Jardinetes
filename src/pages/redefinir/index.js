@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, Image, Alert, Dimensions } from 'react-native';
+import { View, ScrollView, TextInput, TouchableOpacity, Text, Image, Alert, Dimensions } from 'react-native';
 import { styles } from '../redefinir/styles';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -60,6 +60,7 @@ export default function Redefinir() {
   };
 
   return (
+    <ScrollView style={styles.scroll}>
     <View style={styles.container}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={width * 0.035} color="white" />
@@ -119,5 +120,6 @@ export default function Redefinir() {
       <View style={styles.circCanto}></View>
      
     </View>
+    </ScrollView>
   );
 }
