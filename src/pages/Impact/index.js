@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, CheckBox } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, CheckBox, Modal } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
@@ -8,6 +8,7 @@ import { userSearchData } from '../../../functions';
 import { styles } from '../Impact/styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import MoreInfo2 from '../moreInfo2';
 
 export default function Impact() {
     const [userInfo, setUserInfo] = useState(false);
@@ -67,7 +68,7 @@ export default function Impact() {
     const [isChecked, setIsChecked] = useState(false);
     const [isChecked1, setIsChecked1] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
-
+    const [modalVisible, setModalVisible] = useState(false);
 
 
     const validateValues = () => {
@@ -911,6 +912,11 @@ const handleContinuarPress = async () => {
 
 
           <View style={styles.global}>
+          <View style={styles.center}>
+  <TouchableOpacity style={styles.buttonView33} onPress={() => setModalVisible(true)}>
+    <Text style={styles.buttonText33}>Verifique as informações já enviadas</Text>
+  </TouchableOpacity>
+</View>
     <View style={styles.ret}>
         <Text style={styles.retText}>Deixe aqui suas impressões sobre o Jardinete</Text>
     </View>
@@ -2011,7 +2017,24 @@ const handleContinuarPress = async () => {
 
 </View>
 
+<Modal
+  animationType="slide"
+  transparent={false}
+  visible={modalVisible}
+  onRequestClose={() => {
+    setModalVisible(!modalVisible);
+  }}
+>
+  <View style={styles.modalContainer}>
+    <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+      <Ionicons name="close" size={30} color="black" />
+    </TouchableOpacity>
 
+    <ScrollView contentContainerStyle={styles.scrollViewModalContent}>
+      <MoreInfo2 />
+    </ScrollView>
+  </View>
+</Modal>
 
     </ScrollView>
   );

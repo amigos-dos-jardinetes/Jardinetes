@@ -14,6 +14,7 @@ import Slider from '@mui/material/Slider';
 import { MdZoomIn, MdZoomOut } from 'react-icons/md';
 import ImageEditor from "@react-native-community/image-editor";
 import * as ImageManipulator from 'expo-image-manipulator';
+import MoreInfo2 from '../moreInfo2';
 
 const { width } = Dimensions.get('window');
 
@@ -93,7 +94,7 @@ export default function Tree() {
     const [showCropper, setShowCropper] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedResultId, setSelectedResultId] = useState(null); // Armazena o ID do resultado selecionado
-
+    const [modalVisible, setModalVisible] = useState(false);
 
     const toggleNotSendingTrees = async () => {
         clearSearch();
@@ -483,10 +484,13 @@ export default function Tree() {
                     )}
                 </View>
             </View>
+            
             <View style={styles.ret1}>
                 <Text style={styles.buttonText}>Recomendamos baixar o APP Inaturalist para uma identificação mais precisa do nome das árvores presentes no jardinete</Text>
             </View>
             <View style={styles.ret2}></View>
+
+       
             <View style={styles.imageContainer}>
                 <TouchableOpacity onPress={() => openLink('https://apps.apple.com/us/app/inaturalist/id421397028')}>
                     <Image source={require('../../assets/apple.png')} style={styles.imageIcon} />
@@ -497,6 +501,9 @@ export default function Tree() {
                 <TouchableOpacity onPress={() => openLink('https://www.inaturalist.org')}>
                     <Image source={require('../../assets/inaturalist.png')} style={styles.imageIcon2} />
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonView33} onPress={() => setModalVisible(true)}>
+    <Text style={styles.buttonText33}>Verifique as informações já enviadas</Text>
+  </TouchableOpacity>
             </View>
             <View style={styles.checkboxContainer}>
                 <TouchableOpacity onPress={toggleNotSendingTrees}>
@@ -617,10 +624,36 @@ export default function Tree() {
       />
     </View>
 
-    {/* Botão para cortar a imagem */}
+    <View style={styles.row}>
     <TouchableOpacity style={styles.cropButton} onPress={cropImage}>
       <Text style={styles.cropButtonText}>Escolher Imagem</Text>
     </TouchableOpacity>
+    <TouchableOpacity
+        style={styles.cropButton1}
+        onPress={() => setShowCropper(false)}
+      >
+        <Text style={styles.cropButtonText}>Voltar</Text>
+      </TouchableOpacity>
+      </View>
+  </View>
+</Modal>
+
+<Modal
+  animationType="slide"
+  transparent={false}
+  visible={modalVisible}
+  onRequestClose={() => {
+    setModalVisible(!modalVisible);
+  }}
+>
+  <View style={styles.modalContainer}>
+    <TouchableOpacity style={styles.closeButton1} onPress={() => setModalVisible(false)}>
+      <Ionicons name="close" size={30} color="black" />
+    </TouchableOpacity>
+
+    <ScrollView contentContainerStyle={styles.scrollViewModalContent}>
+      <MoreInfo2 />
+    </ScrollView>
   </View>
 </Modal>
 

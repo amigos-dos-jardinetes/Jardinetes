@@ -50,7 +50,7 @@ export default function AppRoutes() {
         <Route path="/quemSomos" element={<quemSomos />} />
         <Route path="/acoesSociais" element={<acoesSociais />} />
         <Route path="/minhasAnalises" element={<minhasAnalises />} />
-        <Route path="/moreInfo" element={<moreInfo />} />
+        <Route path="/moreInfo2" element={<moreInfo2 />} />
       </Routes>
     </Router>
   );

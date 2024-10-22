@@ -15,7 +15,7 @@ import markerImage2 from '../../assets/redMarker.png';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-export default function moreInfo() {
+export default function moreInfo2() {
   const navigation = useNavigation();
   const route = useRoute(); // Obtenha o objeto route para acessar os parâmetros
   const scrollViewRef = useRef(null);
@@ -161,19 +161,7 @@ function MapCenter({ center }) {
        <View style={styles.circle}></View>
       <View style={styles.giantRet}></View>
       <View style={styles.container}>
-        <View style={styles.navbar}>
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-            <Ionicons name="arrow-back" size={width * 0.025} color="white" />
-          </TouchableOpacity>
-
-          <View style={styles.imageContainer}>
-            {imageUrl ? (
-              <Image style={styles.logoImage} source={{ uri: imageUrl }} />
-            ) : (
-              <Image style={styles.logoImage} source={require('../../assets/defaultImage.png')} />
-            )}
-          </View>
-        </View>
+        <View style={styles.navbar}></View>
 
         <View style={styles.column}>
           <Text style={[styles.name, { fontFamily: 'Lemon' }]}>
@@ -258,44 +246,7 @@ function MapCenter({ center }) {
                   <Image style={[styles.inventoryImage, getImageStyle(estica)]} source={require('../../assets/estica.png')} />
                   <Image style={[styles.inventoryImage, getImageStyle(pavimentada)]} source={require('../../assets/pavimentada.jpg')} />
                 </View>
-                <View style={styles.row4}>
-  <TouchableOpacity onPress={() => navigation.goBack()}>
-    <LinearGradient
-      colors={['#271C00', '#FEE7AC']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      style={styles.bt1}
-    >
-      <Text style={styles.textBt}>Voltar</Text>
-    </LinearGradient>
-  </TouchableOpacity>
-
-  <TouchableOpacity onPress={() => navigation.navigate('Impact', { novoJardineteDocId })} >
-    <LinearGradient
-      colors={['#4C6523', '#99CB47']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      style={styles.bt3}
-    >
-      <Text style={styles.textBt}>Impacto</Text>
-      <Text style={styles.textBt}>Avaliação</Text>
-      
-    </LinearGradient>
-  </TouchableOpacity>
-
-  <TouchableOpacity onPress={() => navigation.navigate('AnaliseFinal', { novoJardineteDocId })} >
-    <LinearGradient
-      colors={['#4C6523', '#99CB47']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      style={styles.bt2}
-    >
-      <Text style={styles.textBt}>Impacto</Text>
-      <Text style={styles.textBt}>Resultados</Text>
-    </LinearGradient>
-  </TouchableOpacity>
-</View>
-                
+               
 
               </View>
             </View>

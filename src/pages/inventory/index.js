@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image, Dimensions } from 'react-native';
+import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image, Dimensions, Modal } from 'react-native';
 import { styles } from '../inventory/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
@@ -7,6 +7,7 @@ import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
 import { Ionicons } from '@expo/vector-icons';
+import MoreInfo2 from '../moreInfo2';
 
 export default function Inventory() {
   const [userInfo, setUserInfo] = useState(false);
@@ -25,7 +26,9 @@ export default function Inventory() {
   const navigation = useNavigation();
   const scrollViewRef = useRef(null);
   const { width, height } = Dimensions.get('window');
-  
+  const [modalVisible, setModalVisible] = useState(false);
+
+
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -471,7 +474,14 @@ export default function Inventory() {
 
           <View style={styles.buttonView3}>
             <Text style={styles.buttonText}>Selecione os itens presentes no jardinete</Text>
+
           </View>
+
+          <View style={styles.center}>
+  <TouchableOpacity style={styles.buttonView33} onPress={() => setModalVisible(true)}>
+    <Text style={styles.buttonText33}>Verifique as informações já enviadas</Text>
+  </TouchableOpacity>
+</View>
 
           <View style={styles.navbar}>
 
@@ -699,8 +709,24 @@ export default function Inventory() {
           </View>
 
 
+          <Modal
+  animationType="slide"
+  transparent={false}
+  visible={modalVisible}
+  onRequestClose={() => {
+    setModalVisible(!modalVisible);
+  }}
+>
+  <View style={styles.modalContainer}>
+    <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+      <Ionicons name="close" size={30} color="black" />
+    </TouchableOpacity>
 
-
+    <ScrollView contentContainerStyle={styles.scrollViewModalContent}>
+      <MoreInfo2 />
+    </ScrollView>
+  </View>
+</Modal>
 
         </ImageBackground>
       </ScrollView>

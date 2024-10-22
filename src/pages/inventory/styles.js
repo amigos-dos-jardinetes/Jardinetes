@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
   scrollViewContent: {
     width: width,
     height: '100%',
+
   },
   backgroundImage: {
     width: width,
@@ -156,6 +157,34 @@ export const styles = StyleSheet.create({
     zIndex: 0,
     position: 'absolute',
   },
+
+  center: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+
+  },
+  
+  buttonView33: {
+    width: width * 0.400,
+    height: width * 0.105,
+    top: width * 0.35,
+    borderRadius: width * 0.015625,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#809C30',
+    zIndex: 0,
+    position: 'absolute',
+  },
+
+
+  buttonText33: {
+    color: 'white',
+    fontSize: width * 0.02,
+    textAlign: 'center',
+  },
+
   buttonText: {
     color: 'white',
     fontSize: width * 0.04,
@@ -180,4 +209,27 @@ export const styles = StyleSheet.create({
 backButton: {
   marginLeft: width * 0.0052083333333333,
 },
+
+modalContainer: {
+  flex: 1,
+  backgroundColor: 'white', // Fundo do modal
+  justifyContent: 'flex-start',
+},
+closeButton: {
+  position: 'absolute',
+  top: width * 0.0208333333333333,
+  right: width * 0.0208333333333333,
+  zIndex: 1, 
+  backgroundColor: 'white', 
+  borderRadius: 25, 
+  padding: 10,
+  borderWidth: 1, 
+  borderColor: '#ccc',
+},
+scrollViewModalContent: {
+  flexGrow: 1,
+  justifyContent: 'center',
+
+},
+
 });

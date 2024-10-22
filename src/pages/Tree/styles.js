@@ -297,10 +297,64 @@ export const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#166034',
         borderRadius: 5,
+        marginRight: 20,
       },
       cropButtonText: {
         color: '#fff',
         fontWeight: 'bold',
+      },
+
+      cropButton1: {
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: '#166034',
+        borderRadius: 5,
+      },
+      
+      
+      row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+
+      buttonView33: {
+        width: width * 0.200,
+        height: width * 0.05,
+        borderRadius: width * 0.014,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#809C30',
+
+      },
+    
+    
+      buttonText33: {
+        color: 'white',
+        fontSize: width * 0.01,
+        textAlign: 'center',
+      },
+
+      modalContainer: {
+        flex: 1,
+        backgroundColor: 'white', // Fundo do modal
+        justifyContent: 'flex-start',
+      },
+      closeButton1: {
+        position: 'absolute',
+        top: width * 0.0208333333333333,
+        right: width * 0.0208333333333333,
+        zIndex: 1, 
+        backgroundColor: 'white', 
+        borderRadius: 25, 
+        padding: 10,
+        borderWidth: 1, 
+        borderColor: '#ccc',
+      },
+      scrollViewModalContent: {
+        flexGrow: 1,
+        justifyContent: 'center',
+      
       },
 });
 

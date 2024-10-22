@@ -288,25 +288,25 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
   <View style={styles.cropperContainer}>
     <View style={styles.controlsContainer}>
     <Slider
-  value={zoom}
+  value={profileZoom}  // Use o estado profileZoom
   min={1}
   max={3}
   step={0.1}
-  onChange={(e, newValue) => setZoom(newValue)}
+  onChange={(e, newValue) => setProfileZoom(newValue)}  // Atualize o profileZoom corretamente
   aria-labelledby="zoom-slider"
   style={{
-    color: '#166034',  // Cor principal do slider (trilha mínima e polegar)
-    width: 300,  // Definindo uma largura fixa, ajuste conforme necessário
+    color: '#166034',
+    width: 300,
   }}
   sx={{
     '& .MuiSlider-thumb': {
-      backgroundColor: '#166034',  // Cor do polegar
+      backgroundColor: '#166034',
     },
     '& .MuiSlider-track': {
-      backgroundColor: '#68A180',  // Cor da trilha ativa (mínima)
+      backgroundColor: '#68A180',
     },
     '& .MuiSlider-rail': {
-      backgroundColor: '#d3d3d3',  // Cor da trilha inativa (máxima)
+      backgroundColor: '#d3d3d3',
     },
   }}
 />
@@ -351,25 +351,25 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
   <View style={styles.cropperContainer}>
     <View style={styles.controlsContainer}>
     <Slider
-  value={zoom}
+  value={wallpaperZoom}  // Use o estado wallpaperZoom
   min={1}
   max={3}
   step={0.1}
-  onChange={(e, newValue) => setZoom(newValue)}
+  onChange={(e, newValue) => setWallpaperZoom(newValue)}  // Atualize o wallpaperZoom corretamente
   aria-labelledby="zoom-slider"
   style={{
-    color: '#166034',  // Cor principal do slider (trilha mínima e polegar)
-    width: 300,  // Definindo uma largura fixa, ajuste conforme necessário
+    color: '#166034',
+    width: 300,
   }}
   sx={{
     '& .MuiSlider-thumb': {
-      backgroundColor: '#166034',  // Cor do polegar
+      backgroundColor: '#166034',
     },
     '& .MuiSlider-track': {
-      backgroundColor: '#68A180',  // Cor da trilha ativa (mínima)
+      backgroundColor: '#68A180',
     },
     '& .MuiSlider-rail': {
-      backgroundColor: '#d3d3d3',  // Cor da trilha inativa (máxima)
+      backgroundColor: '#d3d3d3',
     },
   }}
 />

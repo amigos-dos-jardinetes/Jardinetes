@@ -297,4 +297,50 @@ quatro: {
     backButton: {
       marginLeft: width * 0.0052083333333333,
     },
+
+    buttonView33: {
+      width: width * 0.400,
+      height: width * 0.105,
+      borderRadius: width * 0.015625,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#809C30',
+      zIndex: 10,
+    },
+  
+  
+    buttonText33: {
+      color: 'white',
+      fontSize: width * 0.02,
+      textAlign: 'center',
+    },
+
+    center: {
+      top: -100,
+      justifyContent: 'center', 
+      alignItems: 'center', 
+  },
+
+  
+modalContainer: {
+  flex: 1,
+  backgroundColor: 'white', // Fundo do modal
+  justifyContent: 'flex-start',
+},
+closeButton: {
+  position: 'absolute',
+  top: width * 0.0208333333333333,
+  right: width * 0.0208333333333333,
+  zIndex: 1, 
+  backgroundColor: 'white', 
+  borderRadius: 25, 
+  padding: 10,
+  borderWidth: 1, 
+  borderColor: '#ccc',
+},
+scrollViewModalContent: {
+  flexGrow: 1,
+  justifyContent: 'center',
+
+},
 });

@@ -310,10 +310,33 @@ cropButton: {
   padding: 10,
   backgroundColor: '#166034',
   borderRadius: 5,
+  marginRight: 20,
 },
 cropButtonText: {
   color: '#fff',
   fontWeight: 'bold',
 },
+
+errorText: {
+  fontSize: width * 0.009375,
+  color: 'red',
+  textAlign: 'center',
+  marginTop: width * 0.0052083333333333,
+},
+
+cropButton1: {
+  marginTop: 20,
+  padding: 10,
+  backgroundColor: '#166034',
+  borderRadius: 5,
+},
+
+
+row: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
 
 });

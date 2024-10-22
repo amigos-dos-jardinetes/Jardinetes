@@ -56,7 +56,7 @@ export default function Form() {
   const storage = getStorage();
   const auth = getAuth(firebaseApp);
   const { width } = Dimensions.get('window');
-  
+  const [showImageError, setShowImageError] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [user, setUser] = useState(null);
@@ -109,26 +109,26 @@ export default function Form() {
   
 
   const handleSubmit = async () => {
+    if (!imagem) {
+      setShowImageError(true); // Exibe o erro caso a imagem não seja selecionada
+      return;
+    }
     try {
-      if (imagem) {
-        const jardineteRef = doc(getFirestore(), 'jardinetes', novoJardineteDocId);
-        const formData = {
-          localizacao,
-          nome,
-          area,
-          bacia,
-          percapita,
-          densidade,
-          renda,
-          patrimonio: patrimonio || 'possui',
-          jardinetePhoto: imagem  // Usa a imagem cortada
-        };
-        await updateDoc(jardineteRef, formData);
-        console.log('Dados do jardinete atualizados com sucesso!');
-        navigation.navigate('Inventory', { novoJardineteDocId });
-      } else {
-        console.error('Por favor, selecione uma imagem antes de enviar.');
-      }
+      const jardineteRef = doc(getFirestore(), 'jardinetes', novoJardineteDocId);
+      const formData = {
+        localizacao,
+        nome,
+        area,
+        bacia,
+        percapita,
+        densidade,
+        renda,
+        patrimonio: patrimonio || 'possui',
+        jardinetePhoto: imagem
+      };
+      await updateDoc(jardineteRef, formData);
+      console.log('Dados do jardinete atualizados com sucesso!');
+      navigation.navigate('Inventory', { novoJardineteDocId });
     } catch (error) {
       console.error('Erro ao atualizar os dados do jardinete:', error);
     }
@@ -243,6 +243,8 @@ export default function Form() {
     <Text style={styles.buttonText}>Selecione uma imagem para o jardinete</Text>
   </TouchableOpacity>
 )}
+
+
 <View style={styles.textRow}>
   <Text style={styles.label}>O nome do jardinete é</Text>
   <TextInput
@@ -300,7 +302,7 @@ export default function Form() {
     value={densidade}
     keyboardType="numeric"
   />
-  <Text style={styles.label}> habitantes/mês. (**)</Text>
+  <Text style={styles.label}> habitantes/km². (**)</Text>
 </View>
 
 <View style={styles.textRow}>
@@ -311,7 +313,7 @@ export default function Form() {
     value={renda}
     keyboardType="numeric"
   />
-   <Text style={styles.label}>. (*)</Text>
+   <Text style={styles.label}>mensais. (*)</Text>
 </View>
 
 <View style={styles.textRow}>
@@ -340,7 +342,9 @@ export default function Form() {
             <Text style={styles.link}>IPPUC</Text>
           </TouchableOpacity>.
         </Text>
-
+        {showImageError && (
+          <Text style={styles.errorText}>Por favor, selecione uma imagem antes de enviar.</Text>
+        )}
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText2}>Continuar</Text>
         </TouchableOpacity>
@@ -409,10 +413,17 @@ export default function Form() {
       />
     </View>
 
-    {/* Botão para cortar a imagem */}
+    <View style={styles.row}>
     <TouchableOpacity style={styles.cropButton} onPress={cropImage}>
       <Text style={styles.cropButtonText}>Escolher Imagem</Text>
     </TouchableOpacity>
+    <TouchableOpacity
+        style={styles.cropButton1}
+        onPress={() => setShowCropper(false)}
+      >
+        <Text style={styles.cropButtonText}>Voltar</Text>
+      </TouchableOpacity>
+      </View>
   </View>
 </Modal>
 
