@@ -1,8 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
  
     navbar: {
         flexDirection: 'row',
@@ -28,6 +29,12 @@ export const styles = StyleSheet.create({
         fontSize: width * 0.0083333333333333,
     },
 
+    checkbox: {
+      width: (20 / 1920) * width,
+      height: (20 / 1920) * width,
+      
+  
+    },
     
       navbar2: {
         flexDirection: 'row',
@@ -341,6 +348,8 @@ closeButton: {
 scrollViewModalContent: {
   flexGrow: 1,
   justifyContent: 'center',
-
 },
+
+
 });
+};

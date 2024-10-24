@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, TouchableOpacity, Text, Image, Dimensions } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text, Image, useWindowDimensions } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { styles } from '../moreInfo/styles.js';
@@ -20,7 +20,6 @@ export default function moreInfo() {
   const route = useRoute(); // Obtenha o objeto route para acessar os parâmetros
   const scrollViewRef = useRef(null);
   const [imageUrl, setImageUrl] = useState(null);
-  const { width } = Dimensions.get('window');
   const auth = getAuth();
   const firestore = getFirestore();
   const storage = getStorage();
@@ -55,6 +54,8 @@ export default function moreInfo() {
   const [renda, setRenda] = useState('');
   const [patrimonio, setPatrimonio] = useState('');
   const novoJardineteDocId = route.params.novoJardineteDocId;
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
   // Carrega a fonte Lemon
   const [fontsLoaded] = useFonts({
     Lemon: require('../../assets/fonts/Lemon-Regular.ttf'),
@@ -157,33 +158,33 @@ function MapCenter({ center }) {
   };
 
   return (
-    <ScrollView ref={scrollViewRef} style={styles.container3}>
-       <View style={styles.circle}></View>
-      <View style={styles.giantRet}></View>
-      <View style={styles.container}>
-        <View style={styles.navbar}>
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+    <ScrollView ref={scrollViewRef} style={myStyles.container3}>
+       <View style={myStyles.circle}></View>
+      <View style={myStyles.giantRet}></View>
+      <View style={myStyles.container}>
+        <View style={myStyles.navbar}>
+          <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back" size={width * 0.025} color="white" />
           </TouchableOpacity>
 
-          <View style={styles.imageContainer}>
+          <View style={myStyles.imageContainer}>
             {imageUrl ? (
-              <Image style={styles.logoImage} source={{ uri: imageUrl }} />
+              <Image style={myStyles.logoImage} source={{ uri: imageUrl }} />
             ) : (
-              <Image style={styles.logoImage} source={require('../../assets/defaultImage.png')} />
+              <Image style={myStyles.logoImage} source={require('../../assets/defaultImage.png')} />
             )}
           </View>
         </View>
 
-        <View style={styles.column}>
-          <Text style={[styles.name, { fontFamily: 'Lemon' }]}>
+        <View style={myStyles.column}>
+          <Text style={[myStyles.name, { fontFamily: 'Lemon' }]}>
             {jardineteNome ? jardineteNome : 'Carregando...'}
           </Text>
 
-          <View style={styles.retImage}>
+          <View style={myStyles.retImage}>
             {jardinetePhoto ? (
               <Image
-                style={styles.jardineteImage}
+                style={myStyles.jardineteImage}
                 source={{ uri: jardinetePhoto }}
               />
             ) : (
@@ -191,11 +192,11 @@ function MapCenter({ center }) {
             )}
           </View>
 
-          <View style={styles.row1}>
-            <View style={styles.column1}>
-              <Text style={styles.title}>Dados do Jardinete</Text>
-              <View style={styles.ret1}>
-  <Text style={styles.textData}>
+          <View style={myStyles.row1}>
+            <View style={myStyles.column1}>
+              <Text style={myStyles.title}>Dados do Jardinete</Text>
+              <View style={myStyles.ret1}>
+  <Text style={myStyles.textData}>
     O nome do jardinete é{' '}
     <Text style={{ color: '#1E6131', fontWeight: 'bold' }}>{jardineteNome}</Text> e fica no bairro{' '}
     <Text style={{ color: '#1E6131', fontWeight: 'bold' }}>{localizacao}</Text>.
@@ -211,16 +212,19 @@ function MapCenter({ center }) {
   </Text>
 </View>
             </View>
-            <View style={styles.column2}>
-              <Text style={styles.title}>Região do Jardinete</Text>
-              <View style={styles.ret2}>
+            <View style={myStyles.column2}>
+              <Text style={myStyles.title}>Região do Jardinete</Text>
+              <View style={myStyles.ret2}>
               <MapContainer
   key={mapKey}
   center={[MapLatitude, MapLongitude]}
   zoom={16}
   style={{ width: '100%', height: '100%' }}
+
 >
   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+  
   <Marker position={[MapLatitude, MapLongitude]} icon={customIcon}>
     <Popup>
       <Text>{jardineteNome}</Text>
@@ -234,39 +238,39 @@ function MapCenter({ center }) {
             </View>
           </View>
 
-          <View style={styles.row2}>
-            <View style={styles.column1}>
-              <Text style={styles.title}>Itens do Jardinete</Text>
-              <View style={styles.ret3}>
-                <View style={styles.row3}>
-                  <Image style={[styles.inventoryImage, getImageStyle(areia)]} source={require('../../assets/areia.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(feira)]} source={require('../../assets/feira.jpg')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(lixo)]} source={require('../../assets/lixo.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(caminhada)]} source={require('../../assets/caminhada.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(monumento)]} source={require('../../assets/monumento.png')} />
+          <View style={myStyles.row2}>
+            <View style={myStyles.column1}>
+              <Text style={myStyles.title}>Itens do Jardinete</Text>
+              <View style={myStyles.ret3}>
+                <View style={myStyles.row3}>
+                  <Image style={[myStyles.inventoryImage, getImageStyle(areia)]} source={require('../../assets/areia.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(feira)]} source={require('../../assets/feira.jpg')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(lixo)]} source={require('../../assets/lixo.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(caminhada)]} source={require('../../assets/caminhada.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(monumento)]} source={require('../../assets/monumento.png')} />
                 </View>
-                <View style={styles.row3}>
-                  <Image style={[styles.inventoryImage, getImageStyle(arvore)]} source={require('../../assets/arvore.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(bicicleta)]} source={require('../../assets/bicicleta.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(acessibilidade)]} source={require('../../assets/acessibilidade.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(parque)]} source={require('../../assets/parque.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(flores)]} source={require('../../assets/flores.png')} />
+                <View style={myStyles.row3}>
+                  <Image style={[myStyles.inventoryImage, getImageStyle(arvore)]} source={require('../../assets/arvore.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(bicicleta)]} source={require('../../assets/bicicleta.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(acessibilidade)]} source={require('../../assets/acessibilidade.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(parque)]} source={require('../../assets/parque.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(flores)]} source={require('../../assets/flores.png')} />
                 </View>
-                <View style={styles.row3}>
-                  <Image style={[styles.inventoryImage, getImageStyle(animais)]} source={require('../../assets/patinhas.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(banco)]} source={require('../../assets/bancos.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(estica)]} source={require('../../assets/estica.png')} />
-                  <Image style={[styles.inventoryImage, getImageStyle(pavimentada)]} source={require('../../assets/pavimentada.jpg')} />
+                <View style={myStyles.row3}>
+                  <Image style={[myStyles.inventoryImage, getImageStyle(animais)]} source={require('../../assets/patinhas.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(banco)]} source={require('../../assets/bancos.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(estica)]} source={require('../../assets/estica.png')} />
+                  <Image style={[myStyles.inventoryImage, getImageStyle(pavimentada)]} source={require('../../assets/pavimentada.jpg')} />
                 </View>
-                <View style={styles.row4}>
+                <View style={myStyles.row4}>
   <TouchableOpacity onPress={() => navigation.goBack()}>
     <LinearGradient
       colors={['#271C00', '#FEE7AC']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
-      style={styles.bt1}
+      style={myStyles.bt1}
     >
-      <Text style={styles.textBt}>Voltar</Text>
+      <Text style={myStyles.textBt}>Voltar</Text>
     </LinearGradient>
   </TouchableOpacity>
 
@@ -275,10 +279,10 @@ function MapCenter({ center }) {
       colors={['#4C6523', '#99CB47']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
-      style={styles.bt3}
+      style={myStyles.bt3}
     >
-      <Text style={styles.textBt}>Impacto</Text>
-      <Text style={styles.textBt}>Avaliação</Text>
+      <Text style={myStyles.textBt}>Impacto</Text>
+      <Text style={myStyles.textBt}>Avaliação</Text>
       
     </LinearGradient>
   </TouchableOpacity>
@@ -288,10 +292,10 @@ function MapCenter({ center }) {
       colors={['#4C6523', '#99CB47']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
-      style={styles.bt2}
+      style={myStyles.bt2}
     >
-      <Text style={styles.textBt}>Impacto</Text>
-      <Text style={styles.textBt}>Resultados</Text>
+      <Text style={myStyles.textBt}>Impacto</Text>
+      <Text style={myStyles.textBt}>Resultados</Text>
     </LinearGradient>
   </TouchableOpacity>
 </View>
@@ -299,9 +303,9 @@ function MapCenter({ center }) {
 
               </View>
             </View>
-            <View style={styles.column2}>
-              <Text style={styles.title}>Mapa do Satélite</Text>
-              <View style={styles.ret2}>
+            <View style={myStyles.column2}>
+              <Text style={myStyles.title}>Mapa do Satélite</Text>
+              <View style={myStyles.ret2}>
               <MapContainer
   key={mapKey}
   center={[MapLatitude, MapLongitude]}
@@ -326,13 +330,13 @@ function MapCenter({ center }) {
           </View>
         </View>
 
-        <View style={styles.imageContainer33}>
-          <Image source={require('../../assets/araucarias.png')}  style={styles.araucarias} />
+        <View style={myStyles.imageContainer33}>
+          <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias} />
       </View>
 
-      <View style={styles.navbar2}>
-      <View style={styles.imageContainer22}>
-          <Image source={require('../../assets/UtfprBottom.png')}  style={styles.utfprImage} />
+      <View style={myStyles.navbar2}>
+      <View style={myStyles.imageContainer22}>
+          <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage} />
       </View>
       </View>
 
