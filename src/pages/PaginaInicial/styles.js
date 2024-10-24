@@ -1,10 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-
-const { width, height } = Dimensions.get('window');
-
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
 
   container:{
     flex: 1,
@@ -58,7 +57,7 @@ navbar: {
     height: width * 0.4333333333333333,
     borderWidth: width * 0.0078125,
     borderColor: '#271C00',
-    borderRadius: 10,
+    borderRadius: (10 / 1920) * width,
   },
 
 projetoUTFPR: {
@@ -73,7 +72,7 @@ orangeRet: {
   width: width * 0.3385416666666667,
   height: width * 0.15625,
   backgroundColor: '#B68F40',
-  borderRadius: 10,
+  borderRadius: (10 / 1920) * width,
 
 },
 
@@ -123,7 +122,7 @@ retMenor: {
   left: width * 0.05,
   marginTop: width * 0.0390625,
   backgroundColor: '#B68F40',
-  borderRadius: 10,
+  borderRadius: (10 / 1920) * width,
   borderColor:  '#271C00',
   borderWidth: width * 0.0104166666666667,
   width: width * 0.15625,
@@ -134,7 +133,7 @@ retMenor2: {
   right: width * 0.225,
   marginTop: width * 0.0390625,
   backgroundColor: '#B68F40',
-  borderRadius: 10,
+  borderRadius: (10 / 1920) * width,
   borderColor:  '#271C00',
   borderWidth: width * 0.0104166666666667,
   width: width * 0.15625,
@@ -198,7 +197,7 @@ quadro: {
   height: width * 0.2833333333333333,
   borderWidth: width * 0.0078125,
   borderColor: '#271C00',
-  borderRadius: 10,
+  borderRadius: (10 / 1920) * width,
   backgroundColor: '#B68F40',
   alignItems: 'center',
 
@@ -282,7 +281,7 @@ ponta2: {
             width: width * 0.2604166666666667,
             height: width * 0.0520833333333333,
             backgroundColor: '#166034',
-            borderRadius: 50,
+            borderRadius: (50 / 1920) * width,
             alignItems: 'center',
             justifyContent: 'center',
          },
@@ -294,7 +293,7 @@ ponta2: {
           width:  width * 0.2604166666666667,
           height: width * 0.0520833333333333,
           backgroundColor: '#B68F40',
-          borderRadius: 50,
+          borderRadius: (50 / 1920) * width,
        },
 
        imageContainer22: {
@@ -348,10 +347,10 @@ ponta2: {
         borderRadius: width * 0.1041666666666667,
         zIndex: -1,
         backgroundColor: 'transparent',
-        borderWidth: 10,
+        borderWidth: (10 / 1920) * width,
         borderColor: '#B68F40',
         right: '50%',
-        top: 1200,
+        top: (1200 / 1920) * width,
 
       },
 
@@ -371,7 +370,7 @@ ponta2: {
         borderRadius: width * 0.1041666666666667,
         zIndex: -1,
         backgroundColor: 'transparent',
-        borderWidth: 10,
+        borderWidth: (10 / 1920) * width,
         borderColor: '#B68F40',
         left: '50%',
         top: width * 0.525,
@@ -535,5 +534,5 @@ column3: {
         right: width * 0.1302083333333333,
     },
 
-
-});
+  });
+};

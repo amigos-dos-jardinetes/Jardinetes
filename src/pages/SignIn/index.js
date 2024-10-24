@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ScrollView, ImageBackground, View, Text, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { ScrollView, ImageBackground, View, Text, TextInput, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as animatable from 'react-native-animatable';
@@ -10,7 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 
-const { width, height } = Dimensions.get('window');
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
@@ -30,7 +31,8 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [animate, setAnimate] = useState(false);
-
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
   WebBrowser.maybeCompleteAuthSession();
 
   const [request, response, promptAsync] = Google.useAuthRequest({
@@ -130,107 +132,107 @@ export default function SignIn() {
   return (
     <ScrollView horizontal>
       <ScrollView
-        contentContainerStyle={styles.scrollViewContent}
+        contentContainerStyle={myStyles.scrollViewContent}
         ref={scrollViewRef}
       >
-        <ImageBackground source={require('../../assets/login_page.png')} resizeMode="cover" style={styles.image}>
-          <View style={styles.navbar}>
+        <ImageBackground source={require('../../assets/login_page.png')} resizeMode="cover" style={myStyles.image}>
+          <View style={myStyles.navbar}>
             <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')}>
-              <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
+              <Text style={myStyles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('acoesSociais')}>
-              <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
+              <Text style={myStyles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('JardinetesMap')}>
-              <Text style={styles.navbarButton}>FAÇA SUA PARTE</Text>
+              <Text style={myStyles.navbarButton}>FAÇA SUA PARTE</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('quemSomos')}>
-              <Text style={styles.navbarButton}>QUEM SOMOS</Text>
+              <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-              <Text style={styles.navbarButton}>CONTATO</Text>
+              <Text style={myStyles.navbarButton}>CONTATO</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
-              <Text style={styles.navbarButton}>LOGIN</Text>
+              <Text style={myStyles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={styles.card}>
-            <View style={styles.containerwelcome}>
-              <Image source={require('../../assets/welcome.png')} style={styles.welcome} />
+          <View style={myStyles.card}>
+            <View style={myStyles.containerwelcome}>
+              <Image source={require('../../assets/welcome.png')} style={myStyles.welcome} />
             </View>
 
-            <View style={styles.containerLogo}>
+            <View style={myStyles.containerLogo}>
               <TouchableOpacity onPress={() => setAnimate(!animate)}>
                 <animatable.Image
                   animation={animate ? { from: { rotateY: '0deg' }, to: { rotateY: '360deg' } } : null}
                   easing="linear"
                   duration={1000}
                   source={require('../../assets/logo.png')}
-                  style={styles.imagelogo}
+                  style={myStyles.imagelogo}
                 />
               </TouchableOpacity>
             </View>
-            <View style={styles.textcont}>
-              <Text style={styles.inpText}>E-mail:</Text>
+            <View style={myStyles.textcont}>
+              <Text style={myStyles.inpText}>E-mail:</Text>
             </View>
 
             <TextInput
               style={[
-                styles.input,
-                error && styles.errorInput,
+                myStyles.input,
+                error && myStyles.errorInput,
               ]}
               onChangeText={text => setEmail(text)}
             />
 
-            <View style={styles.textcont2}>
-              <Text style={styles.inpText2}>Senha:</Text>
+            <View style={myStyles.textcont2}>
+              <Text style={myStyles.inpText2}>Senha:</Text>
             </View>
 
             <TextInput
               style={[
-                styles.input2,
-                error && styles.errorInput,
+                myStyles.input2,
+                error && myStyles.errorInput,
               ]}
               onChangeText={text => setPassword(text)}
               secureTextEntry={true}
             />
 
             {error && (
-              <Text style={styles.errorText}>{error}</Text>
+              <Text style={myStyles.errorText}>{error}</Text>
             )}
 
-            <TouchableOpacity style={styles.forgot} onPress={() => navigation.navigate('Redefinir')}>
-              <Text style={styles.forgotText}>Esqueci minha senha</Text>
+            <TouchableOpacity style={myStyles.forgot} onPress={() => navigation.navigate('Redefinir')}>
+              <Text style={myStyles.forgotText}>Esqueci minha senha</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonLogin} onPress={handleLoginPress}>
-              <Text style={styles.buttonTextLogin}>ENTRAR</Text>
+            <TouchableOpacity style={myStyles.buttonLogin} onPress={handleLoginPress}>
+              <Text style={myStyles.buttonTextLogin}>ENTRAR</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonGoogle}>
-              <Image source={require('../../assets/google.png')} style={styles.imageGoogle} />
+            <TouchableOpacity style={myStyles.buttonGoogle}>
+              <Image source={require('../../assets/google.png')} style={myStyles.imageGoogle} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.signUp} onPress={() => navigation.navigate('SignUp')}>
-              <Text style={styles.signUpText}>Cadastre-se</Text>
+            <TouchableOpacity style={myStyles.signUp} onPress={() => navigation.navigate('SignUp')}>
+              <Text style={myStyles.signUpText}>Cadastre-se</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={styles.treeView1}>
-            <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
+          <View style={myStyles.treeView1}>
+            <Image source={require('../../assets/smallTree.png')} style={myStyles.smallTree} />
           </View>
 
-          <View style={styles.treeView2}>
-            <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
+          <View style={myStyles.treeView2}>
+            <Image source={require('../../assets/smallTree.png')} style={myStyles.smallTree} />
           </View>
 
-          <View style={styles.treeView3}>
-            <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
+          <View style={myStyles.treeView3}>
+            <Image source={require('../../assets/bigTree.png')} style={myStyles.bigTree} />
           </View>
 
-          <View style={styles.treeView4}>
-            <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
+          <View style={myStyles.treeView4}>
+            <Image source={require('../../assets/bigTree.png')} style={myStyles.bigTree} />
           </View>
         </ImageBackground>
       </ScrollView>

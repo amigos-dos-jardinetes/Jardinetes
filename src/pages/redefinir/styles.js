@@ -1,12 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-
-const { width, height } = Dimensions.get('window');
-
-export const styles = StyleSheet.create({
-
-
+  return StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -37,7 +34,7 @@ export const styles = StyleSheet.create({
     },  
 
     barra: {
-        width: 2,
+        width: ((2 / 1920) * width),
         height: width * 0.2604166666666667,
         backgroundColor: '#271C00',
         marginLeft: width * 0.1041666666666667,
@@ -99,8 +96,8 @@ export const styles = StyleSheet.create({
         width: width * 0.234375,
         height: width * 0.0260416666666667,
         borderColor: '#999',
-        borderWidth: 1,
-        borderRadius: 5,
+        borderWidth: ((1 / 1920) * width),
+        borderRadius: ((5 / 1920) * width),
         backgroundColor: 'white',
 
       },
@@ -120,7 +117,7 @@ export const styles = StyleSheet.create({
     marginTop: width * 0.0260416666666667,
     width: width * 0.15625,
     height: width * 0.0260416666666667,
-    borderRadius: 15,
+    borderRadius: ((15 / 1920) * width),
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -131,8 +128,8 @@ export const styles = StyleSheet.create({
 
   errorText: {
     color: 'red',
-    marginTop: 5,
-    marginBottom: 10,
+    marginTop: ((5 / 1920) * width),
+    marginBottom: ((10 / 1920) * width),
   },
 
 
@@ -140,7 +137,7 @@ export const styles = StyleSheet.create({
   circBorda: {
     zIndex: -1,
     backgroundColor: 'transparent',
-    borderWidth: 10,
+    borderWidth: ((10 / 1920) * width),
     borderColor: '#B68F40',
     width: width * 0.1302083333333333,
     height:width * 0.1302083333333333,
@@ -160,3 +157,4 @@ backButton: {
 },
 
 });
+};

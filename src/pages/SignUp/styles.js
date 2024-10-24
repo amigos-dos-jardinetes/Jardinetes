@@ -1,11 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-
-
-export const styles = StyleSheet.create({
-
+  return StyleSheet.create({
     image: {
         width: width,
         height: (width * 1024) / 1440,
@@ -92,6 +90,7 @@ export const styles = StyleSheet.create({
     input: {
         width: '100%',
         padding: (10 / 1920) * width,
+        height: (40 / 1920) * width,
         borderWidth: 1,
         borderColor: '#ccc',
         backgroundColor: '#4C6523',
@@ -101,6 +100,7 @@ export const styles = StyleSheet.create({
     input2: {
         width: '100%',
         padding: (10 / 1920) * width,
+        height: (40 / 1920) * width,
         borderWidth: 1,
         borderColor: '#ccc',
         backgroundColor: '#166034',
@@ -130,11 +130,13 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         textDecorationLine: 'underline',
         marginBottom: (10 / 1920) * width,
+        fontSize: (16 / 1920) * width,
     },
     disagreeButton: {
         color: 'red', // Cor do texto do botão Não concordo
         textAlign: 'center',
         textDecorationLine: 'underline',
+        fontSize: (16 / 1920) * width,
     },
     checkboxContainer: {
         flexDirection: 'row',
@@ -144,4 +146,19 @@ export const styles = StyleSheet.create({
         marginLeft: (52 / 1920) * width,
     },
 
-});
+  boldTitle: {
+    fontSize: (16 / 1920) * width,
+    fontWeight: 'bold',
+
+  },
+    
+  checkbox: {
+    width: (20 / 1920) * width,
+    height: (20 / 1920) * width,
+    
+
+  },
+
+
+  });
+};

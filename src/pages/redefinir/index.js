@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, TextInput, TouchableOpacity, Text, Image, Alert, Dimensions } from 'react-native';
+import { View, ScrollView, TextInput, TouchableOpacity, Text, Image, Alert, useWindowDimensions } from 'react-native';
 import { styles } from '../redefinir/styles';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -8,7 +8,8 @@ import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { Ionicons } from '@expo/vector-icons';
 
 
-const { width, height } = Dimensions.get('window');
+
+
 // Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
@@ -33,7 +34,9 @@ export default function Redefinir() {
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState(''); // Estado para armazenar a mensagem de erro
   const navigation = useNavigation();
-
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
+  
   const handlePasswordReset = async () => {
     setErrorMessage(''); // Limpa qualquer mensagem de erro anterior
 
@@ -60,34 +63,34 @@ export default function Redefinir() {
   };
 
   return (
-    <ScrollView style={styles.scroll}>
-    <View style={styles.container}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+    <ScrollView style={myStyles.scroll}>
+    <View style={myStyles.container}>
+        <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={width * 0.035} color="white" />
         </TouchableOpacity>
-  <View style={styles.circBorda}></View>
-      <LinearGradient colors={['#FFFEF4', '#166034']} style={styles.card}>
-        <View style={styles.row}>
-          <View style={styles.column}>
-            <View style={styles.circ}>
-              <Text style={styles.textCirc}>Recuperar seu acesso é simples!</Text>                
+  <View style={myStyles.circBorda}></View>
+      <LinearGradient colors={['#FFFEF4', '#166034']} style={myStyles.card}>
+        <View style={myStyles.row}>
+          <View style={myStyles.column}>
+            <View style={myStyles.circ}>
+              <Text style={myStyles.textCirc}>Recuperar seu acesso é simples!</Text>                
             </View>
-            <View style={styles.row}>
-              <Image source={require('../../assets/bigTree.png')} style={styles.bigTree} />
-              <Image source={require('../../assets/smallTree.png')} style={styles.smallTree} />
+            <View style={myStyles.row}>
+              <Image source={require('../../assets/bigTree.png')} style={myStyles.bigTree} />
+              <Image source={require('../../assets/smallTree.png')} style={myStyles.smallTree} />
             </View>
           </View>
 
-          <View style={styles.barra}></View>
+          <View style={myStyles.barra}></View>
 
-          <View style={styles.column}>
-            <View style={styles.textRecContainer}>  
-              <Text style={styles.textRec}>Preencha o campo abaixo com seu endereço de e-mail para receber instruções sobre como criar uma nova senha no Amigos dos Jardinetes.</Text>                
+          <View style={myStyles.column}>
+            <View style={myStyles.textRecContainer}>  
+              <Text style={myStyles.textRec}>Preencha o campo abaixo com seu endereço de e-mail para receber instruções sobre como criar uma nova senha no Amigos dos Jardinetes.</Text>                
             </View>
                     
-            <View style={styles.inputContainer}> 
+            <View style={myStyles.inputContainer}> 
               <TextInput
-                style={[styles.input, { fontSize: width * 0.0135416666666667 }]}
+                style={[myStyles.input, { fontSize: width * 0.0135416666666667 }]}
                 placeholder="E-mail"
                 placeholderTextColor="#999"
                 value={email}
@@ -99,7 +102,7 @@ export default function Redefinir() {
 
               {/* Exibe a mensagem de erro abaixo do TextInput */}
               {errorMessage ? (
-                <Text style={styles.errorText}>{errorMessage}</Text>
+                <Text style={myStyles.errorText}>{errorMessage}</Text>
               ) : null}
 
               <TouchableOpacity onPress={handlePasswordReset}>
@@ -107,17 +110,17 @@ export default function Redefinir() {
                   colors={['#271C00', '#8D6500']} 
                   start={{ x: 0, y: 0 }} 
                   end={{ x: 1, y: 0 }} 
-                  style={styles.button}
+                  style={myStyles.button}
                 >
-                  <Text style={styles.buttonText}>Redefinir senha</Text>
+                  <Text style={myStyles.buttonText}>Redefinir senha</Text>
                 </LinearGradient>
               </TouchableOpacity>
             </View>
           </View>
         </View>
       </LinearGradient>
-      <View style={styles.circBorda1}></View>
-      <View style={styles.circCanto}></View>
+      <View style={myStyles.circBorda1}></View>
+      <View style={myStyles.circCanto}></View>
      
     </View>
     </ScrollView>
