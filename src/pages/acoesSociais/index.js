@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, TouchableOpacity, Text, Image, Linking, ActivityIndicator, Dimensions } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text, Image, Linking, ActivityIndicator, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Importa o CSS necessário
@@ -14,7 +14,9 @@ export default function acoesSociais() {
   const scrollViewRef = useRef(null);
   const [jardinetes, setJardinetes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { width, height } = Dimensions.get('window');
+
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
   
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
@@ -44,57 +46,61 @@ export default function acoesSociais() {
   }, []);
 
   const renderCarouselItem = (item) => (
-    <div key={item.nome} style={styles.carouselItem}>
-      <img src={item.jardinetePhoto} alt={item.nome} style={styles.carouselImage} />
-      <p style={styles.carouselText}>{item.nome}</p>
+    <div key={item.nome} style={myStyles.carouselItem}>
+      <img src={item.jardinetePhoto} alt={item.nome} style={myStyles.carouselImage} />
+      <p style={myStyles.carouselText}>{item.nome}</p>
     </div>
   );
 
   if (loading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size={width * 0.09} color="#0000ff" />
+      </View>
+    );
   }
 
   return (
-    <ScrollView ref={scrollViewRef}  style={styles.container3}>
-          <View style={styles.circle}></View>
-          <View style={styles.circle2}></View>
-    <View style={styles.container}>
+    <ScrollView ref={scrollViewRef}  style={myStyles.container3}>
+          <View style={myStyles.circle}></View>
+          <View style={myStyles.circle2}></View>
+    <View style={myStyles.container}>
 
-        <View style={styles.navbar}>
+        <View style={myStyles.navbar}>
             <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
-                <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
+                <Text style={myStyles.navbarButton}>PÁGINA INICIAL</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
-                <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
+                <Text style={myStyles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
-                <Text style={styles.navbarButton}>FAÇA SUA PARTE</Text>
+                <Text style={myStyles.navbarButton}>FAÇA SUA PARTE</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('quemSomos')}>
-                <Text style={styles.navbarButton}>QUEM SOMOS</Text>
+                <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-                <Text style={styles.navbarButton}>CONTATO</Text>
+                <Text style={myStyles.navbarButton}>CONTATO</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
-                <Text style={styles.navbarButton}>LOGIN</Text>
+                <Text style={myStyles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
        
           
         </View>
 
         
-        <View style={styles.row}>
-                <View style={styles.column1}>
-                     <Image source={require('../../assets/conhecaJardinetes.png')}  style={styles.conhecaJard} />
-                     <View style={styles.ret}></View>
+        <View style={myStyles.row}>
+                <View style={myStyles.column1}>
+                     <Image source={require('../../assets/conhecaJardinetes.png')}  style={myStyles.conhecaJard} />
+                     <View style={myStyles.ret}></View>
 
-                     <View style={[styles.borderedContainer3, { overflow: 'hidden', }]}>
+                     <View style={[myStyles.borderedContainer3, { overflow: 'hidden', }]}>
                        <Carousel
     showThumbs={false}
     showStatus={false}
@@ -113,11 +119,11 @@ export default function acoesSociais() {
             background: 'rgba(0, 0, 0, 0.5)',
             border: 'none',
             color: 'white',
-            padding: '10px',
+            padding: (10 / 1920) * width,
             borderRadius: '20%',
           }}
         >
-          <FontAwesomeIcon icon={faChevronLeft} size="2x" />
+          <FontAwesomeIcon icon={faChevronLeft} size="2x" style={{ fontSize: width * 0.03 }} />
         </button>
       )
     }
@@ -134,11 +140,11 @@ export default function acoesSociais() {
             background: 'rgba(0, 0, 0, 0.5)',
             border: 'none',
             color: 'white',
-            padding: '10px',
+            padding: (10 / 1920) * width,
             borderRadius: '20%',
           }}
         >
-          <FontAwesomeIcon icon={faChevronRight} size="2x" />
+          <FontAwesomeIcon icon={faChevronRight} size="2x" style={{ fontSize: width * 0.03 }} />
         </button>
       )
     }
@@ -148,7 +154,7 @@ export default function acoesSociais() {
         bottom: width * 0.0104166666666667,  // Ajusta essa propriedade para mover para cima
         transform: 'translateX(-50%)',
         display: 'inline-block',
-        marginRight: '8px',
+        marginRight: (8 / 1920) * width,
         cursor: 'pointer',
         borderRadius: '50%',
         width: isSelected ? width * 0.00625 : width * 0.0052083333333333,
@@ -173,29 +179,29 @@ export default function acoesSociais() {
             </View>
                 </View>
 
-                <View style={styles.column2}>
-                        <View style={styles.retConheca1}>
-                            <View style={styles.retConheca2}>
-                                <Image source={require('../../assets/parceirosTitle.png')}  style={styles.parceirosTitle} />
+                <View style={myStyles.column2}>
+                        <View style={myStyles.retConheca1}>
+                            <View style={myStyles.retConheca2}>
+                                <Image source={require('../../assets/parceirosTitle.png')}  style={myStyles.parceirosTitle} />
                             </View>
-                            <View style={styles.retOrange}>
+                            <View style={myStyles.retOrange}>
                                 <TouchableOpacity onPress={() => openLink('https://www.instagram.com/maozinhaverdecuritiba/')}>
-                                    <Image source={require('../../assets/maozinha.png')} style={styles.maozinha} />
+                                    <Image source={require('../../assets/maozinha.png')} style={myStyles.maozinha} />
                                 </TouchableOpacity>
-                                 <View style={styles.retVerde}>
-                                    <Text style={styles.parceirosText}>Mãozinha Verde Agência de Sustentabilidade</Text>
+                                 <View style={myStyles.retVerde}>
+                                    <Text style={myStyles.parceirosText}>Mãozinha Verde Agência de Sustentabilidade</Text>
                                  </View>
                                  <TouchableOpacity onPress={() => openLink('https://www.instagram.com/serambiental.utfpr/')}>
-                                     <Image source={require('../../assets/serAmbiental.png')} style={styles.serAmbiental} />
+                                     <Image source={require('../../assets/serAmbiental.png')} style={myStyles.serAmbiental} />
                                  </TouchableOpacity>
-                                 <View style={styles.retVerde}>
-                                    <Text style={styles.parceirosText}>Ser Ambiental Educação Ambiental</Text>
+                                 <View style={myStyles.retVerde}>
+                                    <Text style={myStyles.parceirosText}>Ser Ambiental Educação Ambiental</Text>
                                  </View>
                                  <TouchableOpacity onPress={() => openLink('https://www.instagram.com/biotiba/')}>
-                                     <Image source={require('../../assets/biotiba.png')} style={styles.biotiba} />
+                                     <Image source={require('../../assets/biotiba.png')} style={myStyles.biotiba} />
                                  </TouchableOpacity>
-                                 <View style={styles.retVerde}>
-                                    <Text style={styles.parceirosText}>Biotiba</Text>
+                                 <View style={myStyles.retVerde}>
+                                    <Text style={myStyles.parceirosText}>Biotiba</Text>
                                  </View>
                             </View>
                         </View>
@@ -203,15 +209,15 @@ export default function acoesSociais() {
         </View>
 
 
-        <View style={styles.araucariaContainer}>
-             <Image source={require('../../assets/araucarias.png')}  style={styles.araucarias} />
-             <Image source={require('../../assets/araucarias.png')}  style={styles.araucarias2} />
+        <View style={myStyles.araucariaContainer}>
+             <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias} />
+             <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias2} />
         </View>
 
 
-        <View style={styles.navbar2}>
-      <View style={styles.imageContainer22}>
-          <Image source={require('../../assets/UtfprBottom.png')}  style={styles.utfprImage3} />
+        <View style={myStyles.navbar2}>
+      <View style={myStyles.imageContainer22}>
+          <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
       </View>
       </View>
        

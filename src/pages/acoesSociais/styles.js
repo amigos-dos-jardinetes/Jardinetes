@@ -1,8 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
 
     container:{
         flex: 1,
@@ -70,7 +71,7 @@ export const styles = StyleSheet.create({
           backgroundColor: '#271C00',
           width: width * 0.3125,
           height: width * 0.0260416666666667,
-          borderRadius: 20,
+          borderRadius: (20 / 1920) * width,
       },
 
       retConheca2: {
@@ -79,10 +80,10 @@ export const styles = StyleSheet.create({
         height: width * 0.0260416666666667,
         top: -(width * 0.0104166666666667),
         left: width * 0.0104166666666667,
-        borderRadius: 20,
+        borderRadius: (20 / 1920) * width,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1,
+        borderWidth: (1 / 1920) * width,
         borderColor: '#4C6523'
       },
 
@@ -102,7 +103,7 @@ export const styles = StyleSheet.create({
         height: width * 0.46875,
         marginTop: width * 0.0260416666666667,
         alignSelf: 'center',
-        borderRadius: 15,
+        borderRadius: (15 / 1920) * width,
       },
 
       maozinha: {
@@ -197,8 +198,8 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff',
         width: width * 0.4166666666666667,
         height: width * 0.234375,
-        borderWidth: 10,
-        borderRadius: 15,
+        borderWidth: (10 / 1920) * width,
+        borderRadius: (15 / 1920) * width,
         borderColor: '#271C00',
       },
     
@@ -281,5 +282,6 @@ export const styles = StyleSheet.create({
           position: 'absolute',
           right: '-10%'
       },  
-      
-});
+    });
+  };
+  

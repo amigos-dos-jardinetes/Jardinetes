@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, ScrollView, Image, TextInput, Dimensions } from 'react-native';
+import { View, TouchableOpacity, Text, ScrollView, Image, TextInput, useWindowDimensions} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
@@ -10,7 +10,6 @@ import { styles } from '../JardinetesMap/styles';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const { width, height } = Dimensions.get('window');
 
 export default function JardinetesMap() {
     const auth = getAuth();
@@ -24,7 +23,9 @@ export default function JardinetesMap() {
     const [isVamosLaClickable, setIsVamosLaClickable] = useState(false); 
     const [isVamosLaClickable1, setIsVamosLaClickable1] = useState(false); 
     const [selectedJardimId, setSelectedJardimId] = useState(null); 
-
+    const myStyles = styles();
+    const { width, height } = useWindowDimensions(); 
+    
     const handleJardimPress = (jardim) => {
         console.log("Selected Jardim (handleJardimPress):", jardim);
         setSelectedJardim(jardim);
@@ -111,41 +112,41 @@ export default function JardinetesMap() {
     });
 
     return (
-        <ScrollView style={styles.container3}>
-            <View style={styles.container}>
-                <View style={styles.navbar}>
+        <ScrollView style={myStyles.container3}>
+            <View style={myStyles.container}>
+                <View style={myStyles.navbar}>
                     <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
-                        <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
+                        <Text style={myStyles.navbarButton}>PÁGINA INICIAL</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
-                        <Text style={styles.navbarButton}>AÇÕES SOCIAIS</Text>
+                        <Text style={myStyles.navbarButton}>AÇÕES SOCIAIS</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
-                        <Text style={styles.navbarButton}>FAÇA SUA PARTE</Text>
+                        <Text style={myStyles.navbarButton}>FAÇA SUA PARTE</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('quemSomos')}>
-                        <Text style={styles.navbarButton}>QUEM SOMOS</Text>
+                        <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-                        <Text style={styles.navbarButton}>CONTATO</Text>
+                        <Text style={myStyles.navbarButton}>CONTATO</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
-                        <Text style={styles.navbarButton}>LOGIN</Text>
+                        <Text style={myStyles.navbarButton}>LOGIN</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.encontre}>
-                    <Image source={require('../../assets/encontre.png')} style={styles.encontreImage} />
+                <View style={myStyles.encontre}>
+                    <Image source={require('../../assets/encontre.png')} style={myStyles.encontreImage} />
                 </View>
 
-                <View style={styles.map}>
-                    <View style={styles.container_map}>
-                        <View style={styles.mapContainer}>
+                <View style={myStyles.map}>
+                    <View style={myStyles.container_map}>
+                        <View style={myStyles.mapContainer}>
                             <MapContainer
                                 center={[-25.4284, -49.2733]}
                                 zoom={14}
@@ -158,13 +159,13 @@ export default function JardinetesMap() {
                                         <Popup>
                                             <div>
                                                 <p>{jardinetes.nome}</p>
-                                                <img src={jardinetes.jardinetePhoto} alt={`Foto de ${jardinetes.nome}`} style={styles.popupImage} />
-                                                <View style={styles.popupButtonContainer}>
-                                                    <TouchableOpacity onPress={() => handleDetailsPress(jardinetes)} style={styles.popupButton}>
-                                                        <Text style={styles.popupButtonText}>Selecionar Jardinete</Text>
+                                                <img src={jardinetes.jardinetePhoto} alt={`Foto de ${jardinetes.nome}`} style={myStyles.popupImage} />
+                                                <View style={myStyles.popupButtonContainer}>
+                                                    <TouchableOpacity onPress={() => handleDetailsPress(jardinetes)} style={myStyles.popupButton}>
+                                                        <Text style={myStyles.popupButtonText}>Selecionar Jardinete</Text>
                                                     </TouchableOpacity>
-                                                    <TouchableOpacity onPress={() => handleVamosLaPress1(jardinetes)} style={styles.popupButton}>
-                                                        <Text style={styles.popupButtonText}>Gráfico do Jardinete</Text>
+                                                    <TouchableOpacity onPress={() => handleVamosLaPress1(jardinetes)} style={myStyles.popupButton}>
+                                                        <Text style={myStyles.popupButtonText}>Gráfico do Jardinete</Text>
                                                     </TouchableOpacity>
                                                 </View>
                                             </div>
@@ -175,61 +176,61 @@ export default function JardinetesMap() {
                         </View>
                     </View>
 
-                    <View style={styles.container2}>
-                        <View style={styles.card}>
-                            <View style={styles.searchContainer}>
-                                <Ionicons name="search" size={width * 0.01041666666666666666666666666667} color="#ffffff" style={styles.searchIcon} />
+                    <View style={myStyles.container2}>
+                        <View style={myStyles.card}>
+                            <View style={myStyles.searchContainer}>
+                                <Ionicons name="search" size={width * 0.01041666666666666666666666666667} color="#ffffff" style={myStyles.searchIcon} />
                                 {searchText.trim() !== '' && (
-                                    <TouchableOpacity style={styles.clearButton} onPress={() => setSearchText('')}>
+                                    <TouchableOpacity style={myStyles.clearButton} onPress={() => setSearchText('')}>
                                         <Ionicons name="close" size={width * 0.01041666666666666666666666666667} color="#ffffff" />
                                     </TouchableOpacity>
                                 )}
                                 {searchText.trim() !== '' && (
-                                    <View style={styles.resultsContainer}>
-                                        <View style={styles.resultsInnerContainer}>
+                                    <View style={myStyles.resultsContainer}>
+                                        <View style={myStyles.resultsInnerContainer}>
                                             {filteredJardinetes.map((jardim, index) => (
-                                                <TouchableOpacity key={index} style={[styles.resultItem, index % 2 === 0 ? styles.evenResult : styles.oddResult]} onPress={() => handleJardimPress(jardim)}>
-                                                    <Text style={styles.resultText}>{jardim.nome}</Text>
+                                                <TouchableOpacity key={index} style={[myStyles.resultItem, index % 2 === 0 ? myStyles.evenResult : myStyles.oddResult]} onPress={() => handleJardimPress(jardim)}>
+                                                    <Text style={myStyles.resultText}>{jardim.nome}</Text>
                                                 </TouchableOpacity>
                                             ))}
                                         </View>
                                     </View>
                                 )}
                                 <TextInput
-                                    style={[styles.searchBar, { paddingLeft: width * 0.0260416666666667, fontSize: width * 0.0072916666666667 }]}
+                                    style={[myStyles.searchBar, { paddingLeft: width * 0.0260416666666667, fontSize: width * 0.0072916666666667 }]}
                                     placeholder="Busque um jardinete"
                                     onChangeText={text => setSearchText(text)}
                                     value={searchText}
                                 />
                                 {searchText.length > 0 && (
-                                    <TouchableOpacity onPress={() => setSearchText('')} style={styles.clearButton}>
-                                        <Text style={styles.clearButtonText}>X</Text>
+                                    <TouchableOpacity onPress={() => setSearchText('')} style={myStyles.clearButton}>
+                                        <Text style={myStyles.clearButtonText}>X</Text>
                                     </TouchableOpacity>
                                 )}
                             </View>
 
-                            <View style={styles.gradientButtonContainer}>
+                            <View style={myStyles.gradientButtonContainer}>
                                 <TouchableOpacity 
-                                    style={[styles.gradientButton, !isVamosLaClickable && styles.disabledButton]} 
+                                    style={[myStyles.gradientButton, !isVamosLaClickable && myStyles.disabledButton]} 
                                     onPress={() => isVamosLaClickable && handleVamosLaPress(selectedJardim)}
                                 >
                                     <LinearGradient
                                         colors={['#166034', '#2BBD67']}
                                         start={{ x: 0, y: 0 }}
                                         end={{ x: 1, y: 0 }}
-                                        style={styles.linearGradient}
+                                        style={myStyles.linearGradient}
                                     >
-                                        <Text style={styles.gradientButtonText}>Vamos lá!</Text>
+                                        <Text style={myStyles.gradientButtonText}>Vamos lá!</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>
                         </View>
 
                         {selectedJardim && (
-                            <View style={styles.detailsContainer}>
-                                <Text style={styles.jardimName}>{selectedJardim.nome}</Text>
-                                <TouchableOpacity onPress={handleCloseButtonClick} style={styles.closeButton}>
-                                    <Text style={styles.closeButtonText}>X</Text>
+                            <View style={myStyles.detailsContainer}>
+                                <Text style={myStyles.jardimName}>{selectedJardim.nome}</Text>
+                                <TouchableOpacity onPress={handleCloseButtonClick} style={myStyles.closeButton}>
+                                    <Text style={myStyles.closeButtonText}>X</Text>
                                 </TouchableOpacity>
                             </View>
                         )}
@@ -239,13 +240,13 @@ export default function JardinetesMap() {
 
         
 
-            <View style={styles.imageContainer33}>
-                <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
+            <View style={myStyles.imageContainer33}>
+                <Image source={require('../../assets/araucarias.png')} style={myStyles.araucarias} />
             </View>
 
-            <View style={styles.navbar2}>
-                <View style={styles.imageContainer22}>
-                    <Image source={require('../../assets/UtfprBottom.png')} style={styles.utfprImage} />
+            <View style={myStyles.navbar2}>
+                <View style={myStyles.imageContainer22}>
+                    <Image source={require('../../assets/UtfprBottom.png')} style={myStyles.utfprImage} />
                 </View>
             </View>
         </ScrollView>
