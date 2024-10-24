@@ -1,14 +1,17 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: (20 / 1920) * width,
     backgroundColor: '#F5F3E1', 
     width: (1200 / 1920) * width,
-    top: (450 / 1920) * width,
+    top: (475 / 1920) * width,
+    maxHeight: (1000 / 1920) * width,
+    position: 'absolute',
 
   },
 
@@ -340,3 +343,5 @@ row: {
 
 
 });
+};
+;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Dimensions, Linking, Modal, Picker} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, useWindowDimensions, Linking, Modal, Picker} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
@@ -55,7 +55,7 @@ export default function Form() {
   const firestore = getFirestore(firebaseApp);
   const storage = getStorage();
   const auth = getAuth(firebaseApp);
-  const { width } = Dimensions.get('window');
+  const { width, height } = useWindowDimensions(); 
   const [showImageError, setShowImageError] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -63,7 +63,8 @@ export default function Form() {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [showCropper, setShowCropper] = useState(false);
-
+  const myStyles = styles();
+  
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -199,31 +200,31 @@ export default function Form() {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container1}>
-      <View style={styles.navbar}>
+    <ScrollView contentContainerStyle={myStyles.container1} >
+      <View style={myStyles.navbar}>
 
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+      <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>
 
-        <View style={styles.imageContainer}>
+        <View style={myStyles.imageContainer}>
           {imageUrl ? (
             <Image
-              style={styles.logoImage}
+              style={myStyles.logoImage}
               source={{ uri: imageUrl }}
             />
           ) : (
             <Image
-              style={styles.logoImage}
+              style={myStyles.logoImage}
               source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
             />
           )}
         </View>
       </View>
 
-      <Image source={require('../../assets/vamoscomecar.png')} style={styles.vamos} />
+      <Image source={require('../../assets/vamoscomecar.png')} style={myStyles.vamos} />
 
-      <View style={styles.container}>
+      <View style={myStyles.container}>
      
 
       {imagem ? (
@@ -239,136 +240,136 @@ export default function Form() {
     />
   </TouchableOpacity>
 ) : (
-  <TouchableOpacity style={styles.button1} onPress={selecionarImagem}>
-    <Text style={styles.buttonText}>Selecione uma imagem para o jardinete</Text>
+  <TouchableOpacity style={myStyles.button1} onPress={selecionarImagem}>
+    <Text style={myStyles.buttonText}>Selecione uma imagem para o jardinete</Text>
   </TouchableOpacity>
 )}
 
 
-<View style={styles.textRow}>
-  <Text style={styles.label}>O nome do jardinete é</Text>
+<View style={myStyles.textRow}>
+  <Text style={myStyles.label}>O nome do jardinete é</Text>
   <TextInput
-    style={[styles.inputInline, styles.textInputCorrido]}
+    style={[myStyles.inputInline, myStyles.textInputCorrido]}
     onChangeText={text => setNome(text)}
     value={nome}
   />
   
-  <Text style={styles.label}> e fica no bairro </Text>
+  <Text style={myStyles.label}> e fica no bairro </Text>
   <TextInput
-    style={[styles.inputInline, styles.textInputCorrido]}
+    style={[myStyles.inputInline, myStyles.textInputCorrido]}
     onChangeText={text => setLocalizacao(text)}
     value={localizacao}
   />
-  <Text style={styles.label}>. (**)</Text>
+  <Text style={myStyles.label}>. (**)</Text>
 </View>
 
-<View style={styles.textRow}>
-  <Text style={styles.label}>Sua área é de </Text>
+<View style={myStyles.textRow}>
+  <Text style={myStyles.label}>Sua área é de </Text>
   <TextInput
-    style={[styles.inputInline, styles.textInputCorrido]}
+    style={[myStyles.inputInline, myStyles.textInputCorrido]}
     onChangeText={text => setArea(text)}
     value={area}
     keyboardType="numeric"
   />
-  <Text style={styles.label}> m². (*)</Text>
+  <Text style={myStyles.label}> m². (*)</Text>
 </View>
 
-<View style={styles.textRow}>
-  <Text style={styles.label}>Faz parte da bacia do rio </Text>
+<View style={myStyles.textRow}>
+  <Text style={myStyles.label}>Faz parte da bacia do rio </Text>
   <TextInput
-    style={[styles.inputInline, styles.textInputCorrido]}
+    style={[myStyles.inputInline, myStyles.textInputCorrido]}
     onChangeText={text => setBacia(text)}
     value={bacia}
   />
-   <Text style={styles.label}>. (*)</Text>
+   <Text style={myStyles.label}>. (*)</Text>
 </View>
 
-<View style={styles.textRow}>
-  <Text style={styles.label}>A proporção de áreas verdes por habitante é de </Text>
+<View style={myStyles.textRow}>
+  <Text style={myStyles.label}>A proporção de áreas verdes por habitante é de </Text>
   <TextInput
-    style={[styles.inputInline, styles.textInputCorrido]}
+    style={[myStyles.inputInline, myStyles.textInputCorrido]}
     onChangeText={text => setPercapita(text)}
     value={percapita}
     keyboardType="numeric"
   />
-  <Text style={styles.label}> m²/habitante. (**)</Text>
+  <Text style={myStyles.label}> m²/habitante. (**)</Text>
 </View>
 
-<View style={styles.textRow}>
-  <Text style={styles.label}>A densidade demográfica é de </Text>
+<View style={myStyles.textRow}>
+  <Text style={myStyles.label}>A densidade demográfica é de </Text>
   <TextInput
-    style={[styles.inputInline, styles.textInputCorrido]}
+    style={[myStyles.inputInline, myStyles.textInputCorrido]}
     onChangeText={text => setDensidade(text)}
     value={densidade}
     keyboardType="numeric"
   />
-  <Text style={styles.label}> habitantes/km². (**)</Text>
+  <Text style={myStyles.label}> habitantes/km². (**)</Text>
 </View>
 
-<View style={styles.textRow}>
-  <Text style={styles.label}>A renda média é de R$ </Text>
+<View style={myStyles.textRow}>
+  <Text style={myStyles.label}>A renda média é de R$ </Text>
   <TextInput
-    style={[styles.inputInline, styles.textInputCorrido]}
+    style={[myStyles.inputInline, myStyles.textInputCorrido]}
     onChangeText={text => setRenda(text)}
     value={renda}
     keyboardType="numeric"
   />
-   <Text style={styles.label}>mensais. (*)</Text>
+   <Text style={myStyles.label}>mensais. (*)</Text>
 </View>
 
-<View style={styles.textRow}>
-  <Text style={styles.label}>O jardinete </Text>
+<View style={myStyles.textRow}>
+  <Text style={myStyles.label}>O jardinete </Text>
   <Picker
     selectedValue={patrimonio}
-    style={styles.picker}
+    style={myStyles.picker}
     onValueChange={(itemValue) => setPatrimonio(itemValue)}
   >
     <Picker.Item label="possui" value="possui" />
     <Picker.Item label="não possui" value="não possui" />
   </Picker>
-  <Text style={styles.label}> algum patrimônio ambiental.</Text>
+  <Text style={myStyles.label}> algum patrimônio ambiental.</Text>
 </View>
       
-<Text style={styles.label1}>
+<Text style={myStyles.label1}>
           (*) Essas informações podem ser obtidas no{' '}
           <TouchableOpacity onPress={openPrefeituraWebsite}>
-            <Text style={styles.link}>Site da Prefeitura</Text>
+            <Text style={myStyles.link}>Site da Prefeitura</Text>
           </TouchableOpacity>.
         </Text>
 
-        <Text style={styles.label1}>
+        <Text style={myStyles.label1}>
           (**) Para Curitiba, essas informações podem ser obtidas no site da{' '}
           <TouchableOpacity onPress={openIPPUCWebsite}>
-            <Text style={styles.link}>IPPUC</Text>
+            <Text style={myStyles.link}>IPPUC</Text>
           </TouchableOpacity>.
         </Text>
         {showImageError && (
-          <Text style={styles.errorText}>Por favor, selecione uma imagem antes de enviar.</Text>
+          <Text style={myStyles.errorText}>Por favor, selecione uma imagem antes de enviar.</Text>
         )}
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText2}>Continuar</Text>
+        <TouchableOpacity style={myStyles.button} onPress={handleSubmit}>
+          <Text style={myStyles.buttonText2}>Continuar</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.bola3}></View>
-      <View style={styles.bola2}></View>
-      <View style={styles.bola}></View>
+      <View style={myStyles.bola3}></View>
+      <View style={myStyles.bola2}></View>
+      <View style={myStyles.bola}></View>
 
-      <View style={styles.imageContainer33}>
-        <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
+      <View style={myStyles.imageContainer33}>
+        <Image source={require('../../assets/araucarias.png')} style={myStyles.araucarias} />
       </View>
 
-      <View style={styles.navbar2}>
-        <View style={styles.imageContainer22}>
-          <Image source={require('../../assets/UtfprBottom.png')} style={styles.utfprImage} />
+      <View style={myStyles.navbar2}>
+        <View style={myStyles.imageContainer22}>
+          <Image source={require('../../assets/UtfprBottom.png')} style={myStyles.utfprImage} />
         </View>
       </View>
 
       <Modal visible={showCropper} animationType="slide">
-  <View style={styles.cropperContainer}>
+  <View style={myStyles.cropperContainer}>
     
     {/* Slider e botões de zoom */}
-    <View style={styles.controlsContainer}>
+    <View style={myStyles.controlsContainer}>
       <Slider
         value={zoom}
         min={1}
@@ -376,7 +377,7 @@ export default function Form() {
         step={0.1}
         onChange={(e, newValue) => setZoom(newValue)}
         aria-labelledby="zoom-slider"
-        style={styles.slider}
+        style={myStyles.slider}
         sx={{
           color: '#166034', // Cor principal do slider (trilha mínima e polegar)
           '& .MuiSlider-thumb': {
@@ -390,7 +391,7 @@ export default function Form() {
           },
         }}
       />
-      <View style={styles.zoomButtons}>
+      <View style={myStyles.zoomButtons}>
         <TouchableOpacity onPress={() => setZoom(zoom + 0.1)}>
           <MdZoomIn size={24} />
         </TouchableOpacity>
@@ -401,7 +402,7 @@ export default function Form() {
     </View>
 
     {/* Área de corte da imagem */}
-    <View style={styles.cropperWrapper}>
+    <View style={myStyles.cropperWrapper}>
       <Cropper
         image={selectedImage}
         crop={crop}
@@ -413,15 +414,15 @@ export default function Form() {
       />
     </View>
 
-    <View style={styles.row}>
-    <TouchableOpacity style={styles.cropButton} onPress={cropImage}>
-      <Text style={styles.cropButtonText}>Escolher Imagem</Text>
+    <View style={myStyles.row}>
+    <TouchableOpacity style={myStyles.cropButton} onPress={cropImage}>
+      <Text style={myStyles.cropButtonText}>Escolher Imagem</Text>
     </TouchableOpacity>
     <TouchableOpacity
-        style={styles.cropButton1}
+        style={myStyles.cropButton1}
         onPress={() => setShowCropper(false)}
       >
-        <Text style={styles.cropButtonText}>Voltar</Text>
+        <Text style={myStyles.cropButtonText}>Voltar</Text>
       </TouchableOpacity>
       </View>
   </View>

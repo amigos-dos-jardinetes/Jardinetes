@@ -1,7 +1,7 @@
 import { StyleSheet, useWindowDimensions } from 'react-native';
 
 export const styles = () => {
-  const { width, height } = useWindowDimensions(); // Pegando width e height dinamicamente
+  const { width, height } = useWindowDimensions(); 
 
   return StyleSheet.create({
     scrollViewContent: {
