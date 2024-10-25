@@ -27,6 +27,10 @@ const openPrefeituraWebsite = () => {
   Linking.openURL('https://www.curitiba.pr.gov.br/conteudo/parques-e-bosques-de-curitiba/267');
 };
 
+const openLink = (url) => {
+  Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
+};
+
 let firebaseApp;
 if (getApps().length === 0) {
   firebaseApp = initializeApp(firebaseConfig);
@@ -360,10 +364,57 @@ export default function Form() {
       </View>
 
       <View style={myStyles.navbar2}>
-        <View style={myStyles.imageContainer22}>
-          <Image source={require('../../assets/UtfprBottom.png')} style={myStyles.utfprImage} />
-        </View>
+<View style={myStyles.rowNav}>
+      <View style={myStyles.column1nav}>
+          <View style={myStyles.imageContainer22}>
+              <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
+          </View>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Mapa do Site</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
+              <Text style={myStyles.textNav}>Quem somos nós</Text>
+          </TouchableOpacity>
       </View>
+
+
+      <View style={myStyles.column2nav}>
+          
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Informações</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Termos de uso</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>LGPD</Text>
+          </TouchableOpacity>
+      </View>
+
+
+      <View style={myStyles.column3nav}>
+          
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
+              <Text style={myStyles.textNav}>Contato</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Fale conosco</Text>
+          </TouchableOpacity>
+       
+      </View>
+
+      <View style={myStyles.column4nav}>
+          
+          <View  style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Plataforma digital</Text>
+          </View >
+          <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
+          <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
+          </TouchableOpacity>
+      </View>
+
+    </View>
+</View>
 
       <Modal visible={showCropper} animationType="slide">
   <View style={myStyles.cropperContainer}>

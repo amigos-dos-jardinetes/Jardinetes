@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, Text, TouchableOpacity, TextInput, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, Image, Text, TouchableOpacity, TextInput, StyleSheet, useWindowDimensions, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
@@ -74,6 +74,9 @@ export default function Accept() {
   const [mapCenter, setMapCenter] = useState([-25.4284, -49.2733]); // Ponto inicial
   const [showRedMarker, setShowRedMarker] = useState(false);
 
+  const openLink = (url) => {
+    Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
+  };
 
   useEffect(() => {
     const fetchJardinetes = async () => {
@@ -294,11 +297,59 @@ export default function Accept() {
           <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias} />
       </View>
 
-      <View style={myStyles.navbar2}>
-      <View style={myStyles.imageContainer22}>
-          <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage} />
+    
+<View style={myStyles.navbar2}>
+<View style={myStyles.rowNav}>
+      <View style={myStyles.column1nav}>
+          <View style={myStyles.imageContainer22}>
+              <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
+          </View>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Mapa do Site</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
+              <Text style={myStyles.textNav}>Quem somos nós</Text>
+          </TouchableOpacity>
       </View>
+
+
+      <View style={myStyles.column2nav}>
+          
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Informações</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Termos de uso</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>LGPD</Text>
+          </TouchableOpacity>
       </View>
+
+
+      <View style={myStyles.column3nav}>
+          
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
+              <Text style={myStyles.textNav}>Contato</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Fale conosco</Text>
+          </TouchableOpacity>
+       
+      </View>
+
+      <View style={myStyles.column4nav}>
+          
+          <View style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Plataforma digital</Text>
+          </View >
+          <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
+          <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
+          </TouchableOpacity>
+      </View>
+
+    </View>
+</View>
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, TouchableOpacity, Text, Image, useWindowDimensions } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text, Image, useWindowDimensions, Linking } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { styles } from '../moreInfo/styles.js';
@@ -60,6 +60,10 @@ export default function moreInfo2() {
   const [fontsLoaded] = useFonts({
     Lemon: require('../../assets/fonts/Lemon-Regular.ttf'),
   });
+
+  const openLink = (url) => {
+    Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
+  };
 
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
@@ -278,15 +282,8 @@ function MapCenter({ center }) {
           </View>
         </View>
 
-        <View style={myStyles.imageContainer33}>
-          <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias} />
-      </View>
+      
 
-      <View style={myStyles.navbar2}>
-      <View style={myStyles.imageContainer22}>
-          <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage} />
-      </View>
-      </View>
 
       </View>
     </ScrollView>

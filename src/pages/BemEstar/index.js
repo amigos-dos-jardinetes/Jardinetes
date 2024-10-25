@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Image, Text, ActivityIndicator, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { View, ScrollView, Image, Text, ActivityIndicator, TouchableOpacity, useWindowDimensions, Linking } from 'react-native';
 import { styles } from '../BemEstar/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
@@ -47,6 +47,9 @@ export default function BemEstar() {
   const [loading, setLoading] = useState(true);
   const [documentData, setDocumentData] = useState(null);
   const [bemEstarAverages, setBemEstarAverages] = useState({});
+  const openLink = (url) => {
+    Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
+  };
 
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
@@ -332,10 +335,57 @@ export default function BemEstar() {
         </View>
 
         <View style={myStyles.navbar2}>
+<View style={myStyles.rowNav}>
+      <View style={myStyles.column1nav}>
           <View style={myStyles.imageContainer22}>
-            <Image source={require('../../assets/UtfprBottom.png')} style={myStyles.utfprImage} />
+              <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
           </View>
-        </View>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Mapa do Site</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
+              <Text style={myStyles.textNav}>Quem somos nós</Text>
+          </TouchableOpacity>
+      </View>
+
+
+      <View style={myStyles.column2nav}>
+          
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Informações</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Termos de uso</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>LGPD</Text>
+          </TouchableOpacity>
+      </View>
+
+
+      <View style={myStyles.column3nav}>
+          
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
+              <Text style={myStyles.textNav}>Contato</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Fale conosco</Text>
+          </TouchableOpacity>
+       
+      </View>
+
+      <View style={myStyles.column4nav}>
+          
+          <View  style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Plataforma digital</Text>
+          </View >
+          <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
+          <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
+          </TouchableOpacity>
+      </View>
+
+    </View>
+</View>
 
       </View>
     </ScrollView>

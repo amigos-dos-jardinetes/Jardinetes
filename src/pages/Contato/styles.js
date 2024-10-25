@@ -30,17 +30,80 @@ export const styles = () => {
       color: '#FFF',
       fontWeight: 'bold',
     },
-    navbar2: {
+ 
+    rowNav: {
       flexDirection: 'row',
-      justifyContent: 'space-around',
+    
+      },
+    
+      navbar2: {
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            height: width * 0.1,
+            backgroundColor: '#166034',
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            width: '100%',
+            top: width * 0.65,    
+          },
+    
+          utfprImage3: {
+            width: 144 * (width * 0.00067708333),
+            height: 57 * (width * 0.00067708333),
+        },
+    
+    column1nav: {
+      flexDirection: 'column',
       alignItems: 'center',
-      height: width * 0.0681,
-      backgroundColor: '#166034',
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      width: '100%',
+      justifyContent: 'center',
+      right: '100%',
+      
     },
+    
+    column2nav: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      right: '50%',
+      
+    },
+    
+    column3nav: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      left: '50%',
+      
+    },
+    
+    column4nav: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      left: '100%',
+    
+      
+    },
+    
+    navBt:{
+        marginTop: (10 / 1920) * width,
+        marginBottom: (10 / 1920) * width,
+    },
+    
+    textNav:{
+        fontSize: (20 / 1920) * width,
+        color: 'black',
+    },
+    
+    instaNav: {
+        width: ((512 * 0.1) / 1920) * width,
+        height: ((512 * 0.1) / 1920) * width,
+        marginTop: (10 / 1920) * width,
+        marginBottom: (10 / 1920) * width,
+    },
+
     araucarias: {
       width: width * 0.1651,
       height: width * 0.1469,
@@ -76,7 +139,6 @@ export const styles = () => {
     utfprImage: {
       width: 144 * (width * 0.000677),
       height: 57 * (width * 0.000677),
-      marginLeft: width * 0.0208,
     },
     card: {
       flexDirection: 'row',

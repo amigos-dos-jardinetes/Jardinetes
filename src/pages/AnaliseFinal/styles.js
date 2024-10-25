@@ -52,7 +52,7 @@ export const styles = () => {
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: width * 0.06814583333333333333333333333333,
+        height: width * 0.1,
         backgroundColor: '#166034',
         position: 'absolute',
         bottom: 0,
@@ -62,6 +62,64 @@ export const styles = () => {
         marginTop: width * 0.2604166666666667,
     },
 
+    rowNav: {
+        flexDirection: 'row',
+      
+        },
+      
+  
+      
+      
+      column1nav: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: '100%',
+        
+      },
+      
+      column2nav: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: '50%',
+        
+      },
+      
+      column3nav: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        left: '50%',
+        
+      },
+      
+      column4nav: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        left: '100%',
+      
+        
+      },
+      
+      navBt:{
+          marginTop: (10 / 1920) * width,
+          marginBottom: (10 / 1920) * width,
+      },
+      
+      textNav:{
+          fontSize: (20 / 1920) * width,
+          color: 'black',
+      },
+      
+      instaNav: {
+          width: ((512 * 0.1) / 1920) * width,
+          height: ((512 * 0.1) / 1920) * width,
+          marginTop: (10 / 1920) * width,
+          marginBottom: (10 / 1920) * width,
+      },
+
     imageContainer22: {
         flex: 1,
         flexDirection: 'row',
@@ -69,10 +127,9 @@ export const styles = () => {
         alignItems: 'center', 
     },
 
-    utfprImage: {
+    utfprImage3: {
         width: 144 * (width * 0.00067708333),
         height: 57 * (width * 0.00067708333),
-        marginLeft: width * 0.0208333333333333,
     },
 
 

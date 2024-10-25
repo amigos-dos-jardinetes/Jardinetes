@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, useWindowDimensions, CheckBox  } from 'react-native'; 
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, useWindowDimensions, CheckBox, Linking  } from 'react-native'; 
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
-import { styles } from '../Impact/styles';
+import { styles } from '../ImpactSolo/styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -86,7 +86,10 @@ export default function ImpactSolo() {
       4: require('../../assets/blue.png'),
     });
     
-
+    const openLink = (url) => {
+      Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
+    };
+    
     const [buttonImageSource9, setButtonImageSource9] = useState({
       0: require('../../assets/red.png'),
       1: require('../../assets/orange.png'),
@@ -1264,7 +1267,7 @@ const handleContinuarPress = async () => {
     <View style={myStyles.row}>
 
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[myStyles.button, selectedButtonIndex6 === 4 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(4); setInfraestrutura02Value(1);}}>
   <Image
@@ -1273,7 +1276,7 @@ const handleContinuarPress = async () => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[myStyles.button, selectedButtonIndex6 === 3 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(3); setInfraestrutura02Value(2);}}>
   <Image
@@ -1283,7 +1286,7 @@ const handleContinuarPress = async () => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[myStyles.button, selectedButtonIndex6 === 2 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(2); setInfraestrutura02Value(3);}}>
   <Image
@@ -1292,8 +1295,8 @@ const handleContinuarPress = async () => {
   />
 </TouchableOpacity>
 
-  
-<TouchableOpacity 
+ 
+<TouchableOpacity
   style={[myStyles.button, selectedButtonIndex6 === 1 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(1); setInfraestrutura02Value(4);}}>
   <Image
@@ -1302,7 +1305,7 @@ const handleContinuarPress = async () => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[myStyles.button, selectedButtonIndex6 === 0 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex6(0); setInfraestrutura02Value(5);}}>
   <Image
@@ -1312,11 +1315,12 @@ const handleContinuarPress = async () => {
 </TouchableOpacity>
 
     </View>
+
     <View style={myStyles.textContainer}>
     <Text style={myStyles.formText2}>3. Sinto que os bancos são suficientes e estão em bom estado;</Text>
       <View style={myStyles.checkboxContainer}>
         <CheckBox
-          style={myStyles.checkbox}
+         style={myStyles.checkbox}
           value={isChecked}
           onValueChange={(newValue) => setIsChecked(newValue)}
         />
@@ -1345,7 +1349,7 @@ const handleContinuarPress = async () => {
   <Text style={myStyles.formText2}>4. Sinto que a academia ao ar livre ou o parque infantil estão em bom estado;</Text>
   <View style={myStyles.checkboxContainer}>
     <CheckBox
-      style={myStyles.checkbox}
+     style={myStyles.checkbox}
       value={isChecked1}
       onValueChange={(newValue) => setIsChecked1(newValue)}
     />
@@ -1373,7 +1377,7 @@ const handleContinuarPress = async () => {
   <Text style={myStyles.formText2}>5. Sinto que campos ou as quadras esportivas estão em bom estado.</Text>
   <View style={myStyles.checkboxContainer}>
     <CheckBox
-      style={myStyles.checkbox}
+     style={myStyles.checkbox}
       value={isChecked2}
       onValueChange={(newValue) => setIsChecked2(newValue)}
     />
@@ -1403,13 +1407,13 @@ const handleContinuarPress = async () => {
         <Image source={require('../../assets/Pertencimento.png')} style={{width: '100%', height: '100%'}} />
     </View>
 
-    <View style={myStyles.card1}> 
+    <View style={myStyles.card1}>
     <View style={myStyles.textContainer}>
-    <Text style={myStyles.formText}>1. Vou com frequência à PAV. </Text>
+    <Text style={myStyles.formText}>1. Vou com frequência à PAV. </Text>
     </View>
     <View style={myStyles.row}>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[myStyles.button, selectedButtonIndex10 === 4 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(4); setPertencimento01Value(1);}}>
   <Image
@@ -1418,7 +1422,7 @@ const handleContinuarPress = async () => {
   />
 </TouchableOpacity>
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[myStyles.button, selectedButtonIndex10 === 3 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(3); setPertencimento01Value(2);}}>
   <Image
@@ -1428,16 +1432,16 @@ const handleContinuarPress = async () => {
 </TouchableOpacity>
 
 
-<TouchableOpacity 
+<TouchableOpacity
   style={[myStyles.button, selectedButtonIndex10 === 2 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(2); setPertencimento01Value(3);}}>
   <Image
     source={require('../../assets/yellow.png')}
     style={{ width: width * 0.0411458333333333, height: width * 0.0411458333333333 }}
   />
-</TouchableOpacity> 
+</TouchableOpacity>
 
-  <TouchableOpacity 
+  <TouchableOpacity
   style={[myStyles.button, selectedButtonIndex10 === 1 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(1); setPertencimento01Value(4);}}>
   <Image
@@ -1447,7 +1451,7 @@ const handleContinuarPress = async () => {
 </TouchableOpacity>
 
 
- <TouchableOpacity 
+ <TouchableOpacity
   style={[myStyles.button, selectedButtonIndex10 === 0 && myStyles.selectedButton]}
   onPress={() => {setSelectedButtonIndex10(0); setPertencimento01Value(5);}}>
   <Image
@@ -1984,13 +1988,57 @@ const handleContinuarPress = async () => {
       </View>
 
 
-<View style={myStyles.navbar2}>
-      <View style={myStyles.imageContainer2}>
-          <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage} />
+      <View style={myStyles.navbar2}>
+<View style={myStyles.rowNav}>
+      <View style={myStyles.column1nav}>
+          <View style={myStyles.imageContainer22}>
+              <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
+          </View>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Mapa do Site</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
+              <Text style={myStyles.textNav}>Quem somos nós</Text>
+          </TouchableOpacity>
       </View>
 
-  
 
+      <View style={myStyles.column2nav}>
+          
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Informações</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Termos de uso</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>LGPD</Text>
+          </TouchableOpacity>
+      </View>
+
+
+      <View style={myStyles.column3nav}>
+          
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
+              <Text style={myStyles.textNav}>Contato</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Fale conosco</Text>
+          </TouchableOpacity>
+       
+      </View>
+
+      <View style={myStyles.column4nav}>
+          
+          <View  style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Plataforma digital</Text>
+          </View >
+          <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
+          <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
+          </TouchableOpacity>
+      </View>
+
+    </View>
 </View>
 
 

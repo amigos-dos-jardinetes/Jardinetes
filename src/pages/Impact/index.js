@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, useWindowDimensions, CheckBox, Modal } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, useWindowDimensions, CheckBox, Modal, Linking } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
@@ -70,6 +70,10 @@ export default function Impact() {
     const [modalVisible, setModalVisible] = useState(false);
     const myStyles = styles();
     const { width, height } = useWindowDimensions(); 
+
+    const openLink = (url) => {
+      Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
+    };
 
     const validateValues = () => {
       // Verifica se algum valor de bem-estar é 0
@@ -2011,13 +2015,57 @@ const handleContinuarPress = async () => {
       </View>
 
 
-<View style={myStyles.navbar2}>
-      <View style={myStyles.imageContainer2}>
-          <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage} />
+      <View style={myStyles.navbar2}>
+<View style={myStyles.rowNav}>
+      <View style={myStyles.column1nav}>
+          <View style={myStyles.imageContainer22}>
+              <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
+          </View>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Mapa do Site</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
+              <Text style={myStyles.textNav}>Quem somos nós</Text>
+          </TouchableOpacity>
       </View>
 
- 
 
+      <View style={myStyles.column2nav}>
+          
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Informações</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Termos de uso</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>LGPD</Text>
+          </TouchableOpacity>
+      </View>
+
+
+      <View style={myStyles.column3nav}>
+          
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
+              <Text style={myStyles.textNav}>Contato</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Fale conosco</Text>
+          </TouchableOpacity>
+       
+      </View>
+
+      <View style={myStyles.column4nav}>
+          
+          <View  style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Plataforma digital</Text>
+          </View >
+          <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
+          <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
+          </TouchableOpacity>
+      </View>
+
+    </View>
 </View>
 
 <Modal

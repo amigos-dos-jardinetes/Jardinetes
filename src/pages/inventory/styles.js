@@ -28,6 +28,97 @@ export const styles = () => {
     zIndex: 2,
   },
 
+  rowNav: {
+    flexDirection: 'row',
+  
+    },
+  
+    navbar2: {
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          height: width * 0.1,
+          backgroundColor: '#166034',
+          position: 'absolute',
+          bottom: 0,
+          top: width * 1.86,
+          right: 0,
+          width: '100%',
+  
+        },
+  
+        imageContainer33: {
+          top: width * 1.85,
+          position: 'absolute',
+          flexDirection: 'row',
+          alignItems: 'center',
+          left: width * 0.4333333333333333,
+        },
+
+        utfprImage3: {
+          width: 144 * (width * 0.00067708333),
+          height:57 * (width * 0.00067708333),
+        },
+      
+        araucarias: {
+          zIndex: 1,
+          width: width * 0.1651041666666667,
+          height: width * 0.146875,
+          left: width * 0.3645833333333333,
+          top: -(210 / 1920) * width,
+          position: 'absolute',
+        },
+
+  column1nav: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: '100%',
+    
+  },
+  
+  column2nav: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: '50%',
+    
+  },
+  
+  column3nav: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: '50%',
+    
+  },
+  
+  column4nav: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: '100%',
+  
+    
+  },
+  
+  navBt:{
+      marginTop: (10 / 1920) * width,
+      marginBottom: (10 / 1920) * width,
+  },
+  
+  textNav:{
+      fontSize: (20 / 1920) * width,
+      color: 'black',
+  },
+  
+  instaNav: {
+      width: ((512 * 0.1) / 1920) * width,
+      height: ((512 * 0.1) / 1920) * width,
+      marginTop: (10 / 1920) * width,
+      marginBottom: (10 / 1920) * width,
+  },
+
   navbarButton: {
     fontSize: width * 0.0166666666666667,
     color: '#FFF',
