@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Image, Text, ActivityIndicator, TouchableOpacity, Dimensions } from 'react-native';
+import { View, ScrollView, Image, Text, ActivityIndicator, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { styles } from '../BemEstar/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
@@ -24,23 +24,24 @@ export default function BemEstar() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const route = useRoute();
-  const { width, height } = Dimensions.get('window');
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
   const novoJardineteDocId = route.params.novoJardineteDocId;
 
   const [bemEstarPetalaImage, setBemEstarPetalaImage] = useState(require('../../assets/petala20.png'));
-  const [bemEstarPetalaStyle, setBemEstarPetalaStyle] = useState(styles.petala200);
+  const [bemEstarPetalaStyle, setBemEstarPetalaStyle] = useState(myStyles.petala200);
 
   const [bemEstarPetalaImage1, setBemEstarPetalaImage1] = useState(require('../../assets/petala20.png'));
-  const [bemEstarPetalaStyle1, setBemEstarPetalaStyle1] = useState(styles.petala201);
+  const [bemEstarPetalaStyle1, setBemEstarPetalaStyle1] = useState(myStyles.petala201);
 
   const [bemEstarPetalaImage2, setBemEstarPetalaImage2] = useState(require('../../assets/petala20.png'));
-  const [bemEstarPetalaStyle2, setBemEstarPetalaStyle2] = useState(styles.petala202);
+  const [bemEstarPetalaStyle2, setBemEstarPetalaStyle2] = useState(myStyles.petala202);
 
   const [bemEstarPetalaImage3, setBemEstarPetalaImage3] = useState(require('../../assets/petala20.png'));
-  const [bemEstarPetalaStyle3, setBemEstarPetalaStyle3] = useState(styles.petala203);
+  const [bemEstarPetalaStyle3, setBemEstarPetalaStyle3] = useState(myStyles.petala203);
 
   const [bemEstarPetalaImage4, setBemEstarPetalaImage4] = useState(require('../../assets/petala20.png'));
-  const [bemEstarPetalaStyle4, setBemEstarPetalaStyle4] = useState(styles.petala204);
+  const [bemEstarPetalaStyle4, setBemEstarPetalaStyle4] = useState(myStyles.petala204);
 
   const [initialLoading, setInitialLoading] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -94,87 +95,87 @@ export default function BemEstar() {
 
             if (bemEstarAverage1 <= 30) {
               setBemEstarPetalaImage(require('../../assets/petala20.png'));
-              setBemEstarPetalaStyle(styles.petala200);
+              setBemEstarPetalaStyle(myStyles.petala200);
             } else if (bemEstarAverage1 > 30 && bemEstarAverage1 <= 50) {
               setBemEstarPetalaImage(require('../../assets/petala40.png'));
-              setBemEstarPetalaStyle(styles.petala400);
+              setBemEstarPetalaStyle(myStyles.petala400);
             } else if (bemEstarAverage1 > 50 && bemEstarAverage1 <= 70) {
               setBemEstarPetalaImage(require('../../assets/petala60.png'));
-              setBemEstarPetalaStyle(styles.petala600);
+              setBemEstarPetalaStyle(myStyles.petala600);
             } else if (bemEstarAverage1 > 70 && bemEstarAverage1 <= 90) {
               setBemEstarPetalaImage(require('../../assets/petala80.png'));
-              setBemEstarPetalaStyle(styles.petala800);
+              setBemEstarPetalaStyle(myStyles.petala800);
             } else if (bemEstarAverage1 > 90) {
               setBemEstarPetalaImage(require('../../assets/petala100.png'));
-              setBemEstarPetalaStyle(styles.petala1000);
+              setBemEstarPetalaStyle(myStyles.petala1000);
             }
 
             if (bemEstarAverage2 <= 30) {
               setBemEstarPetalaImage1(require('../../assets/petala20.png'));
-              setBemEstarPetalaStyle1(styles.petala201);
+              setBemEstarPetalaStyle1(myStyles.petala201);
             } else if (bemEstarAverage2 > 30 && bemEstarAverage2 <= 50) {
               setBemEstarPetalaImage1(require('../../assets/petala40.png'));
-              setBemEstarPetalaStyle1(styles.petala401);
+              setBemEstarPetalaStyle1(myStyles.petala401);
             } else if (bemEstarAverage2 > 50 && bemEstarAverage2 <= 70) {
               setBemEstarPetalaImage1(require('../../assets/petala60.png'));
-              setBemEstarPetalaStyle1(styles.petala601);
+              setBemEstarPetalaStyle1(myStyles.petala601);
             } else if (bemEstarAverage2 > 70 && bemEstarAverage2 <= 90) {
               setBemEstarPetalaImage1(require('../../assets/petala80.png'));
-              setBemEstarPetalaStyle1(styles.petala801);
+              setBemEstarPetalaStyle1(myStyles.petala801);
             } else if (bemEstarAverage2 > 90) {
               setBemEstarPetalaImage1(require('../../assets/petala100.png'));
-              setBemEstarPetalaStyle1(styles.petala1001);
+              setBemEstarPetalaStyle1(myStyles.petala1001);
             }
 
             if (bemEstarAverage3 <= 30) {
               setBemEstarPetalaImage2(require('../../assets/petala20.png'));
-              setBemEstarPetalaStyle2(styles.petala202);
+              setBemEstarPetalaStyle2(myStyles.petala202);
             } else if (bemEstarAverage3 > 30 && bemEstarAverage3 <= 50) {
               setBemEstarPetalaImage2(require('../../assets/petala40.png'));
-              setBemEstarPetalaStyle2(styles.petala402);
+              setBemEstarPetalaStyle2(myStyles.petala402);
             } else if (bemEstarAverage3 > 50 && bemEstarAverage3 <= 70) {
               setBemEstarPetalaImage2(require('../../assets/petala60.png'));
-              setBemEstarPetalaStyle2(styles.petala602);
+              setBemEstarPetalaStyle2(myStyles.petala602);
             } else if (bemEstarAverage3 > 70 && bemEstarAverage3 <= 90) {
               setBemEstarPetalaImage2(require('../../assets/petala80.png'));
-              setBemEstarPetalaStyle2(styles.petala802);
+              setBemEstarPetalaStyle2(myStyles.petala802);
             } else if (bemEstarAverage3 > 90) {
               setBemEstarPetalaImage2(require('../../assets/petala100.png'));
-              setBemEstarPetalaStyle2(styles.petala1002);
+              setBemEstarPetalaStyle2(myStyles.petala1002);
             }
 
             if (bemEstarAverage4 <= 30) {
               setBemEstarPetalaImage3(require('../../assets/petala20.png'));
-              setBemEstarPetalaStyle3(styles.petala203);
+              setBemEstarPetalaStyle3(myStyles.petala203);
             } else if (bemEstarAverage4 > 30 && bemEstarAverage4 <= 50) {
               setBemEstarPetalaImage3(require('../../assets/petala40.png'));
-              setBemEstarPetalaStyle3(styles.petala403);
+              setBemEstarPetalaStyle3(myStyles.petala403);
             } else if (bemEstarAverage4 > 50 && bemEstarAverage4 <= 70) {
               setBemEstarPetalaImage3(require('../../assets/petala60.png'));
-              setBemEstarPetalaStyle3(styles.petala603);
+              setBemEstarPetalaStyle3(myStyles.petala603);
             } else if (bemEstarAverage4 > 70 && bemEstarAverage4 <= 90) {
               setBemEstarPetalaImage3(require('../../assets/petala80.png'));
-              setBemEstarPetalaStyle3(styles.petala803);
+              setBemEstarPetalaStyle3(myStyles.petala803);
             } else if (bemEstarAverage4 > 90) {
               setBemEstarPetalaImage3(require('../../assets/petala100.png'));
-              setBemEstarPetalaStyle3(styles.petala1003);
+              setBemEstarPetalaStyle3(myStyles.petala1003);
             }
 
             if (bemEstarAverage5 <= 30) {
               setBemEstarPetalaImage4(require('../../assets/petala20.png'));
-              setBemEstarPetalaStyle4(styles.petala204);
+              setBemEstarPetalaStyle4(myStyles.petala204);
             } else if (bemEstarAverage5 > 30 && bemEstarAverage5 <= 50) {
               setBemEstarPetalaImage4(require('../../assets/petala40.png'));
-              setBemEstarPetalaStyle4(styles.petala404);
+              setBemEstarPetalaStyle4(myStyles.petala404);
             } else if (bemEstarAverage5 > 50 && bemEstarAverage5 <= 70) {
               setBemEstarPetalaImage4(require('../../assets/petala60.png'));
-              setBemEstarPetalaStyle4(styles.petala604);
+              setBemEstarPetalaStyle4(myStyles.petala604);
             } else if (bemEstarAverage5 > 70 && bemEstarAverage5 <= 90) {
               setBemEstarPetalaImage4(require('../../assets/petala80.png'));
-              setBemEstarPetalaStyle4(styles.petala804);
+              setBemEstarPetalaStyle4(myStyles.petala804);
             } else if (bemEstarAverage5 > 90) {
               setBemEstarPetalaImage4(require('../../assets/petala100.png'));
-              setBemEstarPetalaStyle4(styles.petala1004);
+              setBemEstarPetalaStyle4(myStyles.petala1004);
             }
 
           } else {
@@ -194,18 +195,18 @@ export default function BemEstar() {
     setTimeout(() => {
       setInitialLoading(false);
       fetchData();
-    }, 2000);
+    });
 
     return () => {
       if (unsubscribe && typeof unsubscribe === 'function') {
         unsubscribe();
       }
     };
-  }, [novoJardineteDocId]);
+  }, [ novoJardineteDocId, width, myStyles]);
 
   if (initialLoading) {
     return (
-      <View style={styles.loadingContainer}>
+      <View style={myStyles.loadingContainer}>
         <ActivityIndicator size="large" color="#0000ff" />
       </View>
     );
@@ -220,119 +221,119 @@ export default function BemEstar() {
   }
 
   return (
-    <ScrollView style={styles.scroll}>
-      <View style={styles.container}>
-        <View style={styles.navbar}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+    <ScrollView style={myStyles.scroll}>
+      <View style={myStyles.container}>
+        <View style={myStyles.navbar}>
+        <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>
-          <View style={styles.imageContainer}>
+          <View style={myStyles.imageContainer}>
             {imageUrl ? (
               <Image
-                style={styles.logoImage}
+                style={myStyles.logoImage}
                 source={{
                   uri: imageUrl,
                 }}
               />
             ) : (
               <Image
-              style={styles.logoImage}
+              style={myStyles.logoImage}
               source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
           />
             )}
           </View>
         </View>
 
-        <View style={styles.retMore}>
-          <Text style={styles.retMoreText}>As áreas verdes são essenciais para a saúde física e mental dos moradores, incentivando um estilo de vida ativo e proporcionando locais tranquilos que ajudam a reduzir o estresse e melhorar o humor. Além disso, promovem a interação social e fortalecem o vínculo da comunidade.</Text>
+        <View style={myStyles.retMore}>
+          <Text style={myStyles.retMoreText}>As áreas verdes são essenciais para a saúde física e mental dos moradores, incentivando um estilo de vida ativo e proporcionando locais tranquilos que ajudam a reduzir o estresse e melhorar o humor. Além disso, promovem a interação social e fortalecem o vínculo da comunidade.</Text>
         </View>
 
-        <View style={styles.bemTitle}>
-          <Image source={require('../../assets/BemTitle.png')} style={styles.title}></Image>
+        <View style={myStyles.bemTitle}>
+          <Image source={require('../../assets/BemTitle.png')} style={myStyles.title}></Image>
         </View>
 
-        <View style={styles.retExpli}>
-          <Text style={styles.expliText}>Gráfico analisando a área de Bem Estar</Text>
+        <View style={myStyles.retExpli}>
+          <Text style={myStyles.expliText}>Gráfico analisando a área de Bem Estar</Text>
         </View>
 
-        <View style={styles.containerCirc1}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{bemEstarAverages.bemEstarAverage1}%</Text>
+        <View style={myStyles.containerCirc1}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{bemEstarAverages.bemEstarAverage1}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText1}>
-          <Text style={styles.textCirc1}>A PAV melhora a qualidade da minha vida e das pessoas ao meu redor</Text>
+        <View style={myStyles.containerCircText1}>
+          <Text style={myStyles.textCirc1}>A PAV melhora a qualidade da minha vida e das pessoas ao meu redor</Text>
         </View>
 
-        <View style={styles.containerCirc2}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{bemEstarAverages.bemEstarAverage2}%</Text>
+        <View style={myStyles.containerCirc2}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{bemEstarAverages.bemEstarAverage2}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText2}>
-          <Text style={styles.textCirc2}>A PAV é um bom lugar para as crianças</Text>
+        <View style={myStyles.containerCircText2}>
+          <Text style={myStyles.textCirc2}>A PAV é um bom lugar para as crianças</Text>
         </View>
 
-        <View style={styles.containerCirc3}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{bemEstarAverages.bemEstarAverage3}%</Text>
+        <View style={myStyles.containerCirc3}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{bemEstarAverages.bemEstarAverage3}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText3}>
-          <Text style={styles.textCirc3}>A PAV é um bom lugar para os idosos</Text>
+        <View style={myStyles.containerCircText3}>
+          <Text style={myStyles.textCirc3}>A PAV é um bom lugar para os idosos</Text>
         </View>
 
-        <View style={styles.containerCirc4}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{bemEstarAverages.bemEstarAverage4}%</Text>
+        <View style={myStyles.containerCirc4}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{bemEstarAverages.bemEstarAverage4}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText4}>
-          <Text style={styles.textCirc4}>A PAV é um bom lugar para adolescentes ou jovens adultos</Text>
+        <View style={myStyles.containerCircText4}>
+          <Text style={myStyles.textCirc4}>A PAV é um bom lugar para adolescentes ou jovens adultos</Text>
         </View>
 
-        <View style={styles.containerCirc5}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{bemEstarAverages.bemEstarAverage5}%</Text>
+        <View style={myStyles.containerCirc5}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{bemEstarAverages.bemEstarAverage5}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText5}>
-          <Text style={styles.textCirc5}>A PAV é bom lugar para pets</Text>
+        <View style={myStyles.containerCircText5}>
+          <Text style={myStyles.textCirc5}>A PAV é bom lugar para pets</Text>
         </View>
 
-        <View style={styles.centralContainer}>
-          <Image source={require('../../assets/folhas.png')} style={styles.folhas} />
+        <View style={myStyles.centralContainer}>
+          <Image source={require('../../assets/folhas.png')} style={myStyles.folhas} />
           <Image source={bemEstarPetalaImage} style={bemEstarPetalaStyle} />
           <Image source={bemEstarPetalaImage1} style={bemEstarPetalaStyle1} />
           <Image source={bemEstarPetalaImage2} style={bemEstarPetalaStyle2} />
           <Image source={bemEstarPetalaImage3} style={bemEstarPetalaStyle3} />
           <Image source={bemEstarPetalaImage4} style={bemEstarPetalaStyle4} />
-          <Image source={require('../../assets/miolo.png')} style={styles.miolo} />
+          <Image source={require('../../assets/miolo.png')} style={myStyles.miolo} />
         </View>
 
-        <View style={styles.gradientButtonContainer}>
+        <View style={myStyles.gradientButtonContainer}>
                                 <TouchableOpacity 
-                                    style={styles.gradientButton} 
+                                    style={myStyles.gradientButton} 
                                     onPress={() => navigation.goBack()}
                                 >
                                     <LinearGradient
                                         colors={['#4C6523', '#99CB47']}
                                         start={{ x: 0, y: 0 }}
                                         end={{ x: 1, y: 0 }}
-                                        style={styles.linearGradient}
+                                        style={myStyles.linearGradient}
                                     >
-                                        <Text style={styles.gradientButtonText}>Voltar</Text>
+                                        <Text style={myStyles.gradientButtonText}>Voltar</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>
 
-        <View style={styles.araucarias2}>
-          <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
+        <View style={myStyles.araucarias2}>
+          <Image source={require('../../assets/araucarias.png')} style={myStyles.araucarias} />
         </View>
 
-        <View style={styles.navbar2}>
-          <View style={styles.imageContainer22}>
-            <Image source={require('../../assets/UtfprBottom.png')} style={styles.utfprImage} />
+        <View style={myStyles.navbar2}>
+          <View style={myStyles.imageContainer22}>
+            <Image source={require('../../assets/UtfprBottom.png')} style={myStyles.utfprImage} />
           </View>
         </View>
 

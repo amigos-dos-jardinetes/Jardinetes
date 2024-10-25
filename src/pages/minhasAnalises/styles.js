@@ -1,8 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
 
   scrollViewContent: {
     width: width,
@@ -291,3 +292,4 @@ buttonText2: {
 },
 
 });
+};

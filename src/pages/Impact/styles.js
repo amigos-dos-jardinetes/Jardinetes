@@ -323,7 +323,7 @@ quatro: {
     },
 
     center: {
-      top: -100,
+      top: -(100 / 1920) * width,
       justifyContent: 'center', 
       alignItems: 'center', 
   },
@@ -340,9 +340,9 @@ closeButton: {
   right: width * 0.0208333333333333,
   zIndex: 1, 
   backgroundColor: 'white', 
-  borderRadius: 25, 
-  padding: 10,
-  borderWidth: 1, 
+  borderRadius: '50%', 
+  padding: (10 / 1920) * width,
+  borderWidth: (1 / 1920) * width,
   borderColor: '#ccc',
 },
 scrollViewModalContent: {

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image, Dimensions, Modal } from 'react-native';
+import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image, useWindowDimensions, Modal } from 'react-native';
 import { styles } from '../inventory/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
@@ -25,7 +25,8 @@ export default function Inventory() {
   const novoJardineteDocId = route.params.novoJardineteDocId;
   const navigation = useNavigation();
   const scrollViewRef = useRef(null);
-  const { width, height } = Dimensions.get('window');
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
   const [modalVisible, setModalVisible] = useState(false);
 
 
@@ -444,71 +445,71 @@ export default function Inventory() {
     navigation.navigate('Tree', { novoJardineteDocId });
   };
 
-  const buttonStyle = isClicked3 ? styles.button : (isMouseOver3 ? styles.button2 : styles.button1);
-  const buttonStyle1 = isClicked4 ? styles.button : (isMouseOver4 ? styles.button2 : styles.button1);
-  const buttonStyle2 = isClicked2 ? styles.button : (isMouseOver2 ? styles.button2 : styles.button1);
-  const buttonStyle3 = isClicked5 ? styles.button : (isMouseOver5 ? styles.button2 : styles.button1);
-  const buttonStyle4 = isClicked1 ? styles.button : (isMouseOver1 ? styles.button2 : styles.button1);
-  const buttonStyle5 = isClicked8 ? styles.button : (isMouseOver8 ? styles.button2 : styles.button1);
-  const buttonStyle6 = isClicked7 ? styles.button : (isMouseOver7 ? styles.button2 : styles.button1);
-  const buttonStyle7 = isClicked9 ? styles.button : (isMouseOver9 ? styles.button2 : styles.button1);
-  const buttonStyle8 = isClicked6 ? styles.button : (isMouseOver6 ? styles.button2 : styles.button1);
-  const buttonStyle9 = isClicked13 ? styles.button : (isMouseOver13 ? styles.button2 : styles.button1);
-  const buttonStyle10 = isClicked14 ? styles.button : (isMouseOver14 ? styles.button2 : styles.button1);
-  const buttonStyle11 = isClicked12 ? styles.button : (isMouseOver12 ? styles.button2 : styles.button1);
-  const buttonStyle12 = isClicked11 ? styles.button : (isMouseOver11 ? styles.button2 : styles.button1);
-  const buttonStyle13 = isClicked10 ? styles.button : (isMouseOver10 ? styles.button2 : styles.button1);
+  const buttonStyle = isClicked3 ? myStyles.button : (isMouseOver3 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle1 = isClicked4 ? myStyles.button : (isMouseOver4 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle2 = isClicked2 ? myStyles.button : (isMouseOver2 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle3 = isClicked5 ? myStyles.button : (isMouseOver5 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle4 = isClicked1 ? myStyles.button : (isMouseOver1 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle5 = isClicked8 ? myStyles.button : (isMouseOver8 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle6 = isClicked7 ? myStyles.button : (isMouseOver7 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle7 = isClicked9 ? myStyles.button : (isMouseOver9 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle8 = isClicked6 ? myStyles.button : (isMouseOver6 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle9 = isClicked13 ? myStyles.button : (isMouseOver13 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle10 = isClicked14 ? myStyles.button : (isMouseOver14 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle11 = isClicked12 ? myStyles.button : (isMouseOver12 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle12 = isClicked11 ? myStyles.button : (isMouseOver11 ? myStyles.button2 : myStyles.button1);
+  const buttonStyle13 = isClicked10 ? myStyles.button : (isMouseOver10 ? myStyles.button2 : myStyles.button1);
 
   return (
     <ScrollView
       horizontal
     >
       <ScrollView
-        contentContainerStyle={styles.scrollViewContent}
+        contentContainerStyle={myStyles.scrollViewContent}
         ref={scrollViewRef}
       >
         <ImageBackground
           source={require('../../assets/inventory.jpg')}
-          style={styles.backgroundImage}
+          style={myStyles.backgroundImage}
         >
 
-          <View style={styles.buttonView3}>
-            <Text style={styles.buttonText}>Selecione os itens presentes no jardinete</Text>
+          <View style={myStyles.buttonView3}>
+            <Text style={myStyles.buttonText}>Selecione os itens presentes no jardinete</Text>
 
           </View>
 
-          <View style={styles.center}>
-  <TouchableOpacity style={styles.buttonView33} onPress={() => setModalVisible(true)}>
-    <Text style={styles.buttonText33}>Verifique as informações já enviadas</Text>
+          <View style={myStyles.center}>
+  <TouchableOpacity style={myStyles.buttonView33} onPress={() => setModalVisible(true)}>
+    <Text style={myStyles.buttonText33}>Verifique as informações já enviadas</Text>
   </TouchableOpacity>
 </View>
 
-          <View style={styles.navbar}>
+          <View style={myStyles.navbar}>
 
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>
 
 
-            <View style={styles.imageContainer}>
+            <View style={myStyles.imageContainer}>
               {imageUrl ? (
                 <Image
-                  style={styles.logoImage}
+                  style={myStyles.logoImage}
                   source={{
                     uri: imageUrl,
                   }}
                 />
               ) : (
                 <Image
-                style={styles.logoImage}
+                style={myStyles.logoImage}
                 source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
             />
               )}
             </View>
           </View>
 
-          <View style={styles.card}>
-            <View style={styles.containerButton1}>
+          <View style={myStyles.card}>
+            <View style={myStyles.containerButton1}>
 
 
               <TouchableOpacity
@@ -519,7 +520,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked3 ? require('../../assets/banco1.png') : isMouseOver3 ? require('../../assets/banco1.png') : require('../../assets/bancos.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -531,7 +532,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked4 ? require('../../assets/pavimentada1.png') : isMouseOver4 ? require('../../assets/pavimentada1.png') : require('../../assets/pavimentada.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -543,7 +544,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked2 ? require('../../assets/animais.png') : isMouseOver2 ? require('../../assets/animais.png') : require('../../assets/patinhas.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -555,13 +556,13 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked5 ? require('../../assets/monumento1.png') : isMouseOver5 ? require('../../assets/monumento1.png') : require('../../assets/monumento.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
             </View>
 
-            <View style={styles.containerButton2}>
+            <View style={myStyles.containerButton2}>
 
 
               <TouchableOpacity
@@ -572,7 +573,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked1 ? require('../../assets/flores1.png') : isMouseOver1 ? require('../../assets/flores1.png') : require('../../assets/flores.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -584,7 +585,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked8 ? require('../../assets/estica1.png') : isMouseOver8 ? require('../../assets/estica1.png') : require('../../assets/estica.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -597,7 +598,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked7 ? require('../../assets/arvore1.png') : isMouseOver7 ? require('../../assets/arvore1.png') : require('../../assets/arvore.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -610,14 +611,14 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked9 ? require('../../assets/areia1.png') : isMouseOver9 ? require('../../assets/areia1.png') : require('../../assets/areia.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
 
             </View>
 
-            <View style={styles.containerButton3}>
+            <View style={myStyles.containerButton3}>
 
 
               <TouchableOpacity
@@ -628,7 +629,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked6 ? require('../../assets/feira1.png') : isMouseOver6 ? require('../../assets/feira1.png') : require('../../assets/feira.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -640,7 +641,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked13 ? require('../../assets/lixo1.png') : isMouseOver13 ? require('../../assets/lixo1.png') : require('../../assets/lixo.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -653,7 +654,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked14 ? require('../../assets/caminhada1.png') : isMouseOver14 ? require('../../assets/caminhada1.png') : require('../../assets/caminhada.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -665,12 +666,12 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked12 ? require('../../assets/parque1.png') : isMouseOver12 ? require('../../assets/parque1.png') : require('../../assets/parque.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
             </View>
 
-            <View style={styles.containerButton4}>
+            <View style={myStyles.containerButton4}>
 
               <TouchableOpacity
                 style={buttonStyle12}
@@ -680,7 +681,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked11 ? require('../../assets/bicicleta1.png') : isMouseOver11 ? require('../../assets/bicicleta1.png') : require('../../assets/bicicleta.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
 
@@ -692,7 +693,7 @@ export default function Inventory() {
               >
                 <Image
                   source={isClicked10 ? require('../../assets/acessibilidade1.png') : isMouseOver10 ? require('../../assets/acessibilidade1.png') : require('../../assets/acessibilidade.png')}
-                  style={styles.image}
+                  style={myStyles.image}
                 />
               </TouchableOpacity>
             </View>
@@ -701,11 +702,11 @@ export default function Inventory() {
           </View>
 
 
-          <View style={styles.container}>
-            <TouchableOpacity style={styles.buttonView}  onPress={handlePress}>
-              <Text style={styles.buttonText}>Indique as árvores no jardinete</Text>
+          <View style={myStyles.container}>
+            <TouchableOpacity style={myStyles.buttonView}  onPress={handlePress}>
+              <Text style={myStyles.buttonText}>Indique as árvores no jardinete</Text>
             </TouchableOpacity>
-            <View style={styles.buttonView2}></View>
+            <View style={myStyles.buttonView2}></View>
           </View>
 
 
@@ -717,12 +718,12 @@ export default function Inventory() {
     setModalVisible(!modalVisible);
   }}
 >
-  <View style={styles.modalContainer}>
-    <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
-      <Ionicons name="close" size={30} color="black" />
+  <View style={myStyles.modalContainer}>
+    <TouchableOpacity style={myStyles.closeButton} onPress={() => setModalVisible(false)}>
+      <Ionicons name="close" size={(30 / 1920) * width} color="black" />
     </TouchableOpacity>
 
-    <ScrollView contentContainerStyle={styles.scrollViewModalContent}>
+    <ScrollView contentContainerStyle={myStyles.scrollViewModalContent}>
       <MoreInfo2 />
     </ScrollView>
   </View>

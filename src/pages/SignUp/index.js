@@ -108,7 +108,7 @@ export default function SignUp() {
                             <View style={myStyles.inputContainer}>
                                 <Text style={myStyles.label}>Email</Text>
                                 <TextInput
-                                    style={[myStyles.input2, emailError ? { borderColor: 'red', borderWidth: 1 } : {}]}
+                                    style={[myStyles.input2, emailError ? { borderColor: 'red', borderWidth:  (1 / 1920) * width } : {}]}
                                     value={email}
                                     onChangeText={setEmail}
                                 />
@@ -127,7 +127,7 @@ export default function SignUp() {
                             <View style={myStyles.inputContainer}>
                                 <Text style={myStyles.label}>Senha</Text>
                                 <TextInput
-                                    style={[myStyles.input2, passwordError ? { borderColor: 'red', borderWidth: 1 } : {}]}
+                                    style={[myStyles.input2, passwordError ? { borderColor: 'red', borderWidth:  (1 / 1920) * width } : {}]}
                                     secureTextEntry
                                     value={password}
                                     onChangeText={setPassword}
@@ -138,7 +138,7 @@ export default function SignUp() {
                             <View style={myStyles.inputContainer}>
                                 <Text style={myStyles.label}>Confirmar Senha</Text>
                                 <TextInput
-                                    style={[myStyles.input2, passwordError ? { borderColor: 'red', borderWidth: 1 } : {}]}
+                                    style={[myStyles.input2, passwordError ? { borderColor: 'red', borderWidth: (1 / 1920) * width } : {}]}
                                     secureTextEntry
                                     value={confirmPassword}
                                     onChangeText={setConfirmPassword}
@@ -199,9 +199,9 @@ export default function SignUp() {
 
                             <View style={myStyles.checkboxContainer}>
                                 <CheckBox value={agreedToTerms} onValueChange={setAgreedToTerms} style={myStyles.checkbox} />
-                                <Text style={{ marginLeft: 5, fontSize: (16 / 1920) * width }}>Concordo com os</Text>
+                                <Text style={{ marginLeft: (5 / 1920) * width, fontSize: (16 / 1920) * width }}>Concordo com os</Text>
                                 <TouchableOpacity onPress={() => setShowTermsModal(true)}>
-                                    <Text style={{ textDecorationLine: 'underline', marginLeft: 5, fontSize: (16 / 1920) * width }}>termos de serviço</Text>
+                                    <Text style={{ textDecorationLine: 'underline', marginLeft: (5 / 1920) * width, fontSize: (16 / 1920) * width }}>termos de serviço</Text>
                                 </TouchableOpacity>
                             </View>
 

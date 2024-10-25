@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, Image, Dimensions, Linking, ScrollView, Alert, Modal } from 'react-native';
+import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, Image, useWindowDimensions, Linking, ScrollView, Alert, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../Tree/styles';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,7 +16,7 @@ import ImageEditor from "@react-native-community/image-editor";
 import * as ImageManipulator from 'expo-image-manipulator';
 import MoreInfo2 from '../moreInfo2';
 
-const { width } = Dimensions.get('window');
+
 
 
 
@@ -31,15 +31,18 @@ const SelectedResultCard = ({ id, name, treeUrl, onRemoveResult, onSelectImage, 
         onSelectImage(id); // Passa o ID para a função onSelectImage
     };
 
+    const myStyles = styles();
+    const { width, height } = useWindowDimensions(); 
+    
     return (
-        <View style={styles.selectedResultCard}>
-        <View style={styles.textContainer}>
-            <Text style={styles.selectedResultText}>{`${name}`}</Text>
+        <View style={myStyles.selectedResultCard}>
+        <View style={myStyles.textContainer}>
+            <Text style={myStyles.selectedResultText}>{`${name}`}</Text>
         </View>
-        <TouchableOpacity onPress={onRemoveResult} style={styles.closeButton}>
+        <TouchableOpacity onPress={onRemoveResult} style={myStyles.closeButton}>
             <Ionicons name="close" size={width * 0.01302083333333333333333333333333} color="#271C00" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleSelectImage(id)} style={styles.sendImageButton}>
+        <TouchableOpacity onPress={() => handleSelectImage(id)} style={myStyles.sendImageButton}>
             {treeUrl ? (
                 <Image
                     source={{ uri: treeUrl }}
@@ -52,7 +55,7 @@ const SelectedResultCard = ({ id, name, treeUrl, onRemoveResult, onSelectImage, 
                     }} 
                 />
             ) : (
-                <Text style={styles.sendImageButtonText}>Enviar imagem</Text>
+                <Text style={myStyles.sendImageButtonText}>Enviar imagem</Text>
             )}
         </TouchableOpacity>
     </View>
@@ -95,6 +98,9 @@ export default function Tree() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedResultId, setSelectedResultId] = useState(null); // Armazena o ID do resultado selecionado
     const [modalVisible, setModalVisible] = useState(false);
+    const myStyles = styles();
+    const { width, height } = useWindowDimensions(); 
+
 
     const toggleNotSendingTrees = async () => {
         clearSearch();
@@ -344,8 +350,8 @@ export default function Tree() {
 
     const renderResultItem = ({ item, index }) => (
         <TouchableOpacity onPress={() => handleResultPress(item.name)}>
-            <View style={[styles.resultItem, { backgroundColor: index % 2 === 0 ? '#166034' : '#4C6523' }]}>
-                <Text style={[styles.resultItemText, {}]}>
+            <View style={[myStyles.resultItem, { backgroundColor: index % 2 === 0 ? '#166034' : '#4C6523' }]}>
+                <Text style={[myStyles.resultItemText, {}]}>
                     Nome: {item.name} {"\n"}
                     Nome científico: {item.scientificName}
                 </Text>
@@ -368,7 +374,7 @@ export default function Tree() {
                     onRemoveResult={() => handleRemoveResult(result.id)}
                     onSelectImage={pickImage}
                     style={[
-                        styles.selectedResultCard,
+                        myStyles.selectedResultCard,
                         { marginRight: 10 } // Define a margem à direita para os cartões
                     ]}
                 />
@@ -382,9 +388,9 @@ export default function Tree() {
         });
 
         return (
-            <View style={styles.selectedResultsContainer}>
+            <View style={myStyles.selectedResultsContainer}>
                 {rows.map((row, index) => (
-                    <View key={index} style={styles.selectedResultsRow}>
+                    <View key={index} style={myStyles.selectedResultsRow}>
                         {index === 0 && <View style={{ flex: 1 }} />} {/* Espaço à esquerda */}
                         {row}
                         {index === rows.length - 1 && <View style={{ flex: 1 }} />} {/* Espaço à direita */}
@@ -460,52 +466,52 @@ export default function Tree() {
 
 
     return (
-        <ScrollView contentContainerStyle={styles.container} style={{ backgroundColor: '#FFFEF4' }}>
-            <View style={styles.navbar}>
+        <ScrollView contentContainerStyle={myStyles.container} style={{ backgroundColor: '#FFFEF4' }}>
+            <View style={myStyles.navbar}>
 
-            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+            <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>
 
         
-                <View style={styles.imageContainer1}>
+                <View style={myStyles.imageContainer1}>
                     {imageUrl ? (
                         <Image
-                            style={styles.logoImage}
+                            style={myStyles.logoImage}
                             source={{
                                 uri: imageUrl,
                             }}
                         />
                     ) : (
                         <Image
-                        style={styles.logoImage}
+                        style={myStyles.logoImage}
                         source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
                     />
                     )}
                 </View>
             </View>
             
-            <View style={styles.ret1}>
-                <Text style={styles.buttonText}>Recomendamos baixar o APP Inaturalist para uma identificação mais precisa do nome das árvores presentes no jardinete</Text>
+            <View style={myStyles.ret1}>
+                <Text style={myStyles.buttonText}>Recomendamos baixar o APP Inaturalist para uma identificação mais precisa do nome das árvores presentes no jardinete</Text>
             </View>
-            <View style={styles.ret2}></View>
+            <View style={myStyles.ret2}></View>
 
        
-            <View style={styles.imageContainer}>
+            <View style={myStyles.imageContainer}>
                 <TouchableOpacity onPress={() => openLink('https://apps.apple.com/us/app/inaturalist/id421397028')}>
-                    <Image source={require('../../assets/apple.png')} style={styles.imageIcon} />
+                    <Image source={require('../../assets/apple.png')} style={myStyles.imageIcon} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => openLink('https://play.google.com/store/apps/details?id=org.inaturalist.android')}>
-                    <Image source={require('../../assets/googleplay.png')} style={styles.imageIcon} />
+                    <Image source={require('../../assets/googleplay.png')} style={myStyles.imageIcon} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => openLink('https://www.inaturalist.org')}>
-                    <Image source={require('../../assets/inaturalist.png')} style={styles.imageIcon2} />
+                    <Image source={require('../../assets/inaturalist.png')} style={myStyles.imageIcon2} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonView33} onPress={() => setModalVisible(true)}>
-    <Text style={styles.buttonText33}>Verifique as informações já enviadas</Text>
+                <TouchableOpacity style={myStyles.buttonView33} onPress={() => setModalVisible(true)}>
+    <Text style={myStyles.buttonText33}>Verifique as informações já enviadas</Text>
   </TouchableOpacity>
             </View>
-            <View style={styles.checkboxContainer}>
+            <View style={myStyles.checkboxContainer}>
                 <TouchableOpacity onPress={toggleNotSendingTrees}>
                     {notSendingTrees ? (
                         <Ionicons name="checkbox" size={width * 0.0125} color="#271C00" />
@@ -513,17 +519,17 @@ export default function Tree() {
                         <Ionicons name="square-outline" size={width * 0.0125} color="#B68F40" />
                     )}
                 </TouchableOpacity>
-                <Text style={styles.checkboxLabel}>Não enviar árvores agora</Text>
+                <Text style={myStyles.checkboxLabel}>Não enviar árvores agora</Text>
             </View>
             <LinearGradient
                 colors={['#271C00', '#B68F40']}
-                style={styles.searchBarGradient}
+                style={myStyles.searchBarGradient}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}>
-                <View style={styles.searchBarContainer}>
-                    <Ionicons name="search" size={width * 0.01041666666666666666666666666667} color="#ffffff" style={styles.searchIcon} />
+                <View style={myStyles.searchBarContainer}>
+                    <Ionicons name="search" size={width * 0.01041666666666666666666666666667} color="#ffffff" style={myStyles.searchIcon} />
                     <TextInput
-                        style={[styles.searchBar, { paddingLeft: width * 0.025 }, notSendingTrees ? styles.disabledTextInput : null]} // Adicione o estilo styles.disabledTextInput se a checkbox estiver marcada
+                        style={[myStyles.searchBar, { paddingLeft: width * 0.025 }, notSendingTrees ? myStyles.disabledTextInput : null]} // Adicione o estilo myStyles.disabledTextInput se a checkbox estiver marcada
                         placeholder="Pesquisar Árvores..."
                         placeholderTextColor="#ffffff"
                         value={searchText}
@@ -534,21 +540,21 @@ export default function Tree() {
                         editable={!notSendingTrees} // Desabilitar o TextInput se a checkbox estiver marcada
                     />
                     {searchText.length > 0 && (
-                        <TouchableOpacity onPress={clearSearch} style={styles.clearButton}>
-                            <Text style={styles.clearButtonText}>X</Text>
+                        <TouchableOpacity onPress={clearSearch} style={myStyles.clearButton}>
+                            <Text style={myStyles.clearButtonText}>X</Text>
                         </TouchableOpacity>
                     )}
                 </View>
             </LinearGradient>
             {showResults && (
-                <View style={[styles.resultsContainer, (filteredTrees.length > 0 || searchText === '') ? styles.resultsContainerWithPadding : {}]}>
+                <View style={[myStyles.resultsContainer, (filteredTrees.length > 0 || searchText === '') ? myStyles.resultsContainerWithPadding : {}]}>
                     <FlatList
                         data={filteredTrees}
                         renderItem={renderResultItem}
                         keyExtractor={(item, index) => index.toString()}
                     />
                     {searchText !== '' && filteredTrees.length === 0 && (
-                        <Text style={styles.noResultsText}>Nenhum resultado encontrado</Text>
+                        <Text style={myStyles.noResultsText}>Nenhum resultado encontrado</Text>
                     )}
                 </View>
             )}
@@ -568,7 +574,7 @@ export default function Tree() {
                 <LinearGradient
                     colors={['#4C6523', '#99CB47']}
                     style={{ borderRadius: width * 0.01302083333333333333333333333333, width: width * 0.09114583333333333333333333333333, height: width * 0.02083333333333333333333333333333, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={styles.continueButtonText}>Continuar</Text>
+                    <Text style={myStyles.continueButtonText}>Continuar</Text>
                 </LinearGradient>
             </TouchableOpacity>
             )}
@@ -576,10 +582,10 @@ export default function Tree() {
 
 
             <Modal visible={showCropper} animationType="slide">
-  <View style={styles.cropperContainer}>
+  <View style={myStyles.cropperContainer}>
     
     {/* Slider e botões de zoom */}
-    <View style={styles.controlsContainer}>
+    <View style={myStyles.controlsContainer}>
       <Slider
         value={zoom}
         min={1}
@@ -587,7 +593,7 @@ export default function Tree() {
         step={0.1}
         onChange={(e, newValue) => setZoom(newValue)}
         aria-labelledby="zoom-slider"
-        style={styles.slider}
+        style={myStyles.slider}
         sx={{
           color: '#166034', // Cor principal do slider (trilha mínima e polegar)
           '& .MuiSlider-thumb': {
@@ -601,7 +607,7 @@ export default function Tree() {
           },
         }}
       />
-      <View style={styles.zoomButtons}>
+      <View style={myStyles.zoomButtons}>
         <TouchableOpacity onPress={() => setZoom(zoom + 0.1)}>
           <MdZoomIn size={24} />
         </TouchableOpacity>
@@ -612,7 +618,7 @@ export default function Tree() {
     </View>
 
     {/* Área de corte da imagem */}
-    <View style={styles.cropperWrapper}>
+    <View style={myStyles.cropperWrapper}>
       <Cropper
         image={selectedImage}
         crop={crop}
@@ -624,15 +630,15 @@ export default function Tree() {
       />
     </View>
 
-    <View style={styles.row}>
-    <TouchableOpacity style={styles.cropButton} onPress={cropImage}>
-      <Text style={styles.cropButtonText}>Escolher Imagem</Text>
+    <View style={myStyles.row}>
+    <TouchableOpacity style={myStyles.cropButton} onPress={cropImage}>
+      <Text style={myStyles.cropButtonText}>Escolher Imagem</Text>
     </TouchableOpacity>
     <TouchableOpacity
-        style={styles.cropButton1}
+        style={myStyles.cropButton1}
         onPress={() => setShowCropper(false)}
       >
-        <Text style={styles.cropButtonText}>Voltar</Text>
+        <Text style={myStyles.cropButtonText}>Voltar</Text>
       </TouchableOpacity>
       </View>
   </View>
@@ -646,12 +652,12 @@ export default function Tree() {
     setModalVisible(!modalVisible);
   }}
 >
-  <View style={styles.modalContainer}>
-    <TouchableOpacity style={styles.closeButton1} onPress={() => setModalVisible(false)}>
-      <Ionicons name="close" size={30} color="black" />
+  <View style={myStyles.modalContainer}>
+    <TouchableOpacity style={myStyles.closeButton1} onPress={() => setModalVisible(false)}>
+      <Ionicons name="close" size={(30 / 1920) * width} color="black" />
     </TouchableOpacity>
 
-    <ScrollView contentContainerStyle={styles.scrollViewModalContent}>
+    <ScrollView contentContainerStyle={myStyles.scrollViewModalContent}>
       <MoreInfo2 />
     </ScrollView>
   </View>

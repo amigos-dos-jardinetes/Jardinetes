@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, Text, TouchableOpacity, TextInput, StyleSheet, Dimensions } from 'react-native';
+import { View, Image, Text, TouchableOpacity, TextInput, StyleSheet, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
@@ -69,7 +69,8 @@ export default function Accept() {
   const [verificationMessage, setVerificationMessage] = useState('');
   const [isVerificationSuccessful, setIsVerificationSuccessful] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const { width, height } = Dimensions.get('window');
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
   const [mapCenter, setMapCenter] = useState([-25.4284, -49.2733]); // Ponto inicial
   const [showRedMarker, setShowRedMarker] = useState(false);
 
@@ -178,46 +179,46 @@ export default function Accept() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.navbar}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+    <View style={myStyles.container}>
+      <View style={myStyles.navbar}>
+        <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>
-        <View style={styles.imageContainer}>
+        <View style={myStyles.imageContainer}>
           {imageUrl ? (
             <Image
-              style={styles.logoImage}
+              style={myStyles.logoImage}
               source={{
                 uri: imageUrl,
               }}
             />
           ) : (
             <Image
-            style={styles.logoImage}
+            style={myStyles.logoImage}
             source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
         />
           )}
         </View>
       </View>
 
-      <View style={styles.instructions}>
-          <Text style={styles.title2}>Por favor, selecione o local desejado para verfificar se é possível ser amigo(a) do jardinete!</Text>
+      <View style={myStyles.instructions}>
+          <Text style={myStyles.title2}>Por favor, selecione o local desejado para verfificar se é possível ser amigo(a) do jardinete!</Text>
       </View>
 
-      <View style={styles.searchContainer}>
+      <View style={myStyles.searchContainer}>
         <TextInput
-          style={styles.searchInput}
+          style={myStyles.searchInput}
           placeholder="Digite o endereço"
           value={searchText}
           onChangeText={setSearchText}
         />
- <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
-  <Text style={styles.searchButtonText}>Buscar</Text>
+ <TouchableOpacity style={myStyles.searchButton} onPress={handleSearch}>
+  <Text style={myStyles.searchButtonText}>Buscar</Text>
 </TouchableOpacity>
       </View>
 
 
-      <View style={styles.mapContainer}>
+      <View style={myStyles.mapContainer}>
       <MapContainer
   center={mapCenter}
   zoom={14}
@@ -232,8 +233,8 @@ export default function Accept() {
         <Popup>
           <div>
             <p>{jardinete.nome}</p>
-            <img src={jardinete.jardinetePhoto} alt={`Foto de ${jardinete.nome}`} style={styles.popupImage} />
-            <TouchableOpacity onPress={() => handleDetailsPress(jardinete)} style={styles.popupButton}>
+            <img src={jardinete.jardinetePhoto} alt={`Foto de ${jardinete.nome}`} style={myStyles.popupImage} />
+            <TouchableOpacity onPress={() => handleDetailsPress(jardinete)} style={myStyles.popupButton}>
             </TouchableOpacity>
           </div>
         </Popup>
@@ -268,19 +269,19 @@ export default function Accept() {
   {showRedMarker && <Marker position={mapCenter} icon={redIcon} />}
 </MapContainer>
       </View>
-      <View style={styles.title1}>
-        <TouchableOpacity style={styles.button} onPress={verificarProximidade}>
-          <Text style={styles.buttonText}>Verificar</Text>
+      <View style={myStyles.title1}>
+        <TouchableOpacity style={myStyles.button} onPress={verificarProximidade}>
+          <Text style={myStyles.buttonText}>Verificar</Text>
         </TouchableOpacity>
         {verificationMessage ? (
-          <Text style={styles.title}>{verificationMessage}</Text>
+          <Text style={myStyles.title}>{verificationMessage}</Text>
         ) : (
           isVerificationSuccessful && (
             <>
-              <Text style={styles.title}>Continuar com o envio de um novo jardinete?</Text>
-              <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={iniciarEnvioJardinete}>
-                  <Text style={styles.buttonText}>Continuar</Text>
+              <Text style={myStyles.title}>Continuar com o envio de um novo jardinete?</Text>
+              <View style={myStyles.buttonContainer}>
+                <TouchableOpacity style={myStyles.button} onPress={iniciarEnvioJardinete}>
+                  <Text style={myStyles.buttonText}>Continuar</Text>
                 </TouchableOpacity>
                 
               </View>
@@ -289,13 +290,13 @@ export default function Accept() {
         )}
       </View>
 
-      <View style={styles.imageContainer33}>
-          <Image source={require('../../assets/araucarias.png')}  style={styles.araucarias} />
+      <View style={myStyles.imageContainer33}>
+          <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias} />
       </View>
 
-      <View style={styles.navbar2}>
-      <View style={styles.imageContainer22}>
-          <Image source={require('../../assets/UtfprBottom.png')}  style={styles.utfprImage} />
+      <View style={myStyles.navbar2}>
+      <View style={myStyles.imageContainer22}>
+          <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage} />
       </View>
       </View>
     </View>

@@ -263,6 +263,8 @@ function MapCenter({ center }) {
                   <Image style={[myStyles.inventoryImage, getImageStyle(pavimentada)]} source={require('../../assets/pavimentada.jpg')} />
                 </View>
                 <View style={myStyles.row4}>
+
+                <View style={myStyles.bt1View}>     
   <TouchableOpacity onPress={() => navigation.goBack()}>
     <LinearGradient
       colors={['#271C00', '#FEE7AC']}
@@ -273,7 +275,8 @@ function MapCenter({ center }) {
       <Text style={myStyles.textBt}>Voltar</Text>
     </LinearGradient>
   </TouchableOpacity>
-
+  </View>
+  <View style={myStyles.bt2View}>   
   <TouchableOpacity onPress={() => navigation.navigate('Impact', { novoJardineteDocId })} >
     <LinearGradient
       colors={['#4C6523', '#99CB47']}
@@ -287,6 +290,9 @@ function MapCenter({ center }) {
     </LinearGradient>
   </TouchableOpacity>
 
+  </View>
+
+  <View style={myStyles.bt3View}>   
   <TouchableOpacity onPress={() => navigation.navigate('AnaliseFinal', { novoJardineteDocId })} >
     <LinearGradient
       colors={['#4C6523', '#99CB47']}
@@ -298,6 +304,7 @@ function MapCenter({ center }) {
       <Text style={myStyles.textBt}>Resultados</Text>
     </LinearGradient>
   </TouchableOpacity>
+  </View>
 </View>
                 
 

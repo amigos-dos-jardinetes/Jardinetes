@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, ScrollView, RefreshControl, FlatList, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, ScrollView, RefreshControl, FlatList, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
@@ -39,7 +39,8 @@ export default function Menu() {
     const [selectedPlaceCoordinates, setSelectedPlaceCoordinates] = useState(null);
     const [MapLatitude, setMapLatitude] = useState(null);
     const [MapLongitude, setMapLongitude] = useState(null);
-    const { width, height } = Dimensions.get('window');
+    const myStyles = styles();
+    const { width, height } = useWindowDimensions(); 
 
     const markers = [
         { position: [-25.43925924548977, -49.268820908320194], name: 'Local 1', image: 'URL 1' },
@@ -83,11 +84,11 @@ export default function Menu() {
     };
 
     const renderCarouselItem = (item, index) => (
-        <div key={index} style={styles.carouselItem1}>
+        <div key={index} style={myStyles.carouselItem1}>
             <img
                 src={item.image}
                 alt={`Image ${item.image}`}
-                style={styles.carouselImage1}
+                style={myStyles.carouselImage1}
             />
         </div>
     );
@@ -218,7 +219,7 @@ export default function Menu() {
         return (
             <div
             key={item.id}
-            style={styles.carouselItem}
+            style={myStyles.carouselItem}
             onClick={() => {
                 setSelectedPlaceCoordinates(item.coordenadas);
                 setMapLatitude(latitude);
@@ -238,7 +239,7 @@ export default function Menu() {
                   
                 }}
             />
-            <p style={styles.carouselText}>{item.nome}</p>
+            <p style={myStyles.carouselText}>{item.nome}</p>
         </div>
         );
     };
@@ -246,79 +247,78 @@ export default function Menu() {
 
     return (
 
-        <View style={styles.container}>
+        <View style={myStyles.container}>
 
-            <View style={styles.backcontainer}>
-                <ImageBackground source={wallpaper ? { uri: wallpaper } : require('../../assets/default_background.png')} style={styles.container}>
+            <View style={myStyles.backcontainer}>
+                <ImageBackground source={wallpaper ? { uri: wallpaper } : require('../../assets/default_background.png')} style={myStyles.container}>
                     <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
-                    <Text style={styles.title}>Bem-vindo, {userName}</Text>
+                    <Text style={myStyles.title}>Bem-vindo, {userName}</Text>
 
-                    <TouchableOpacity style={styles.textButtonConfig} onPress={() => navigation.navigate('Config')}>
-                        <FontAwesomeIcon icon={faCog} color="black" size={24} />
+                    <TouchableOpacity style={myStyles.textButtonConfig} onPress={() => navigation.navigate('Config')}>
+                        <FontAwesomeIcon icon={faCog} color="black" size={(24 / 1920) * width} />
                     </TouchableOpacity>
                     {/* Substituindo o botão de fechar por um texto "X" */}
-                    <TouchableOpacity style={styles.logoutButton} onPress={handleLogoutFunc}>
-                        <Text style={styles.logoutButtonText}>X</Text>
+                    <TouchableOpacity style={myStyles.logoutButton} onPress={handleLogoutFunc}>
+                        <Text style={myStyles.logoutButtonText}>X</Text>
                     </TouchableOpacity>
-                    <View style={styles.containerLogo}>
+                    <View style={myStyles.containerLogo}>
                         {imageUrl ? (
                             <Image
-                                style={styles.logoImage}
+                                style={myStyles.logoImage}
                                 source={{
                                     uri: imageUrl,
                                 }}
                             />
                         ) : (
                             <Image
-                            style={styles.logoImage}
+                            style={myStyles.logoImage}
                             source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
                         />
                         )}
-                        <View style={styles.buttons}>
-                            <TouchableOpacity style={styles.textButton2}>
-                                <Text style={styles.textInfo2}>Informações de perfil</Text>
-                            </TouchableOpacity>
-                        </View>
+                     
                     </View>
 
-                    <View style={styles.buttons}>
+                    <View style={myStyles.buttons}>
+                    <TouchableOpacity style={myStyles.textButton2}>
+                                <Text style={myStyles.textInfo2}>Informações de perfil</Text>
+                            </TouchableOpacity>
                         <Text>{JSON.stringify(userInfo.given_name, null, 2)}</Text>
-                        <TouchableOpacity style={styles.textButton}>
-                            <Text style={styles.textInfo}>{email}</Text>
+                        <TouchableOpacity style={myStyles.textButton}>
+                            <Text style={myStyles.textInfo}>{email}</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.textButton}>
-                            <Text style={styles.textInfo}>Segurança e privacidade</Text>
+                        <TouchableOpacity style={myStyles.textButton}>
+                            <Text style={myStyles.textInfo}>Segurança e privacidade</Text>
                         </TouchableOpacity>
 
 
-                        <TouchableOpacity style={styles.textButton}>
-                            <Text style={styles.textInfo}>Suporte</Text>
+                        <TouchableOpacity style={myStyles.textButton}>
+                            <Text style={myStyles.textInfo}>Suporte</Text>
                         </TouchableOpacity>
 
                     </View>
                 </ImageBackground>
             </View>
 
-            <View style={styles.navbar}>
+            <View style={myStyles.navbar}>
 
-                <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')} style={styles.navi}>
-                    <Text style={styles.navbarButton}>Página Inicial</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('PaginaInicial')} style={myStyles.navi}>
+                    <Text style={myStyles.navbarButton}>Página Inicial</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Accept')} style={styles.navi}>
-                    <Text style={styles.navbarButton}>Criar Jardinete</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Accept')} style={myStyles.navi}>
+                    <Text style={myStyles.navbarButton}>Criar Jardinete</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('minhasAnalises')} style={styles.navi}>
-                    <Text style={styles.navbarButton}>Minhas Análises</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('minhasAnalises')} style={myStyles.navi}>
+                    <Text style={myStyles.navbarButton}>Minhas Análises</Text>
                 </TouchableOpacity>
 
             </View>
 
 
-            <View style={[styles.car, { alignItems: 'center',  overflow: 'hidden',  }]}>
-    <Text style={styles.textgen}>Jardinetes que sou amigo(a)</Text>
-    <View style={[styles.car4, { alignItems: 'center',  overflow: 'hidden',   }]}>
-        <View style={[styles.borderedContainer2, { alignItems: 'center',  overflow: 'hidden',    }]}>
-            <View style={[styles.borderedContainer3, { overflow: 'hidden', }]}>
+            <View style={[myStyles.car, { alignItems: 'center',  overflow: 'hidden',  }]}>
+    <Text style={myStyles.textgen}>Jardinetes que sou amigo(a)</Text>
+    <View style={[myStyles.car4, { alignItems: 'center',  overflow: 'hidden',   }]}>
+        <View style={[myStyles.borderedContainer2, { alignItems: 'center',  overflow: 'hidden',    }]}>
+            <View style={[myStyles.borderedContainer3, { overflow: 'hidden', }]}>
                 <Carousel
                     showThumbs={false}
                     showStatus={false}
@@ -327,46 +327,76 @@ export default function Menu() {
                     renderArrowPrev={(onClickHandler, hasPrev, label) =>
                         hasPrev && (
                             <button
-                                type="button"
-                                onClick={onClickHandler}
-                                style={{
-                                    position: 'absolute',
-                                    top: '40%',
-                                    left: 0,
-                                    zIndex: 2,
-                                    background: 'rgba(0, 0, 0, 0.5)',
-                                    border: 'none',
-                                    color: 'white',
-                                    padding: '10px',
-                                    borderRadius: '20%',
-                                }}
-                            >
-                                <FontAwesomeIcon icon={faChevronLeft} size="2x" />
-                            </button>
+                            type="button"
+                            onClick={onClickHandler}
+                            style={{
+                              position: 'absolute',
+                              top: '40%',
+                              left: 0,
+                              zIndex: 2,
+                              background: 'rgba(0, 0, 0, 0.5)',
+                              border: 'none',
+                              color: 'white',
+                              padding: (10 / 1920) * width,
+                              borderRadius: '20%',
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faChevronLeft} size="2x" style={{ fontSize: width * 0.03 }} />
+                          </button>
                         )
                     }
+                    
                     renderArrowNext={(onClickHandler, hasNext, label) =>
                         hasNext && (
                             <button
-                                type="button"
-                                onClick={onClickHandler}
-                                style={{
-                                    position: 'absolute',
-                                    top: '40%',
-                                    right: 0,
-                                    zIndex: 2,
-                                    background: 'rgba(0, 0, 0, 0.5)',
-                                    border: 'none',
-                                    color: 'white',
-                                    padding: '10px',
-                                    borderRadius: '20%',
-                                }}
-                            >
-                                <FontAwesomeIcon icon={faChevronRight} size="2x" />
-                            </button>
+                            type="button"
+                            onClick={onClickHandler}
+                            style={{
+                              position: 'absolute',
+                              top: '40%',
+                              right: 0,
+                              zIndex: 2,
+                              background: 'rgba(0, 0, 0, 0.5)',
+                              border: 'none',
+                              color: 'white',
+                              padding: (10 / 1920) * width,
+                              borderRadius: '20%',
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faChevronRight} size="2x" style={{ fontSize: width * 0.03 }} />
+                          </button>
+                          
                         )
+                        
+                        
                     }
+                    renderIndicator={(onClickHandler, isSelected, index, label) => {
+                        const indicatorStyle = {
+                          position: 'relative',
+                          bottom: width * 0.004,  // Ajusta essa propriedade para mover para cima
+                          transform: 'translateX(-50%)',
+                          display: 'inline-block',
+                          marginRight: (8 / 1920) * width,
+                          cursor: 'pointer',
+                          borderRadius: '50%',
+                          width: isSelected ? width * 0.00625 : width * 0.0052083333333333,
+                          height: isSelected ? width * 0.00625 : width * 0.0052083333333333,
+                          backgroundColor: isSelected ? '#fff' : '#ccc',
+                        };
+                  
+                        return (
+                          <div
+                            key={index}
+                            style={indicatorStyle}
+                            onClick={onClickHandler}
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`${label} ${index + 1}`}
+                          />
+                        );
+                      }}
                 >
+                    
                     {carouselData1.map(renderCarouselItem1)}
                 </Carousel>
             </View>
@@ -374,18 +404,18 @@ export default function Menu() {
     </View>
 </View>
 
-            <View style={styles.car2}>
-                <Text style={styles.textgen2}>Mapa</Text>
-                <View style={[styles.car3, styles.borderedContainer]}>
+            <View style={myStyles.car2}>
+                <Text style={myStyles.textgen2}>Mapa</Text>
+                <View style={[myStyles.car3, myStyles.borderedContainer]}>
 
-                <View style={[styles.container_map, { position: 'relative' }]}>
+                <View style={[myStyles.container_map, { position: 'relative' }]}>
 
                         {MapLatitude !== null && MapLongitude !== null ? (
                             <MapContainer
                             key={mapKey}
                             center={[MapLatitude, MapLongitude]}
                             zoom={selectedPlaceCoordinates ? 16 : 13}
-                            style={{ width: '100%', height: '100%', borderRadius: 10 }}
+                            style={{ width: '100%', height: '100%', borderRadius: (10 / 1920) * width }}
                           >
                                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
@@ -398,18 +428,18 @@ export default function Menu() {
                                         <Popup>
                                             <div>
                                                 <p>{praca.nome}</p>
-                                                <img src={praca.jardinetePhoto} alt={`Image ${praca.id}`} style={styles.popupImage} />
-                                                <View style={styles.popupButtonContainer}>
+                                                <img src={praca.jardinetePhoto} alt={`Image ${praca.id}`} style={myStyles.popupImage} />
+                                                <View style={myStyles.popupButtonContainer}>
                                                     <TouchableOpacity 
                                                    onPress={() => navigation.navigate('Impact', { novoJardineteDocId: praca.id })} 
-                                                    style={styles.popupButton}>
-                                                        <Text style={styles.popupButtonText}>Selecionar Jardinete</Text>
+                                                    style={myStyles.popupButton}>
+                                                        <Text style={myStyles.popupButtonText}>Selecionar Jardinete</Text>
                                                     </TouchableOpacity>
                                                     <TouchableOpacity 
                                                             onPress={() => navigation.navigate('AnaliseFinal', { novoJardineteDocId: praca.id })} 
-                                                            style={styles.popupButton}
+                                                            style={myStyles.popupButton}
                                                     >
-                                                             <Text style={styles.popupButtonText}>Gráfico do Jardinete</Text>
+                                                             <Text style={myStyles.popupButtonText}>Gráfico do Jardinete</Text>
                                                     </TouchableOpacity>
                                                 </View>
                                             </div>
@@ -418,7 +448,7 @@ export default function Menu() {
                                 ))}
                             </MapContainer>
                         ) : (
-                            <Text>Clique na imagem para ir ao local</Text>
+                            <Text style={myStyles.cliqueText}>Clique na imagem para ir ao local</Text>
                         )}
                     </View>
 

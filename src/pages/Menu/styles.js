@@ -1,8 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#195439',
@@ -15,6 +16,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'transparent',  // Alteração aqui
         padding: width * 0.02604166666666666666666666666667,
         alignItems: 'center',
+        marginBottom: (150 / 1920) * width,
     },
     containerForm: {
         flex: 1,
@@ -88,6 +90,7 @@ export const styles = StyleSheet.create({
         borderRadius: width * 0.00260416666666666666666666666667,
         marginTop: width * 0.05,
         alignItems: 'center',
+        marginBottom: width * 0.05,
 
     },
     textInfo: {
@@ -208,7 +211,7 @@ export const styles = StyleSheet.create({
         position: 'relative',
         width: '100%',
         height: '60%', // Defina a altura desejada para os itens do carrossel
-        borderRadius: '8px',
+        borderRadius: (8 / 1920) * width,
         overflow: 'hidden',
 
         alignItems: 'center',
@@ -243,12 +246,14 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     overlayContent: {
+        
         textAlign: 'center',
         color: 'white',
-        borderRadius: '8px',
+        borderRadius: (8 / 1920) * width,
         // Adicione mais estilos conforme necessário
     },
     carouselContainer: {
+        
         position: 'relative',
         borderRadius: width * 0.00416666666666666666666666666667,
         overflow: 'hidden',
@@ -270,7 +275,7 @@ export const styles = StyleSheet.create({
 
     carouselText: {
         position: 'absolute',
-        bottom: '10px',
+        bottom: (10 / 1920) * width,
         width: '100%',
         background: 'rgba(255, 255, 255, 0.8)',
         color: 'black',
@@ -287,7 +292,7 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         maxHeight: '80%',
         maxWidth: '75%',
-        borderRadius: '8px',
+        borderRadius: (8 / 1920) * width,
     },
 
     container3: {
@@ -297,7 +302,7 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         maxHeight: '80%',
         maxWidth: '75%',
-        borderRadius: '8px',
+        borderRadius: (8 / 1920) * width,
     },
 
 
@@ -375,7 +380,6 @@ popupButtonContainer: {
         top: 0,
         left: '0%',
         bottom: '1%',
-
         height: '100%',
         width: '100%',
         alignItems: 'center',
@@ -402,7 +406,12 @@ popupButtonContainer: {
         marginRight: width * 0.00416666666666666666666666666667, // ou qualquer valor que você preferir
     },
 
+    cliqueText: {
+        fontSize: (48 / 1920) * width,
+        color: '#271c00',
 
+    },
 
 
 });
+};

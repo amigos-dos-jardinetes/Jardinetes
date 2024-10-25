@@ -268,7 +268,6 @@ navbar2: {
     height: width * 0.04,
     alignItems: 'center',
     justifyContent: 'center',
-    right: -(width * 0.3125),
   },
 
   bt3: {
@@ -278,9 +277,19 @@ navbar2: {
     height: width * 0.04,
     alignItems: 'center',
     justifyContent: 'center',
-    right: -(width * 0.15625),
   },
 
+  bt1View: {
+    left: (50 / 1920) * width,
+  },
+
+  bt2View: {
+    left: (300 / 1920) * width,
+  },
+
+  bt3View: {
+    left: (550 / 1920) * width,
+  },
   textBt: {
     fontSize: width * 0.0145833333333333,
     color: 'white',

@@ -1,9 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
-
+  return StyleSheet.create({
 
     scroll: {
         backgroundColor: '#FFFEF4',
@@ -584,4 +584,6 @@ export const styles = StyleSheet.create({
             lineHeight: width * 0.015625,
             marginBottom: width * 0.0052083333333333,
           },
-});
+        });
+    };
+    

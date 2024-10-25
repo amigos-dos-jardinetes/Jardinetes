@@ -1,5 +1,5 @@
   import React, { useState, useCallback, useEffect, useRef } from 'react'; 
-  import { View, ScrollView, TouchableOpacity, Text, Image, Dimensions, Modal, Picker } from 'react-native';
+  import { View, ScrollView, TouchableOpacity, Text, Image, useWindowDimensions, Modal, Picker } from 'react-native';
   import { getFirestore, doc, updateDoc } from 'firebase/firestore';
   import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
   import { initializeApp } from 'firebase/app';
@@ -35,7 +35,8 @@
     const [pracasSeguidas, setPracasSeguidas] = useState([]);
     const [imageUrl, setImageUrl] = useState(null);  // Para armazenar a URL da imagem de perfil do usuário
     const scrollViewRef = useRef(null);
-    const { width } = Dimensions.get('window');
+    const myStyles = styles();
+    const { width, height } = useWindowDimensions(); 
     const navigation = useNavigation();
     const [selectedImage, setSelectedImage] = useState(null);
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -199,34 +200,34 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
     };
   
     return (
-      <ScrollView ref={scrollViewRef} style={styles.container3}>
-        <View style={styles.container}>
-          <View style={styles.navbar}>
-            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+      <ScrollView ref={scrollViewRef} style={myStyles.container3}>
+        <View style={myStyles.container}>
+          <View style={myStyles.navbar}>
+            <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
               <Ionicons name="arrow-back" size={width * 0.025} color="white" />
             </TouchableOpacity>
   
-            <View style={styles.imageContainer}>
+            <View style={myStyles.imageContainer}>
               {imageUrl ? (
                 <Image
-                  style={styles.logoImage}
+                  style={myStyles.logoImage}
                   source={{ uri: imageUrl }}  // Exibe a imagem de perfil do usuário
                 />
               ) : (
                 <Image
-                  style={styles.logoImage}
+                  style={myStyles.logoImage}
                   source={require('../../assets/defaultImage.png')}
                 />
               )}
             </View>
           </View>
   
-          <View style={styles.perfil}>   
-            <View style={styles.balao}>
-              <Text style={styles.title}>Troque sua foto de perfil</Text>
+          <View style={myStyles.perfil}>   
+            <View style={myStyles.balao}>
+              <Text style={myStyles.title}>Troque sua foto de perfil</Text>
             </View>
   
-            <View style={styles.card1}>
+            <View style={myStyles.card1}>
               {imageUrl ? (
                 <TouchableOpacity onPress={() => selecionarImagem(false)}>
 
@@ -242,18 +243,18 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity onPress={() => selecionarImagem(false)}>
-                  <Text style={styles.buttonText}>Clique aqui</Text>
+                  <Text style={myStyles.buttonText}>Clique aqui</Text>
                 </TouchableOpacity>
               )}
             </View>
           </View>
   
 
-          <View style={styles.wallpaper}>   
-            <View style={styles.balao2}>
-              <Text style={styles.title}>Mude seu wallpaper</Text>
+          <View style={myStyles.wallpaper}>   
+            <View style={myStyles.balao2}>
+              <Text style={myStyles.title}>Mude seu wallpaper</Text>
             </View>
-            <View style={styles.card2}>
+            <View style={myStyles.card2}>
             {wallpaper ? (
                <TouchableOpacity onPress={() => selecionarImagem(true)}>
                <Image
@@ -267,26 +268,26 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
              </TouchableOpacity>
               ) : (
                 <TouchableOpacity onPress={() => selecionarImagem(true)}>
-                  <Text style={styles.buttonText}>Clique aqui</Text>
+                  <Text style={myStyles.buttonText}>Clique aqui</Text>
                 </TouchableOpacity>
               )}
                 </View>
           </View>
   
-          <View style={styles.imageContainer33}>
-            <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
+          <View style={myStyles.imageContainer33}>
+            <Image source={require('../../assets/araucarias.png')} style={myStyles.araucarias} />
           </View>
   
-          <View style={styles.navbar2}>
-            <View style={styles.imageContainer22}>
-              <Image source={require('../../assets/UtfprBottom.png')} style={styles.utfprImage} />
+          <View style={myStyles.navbar2}>
+            <View style={myStyles.imageContainer22}>
+              <Image source={require('../../assets/UtfprBottom.png')} style={myStyles.utfprImage} />
             </View>
           </View>
         </View>
   
         <Modal visible={showCropper} animationType="slide">
-  <View style={styles.cropperContainer}>
-    <View style={styles.controlsContainer}>
+  <View style={myStyles.cropperContainer}>
+    <View style={myStyles.controlsContainer}>
     <Slider
   value={profileZoom}  // Use o estado profileZoom
   min={1}
@@ -310,7 +311,7 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
     },
   }}
 />
-      <View style={styles.zoomButtons}>
+      <View style={myStyles.zoomButtons}>
         <TouchableOpacity onPress={() => setProfileZoom(profileZoom + 0.1)}>
           <MdZoomIn size={24} />
         </TouchableOpacity>
@@ -321,7 +322,7 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
     </View>
 
     {/* Image cropper para a imagem de perfil */}
-    <View style={styles.cropperWrapper}>
+    <View style={myStyles.cropperWrapper}>
       <Cropper
         image={selectedImage}
         crop={profileCrop} // Controle do crop para a imagem de perfil
@@ -333,23 +334,23 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
       />
     </View>
 
-    <View style={styles.row}>
-      <TouchableOpacity style={styles.cropButton} onPress={cropImage}>
-        <Text style={styles.cropButtonText}>Escolher Imagem</Text>
+    <View style={myStyles.row}>
+      <TouchableOpacity style={myStyles.cropButton} onPress={cropImage}>
+        <Text style={myStyles.cropButtonText}>Escolher Imagem</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.cropButton1}
+        style={myStyles.cropButton1}
         onPress={() => setShowCropper(false)}
       >
-        <Text style={styles.cropButtonText}>Voltar</Text>
+        <Text style={myStyles.cropButtonText}>Voltar</Text>
       </TouchableOpacity>
     </View>
   </View>
 </Modal>
 
 <Modal visible={showWallpaperCropper} animationType="slide">
-  <View style={styles.cropperContainer}>
-    <View style={styles.controlsContainer}>
+  <View style={myStyles.cropperContainer}>
+    <View style={myStyles.controlsContainer}>
     <Slider
   value={wallpaperZoom}  // Use o estado wallpaperZoom
   min={1}
@@ -373,7 +374,7 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
     },
   }}
 />
-      <View style={styles.zoomButtons}>
+      <View style={myStyles.zoomButtons}>
         <TouchableOpacity onPress={() => setWallpaperZoom(wallpaperZoom + 0.1)}>
           <MdZoomIn size={24} />
         </TouchableOpacity>
@@ -384,7 +385,7 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
     </View>
 
     {/* Image cropper para o wallpaper */}
-    <View style={styles.cropperWrapper}>
+    <View style={myStyles.cropperWrapper}>
       <Cropper
         image={selectedImage}
         crop={wallpaperCrop} // Controle do crop para o wallpaper
@@ -396,15 +397,15 @@ const [wallpaperCroppedAreaPixels, setWallpaperCroppedAreaPixels] = useState(nul
       />
     </View>
 
-    <View style={styles.row}>
-      <TouchableOpacity style={styles.cropButton} onPress={cropWallpaper}>
-        <Text style={styles.cropButtonText}>Escolher Wallpaper</Text>
+    <View style={myStyles.row}>
+      <TouchableOpacity style={myStyles.cropButton} onPress={cropWallpaper}>
+        <Text style={myStyles.cropButtonText}>Escolher Wallpaper</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.cropButton1}
+        style={myStyles.cropButton1}
         onPress={() => setShowWallpaperCropper(false)}
       >
-        <Text style={styles.cropButtonText}>Voltar</Text>
+        <Text style={myStyles.cropButtonText}>Voltar</Text>
       </TouchableOpacity>
     </View>
   </View>

@@ -1,8 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
 
     scrollView: {
         flex: 1,
@@ -46,7 +47,7 @@ export const styles = StyleSheet.create({
         color: 'white',
         fontSize: width * 0.02,
         textAlign: 'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: (20 / 1920) * width,
     },
 
     imageContainer: {
@@ -113,16 +114,16 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     resultItem: {
-        padding: 10,
-        paddingVertical: 10,
-        borderBottomWidth: 20,
+        padding: (10 / 1920) * width,
+        paddingVertical: (10 / 1920) * width,
+        borderBottomWidth: (20 / 1920) * width,
         borderBottomColor: '#F5F3E1',
         width: width * 0.6,
     },
     firstResult: {
         backgroundColor: '#4C6523',
-        padding: 10,
-        borderBottomWidth: 20,
+        padding: (10 / 1920) * width,
+        borderBottomWidth: (20 / 1920) * width,
         borderBottomColor: '#F5F3E1',
     },
     noResultsText: {
@@ -131,18 +132,18 @@ export const styles = StyleSheet.create({
     },
     resultItemText: {
         color: '#ffffff',
-        padding: 10,
+        padding: (10 / 1920) * width,
         fontSize: width * 0.0166666666666667,
     },
 
     searchBarContainerStyle: {
         flex: 1,
         justifyContent: 'center',
-        marginTop: 50,
+        marginTop: (50 / 1920) * width,
     },
     clearButton: {
         position: 'absolute',
-        right: 10,
+        right: (10 / 1920) * width,
         top: '50%',
         transform: [{ translateY: -((width * 0.015625) / 2) }],
         width: width * 0.015625,
@@ -153,7 +154,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
     },
     clearButtonText: {
-        fontSize: 14,
+        fontSize: (14 / 1920) * width,
         color: '#000000',
     },
     searchIcon: {
@@ -165,7 +166,7 @@ export const styles = StyleSheet.create({
     selectedResultsContainer: {
         position: 'absolute',
         top: width * 0.48,
-        paddingHorizontal: 10,
+        paddingHorizontal: (10 / 1920) * width,
     },
 
     selectedResultsRow: {
@@ -184,7 +185,7 @@ export const styles = StyleSheet.create({
         borderColor: '#271C00',
         alignItems: 'center',
         borderRadius: width * 0.01041666666666666666666666666667,
-        marginBottom: 50,
+        marginBottom: (50 / 1920) * width,
         position: 'relative',
     },
 
@@ -192,7 +193,7 @@ export const styles = StyleSheet.create({
         width: '80%',
         backgroundColor: '#B68F40',
         height: '15%',
-        borderRadius: 5,
+        borderRadius: (5 / 1920) * width,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: width * 0.015625,
@@ -207,7 +208,7 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         right: 0,
-        padding: 2,
+        padding: (2 / 1920) * width,
         backgroundColor: 'transparent',
     },
     sendImageButton: {
@@ -271,33 +272,33 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
+        padding: (20 / 1920) * width,
       },
       controlsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10,
+        marginBottom: (10 / 1920) * width,
       },
       slider: {
         width: width * 0.1041666666666667,
       },
       zoomButtons: {
         flexDirection: 'row',
-        marginLeft: 10,
+        marginLeft: (10 / 1920) * width,
       },
       cropperWrapper: {
         width: '80%', // Ajuste a largura do container do Cropper
         height: width * 0.2083333333333333, // Defina a altura para limitar o tamanho da imagem
         backgroundColor: '#f0f0f0', // Cor de fundo para o wrapper
         overflow: 'hidden', // Garante que o Cropper não ultrapasse os limites
-        borderRadius: 10, // Adiciona bordas arredondadas
+        borderRadius: (10 / 1920) * width, // Adiciona bordas arredondadas
       },
       cropButton: {
-        marginTop: 20,
-        padding: 10,
+        marginTop: (20 / 1920) * width,
+        padding: (10 / 1920) * width,
         backgroundColor: '#166034',
-        borderRadius: 5,
-        marginRight: 20,
+        borderRadius: (5 / 1920) * width,
+        marginRight: (20 / 1920) * width,
       },
       cropButtonText: {
         color: '#fff',
@@ -305,10 +306,10 @@ export const styles = StyleSheet.create({
       },
 
       cropButton1: {
-        marginTop: 20,
-        padding: 10,
+        marginTop: (20 / 1920) * width,
+        padding: (10 / 1920) * width,
         backgroundColor: '#166034',
-        borderRadius: 5,
+        borderRadius: (5 / 1920) * width,
       },
       
       
@@ -340,21 +341,24 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white', // Fundo do modal
         justifyContent: 'flex-start',
       },
+
       closeButton1: {
         position: 'absolute',
         top: width * 0.0208333333333333,
         right: width * 0.0208333333333333,
         zIndex: 1, 
         backgroundColor: 'white', 
-        borderRadius: 25, 
-        padding: 10,
-        borderWidth: 1, 
+        borderRadius: '50%', 
+        padding: (10 / 1920) * width,
+        borderWidth: (1 / 1920) * width,
         borderColor: '#ccc',
       },
+
       scrollViewModalContent: {
         flexGrow: 1,
         justifyContent: 'center',
       
       },
-});
 
+    });
+};

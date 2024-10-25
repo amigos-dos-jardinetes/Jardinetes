@@ -1,8 +1,9 @@
-import { StyleSheet, Dimensions, TextInputBase } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
 
   scrollViewContent: {
     width: width,
@@ -251,35 +252,7 @@ navbar2: {
     marginTop: width * 0.078125,
 },
 
-  bt1: {
-    backgroundColor: '#B68F40',
-    borderRadius: width * 0.0260416666666667,
-    width: width * 0.109,
-    height: width * 0.04,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  bt2: {
-    backgroundColor: '#99CB47',
-    borderRadius: width * 0.0260416666666667,
-    width: width * 0.109,
-    height: width * 0.04,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: -(width * 0.3125),
-  },
-
-  bt3: {
-    backgroundColor: '#99CB47',
-    borderRadius: width * 0.0260416666666667,
-    width: width * 0.109,
-    height: width * 0.04,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: -(width * 0.15625),
-  },
-
+  
   textBt: {
     fontSize: width * 0.0145833333333333,
     color: 'white',
@@ -287,4 +260,5 @@ navbar2: {
 
 
 
-});
+  });
+};

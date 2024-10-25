@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, TouchableOpacity, Text, Image, Dimensions, Modal } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text, Image, useWindowDimensions, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from '../minhasAnalises/styles.js';
 import { getAuth } from 'firebase/auth';
@@ -18,7 +18,8 @@ export default function minhasAnalises() {
   const auth = getAuth();
   const firestore = getFirestore();
   const storage = getStorage();
-  const { width } = Dimensions.get('window');
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedJardineteId, setSelectedJardineteId] = useState(null); // Estado para armazenar o ID do jardinete selecionado para exclusão
   const [userName, setUserName] = useState('');
@@ -119,62 +120,62 @@ export default function minhasAnalises() {
   };
 
   return (
-    <ScrollView ref={scrollViewRef} style={styles.container3}>
-      <View style={styles.circle}></View>
-      <View style={styles.circle2}></View>
-      <View style={styles.giantRet}></View>
-      <View style={styles.container}>
-        <View style={styles.navbar}>
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+    <ScrollView ref={scrollViewRef} style={myStyles.container3}>
+      <View style={myStyles.circle}></View>
+      <View style={myStyles.circle2}></View>
+      <View style={myStyles.giantRet}></View>
+      <View style={myStyles.container}>
+        <View style={myStyles.navbar}>
+          <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back" size={width * 0.025} color="white" />
           </TouchableOpacity>
 
-          <View style={styles.imageContainer}>
+          <View style={myStyles.imageContainer}>
             {imageUrl ? (
               <Image
-                style={styles.logoImage}
+                style={myStyles.logoImage}
                 source={{ uri: imageUrl }}
               />
             ) : (
               <Image
-                style={styles.logoImage}
+                style={myStyles.logoImage}
                 source={require('../../assets/defaultImage.png')}
               />
             )}
           </View>
         </View>
 
-        <View style={styles.card}>
-          <View style={styles.jardinetesContainer}>
+        <View style={myStyles.card}>
+          <View style={myStyles.jardinetesContainer}>
             {jardinetesToShow.length > 0 ? (
               jardinetesToShow.map((jardinete, index) => (
-                <View key={index} style={styles.jardineteWrapper}>
-                  <View style={styles.jardineteItem}>
+                <View key={index} style={myStyles.jardineteWrapper}>
+                  <View style={myStyles.jardineteItem}>
                     {/* Botão de exclusão */}
                     <TouchableOpacity
-                      style={styles.deleteButton}
+                      style={myStyles.deleteButton}
                       onPress={() => openDeleteModal(jardinete.id)}
                     >
                       <Ionicons name="close" size={width * 0.0166666666666667} color="red" />
                     </TouchableOpacity>
 
-                    <Text style={styles.jardineteName}>{jardinete.nome}</Text>
-                    <Image style={styles.jardinetePhoto} source={{ uri: jardinete.jardinetePhoto }} />
+                    <Text style={myStyles.jardineteName}>{jardinete.nome}</Text>
+                    <Image style={myStyles.jardinetePhoto} source={{ uri: jardinete.jardinetePhoto }} />
                   </View>
 
-                  <View style={styles.jardineteActions}>
+                  <View style={myStyles.jardineteActions}>
                     <TouchableOpacity
-                      style={styles.viewButton}
+                      style={myStyles.viewButton}
                       onPress={() => navigation.navigate('moreInfo', { novoJardineteDocId: jardinete.id })}
                     >
-                      <Text style={styles.buttonText}>Visualizar</Text>
+                      <Text style={myStyles.buttonText}>Visualizar</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={styles.editButton}
+                      style={myStyles.editButton}
                       onPress={() => navigation.navigate('Form', { novoJardineteDocId: jardinete.id })}
                     >
-                      <Text style={styles.buttonText}>Editar</Text>
+                      <Text style={myStyles.buttonText}>Editar</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -185,12 +186,12 @@ export default function minhasAnalises() {
           </View>
 
           {jardinetes.length > itemsPerPage && (
-            <View style={styles.paginationContainer}>
+            <View style={myStyles.paginationContainer}>
               <TouchableOpacity onPress={goToPreviousPage} disabled={currentPage === 0}>
                 <Ionicons name="arrow-back" size={width * 0.0260416666666667} color={currentPage === 0 ? "#ccc" : "#271C00"} />
               </TouchableOpacity>
 
-              <Text style={styles.pageNumberText}>{currentPage + 1}</Text>
+              <Text style={myStyles.pageNumberText}>{currentPage + 1}</Text>
 
               <TouchableOpacity onPress={goToNextPage} disabled={currentPage === totalPages - 1}>
                 <Ionicons name="arrow-forward" size={width * 0.0260416666666667} color={currentPage === totalPages - 1 ? "#ccc" : "#271C00"} />
@@ -199,13 +200,13 @@ export default function minhasAnalises() {
           )}
         </View>
 
-        <View style={styles.araucariaContainer}>
-          <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
+        <View style={myStyles.araucariaContainer}>
+          <Image source={require('../../assets/araucarias.png')} style={myStyles.araucarias} />
         </View>
 
-        <View style={styles.navbar2}>
-          <View style={styles.imageContainer22}>
-            <Image source={require('../../assets/UtfprBottom.png')} style={styles.utfprImage3} />
+        <View style={myStyles.navbar2}>
+          <View style={myStyles.imageContainer22}>
+            <Image source={require('../../assets/UtfprBottom.png')} style={myStyles.utfprImage3} />
           </View>
         </View>
       </View>
@@ -217,23 +218,23 @@ export default function minhasAnalises() {
   animationType="fade"
   onRequestClose={() => setModalVisible(false)}
 >
-  <View style={styles.modalContainer}>
-    <View style={styles.modalContent}>
-      <Text style={styles.modalText}>Tem certeza que deseja excluir este jardinete?</Text>
+  <View style={myStyles.modalContainer}>
+    <View style={myStyles.modalContent}>
+      <Text style={myStyles.modalText}>Tem certeza que deseja excluir este jardinete?</Text>
 
-      <View style={styles.modalButtons}>
+      <View style={myStyles.modalButtons}>
         <TouchableOpacity
-          style={styles.cancelButton}
+          style={myStyles.cancelButton}
           onPress={() => setModalVisible(false)}
         >
-          <Text style={styles.buttonText2}>Cancelar</Text>
+          <Text style={myStyles.buttonText2}>Cancelar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.confirmButton}
+          style={myStyles.confirmButton}
           onPress={deleteJardinete}
         >
-          <Text style={styles.buttonText2}>Excluir</Text>
+          <Text style={myStyles.buttonText2}>Excluir</Text>
         </TouchableOpacity>
       </View>
     </View>

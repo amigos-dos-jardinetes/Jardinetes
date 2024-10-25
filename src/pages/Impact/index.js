@@ -2030,7 +2030,7 @@ const handleContinuarPress = async () => {
 >
   <View style={myStyles.modalContainer}>
     <TouchableOpacity style={myStyles.closeButton} onPress={() => setModalVisible(false)}>
-      <Ionicons name="close" size={30} color="black" />
+      <Ionicons name="close" size={(30 / 1920) * width} color="black" />
     </TouchableOpacity>
 
     <ScrollView contentContainerStyle={myStyles.scrollViewModalContent}>

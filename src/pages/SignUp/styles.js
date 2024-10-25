@@ -18,6 +18,7 @@ export const styles = () => {
       },
 
       errorText: {
+        fontSize: (16 / 1920) * width,
         color: 'red',
         marginTop: width * 0.0026041666666667,
     },
@@ -84,27 +85,29 @@ export const styles = () => {
     },
     label: {
         marginBottom: (5 / 1920) * width,
-        color: 'black',
+
         fontSize: (24 / 1920) * width,
     },
     input: {
         width: '100%',
         padding: (10 / 1920) * width,
         height: (40 / 1920) * width,
-        borderWidth: 1,
+        borderWidth: (1 / 1920) * width,
         borderColor: '#ccc',
         backgroundColor: '#4C6523',
         color: 'white',
+        fontSize: (24 / 1920) * width,
     },
 
     input2: {
         width: '100%',
         padding: (10 / 1920) * width,
         height: (40 / 1920) * width,
-        borderWidth: 1,
+        borderWidth: (1 / 1920) * width,
         borderColor: '#ccc',
         backgroundColor: '#166034',
         color: 'white',
+        fontSize: (24 / 1920) * width,
     },
 
     termsModalContainer: {
@@ -144,6 +147,7 @@ export const styles = () => {
         marginTop: (10 / 1920) * width,
         alignSelf: 'flex-start',
         marginLeft: (52 / 1920) * width,
+
     },
 
   boldTitle: {
@@ -155,6 +159,8 @@ export const styles = () => {
   checkbox: {
     width: (20 / 1920) * width,
     height: (20 / 1920) * width,
+    borderRadius: (2 / 1920) * width,
+
     
 
   },

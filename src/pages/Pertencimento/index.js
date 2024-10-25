@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Image, Text, ActivityIndicator, TouchableOpacity, Dimensions } from 'react-native';
+import { View, ScrollView, Image, Text, ActivityIndicator, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { styles } from '../Pertencimento/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
@@ -24,23 +24,24 @@ export default function Pertencimento() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const route = useRoute();
-  const { width, height } = Dimensions.get('window');
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
   const novoJardineteDocId = route.params.novoJardineteDocId;
 
   const [pertencimentoPetalaImage, setpertencimentoPetalaImage] = useState(require('../../assets/petala20.png'));
-  const [pertencimentoPetalaStyle, setpertencimentoPetalaStyle] = useState(styles.petala200);
+  const [pertencimentoPetalaStyle, setpertencimentoPetalaStyle] = useState(myStyles.petala200);
 
   const [pertencimentoPetalaImage1, setpertencimentoPetalaImage1] = useState(require('../../assets/petala20.png'));
-  const [pertencimentoPetalaStyle1, setpertencimentoPetalaStyle1] = useState(styles.petala201);
+  const [pertencimentoPetalaStyle1, setpertencimentoPetalaStyle1] = useState(myStyles.petala201);
 
   const [pertencimentoPetalaImage2, setpertencimentoPetalaImage2] = useState(require('../../assets/petala20.png'));
-  const [pertencimentoPetalaStyle2, setpertencimentoPetalaStyle2] = useState(styles.petala202);
+  const [pertencimentoPetalaStyle2, setpertencimentoPetalaStyle2] = useState(myStyles.petala202);
 
   const [pertencimentoPetalaImage3, setpertencimentoPetalaImage3] = useState(require('../../assets/petala20.png'));
-  const [pertencimentoPetalaStyle3, setpertencimentoPetalaStyle3] = useState(styles.petala203);
+  const [pertencimentoPetalaStyle3, setpertencimentoPetalaStyle3] = useState(myStyles.petala203);
 
   const [pertencimentoPetalaImage4, setpertencimentoPetalaImage4] = useState(require('../../assets/petala20.png'));
-  const [pertencimentoPetalaStyle4, setpertencimentoPetalaStyle4] = useState(styles.petala204);
+  const [pertencimentoPetalaStyle4, setpertencimentoPetalaStyle4] = useState(myStyles.petala204);
 
   const [initialLoading, setInitialLoading] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -94,87 +95,87 @@ export default function Pertencimento() {
 
             if (pertencimentoAverage1 <= 30) {
               setpertencimentoPetalaImage(require('../../assets/petala20.png'));
-              setpertencimentoPetalaStyle(styles.petala200);
+              setpertencimentoPetalaStyle(myStyles.petala200);
             } else if (pertencimentoAverage1 > 30 && pertencimentoAverage1 <= 50) {
               setpertencimentoPetalaImage(require('../../assets/petala40.png'));
-              setpertencimentoPetalaStyle(styles.petala400);
+              setpertencimentoPetalaStyle(myStyles.petala400);
             } else if (pertencimentoAverage1 > 50 && pertencimentoAverage1 <= 70) {
               setpertencimentoPetalaImage(require('../../assets/petala60.png'));
-              setpertencimentoPetalaStyle(styles.petala600);
+              setpertencimentoPetalaStyle(myStyles.petala600);
             } else if (pertencimentoAverage1 > 70 && pertencimentoAverage1 <= 90) {
               setpertencimentoPetalaImage(require('../../assets/petala80.png'));
-              setpertencimentoPetalaStyle(styles.petala800);
+              setpertencimentoPetalaStyle(myStyles.petala800);
             } else if (pertencimentoAverage1 > 90) {
               setpertencimentoPetalaImage(require('../../assets/petala100.png'));
-              setpertencimentoPetalaStyle(styles.petala1000);
+              setpertencimentoPetalaStyle(myStyles.petala1000);
             }
 
             if (pertencimentoAverage2 <= 30) {
               setpertencimentoPetalaImage1(require('../../assets/petala20.png'));
-              setpertencimentoPetalaStyle1(styles.petala201);
+              setpertencimentoPetalaStyle1(myStyles.petala201);
             } else if (pertencimentoAverage2 > 30 && pertencimentoAverage2 <= 50) {
               setpertencimentoPetalaImage1(require('../../assets/petala40.png'));
-              setpertencimentoPetalaStyle1(styles.petala401);
+              setpertencimentoPetalaStyle1(myStyles.petala401);
             } else if (pertencimentoAverage2 > 50 && pertencimentoAverage2 <= 70) {
               setpertencimentoPetalaImage1(require('../../assets/petala60.png'));
-              setpertencimentoPetalaStyle1(styles.petala601);
+              setpertencimentoPetalaStyle1(myStyles.petala601);
             } else if (pertencimentoAverage2 > 70 && pertencimentoAverage2 <= 90) {
               setpertencimentoPetalaImage1(require('../../assets/petala80.png'));
-              setpertencimentoPetalaStyle1(styles.petala801);
+              setpertencimentoPetalaStyle1(myStyles.petala801);
             } else if (pertencimentoAverage2 > 90) {
               setpertencimentoPetalaImage1(require('../../assets/petala100.png'));
-              setpertencimentoPetalaStyle1(styles.petala1001);
+              setpertencimentoPetalaStyle1(myStyles.petala1001);
             }
 
             if (pertencimentoAverage3 <= 30) {
               setpertencimentoPetalaImage2(require('../../assets/petala20.png'));
-              setpertencimentoPetalaStyle2(styles.petala202);
+              setpertencimentoPetalaStyle2(myStyles.petala202);
             } else if (pertencimentoAverage3 > 30 && pertencimentoAverage3 <= 50) {
               setpertencimentoPetalaImage2(require('../../assets/petala40.png'));
-              setpertencimentoPetalaStyle2(styles.petala402);
+              setpertencimentoPetalaStyle2(myStyles.petala402);
             } else if (pertencimentoAverage3 > 50 && pertencimentoAverage3 <= 70) {
               setpertencimentoPetalaImage2(require('../../assets/petala60.png'));
-              setpertencimentoPetalaStyle2(styles.petala602);
+              setpertencimentoPetalaStyle2(myStyles.petala602);
             } else if (pertencimentoAverage3 > 70 && pertencimentoAverage3 <= 90) {
               setpertencimentoPetalaImage2(require('../../assets/petala80.png'));
-              setpertencimentoPetalaStyle2(styles.petala802);
+              setpertencimentoPetalaStyle2(myStyles.petala802);
             } else if (pertencimentoAverage3 > 90) {
               setpertencimentoPetalaImage2(require('../../assets/petala100.png'));
-              setpertencimentoPetalaStyle2(styles.petala1002);
+              setpertencimentoPetalaStyle2(myStyles.petala1002);
             }
 
             if (pertencimentoAverage4 <= 30) {
               setpertencimentoPetalaImage3(require('../../assets/petala20.png'));
-              setpertencimentoPetalaStyle3(styles.petala203);
+              setpertencimentoPetalaStyle3(myStyles.petala203);
             } else if (pertencimentoAverage4 > 30 && pertencimentoAverage4 <= 50) {
               setpertencimentoPetalaImage3(require('../../assets/petala40.png'));
-              setpertencimentoPetalaStyle3(styles.petala403);
+              setpertencimentoPetalaStyle3(myStyles.petala403);
             } else if (pertencimentoAverage4 > 50 && pertencimentoAverage4 <= 70) {
               setpertencimentoPetalaImage3(require('../../assets/petala60.png'));
-              setpertencimentoPetalaStyle3(styles.petala603);
+              setpertencimentoPetalaStyle3(myStyles.petala603);
             } else if (pertencimentoAverage4 > 70 && pertencimentoAverage4 <= 90) {
               setpertencimentoPetalaImage3(require('../../assets/petala80.png'));
-              setpertencimentoPetalaStyle3(styles.petala803);
+              setpertencimentoPetalaStyle3(myStyles.petala803);
             } else if (pertencimentoAverage4 > 90) {
               setpertencimentoPetalaImage3(require('../../assets/petala100.png'));
-              setpertencimentoPetalaStyle3(styles.petala1003);
+              setpertencimentoPetalaStyle3(myStyles.petala1003);
             }
 
             if (pertencimentoAverage5 <= 30) {
               setpertencimentoPetalaImage4(require('../../assets/petala20.png'));
-              setpertencimentoPetalaStyle4(styles.petala204);
+              setpertencimentoPetalaStyle4(myStyles.petala204);
             } else if (pertencimentoAverage5 > 30 && pertencimentoAverage5 <= 50) {
               setpertencimentoPetalaImage4(require('../../assets/petala40.png'));
-              setpertencimentoPetalaStyle4(styles.petala404);
+              setpertencimentoPetalaStyle4(myStyles.petala404);
             } else if (pertencimentoAverage5 > 50 && pertencimentoAverage5 <= 70) {
               setpertencimentoPetalaImage4(require('../../assets/petala60.png'));
-              setpertencimentoPetalaStyle4(styles.petala604);
+              setpertencimentoPetalaStyle4(myStyles.petala604);
             } else if (pertencimentoAverage5 > 70 && pertencimentoAverage5 <= 90) {
               setpertencimentoPetalaImage4(require('../../assets/petala80.png'));
-              setpertencimentoPetalaStyle4(styles.petala804);
+              setpertencimentoPetalaStyle4(myStyles.petala804);
             } else if (pertencimentoAverage5 > 90) {
               setpertencimentoPetalaImage4(require('../../assets/petala100.png'));
-              setpertencimentoPetalaStyle4(styles.petala1004);
+              setpertencimentoPetalaStyle4(myStyles.petala1004);
             }
 
           } else {
@@ -190,22 +191,22 @@ export default function Pertencimento() {
       }
     }
 
-    // Simulate initial loading time
-    setTimeout(() => {
-      setInitialLoading(false);
-      fetchData();
-    }, 2000);
-
-    return () => {
-      if (unsubscribe && typeof unsubscribe === 'function') {
-        unsubscribe();
-      }
-    };
-  }, [novoJardineteDocId]);
+      // Simulate initial loading time
+      setTimeout(() => {
+        setInitialLoading(false);
+        fetchData();
+      });
+  
+      return () => {
+        if (unsubscribe && typeof unsubscribe === 'function') {
+          unsubscribe();
+        }
+      };
+    }, [ novoJardineteDocId, width, myStyles]);
 
   if (initialLoading) {
     return (
-      <View style={styles.loadingContainer}>
+      <View style={myStyles.loadingContainer}>
         <ActivityIndicator size="large" color="#0000ff" />
       </View>
     );
@@ -220,119 +221,119 @@ export default function Pertencimento() {
   }
 
   return (
-    <ScrollView style={styles.scroll}>
-      <View style={styles.container}>
-        <View style={styles.navbar}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+    <ScrollView style={myStyles.scroll}>
+      <View style={myStyles.container}>
+        <View style={myStyles.navbar}>
+        <TouchableOpacity style={myStyles.backButton} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={width * 0.025} color="white" />
         </TouchableOpacity>
-          <View style={styles.imageContainer}>
+          <View style={myStyles.imageContainer}>
             {imageUrl ? (
               <Image
-                style={styles.logoImage}
+                style={myStyles.logoImage}
                 source={{
                   uri: imageUrl,
                 }}
               />
             ) : (
               <Image
-              style={styles.logoImage}
+              style={myStyles.logoImage}
               source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
           />
             )}
           </View>
         </View>
 
-        <View style={styles.retMore}>
-          <Text style={styles.retMoreText}>As áreas verdes desempenham um papel fundamental no fortalecimento do sentimento de pertencimento à comunidade, além de que o cuidado com esses espaços reforça o vínculo emocional com o local.</Text>
+        <View style={myStyles.retMore}>
+          <Text style={myStyles.retMoreText}>As áreas verdes desempenham um papel fundamental no fortalecimento do sentimento de pertencimento à comunidade, além de que o cuidado com esses espaços reforça o vínculo emocional com o local.</Text>
         </View>
 
-        <View style={styles.bemTitle}>
-          <Image source={require('../../assets/pertTitle.png')} style={styles.title}></Image>
+        <View style={myStyles.bemTitle}>
+          <Image source={require('../../assets/pertTitle.png')} style={myStyles.title}></Image>
         </View>
 
-        <View style={styles.retExpli}>
-          <Text style={styles.expliText}>Gráfico analisando a área de Pertencimento</Text>
+        <View style={myStyles.retExpli}>
+          <Text style={myStyles.expliText}>Gráfico analisando a área de Pertencimento</Text>
         </View>
 
-        <View style={styles.containerCirc1}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{pertencimentoAverages.pertencimentoAverage1}%</Text>
+        <View style={myStyles.containerCirc1}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{pertencimentoAverages.pertencimentoAverage1}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText1}>
-          <Text style={styles.textCirc1}>Vou com frequência à PAV</Text>
+        <View style={myStyles.containerCircText1}>
+          <Text style={myStyles.textCirc1}>Vou com frequência à PAV</Text>
         </View>
 
-        <View style={styles.containerCirc2}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{pertencimentoAverages.pertencimentoAverage2}%</Text>
+        <View style={myStyles.containerCirc2}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{pertencimentoAverages.pertencimentoAverage2}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText2}>
-          <Text style={styles.textCirc2}>Os moradores próximos à PAV ajudam a manter o local limpo</Text>
+        <View style={myStyles.containerCircText2}>
+          <Text style={myStyles.textCirc2}>Os moradores próximos à PAV ajudam a manter o local limpo</Text>
         </View>
 
-        <View style={styles.containerCirc3}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{pertencimentoAverages.pertencimentoAverage3}%</Text>
+        <View style={myStyles.containerCirc3}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{pertencimentoAverages.pertencimentoAverage3}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText3}>
-          <Text style={styles.textCirc3}>Se vejo lixo jogado no chão da PAV, eu recolho</Text>
+        <View style={myStyles.containerCircText3}>
+          <Text style={myStyles.textCirc3}>Se vejo lixo jogado no chão da PAV, eu recolho</Text>
         </View>
 
-        <View style={styles.containerCirc4}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{pertencimentoAverages.pertencimentoAverage4}%</Text>
+        <View style={myStyles.containerCirc4}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{pertencimentoAverages.pertencimentoAverage4}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText4}>
-          <Text style={styles.textCirc4}>Eu gostaria que a PAV perto da minha casa fosse mais frequentado</Text>
+        <View style={myStyles.containerCircText4}>
+          <Text style={myStyles.textCirc4}>Eu gostaria que a PAV perto da minha casa fosse mais frequentado</Text>
         </View>
 
-        <View style={styles.containerCirc5}>
-          <View style={styles.circ}>
-            <Text style={styles.textPerc}>{pertencimentoAverages.pertencimentoAverage5}%</Text>
+        <View style={myStyles.containerCirc5}>
+          <View style={myStyles.circ}>
+            <Text style={myStyles.textPerc}>{pertencimentoAverages.pertencimentoAverage5}%</Text>
           </View>
         </View>
-        <View style={styles.containerCircText5}>
-          <Text style={styles.textCirc5}>Quando tem muitas pessoas na PAV, eu fico animado(a) para ir</Text>
+        <View style={myStyles.containerCircText5}>
+          <Text style={myStyles.textCirc5}>Quando tem muitas pessoas na PAV, eu fico animado(a) para ir</Text>
         </View>
 
-        <View style={styles.centralContainer}>
-          <Image source={require('../../assets/folhas.png')} style={styles.folhas} />
+        <View style={myStyles.centralContainer}>
+          <Image source={require('../../assets/folhas.png')} style={myStyles.folhas} />
           <Image source={pertencimentoPetalaImage} style={pertencimentoPetalaStyle} />
           <Image source={pertencimentoPetalaImage1} style={pertencimentoPetalaStyle1} />
           <Image source={pertencimentoPetalaImage2} style={pertencimentoPetalaStyle2} />
           <Image source={pertencimentoPetalaImage3} style={pertencimentoPetalaStyle3} />
           <Image source={pertencimentoPetalaImage4} style={pertencimentoPetalaStyle4} />
-          <Image source={require('../../assets/miolo.png')} style={styles.miolo} />
+          <Image source={require('../../assets/miolo.png')} style={myStyles.miolo} />
         </View>
 
-        <View style={styles.gradientButtonContainer}>
+        <View style={myStyles.gradientButtonContainer}>
                                 <TouchableOpacity 
-                                    style={styles.gradientButton} 
+                                    style={myStyles.gradientButton} 
                                     onPress={() => navigation.goBack()}
                                 >
                                     <LinearGradient
                                         colors={['#4C6523', '#99CB47']}
                                         start={{ x: 0, y: 0 }}
                                         end={{ x: 1, y: 0 }}
-                                        style={styles.linearGradient}
+                                        style={myStyles.linearGradient}
                                     >
-                                        <Text style={styles.gradientButtonText}>Voltar</Text>
+                                        <Text style={myStyles.gradientButtonText}>Voltar</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>
 
-        <View style={styles.araucarias2}>
-          <Image source={require('../../assets/araucarias.png')} style={styles.araucarias} />
+        <View style={myStyles.araucarias2}>
+          <Image source={require('../../assets/araucarias.png')} style={myStyles.araucarias} />
         </View>
 
-        <View style={styles.navbar2}>
-          <View style={styles.imageContainer22}>
-            <Image source={require('../../assets/UtfprBottom.png')} style={styles.utfprImage} />
+        <View style={myStyles.navbar2}>
+          <View style={myStyles.imageContainer22}>
+            <Image source={require('../../assets/UtfprBottom.png')} style={myStyles.utfprImage} />
           </View>
         </View>
 

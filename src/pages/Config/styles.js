@@ -1,8 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
 
     container:{
         flex: 1,
@@ -189,35 +190,35 @@ cropperContainer: {
 controlsContainer: {
   flexDirection: 'row',
   alignItems: 'center',
-  marginBottom: 10,
+  marginBottom: (10 /1920) * width,
 },
 slider: {
   width: width * 0.1041666666666667,
 },
 zoomButtons: {
   flexDirection: 'row',
-  marginLeft: 10,
+  marginLeft: (10 /1920) * width,
 },
 cropperWrapper: {
   width: '80%',
   height: width * 0.2083333333333333,
   backgroundColor: '#f0f0f0',
   overflow: 'hidden',
-  borderRadius: 10, 
+  borderRadius: (10 /1920) * width,
 },
 cropButton: {
-  marginTop: 20,
-  padding: 10,
+  marginTop: (20 /1920) * width,
+  padding: (10 /1920) * width,
   backgroundColor: '#166034',
-  borderRadius: 5,
-  marginRight: 20,
+  borderRadius: (5 /1920) * width,
+  marginRight: (20 /1920) * width,
 },
 
 cropButton1: {
-    marginTop: 20,
-    padding: 10,
+    marginTop: (20 /1920) * width,
+    padding: (10 /1920) * width,
     backgroundColor: '#166034',
-    borderRadius: 5,
+    borderRadius: (5 /1920) * width,
   },
 cropButtonText: {
   color: '#fff',
@@ -230,5 +231,5 @@ row: {
     justifyContent: 'center',
 }
 
-
-});
+  });
+};

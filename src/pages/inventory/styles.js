@@ -1,9 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
-
+  return StyleSheet.create({
   scrollViewContent: {
     width: width,
     height: '100%',
@@ -221,9 +221,9 @@ closeButton: {
   right: width * 0.0208333333333333,
   zIndex: 1, 
   backgroundColor: 'white', 
-  borderRadius: 25, 
-  padding: 10,
-  borderWidth: 1, 
+  borderRadius: '50%', 
+  padding: (10 / 1920) * width,
+  borderWidth: (1 / 1920) * width,
   borderColor: '#ccc',
 },
 scrollViewModalContent: {
@@ -233,3 +233,4 @@ scrollViewModalContent: {
 },
 
 });
+};

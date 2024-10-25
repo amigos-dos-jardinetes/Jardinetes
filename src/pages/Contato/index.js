@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image } from 'react-native';
 import { styles } from '../Contato/styles';
 import { useNavigation } from '@react-navigation/native';
@@ -14,13 +14,16 @@ export default function Contato() {
   };
 
   const openEmailComposer = () => {
-    const email = 'amigos.dos.jardinetes@gmail.com';
+    const email = 'jardinetes-ct@utfpr.edu.br';
     const subject = 'Novas Informações!!!';
 
     const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 
     Linking.openURL(mailtoUrl).catch((err) => console.error('Error opening email:', err));
   };
+
+
+  
 
   return (
     <ScrollView

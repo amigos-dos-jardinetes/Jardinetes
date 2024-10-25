@@ -1,8 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export const styles = () => {
+  const { width, height } = useWindowDimensions(); 
 
-export const styles = StyleSheet.create({
+  return StyleSheet.create({
  
     navbar: {
         flexDirection: 'row',
@@ -294,5 +295,15 @@ quatro: {
     backButton: {
       marginLeft: width * 0.0052083333333333,
     },
+
     
-});
+    checkbox: {
+      width: (20 / 1920) * width,
+      height: (20 / 1920) * width,
+      
+  
+    },
+    
+  });
+  
+};
