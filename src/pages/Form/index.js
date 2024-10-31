@@ -14,7 +14,7 @@ import Slider from '@mui/material/Slider';
 import { MdZoomIn, MdZoomOut } from 'react-icons/md';
 import ImageEditor from "@react-native-community/image-editor";
 import * as ImageManipulator from 'expo-image-manipulator';
-
+import defaultImage from '../../assets/defaultNoImage.png';
 const firebaseConfig = {
   // suas configurações do Firebase
 };
@@ -122,7 +122,7 @@ export default function Form() {
       const jardineteRef = doc(getFirestore(), 'jardinetes', novoJardineteDocId);
       const formData = {
         localizacao,
-        nome,
+        nome: nome || 'Sem nome',
         area,
         bacia,
         percapita,
@@ -163,6 +163,24 @@ export default function Form() {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
+  useEffect(() => {
+    const sendInitialDataToFirebase = async () => {
+      try {
+        const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
+        await updateDoc(docRef, {
+          nome: 'Sem nome',
+          jardinetePhoto: defaultImage,
+        });
+        console.log('Dados enviados com sucesso para o Firestore!');
+      } catch (error) {
+        console.error('Erro ao enviar dados para o Firestore:', error);
+      }
+    };
+
+    sendInitialDataToFirebase();
+    return () => {
+    };
+  }, []);
 
   const cropImage = async () => {
     try {

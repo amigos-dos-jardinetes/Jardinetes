@@ -16,7 +16,9 @@ export const styles = () => {
         backgroundColor: 'transparent',  // Alteração aqui
         padding: width * 0.02604166666666666666666666666667,
         alignItems: 'center',
-        marginBottom: (150 / 1920) * width,
+        top: (100 / 1920) * width,
+        position: 'absolute',
+        alignSelf: 'center',
     },
     containerForm: {
         flex: 1,
@@ -28,10 +30,11 @@ export const styles = () => {
     title: {
         fontSize: width * 0.01666666666666666666666666666667,
         fontWeight: 'bold',
-        marginTop: width * 0.01041666666666666666666666666667,
-        marginBottom: width * 0.00625,
+        top: (50 / 1920) * width,
         textAlign: 'center',
-        color: '#FFF'
+        color: '#FFF',
+        position: 'absolute',
+        alignSelf: 'center',
     },
     logoutButton: {
         backgroundColor: '#FFFEF4',
@@ -52,14 +55,15 @@ export const styles = () => {
 
 
     logoImage: {
-        width: width * 0.10416666666666666666666666666667,
-        height: width * 0.10416666666666666666666666666667,
-        borderRadius: width * 0.05208333333333333333333333333333,
+        width: (200 / 1080) * height,
+        height: (200 / 1080) * height,
+        borderRadius: '50%',
     },
     backcontainer: {
         width: '37%',  // Alteração aqui
         flex: 1,        // Adição aqui
-        justifyContent: 'flex-end', // Adição aqui
+        justifyContent: 'flex-start',
+
 
 
     },
@@ -84,11 +88,57 @@ export const styles = () => {
         right: '90%'
     },
 
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semi-transparente para destacar o modal
+      },
+      
+      modalContent: {
+        width: '80%', // Define a largura do modal como 80% da tela
+        height: '40%', // Define a altura do modal como 40% da tela
+        backgroundColor: 'white',
+        borderRadius: width * 0.0052083333333333, // Borda arredondada
+        padding: width * 0.0104166666666667, // Espaçamento interno
+        justifyContent: 'center', // Centraliza o conteúdo verticalmente
+        alignItems: 'center', // Centraliza o conteúdo horizontalmente
+      },
+      modalText: {
+        fontSize: width * 0.009375,
+        marginBottom: width * 0.0104166666666667,
+        textAlign: 'center',
+      },
+      modalButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+      },
+      cancelButton: {
+        backgroundColor: '#46923c',
+        padding: width * 0.0052083333333333,
+        borderRadius: width * 0.0026041666666667,
+        flex: 1,
+        marginRight: width * 0.0052083333333333,
+        alignItems: 'center',
+      },
+      confirmButton: {
+        backgroundColor: 'red',
+        padding: width * 0.0052083333333333,
+        borderRadius: width * 0.0026041666666667,
+        flex: 1,
+        alignItems: 'center',
+      },
+      buttonText2: {
+        color: 'white',
+        fontSize: width * 0.0083333333333333,
+      },
+
     textButton2: {
         backgroundColor: '#271c00',
-        padding: width * 0.00625,
+        padding: (12 / 1080) * height,
         borderRadius: width * 0.00260416666666666666666666666667,
-        marginTop: width * 0.05,
+        marginTop: (96 / 1080) * height,
         alignItems: 'center',
         marginBottom: width * 0.05,
 
@@ -109,6 +159,7 @@ export const styles = () => {
         alignContent: 'center',
         width: '80%', // Defina a largura desejada para os botões
         alignSelf: 'center', // Alinha os botões ao centro horizontalmente
+        position: 'absolute',
     },
     navbar: {
         flexDirection: 'row',

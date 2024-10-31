@@ -210,9 +210,6 @@ export default function SignIn() {
               <Text style={myStyles.buttonTextLogin}>ENTRAR</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={myStyles.buttonGoogle}>
-              <Image source={require('../../assets/google.png')} style={myStyles.imageGoogle} />
-            </TouchableOpacity>
 
             <TouchableOpacity style={myStyles.signUp} onPress={() => navigation.navigate('SignUp')}>
               <Text style={myStyles.signUpText}>Cadastre-se</Text>

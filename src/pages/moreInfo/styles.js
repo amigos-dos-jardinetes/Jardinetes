@@ -78,7 +78,8 @@ row2: {
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    top: width * 0.859375,
+    top: width * 0.965,
+
 },
 
 name: {
@@ -112,7 +113,7 @@ name: {
 
   ret1: {
     width: width * 0.5208333333333333,
-    height: width * 0.2604166666666667,
+    padding: width * 0.001,
     borderWidth: width * 0.0078125,
     borderColor: '#271C00',
     borderRadius: width * 0.0052083333333333,
@@ -121,7 +122,6 @@ name: {
   
   ret2: {
     width: width * 0.3125,
-    height: width * 0.2604166666666667,
     borderWidth: width * 0.0078125,
     borderColor: '#271C00',
     borderRadius:  width * 0.0052083333333333,
@@ -144,6 +144,15 @@ ret3: {
     borderColor: '#271C00',
     borderRadius: width * 0.0052083333333333,
     flexDirection: 'column',
+    backgroundColor: '#FFFEF4',
+  },
+
+  ret4: {
+    width: width * 0.3125,
+       height: width * 0.2604166666666667,
+    borderWidth: width * 0.0078125,
+    borderColor: '#271C00',
+    borderRadius:  width * 0.0052083333333333,
     backgroundColor: '#FFFEF4',
   },
 
@@ -197,7 +206,7 @@ rowNav: {
         backgroundColor: '#166034',
         position: 'absolute',
         bottom: 0,
-        top: width * 1.29,
+        top: width * 1.405,
         right: 0,
         width: '100%',
 
@@ -261,7 +270,7 @@ instaNav: {
   },
 
   imageContainer33: {
-    top: width * 1.19,
+    top: width * 1.305,
     position: 'absolute',
     flexDirection: 'row',
     alignItems: 'center',

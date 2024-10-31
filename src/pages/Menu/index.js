@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, ScrollView, RefreshControl, FlatList, useWindowDimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, ScrollView, RefreshControl, FlatList, useWindowDimensions, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
@@ -34,13 +34,16 @@ export default function Menu() {
     const [error, setError] = useState(null);
     const [mapKey, setMapKey] = useState(1);
     const [mapRefresh, setMapRefresh] = useState(false);
-
+    const [modalVisible, setModalVisible] = useState(false);
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [selectedPlaceCoordinates, setSelectedPlaceCoordinates] = useState(null);
     const [MapLatitude, setMapLatitude] = useState(null);
     const [MapLongitude, setMapLongitude] = useState(null);
     const myStyles = styles();
     const { width, height } = useWindowDimensions(); 
+    const openSairModal = () => {
+        setModalVisible(true);
+      };
 
     const markers = [
         { position: [-25.43925924548977, -49.268820908320194], name: 'Local 1', image: 'URL 1' },
@@ -258,7 +261,7 @@ export default function Menu() {
                         <FontAwesomeIcon icon={faCog} color="black" size={(24 / 1920) * width} />
                     </TouchableOpacity>
                     {/* Substituindo o botão de fechar por um texto "X" */}
-                    <TouchableOpacity style={myStyles.logoutButton} onPress={handleLogoutFunc}>
+                    <TouchableOpacity style={myStyles.logoutButton} onPress={openSairModal}>
                         <Text style={myStyles.logoutButtonText}>X</Text>
                     </TouchableOpacity>
                     <View style={myStyles.containerLogo}>
@@ -455,6 +458,34 @@ export default function Menu() {
                    
                 </View>
             </View>
+            <Modal
+  visible={modalVisible}
+  transparent={true}
+  animationType="fade"
+  onRequestClose={() => setModalVisible(false)}
+>
+  <View style={myStyles.modalContainer}>
+    <View style={myStyles.modalContent}>
+      <Text style={myStyles.modalText}>Tem certeza que deseja sair da conta?</Text>
+
+      <View style={myStyles.modalButtons}>
+        <TouchableOpacity
+          style={myStyles.cancelButton}
+          onPress={() => setModalVisible(false)}
+        >
+          <Text style={myStyles.buttonText2}>Continuar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={myStyles.confirmButton}
+          onPress={handleLogoutFunc}
+        >
+          <Text style={myStyles.buttonText2}>Sair</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </View>
+</Modal>
         </View>
 
 

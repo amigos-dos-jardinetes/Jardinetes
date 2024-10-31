@@ -55,7 +55,7 @@ export default function moreInfo() {
   const [patrimonio, setPatrimonio] = useState('');
   const novoJardineteDocId = route.params.novoJardineteDocId;
   const myStyles = styles();
-
+  const [ret1Height, setRet1Height] = useState(null);
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
@@ -163,6 +163,11 @@ function MapCenter({ center }) {
     };
   };
 
+  useEffect(() => {
+    if (ret1Height) setMapKey((prev) => prev + 1);
+  }, [ret1Height]);
+
+
   return (
     <ScrollView ref={scrollViewRef} style={myStyles.container3}>
        <View style={myStyles.circle}></View>
@@ -201,7 +206,13 @@ function MapCenter({ center }) {
           <View style={myStyles.row1}>
             <View style={myStyles.column1}>
               <Text style={myStyles.title}>Dados do Jardinete</Text>
-              <View style={myStyles.ret1}>
+              <View
+          style={myStyles.ret1}
+          onLayout={(event) => {
+            const { height } = event.nativeEvent.layout;
+            setRet1Height(height); // Salvar a altura total de ret1 (incluindo padding) no estado
+          }}
+        >
   <Text style={myStyles.textData}>
     O nome do jardinete é{' '}
     <Text style={{ color: '#1E6131', fontWeight: 'bold' }}>{jardineteNome}</Text> e fica no bairro{' '}
@@ -218,14 +229,16 @@ function MapCenter({ center }) {
   </Text>
 </View>
             </View>
+            {ret1Height && (
             <View style={myStyles.column2}>
               <Text style={myStyles.title}>Região do Jardinete</Text>
-              <View style={myStyles.ret2}>
+              
+              <View style={[myStyles.ret2, ret1Height && { height: ret1Height }]}>
               <MapContainer
   key={mapKey}
   center={[MapLatitude, MapLongitude]}
   zoom={16}
-  style={{ width: '100%', height: '100%' }}
+  style={{ width: '100%', height: '100%', flex: 1 }}
 
 >
   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -241,7 +254,9 @@ function MapCenter({ center }) {
   <MapCenter center={[MapLatitude, MapLongitude]} />
 </MapContainer>
               </View>
+          
             </View>
+                )}
           </View>
 
           <View style={myStyles.row2}>
@@ -318,7 +333,10 @@ function MapCenter({ center }) {
             </View>
             <View style={myStyles.column2}>
               <Text style={myStyles.title}>Mapa do Satélite</Text>
-              <View style={myStyles.ret2}>
+
+              {ret1Height && (
+                   <View style={myStyles.ret4}>
+                
               <MapContainer
   key={mapKey}
   center={[MapLatitude, MapLongitude]}
@@ -339,6 +357,7 @@ function MapCenter({ center }) {
   <MapCenter center={[MapLatitude, MapLongitude]} />
 </MapContainer>
               </View>
+              )}
             </View>
           </View>
         </View>
