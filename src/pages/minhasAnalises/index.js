@@ -176,7 +176,7 @@ export default function minhasAnalises() {
 
                     <TouchableOpacity
                       style={myStyles.editButton}
-                      onPress={() => navigation.navigate('Form', { novoJardineteDocId: jardinete.id })}
+                      onPress={() => navigation.navigate('Form2', { novoJardineteDocId: jardinete.id })}
                     >
                       <Text style={myStyles.buttonText}>Editar</Text>
                     </TouchableOpacity>

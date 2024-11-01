@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image, useWindowDimensions, Modal } from 'react-native';
-import { styles } from '../inventory/styles';
+import { styles } from '../inventory2/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, updateDoc } from 'firebase/firestore';
@@ -9,7 +9,7 @@ import { userSearchData } from '../../../functions';
 import { Ionicons } from '@expo/vector-icons';
 import MoreInfo2 from '../moreInfo2';
 
-export default function Inventory() {
+export default function Inventory2() {
   const [userInfo, setUserInfo] = useState(false);
   const auth = getAuth();
   const firestore = getFirestore();
@@ -444,7 +444,7 @@ export default function Inventory() {
   };
 
   const handlePress = () => {
-    navigation.navigate('Tree', { novoJardineteDocId });
+    navigation.navigate('Tree2', { novoJardineteDocId });
   };
 
   const buttonStyle = isClicked3 ? myStyles.button : (isMouseOver3 ? myStyles.button2 : myStyles.button1);
@@ -474,24 +474,6 @@ export default function Inventory() {
           source={require('../../assets/inventory.jpg')}
           style={myStyles.backgroundImage}
         >
-
-<View style={myStyles.stepView}>
-      <View style={myStyles.circ1}>
-      <Text style={myStyles.stepText}>1</Text>
-      </View>
-      <View style={myStyles.ret1}></View>
-      <View style={myStyles.circ2}>
-      <Text style={myStyles.stepText}>2</Text>
-      </View>
-      <View style={myStyles.ret2}></View>
-      <View style={myStyles.circ3}>
-      <Text style={myStyles.stepText}>3</Text>
-      </View>
-      <View style={myStyles.ret3}></View>
-      <View style={myStyles.circ4}>
-      <Text style={myStyles.stepText}>4</Text>
-      </View>
-      </View>
 
           <View style={myStyles.buttonView3}>
             <Text style={myStyles.buttonText}>Selecione os itens presentes no jardinete</Text>

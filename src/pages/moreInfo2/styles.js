@@ -94,6 +94,14 @@ name: {
     top: width * 0.1822916666666667,
 
   },
+  ret4: {
+    width: width * 0.3125,
+       height: width * 0.2604166666666667,
+    borderWidth: width * 0.0078125,
+    borderColor: '#271C00',
+    borderRadius:  width * 0.0052083333333333,
+    backgroundColor: '#FFFEF4',
+  },
 
   jardineteImage: {
     width: '100%', 

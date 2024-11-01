@@ -25,6 +25,10 @@ import acoesSociais from './src/pages/acoesSociais';
 import minhasAnalises from './src/pages/minhasAnalises';
 import moreInfo from './src/pages/moreInfo';
 import moreInfo2 from './src/pages/moreInfo2';
+import Form2 from './src/pages/Form2'
+import Inventory2 from './src/pages/inventory2';
+import Tree2 from './src/pages/Tree2';
+import Impact2 from './src/pages/Impact2';
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +60,10 @@ export default function App() {
         <Stack.Screen name="minhasAnalises" component={minhasAnalises} options={{ headerShown: false }} />
         <Stack.Screen name="moreInfo" component={moreInfo} options={{ headerShown: false }} />
         <Stack.Screen name="moreInfo2" component={moreInfo2} options={{ headerShown: false }} />
+        <Stack.Screen name="Form2" component={Form2} options={{ headerShown: false }} />
+        <Stack.Screen name="Inventory2" component={Inventory2} options={{ headerShown: false }} />
+        <Stack.Screen name="Tree2" component={Tree2} options={{ headerShown: false }} />
+        <Stack.Screen name="Impact2" component={Impact2} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

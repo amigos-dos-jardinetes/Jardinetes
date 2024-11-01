@@ -238,7 +238,7 @@ export const styles = () => {
   buttonView3: {
     width: width * 0.754,
     height: width * 0.145,
-    top: width * 0.195,
+    top: width * 0.14,
     left: width * 0.12,
     borderRadius: width * 0.015625,
     alignSelf: 'center',
@@ -260,7 +260,7 @@ export const styles = () => {
   buttonView33: {
     width: width * 0.400,
     height: width * 0.105,
-    top: width * 0.375,
+    top: width * 0.35,
     borderRadius: width * 0.015625,
     alignItems: 'center',
     justifyContent: 'center',
@@ -321,84 +321,6 @@ scrollViewModalContent: {
   flexGrow: 1,
   justifyContent: 'center',
 
-},
-
-
-stepView: {
-  alignItems: 'center',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  width: '100%',
-  top: (200 / 1920) * width,
-},
-
-stepText: {
-  fontSize: (48 / 1920) * width,
-  color: 'white',
-  fontWeight: 'bold'
-},
-
-
-ret1: {
-  width: (200 / 1920) * width,
-  height: (15 / 1920) * width,
-  backgroundColor: '#9ccc65',
-  marginRight: (20 / 1920) * width,
-  marginLeft: (20 / 1920) * width,
-  borderRadius: (4 / 1920) * width,
-},
-ret2: {
-  width: (200 / 1920) * width,
-  height: (15 / 1920) * width,
-  backgroundColor: '#ccc',
-  marginRight: (20 / 1920) * width,
-  marginLeft: (20 / 1920) * width,
-  borderRadius: (4 / 1920) * width,
-},
-
-ret3: {
-  width: (200 / 1920) * width,
-  height: (15 / 1920) * width,
-  backgroundColor: '#ccc',
-  marginRight: (20 / 1920) * width,
-  marginLeft: (20 / 1920) * width,
-  borderRadius: (4 / 1920) * width,
-},
-
-circ1: {
-  width: (100 / 1920) * width,
-  height: (100 / 1920) * width,
-  borderRadius: '50%',
-  backgroundColor: '#9ccc65',
-  alignItems: 'center',
-  justifyContent: 'center',
-},
-
-circ2: {
-  width: (100 / 1920) * width,
-  height: (100 / 1920) * width,
-  borderRadius: '50%',
-  backgroundColor: '#9ccc65',
-  alignItems: 'center',
-  justifyContent: 'center',
-},
-
-circ3: {
-  width: (100 / 1920) * width,
-  height: (100 / 1920) * width,
-  borderRadius: '50%',
-  backgroundColor: '#ccc',
-  alignItems: 'center',
-  justifyContent: 'center',
-},
-
-circ4: {
-  width: (100 / 1920) * width,
-  height: (100 / 1920) * width,
-  borderRadius: '50%',
-  backgroundColor: '#ccc',
-  alignItems: 'center',
-  justifyContent: 'center',
 },
 
 });

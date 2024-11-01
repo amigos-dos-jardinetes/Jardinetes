@@ -25,7 +25,7 @@ export const styles = () => {
     },
     ret1: {
         position: 'absolute',
-        top: width * 0.18,
+        top: width * 0.12,
         width: width * 0.6,
         height: width * 0.1,
         borderRadius: width * 0.02,
@@ -36,7 +36,7 @@ export const styles = () => {
     },
     ret2: {
         position: 'absolute',
-        top: width * 0.16,
+        top: width * 0.1,
         width: width * 0.6,
         height: width * 0.1,
         borderRadius: width * 0.02,
@@ -56,7 +56,7 @@ export const styles = () => {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        top: width * 0.27,
+        top: width * 0.21,
         width: '100%',
         marginTop: width * 0.005,
         height: width * 0.1,
@@ -99,7 +99,7 @@ export const styles = () => {
     },
     searchBarGradient: {
         position: 'absolute',
-        top: width * 0.385,
+        top: width * 0.325,
         width: width * 0.78,
         height: width * 0.025,
         borderRadius: width * 0.01041666666666666666666666666667,
@@ -107,7 +107,7 @@ export const styles = () => {
     },
     resultsContainer: {
         position: 'absolute',
-        top: width * 0.4205,
+        top: width * 0.3605,
         backgroundColor: '#F5F3E1',
         padding: width * 0.01041666666666666666666666666667,
         maxHeight: width * 0.245,
@@ -166,7 +166,7 @@ export const styles = () => {
     },
     selectedResultsContainer: {
         position: 'absolute',
-        top: width * 0.72,
+        top: width * 0.62,
         paddingHorizontal: (10 / 1920) * width,
     },
 
@@ -242,7 +242,7 @@ export const styles = () => {
 
     checkboxContainer: {
         position: 'absolute',
-        top: width * 0.363,
+        top: width * 0.303,
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -374,6 +374,7 @@ export const styles = () => {
         justifyContent: 'space-around',
         alignItems: 'center',
         height: width * 0.1,
+        top: height,
         backgroundColor: '#166034',
         width: '110%',
         marginTop: (100 / 1920) * width,
@@ -454,87 +455,6 @@ export const styles = () => {
         alignItems: 'center',
         justifyContent: 'center',
       },
-
-
-      
-stepView: {
-  alignItems: 'center',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  width: '100%',
-  top: -100,
-},
-
-stepText: {
-  fontSize: (48 / 1920) * width,
-  color: 'white',
-  fontWeight: 'bold'
-},
-
-
-retStep1: {
-  width: (200 / 1920) * width,
-  height: (15 / 1920) * width,
-  backgroundColor: '#9ccc65',
-  marginRight: (20 / 1920) * width,
-  marginLeft: (20 / 1920) * width,
-  borderRadius: (4 / 1920) * width,
-},
-retStep2: {
-  width: (200 / 1920) * width,
-  height: (15 / 1920) * width,
-  backgroundColor: '#9ccc65',
-  marginRight: (20 / 1920) * width,
-  marginLeft: (20 / 1920) * width,
-  borderRadius: (4 / 1920) * width,
-},
-
-
-retStep3: {
-  width: (200 / 1920) * width,
-  height: (15 / 1920) * width,
-  backgroundColor: '#ccc',
-  marginRight: (20 / 1920) * width,
-  marginLeft: (20 / 1920) * width,
-  borderRadius: (4 / 1920) * width,
-},
-
-circ1: {
-  width: (100 / 1920) * width,
-  height: (100 / 1920) * width,
-  borderRadius: '50%',
-  backgroundColor: '#9ccc65',
-  alignItems: 'center',
-  justifyContent: 'center',
-},
-
-circ2: {
-  width: (100 / 1920) * width,
-  height: (100 / 1920) * width,
-  borderRadius: '50%',
-  backgroundColor: '#9ccc65',
-  alignItems: 'center',
-  justifyContent: 'center',
-},
-
-circ3: {
-  width: (100 / 1920) * width,
-  height: (100 / 1920) * width,
-  borderRadius: '50%',
-  backgroundColor: '#9ccc65',
-  alignItems: 'center',
-  justifyContent: 'center',
-},
-
-circ4: {
-  width: (100 / 1920) * width,
-  height: (100 / 1920) * width,
-  borderRadius: '50%',
-  backgroundColor: '#ccc',
-  alignItems: 'center',
-  justifyContent: 'center',
-},
-
 
     });
 };

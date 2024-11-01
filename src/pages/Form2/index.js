@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, useWindowDi
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { styles } from '../Form/styles';
+import { styles } from '../Form2/styles';
 import * as ImagePicker from 'expo-image-picker';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -38,7 +38,7 @@ if (getApps().length === 0) {
   firebaseApp = getApp(); // Use o app já inicializado
 }
 
-export default function Form() {
+export default function Form2() {
   const navigation = useNavigation();
   const route = useRoute();
   const novoJardineteDocId = route.params.novoJardineteDocId;
@@ -133,7 +133,7 @@ export default function Form() {
       };
       await updateDoc(jardineteRef, formData);
       console.log('Dados do jardinete atualizados com sucesso!');
-      navigation.navigate('Inventory', { novoJardineteDocId });
+      navigation.navigate('Inventory2', { novoJardineteDocId });
     } catch (error) {
       console.error('Erro ao atualizar os dados do jardinete:', error);
     }
@@ -163,24 +163,7 @@ export default function Form() {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
-  useEffect(() => {
-    const sendInitialDataToFirebase = async () => {
-      try {
-        const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
-        await updateDoc(docRef, {
-          nome: 'Sem nome',
-          jardinetePhoto: defaultImage,
-        });
-        console.log('Dados enviados com sucesso para o Firestore!');
-      } catch (error) {
-        console.error('Erro ao enviar dados para o Firestore:', error);
-      }
-    };
 
-    sendInitialDataToFirebase();
-    return () => {
-    };
-  }, []);
 
   const cropImage = async () => {
     try {
@@ -244,27 +227,8 @@ export default function Form() {
         </View>
       </View>
 
-      <View style={myStyles.stepView}>
-      <View style={myStyles.circ1}>
-      <Text style={myStyles.stepText}>1</Text>
-      </View>
-      <View style={myStyles.ret1}></View>
-      <View style={myStyles.circ2}>
-      <Text style={myStyles.stepText}>2</Text>
-      </View>
-      <View style={myStyles.ret2}></View>
-      <View style={myStyles.circ3}>
-      <Text style={myStyles.stepText}>3</Text>
-      </View>
-      <View style={myStyles.ret3}></View>
-      <View style={myStyles.circ4}>
-      <Text style={myStyles.stepText}>4</Text>
-      </View>
-      </View>
-
       <Image source={require('../../assets/vamoscomecar.png')} style={myStyles.vamos} />
 
-   
       <View style={myStyles.container}>
      
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, Image, useWindowDimensions, Linking, ScrollView, Alert, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { styles } from '../Tree/styles';
+import { styles } from '../Tree2/styles';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
@@ -63,7 +63,7 @@ const SelectedResultCard = ({ id, name, treeUrl, onRemoveResult, onSelectImage, 
 };
 
 
-export default function Tree() {
+export default function Tree2() {
     const [imagem, setImagem] = useState(null);
     const [searchText, setSearchText] = useState('');
     const [filteredTrees, setFilteredTrees] = useState([]);
@@ -494,24 +494,6 @@ export default function Tree() {
                     )}
                 </View>
             </View>
-
-            <View style={myStyles.stepView}>
-      <View style={myStyles.circ1}>
-      <Text style={myStyles.stepText}>1</Text>
-      </View>
-      <View style={myStyles.retStep1}></View>
-      <View style={myStyles.circ2}>
-      <Text style={myStyles.stepText}>2</Text>
-      </View>
-      <View style={myStyles.retStep2}></View>
-      <View style={myStyles.circ3}>
-      <Text style={myStyles.stepText}>3</Text>
-      </View>
-      <View style={myStyles.retStep3}></View>
-      <View style={myStyles.circ4}>
-      <Text style={myStyles.stepText}>4</Text>
-      </View>
-      </View>
             
             <View style={myStyles.ret1}>
                 <Text style={myStyles.buttonText}>Recomendamos baixar o APP Inaturalist para uma identificação mais precisa do nome das árvores presentes no jardinete</Text>
@@ -533,7 +515,6 @@ export default function Tree() {
     <Text style={myStyles.buttonText33}>Verifique as informações já enviadas</Text>
   </TouchableOpacity>
             </View>
-            
             <View style={myStyles.checkboxContainer}>
                 <TouchableOpacity onPress={toggleNotSendingTrees}>
                     {notSendingTrees ? (
@@ -593,7 +574,7 @@ export default function Tree() {
                     marginBottom: width * 0.0078125,
                     overflow: 'hidden',
                 }}
-                onPress={() => navigation.navigate('Impact', { novoJardineteDocId })}>
+                onPress={() => navigation.navigate('Impact2', { novoJardineteDocId })}>
                 <LinearGradient
                     colors={['#4C6523', '#99CB47']}
                     style={{ borderRadius: width * 0.01302083333333333333333333333333, width: width * 0.09114583333333333333333333333333, height: width * 0.02083333333333333333333333333333, justifyContent: 'center', alignItems: 'center' }}>
@@ -609,7 +590,7 @@ export default function Tree() {
     style={[
         myStyles.navbar2,
         {
-            top: (width * 0.5) + ((Math.floor((selectedResults.length - 1) / 3) + 1) * (width * 0.176))
+            top: (width * 0.45) + ((Math.floor((selectedResults.length - 1) / 3) + 1) * (width * 0.176))
         }
     ]}
 >

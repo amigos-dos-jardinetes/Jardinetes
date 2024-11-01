@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, TouchableOpacity, Text, Image, useWindowDimensions, Linking } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { styles } from '../moreInfo/styles.js';
+import { styles } from '../moreInfo2/styles.js';
 import { Ionicons } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
@@ -53,6 +53,7 @@ export default function moreInfo2() {
   const [bacia, setBacia] = useState(''); 
   const [percapita, setPercapita] = useState('');
   const [densidade, setDensidade] = useState('');
+  const [ret1Height, setRet1Height] = useState(null);
   const [renda, setRenda] = useState('');
   const [patrimonio, setPatrimonio] = useState('');
   const novoJardineteDocId = route.params.novoJardineteDocId;
@@ -161,6 +162,11 @@ function MapCenter({ center }) {
     };
   };
 
+  useEffect(() => {
+    if (ret1Height) setMapKey((prev) => prev + 1);
+  }, [ret1Height]);
+
+
   return (
     <ScrollView ref={scrollViewRef} style={myStyles.container3}>
        <View style={myStyles.circle}></View>
@@ -187,7 +193,13 @@ function MapCenter({ center }) {
           <View style={myStyles.row1}>
             <View style={myStyles.column1}>
               <Text style={myStyles.title}>Dados do Jardinete</Text>
-              <View style={myStyles.ret1}>
+              <View
+          style={myStyles.ret1}
+          onLayout={(event) => {
+            const { height } = event.nativeEvent.layout;
+            setRet1Height(height); // Salvar a altura total de ret1 (incluindo padding) no estado
+          }}
+        >
   <Text style={myStyles.textData}>
     O nome do jardinete é{' '}
     <Text style={{ color: '#1E6131', fontWeight: 'bold' }}>{jardineteNome}</Text> e fica no bairro{' '}
@@ -204,16 +216,21 @@ function MapCenter({ center }) {
   </Text>
 </View>
             </View>
+            {ret1Height && (
             <View style={myStyles.column2}>
               <Text style={myStyles.title}>Região do Jardinete</Text>
-              <View style={myStyles.ret2}>
+              
+              <View style={[myStyles.ret2, ret1Height && { height: ret1Height }]}>
               <MapContainer
   key={mapKey}
   center={[MapLatitude, MapLongitude]}
   zoom={16}
-  style={{ width: '100%', height: '100%' }}
+  style={{ width: '100%', height: '100%', flex: 1 }}
+
 >
   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+  
   <Marker position={[MapLatitude, MapLongitude]} icon={customIcon}>
     <Popup>
       <Text>{jardineteNome}</Text>
@@ -224,7 +241,9 @@ function MapCenter({ center }) {
   <MapCenter center={[MapLatitude, MapLongitude]} />
 </MapContainer>
               </View>
+          
             </View>
+                )}
           </View>
 
           <View style={myStyles.row2}>
@@ -251,13 +270,18 @@ function MapCenter({ center }) {
                   <Image style={[myStyles.inventoryImage, getImageStyle(estica)]} source={require('../../assets/estica.png')} />
                   <Image style={[myStyles.inventoryImage, getImageStyle(pavimentada)]} source={require('../../assets/pavimentada.jpg')} />
                 </View>
-               
+                <View style={myStyles.row4}>
+</View>
+                
 
               </View>
             </View>
             <View style={myStyles.column2}>
               <Text style={myStyles.title}>Mapa do Satélite</Text>
-              <View style={myStyles.ret2}>
+
+              {ret1Height && (
+                   <View style={myStyles.ret4}>
+                
               <MapContainer
   key={mapKey}
   center={[MapLatitude, MapLongitude]}
@@ -278,11 +302,12 @@ function MapCenter({ center }) {
   <MapCenter center={[MapLatitude, MapLongitude]} />
 </MapContainer>
               </View>
+              )}
             </View>
           </View>
         </View>
 
-      
+
 
 
       </View>

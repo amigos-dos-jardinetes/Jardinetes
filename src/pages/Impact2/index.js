@@ -5,12 +5,12 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
-import { styles } from '../Impact/styles';
+import { styles } from '../Impact2/styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import MoreInfo2 from '../moreInfo2';
 
-export default function Impact() {
+export default function Impact2() {
     const [userInfo, setUserInfo] = useState(false);
     const auth = getAuth();
     const firestore = getFirestore();
@@ -916,25 +916,6 @@ const handleContinuarPress = async () => {
 
 
           <View style={myStyles.global}>
-
-          <View style={myStyles.stepView}>
-      <View style={myStyles.circ1}>
-      <Text style={myStyles.stepText}>1</Text>
-      </View>
-      <View style={myStyles.ret1}></View>
-      <View style={myStyles.circ2}>
-      <Text style={myStyles.stepText}>2</Text>
-      </View>
-      <View style={myStyles.ret2}></View>
-      <View style={myStyles.circ3}>
-      <Text style={myStyles.stepText}>3</Text>
-      </View>
-      <View style={myStyles.ret3}></View>
-      <View style={myStyles.circ4}>
-      <Text style={myStyles.stepText}>4</Text>
-      </View>
-      </View>
-      
           <View style={myStyles.center}>
           <View style={myStyles.ret}>
         <Text style={myStyles.retText}>Deixe aqui suas impressões sobre o Jardinete</Text>

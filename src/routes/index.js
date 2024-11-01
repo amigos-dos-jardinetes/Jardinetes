@@ -23,6 +23,10 @@ import quemSomos from '../pages/quemSomos';
 import acoesSociais from '../pages/acoesSociais';
 import minhasAnalises from '../pages/minhasAnalises';
 import moreInfo from '../pages/moreInfo';
+import Form2 from '../pages/Form2'
+import Inventory2 from '../pages/inventory2';
+import Tree2 from '../pages/Tree2';
+import Impact2 from '../pages/Impact2';
 
 export default function AppRoutes() {
   return (
@@ -51,6 +55,10 @@ export default function AppRoutes() {
         <Route path="/acoesSociais" element={<acoesSociais />} />
         <Route path="/minhasAnalises" element={<minhasAnalises />} />
         <Route path="/moreInfo2" element={<moreInfo2 />} />
+        <Route path="/Form2" element={<Form2 />} />
+        <Route path="/inventory2" element={<Inventory2 />} />
+        <Route path="/tree2" element={<Tree2 />} />
+        <Route path="/impact2" element={<Impact2 />} />
       </Routes>
     </Router>
   );
