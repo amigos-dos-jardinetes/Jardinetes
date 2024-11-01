@@ -529,9 +529,16 @@ export default function Tree() {
                 <TouchableOpacity onPress={() => openLink('https://www.inaturalist.org')}>
                     <Image source={require('../../assets/inaturalist.png')} style={myStyles.imageIcon2} />
                 </TouchableOpacity>
-                <TouchableOpacity style={myStyles.buttonView33} onPress={() => setModalVisible(true)}>
+                <TouchableOpacity style={{ alignSelf: 'center' }} onPress={() => setModalVisible(true)}>
+  <LinearGradient
+    colors={['#4C6523', '#99CB47']}
+    start={{ x: 0, y: 0.5 }}
+    end={{ x: 1, y: 0.5 }}
+    style={myStyles.buttonView33}
+  >
     <Text style={myStyles.buttonText33}>Verifique as informações já enviadas</Text>
-  </TouchableOpacity>
+  </LinearGradient>
+</TouchableOpacity>
             </View>
             
             <View style={myStyles.checkboxContainer}>

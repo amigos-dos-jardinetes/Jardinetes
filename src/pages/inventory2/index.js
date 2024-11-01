@@ -8,6 +8,7 @@ import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
 import { Ionicons } from '@expo/vector-icons';
 import MoreInfo2 from '../moreInfo2';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Inventory2() {
   const [userInfo, setUserInfo] = useState(false);
@@ -481,9 +482,16 @@ export default function Inventory2() {
           </View>
 
           <View style={myStyles.center}>
-  <TouchableOpacity style={myStyles.buttonView33} onPress={() => setModalVisible(true)}>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+  <LinearGradient
+    colors={['#4C6523', '#99CB47']}
+    start={{ x: 0, y: 0.5 }}
+    end={{ x: 1, y: 0.5 }}
+    style={[myStyles.buttonView33, { alignSelf: 'center' }]}
+  >
     <Text style={myStyles.buttonText33}>Verifique as informações já enviadas</Text>
-  </TouchableOpacity>
+  </LinearGradient>
+</TouchableOpacity>
 </View>
 
           <View style={myStyles.navbar}>
