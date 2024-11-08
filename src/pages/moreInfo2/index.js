@@ -55,7 +55,6 @@ export default function moreInfo2() {
   const [densidade, setDensidade] = useState('');
   const [ret1Height, setRet1Height] = useState(null);
   const [renda, setRenda] = useState('');
-  const [patrimonio, setPatrimonio] = useState('');
   const novoJardineteDocId = route.params.novoJardineteDocId;
   // Carrega a fonte Lemon
   const [fontsLoaded] = useFonts({
@@ -85,7 +84,6 @@ export default function moreInfo2() {
             setPercapita(jardineteData.percapita || ''); // Área verde per capita
             setDensidade(jardineteData.densidade || ''); // Densidade demográfica
             setRenda(jardineteData.renda || ''); // Renda média
-            setPatrimonio(jardineteData.patrimonio || ''); // Patrimônio ambiental
     
             // Verifica se existe o array de coordenadas
             if (jardineteData.coordenadas && jardineteData.coordenadas.length === 2) {
@@ -211,8 +209,6 @@ function MapCenter({ center }) {
     <Text style={{ color: '#1E6131', fontWeight: 'bold' }}>{percapita}</Text> m²/habitantes; a densidade demográfica é de{' '}
     <Text style={{ color: '#1E6131', fontWeight: 'bold' }}>{densidade}</Text> habitantes/km² e a renda média é de R${' '}
     <Text style={{ color: '#1E6131', fontWeight: 'bold' }}>{renda}</Text> mensais.
-    O jardinete{' '}
-    <Text style={{ color: '#1E6131', fontWeight: 'bold' }}>{patrimonio}</Text> algum patrimônio ambiental.
   </Text>
 </View>
             </View>

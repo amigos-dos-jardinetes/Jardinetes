@@ -3,7 +3,7 @@ import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Ima
 import { styles } from '../inventory2/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, doc, updateDoc } from 'firebase/firestore';
+import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
 import { Ionicons } from '@expo/vector-icons';
@@ -53,37 +53,7 @@ export default function Inventory2() {
     }
   };
 
-  useEffect(() => {
-    const sendInitialDataToFirebase = async () => {
-      try {
-        const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
-        await updateDoc(docRef, {
-          banco: 'não',
-          pavimentada: 'não',
-          animais: 'não',
-          monumento: 'não',
-          flores: 'não',
-          estica: 'não',
-          arvore: 'não',
-          areia: 'não',
-          feira: 'não',
-          lixo: 'não',
-          caminhada: 'não',
-          parque: 'não',
-          bicicleta: 'não',
-          acessibilidade: 'não'
-        });
-        console.log('Dados enviados com sucesso para o Firestore!');
-      } catch (error) {
-        console.error('Erro ao enviar dados para o Firestore:', error);
-      }
-    };
-
-    sendInitialDataToFirebase();
-    return () => {
-    };
-  }, []);
-
+ 
 
 
   const sendDataToFirebase4 = async (pavimentada) => {
@@ -215,6 +185,43 @@ export default function Inventory2() {
       console.error('Erro ao enviar dado para o Firestore:', error);
     }
   };
+
+  
+
+
+  const loadData = async () => {
+    try {
+      const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
+      const docSnap = await getDoc(docRef);
+  
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setIsClicked1(data.flores === 'sim');
+        setIsClicked2(data.animais === 'sim');
+        setIsClicked3(data.banco === 'sim');
+        setIsClicked4(data.pavimentada === 'sim');
+        setIsClicked5(data.monumento === 'sim');
+        setIsClicked6(data.feira === 'sim');
+        setIsClicked7(data.arvore === 'sim');
+        setIsClicked8(data.estica === 'sim');
+        setIsClicked9(data.areia === 'sim');
+        setIsClicked10(data.acessibilidade === 'sim');
+        setIsClicked11(data.bicicleta === 'sim');
+        setIsClicked12(data.parque === 'sim');
+        setIsClicked13(data.lixo === 'sim');
+        setIsClicked14(data.caminhada === 'sim');
+      } else {
+        console.log('Documento não encontrado!');
+      }
+    } catch (error) {
+      console.error('Erro ao carregar dados do Firestore:', error);
+    }
+  };
+  
+  useEffect(() => {
+    loadData();
+  }, []);
+  
 
 
   const [isMouseOver1, setIsMouseOver1] = useState(false);

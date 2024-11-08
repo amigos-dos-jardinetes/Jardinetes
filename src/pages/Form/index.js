@@ -50,7 +50,6 @@ export default function Form() {
   const [percapita, setPercapita] = useState('');
   const [densidade, setDensidade] = useState('');
   const [renda, setRenda] = useState('');
-  const [patrimonio, setPatrimonio] = useState('possui'); 
   const [userName, setUserName] = useState('');
   const [wallpaper, setWallpaper] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -128,7 +127,6 @@ export default function Form() {
         percapita,
         densidade,
         renda,
-        patrimonio: patrimonio || 'possui',
         jardinetePhoto: imagem
       };
       await updateDoc(jardineteRef, formData);
@@ -358,18 +356,7 @@ export default function Form() {
    <Text style={myStyles.label}>mensais. (*)</Text>
 </View>
 
-<View style={myStyles.textRow}>
-  <Text style={myStyles.label}>O jardinete </Text>
-  <Picker
-    selectedValue={patrimonio}
-    style={myStyles.picker}
-    onValueChange={(itemValue) => setPatrimonio(itemValue)}
-  >
-    <Picker.Item label="possui" value="possui" />
-    <Picker.Item label="não possui" value="não possui" />
-  </Picker>
-  <Text style={myStyles.label}> algum patrimônio ambiental.</Text>
-</View>
+
       
 <Text style={myStyles.label1}>
           (*) Essas informações podem ser obtidas no{' '}

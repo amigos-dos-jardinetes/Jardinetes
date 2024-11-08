@@ -50,7 +50,6 @@ export default function Form2() {
   const [percapita, setPercapita] = useState('');
   const [densidade, setDensidade] = useState('');
   const [renda, setRenda] = useState('');
-  const [patrimonio, setPatrimonio] = useState('possui'); 
   const [userName, setUserName] = useState('');
   const [wallpaper, setWallpaper] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -93,7 +92,6 @@ export default function Form2() {
           setPercapita(jardineteData.percapita || '');
           setDensidade(jardineteData.densidade || '');
           setRenda(jardineteData.renda || '');
-          setPatrimonio(jardineteData.patrimonio || '');
   
           // Verifica se o documento possui uma imagem e a define
           if (jardineteData.jardinetePhoto) {
@@ -128,8 +126,7 @@ export default function Form2() {
         percapita,
         densidade,
         renda,
-        patrimonio: patrimonio || 'possui',
-        jardinetePhoto: imagem
+        jardinetePhoto: imagem,
       };
       await updateDoc(jardineteRef, formData);
       console.log('Dados do jardinete atualizados com sucesso!');
@@ -322,18 +319,7 @@ export default function Form2() {
    <Text style={myStyles.label}>mensais. (*)</Text>
 </View>
 
-<View style={myStyles.textRow}>
-  <Text style={myStyles.label}>O jardinete </Text>
-  <Picker
-    selectedValue={patrimonio}
-    style={myStyles.picker}
-    onValueChange={(itemValue) => setPatrimonio(itemValue)}
-  >
-    <Picker.Item label="possui" value="possui" />
-    <Picker.Item label="não possui" value="não possui" />
-  </Picker>
-  <Text style={myStyles.label}> algum patrimônio ambiental.</Text>
-</View>
+
       
 <Text style={myStyles.label1}>
           (*) Essas informações podem ser obtidas no{' '}
