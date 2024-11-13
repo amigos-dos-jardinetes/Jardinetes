@@ -606,9 +606,7 @@ export default function Tree2() {
           <View style={myStyles.imageContainer22}>
               <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
           </View>
-          <TouchableOpacity style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Mapa do Site</Text>
-          </TouchableOpacity>
+   
           <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
               <Text style={myStyles.textNav}>Quem somos nós</Text>
           </TouchableOpacity>
@@ -617,13 +615,11 @@ export default function Tree2() {
 
       <View style={myStyles.column2nav}>
           
-          <TouchableOpacity style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Informações</Text>
-          </TouchableOpacity>
+    
           <TouchableOpacity style={myStyles.navBt}>
               <Text style={myStyles.textNav}>Termos de uso</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={myStyles.navBt}>
+          <TouchableOpacity style={myStyles.navBt} onPress={() => openLink('https://www.utfpr.edu.br/acesso-a-informacao/lgpd')}>
               <Text style={myStyles.textNav}>LGPD</Text>
           </TouchableOpacity>
       </View>
