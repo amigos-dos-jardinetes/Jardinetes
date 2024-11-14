@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, ScrollView, RefreshControl, FlatList, useWindowDimensions, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, ScrollView, RefreshControl, FlatList, useWindowDimensions, Modal, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
@@ -40,6 +40,10 @@ export default function Menu() {
     const [MapLatitude, setMapLatitude] = useState(null);
     const [MapLongitude, setMapLongitude] = useState(null);
     const myStyles = styles();
+    const initialLatitude = -25.4296;
+const initialLongitude = -49.2719;
+const currentLatitude = MapLatitude !== null ? MapLatitude : initialLatitude;
+const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude;
     const { width, height } = useWindowDimensions(); 
     const openSairModal = () => {
         setModalVisible(true);
@@ -65,7 +69,9 @@ export default function Menu() {
             </Marker>
         ))
     }
-
+    const openLink = (url) => {
+        Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
+      };
 
     WebBrowser.maybeCompleteAuthSession();
 
@@ -413,51 +419,101 @@ export default function Menu() {
 
                 <View style={[myStyles.container_map, { position: 'relative' }]}>
 
-                        {MapLatitude !== null && MapLongitude !== null ? (
-                            <MapContainer
-                            key={mapKey}
-                            center={[MapLatitude, MapLongitude]}
-                            zoom={selectedPlaceCoordinates ? 16 : 13}
-                            style={{ width: '100%', height: '100%', borderRadius: (10 / 1920) * width }}
-                          >
-                                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                <MapContainer
+    key={mapKey}
+    center={[currentLatitude, currentLongitude]}
+    zoom={selectedPlaceCoordinates ? 16 : 13}
+    style={{ width: '100%', height: '100%', borderRadius: (10 / 1920) * width }}
+>
+    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-                                {pracasData.map((praca) => (
-                                    <Marker
-                                        key={praca.id}
-                                        position={praca.coordenadas}
-                                        icon={customIcon}
-                                    >
-                                        <Popup>
-                                            <div>
-                                                <p>{praca.nome}</p>
-                                                <img src={praca.jardinetePhoto} alt={`Image ${praca.id}`} style={myStyles.popupImage} />
-                                                <View style={myStyles.popupButtonContainer}>
-                                                    <TouchableOpacity 
-                                                   onPress={() => navigation.navigate('Impact2', { novoJardineteDocId: praca.id })} 
-                                                    style={myStyles.popupButton}>
-                                                        <Text style={myStyles.popupButtonText}>Selecionar Jardinete</Text>
-                                                    </TouchableOpacity>
-                                                    <TouchableOpacity 
-                                                            onPress={() => navigation.navigate('AnaliseFinal', { novoJardineteDocId: praca.id })} 
-                                                            style={myStyles.popupButton}
-                                                    >
-                                                             <Text style={myStyles.popupButtonText}>Gráfico do Jardinete</Text>
-                                                    </TouchableOpacity>
-                                                </View>
-                                            </div>
-                                        </Popup>
-                                    </Marker>
-                                ))}
-                            </MapContainer>
-                        ) : (
-                            <Text style={myStyles.cliqueText}>Clique na imagem para ir ao local</Text>
-                        )}
+    {pracasData.map((praca) => (
+        <Marker
+            key={praca.id}
+            position={praca.coordenadas}
+            icon={customIcon}
+        >
+            <Popup>
+                <div>
+                    <p>{praca.nome}</p>
+                    <img src={praca.jardinetePhoto} alt={`Image ${praca.id}`} style={myStyles.popupImage} />
+                    <View style={myStyles.popupButtonContainer}>
+                        <TouchableOpacity 
+                            onPress={() => navigation.navigate('Impact2', { novoJardineteDocId: praca.id })} 
+                            style={myStyles.popupButton}
+                        >
+                            <Text style={myStyles.popupButtonText}>Selecionar Jardinete</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity 
+                            onPress={() => navigation.navigate('AnaliseFinal', { novoJardineteDocId: praca.id })} 
+                            style={myStyles.popupButton}
+                        >
+                            <Text style={myStyles.popupButtonText}>Gráfico do Jardinete</Text>
+                        </TouchableOpacity>
+                    </View>
+                </div>
+            </Popup>
+        </Marker>
+    ))}
+</MapContainer>
                     </View>
 
                    
                 </View>
             </View>
+
+
+            <View style={myStyles.navbar2}>
+<View style={myStyles.rowNav}>
+      <View style={myStyles.column1nav}>
+          <View style={myStyles.imageContainer22}>
+              <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
+          </View>
+        
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
+              <Text style={myStyles.textNav}>Quem somos nós</Text>
+          </TouchableOpacity>
+      </View>
+
+
+      <View style={myStyles.column2nav}>
+          
+        
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Termos de uso</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt} onPress={() => openLink('https://www.utfpr.edu.br/acesso-a-informacao/lgpd')}>
+              <Text style={myStyles.textNav}>LGPD</Text>
+          </TouchableOpacity>
+      </View>
+
+
+      <View style={myStyles.column3nav}>
+          
+          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
+              <Text style={myStyles.textNav}>Contato</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Fale conosco</Text>
+          </TouchableOpacity>
+       
+      </View>
+
+      <View style={myStyles.column4nav}>
+          
+          <View  style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Plataforma digital</Text>
+          </View >
+          <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
+          <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
+          </TouchableOpacity>
+      </View>
+
+    </View>
+</View>
+
+
+
             <Modal
   visible={modalVisible}
   transparent={true}

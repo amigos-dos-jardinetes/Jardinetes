@@ -29,19 +29,16 @@ export default function acoesSociais() {
         const jardinetesCollection = collection(db, 'jardinetes');
         const jardinetesSnapshot = await getDocs(jardinetesCollection);
         const data = jardinetesSnapshot.docs.map(doc => doc.data());
-
-        // Shuffle e seleciona até 3 jardinetes
-        const shuffled = data.sort(() => 0.5 - Math.random());
-        const selectedJardinetes = shuffled.slice(0, Math.min(3, shuffled.length));
-
-        setJardinetes(selectedJardinetes);
+  
+        // Define o estado com todos os jardinetes
+        setJardinetes(data);
         setLoading(false);
       } catch (error) {
         console.error("Erro ao buscar dados: ", error);
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
 
@@ -104,6 +101,7 @@ export default function acoesSociais() {
                        <Carousel
     showThumbs={false}
     showStatus={false}
+    showIndicators={false} 
     infiniteLoop={true}
     autoPlay={true}
     renderArrowPrev={(onClickHandler, hasPrev, label) =>
