@@ -14,7 +14,7 @@ import Slider from '@mui/material/Slider';
 import { MdZoomIn, MdZoomOut } from 'react-icons/md';
 import ImageEditor from "@react-native-community/image-editor";
 import * as ImageManipulator from 'expo-image-manipulator';
-import defaultImage from '../../assets/defaultNoImage.png';
+import defaultImage from '../../assets/defaultNoImage.jpg';
 const firebaseConfig = {
   // suas configurações do Firebase
 };

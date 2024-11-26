@@ -73,7 +73,9 @@ export default function Accept() {
   const { width, height } = useWindowDimensions(); 
   const [mapCenter, setMapCenter] = useState([-25.4284, -49.2733]); // Ponto inicial
   const [showRedMarker, setShowRedMarker] = useState(false);
-
+  const [markers, setMarkers] = useState([]);
+  const [markerPosition, setMarkerPosition] = useState(null); 
+  
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
@@ -154,32 +156,126 @@ export default function Accept() {
     navigation.navigate('Menu');
   };
 
-
-  const handleSearch = async () => {
-    const address = searchText; // `searchText` é o estado onde você armazenou o valor do TextInput
+  const curitibaBounds = {
+    minLat: -25.65,
+    maxLat: -25.35,
+    minLon: -49.45,
+    maxLon: -49.15,
+  };
   
-    if (!address) {
-      console.log('Nenhum endereço inserido.');
-      return;
-    }
-  
+  // Função para buscar em Curitiba e região
+  const searchInCuritiba = async (query) => {
     try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+          query
+        )}&viewbox=${curitibaBounds.minLon},${curitibaBounds.maxLat},${curitibaBounds.maxLon},${curitibaBounds.minLat}&bounded=1`
+      );
+  
       const data = await response.json();
   
       if (data.length > 0) {
-        const { lat, lon } = data[0];
-        setMapCenter([parseFloat(lat), parseFloat(lon)]); // Centraliza o mapa nas coordenadas encontradas
-        setShowRedMarker(true); // Mostra o marcador vermelho
+        // Seleciona o primeiro resultado em Curitiba
+        const curitibaResult = data[0];
+  
+        setMapCenter([parseFloat(curitibaResult.lat), parseFloat(curitibaResult.lon)]);
+        setMarkers((prevMarkers) => [
+          ...prevMarkers,
+          {
+            lat: parseFloat(curitibaResult.lat),
+            lon: parseFloat(curitibaResult.lon),
+            displayName: curitibaResult.display_name,
+            color: "red", // Marcador vermelho
+          },
+        ]);
+  
+        return true;
       } else {
-        console.log('Endereço não encontrado.');
-        setShowRedMarker(false); // Não mostra o marcador vermelho se o endereço não for encontrado
+        console.log("Nenhum resultado encontrado em Curitiba.");
+        return false;
       }
     } catch (error) {
-      console.error('Erro ao buscar o endereço:', error);
-      setShowRedMarker(false); // Não mostra o marcador vermelho em caso de erro
+      console.error("Erro ao buscar em Curitiba:", error);
+      return false;
     }
   };
+  
+  // Função para buscar fora de Curitiba
+  const searchOutsideCuritiba = async (query) => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`
+      );
+  
+      const data = await response.json();
+  
+      if (data.length > 0) {
+        const outsideResults = [];
+        const seenCoordinates = new Set();
+  
+        for (const result of data) {
+          const coords = `${result.lat},${result.lon}`;
+          const isOutsideCuritiba =
+            parseFloat(result.lat) < curitibaBounds.minLat ||
+            parseFloat(result.lat) > curitibaBounds.maxLat ||
+            parseFloat(result.lon) < curitibaBounds.minLon ||
+            parseFloat(result.lon) > curitibaBounds.maxLon;
+  
+          if (isOutsideCuritiba && !seenCoordinates.has(coords)) {
+            outsideResults.push(result);
+            seenCoordinates.add(coords);
+  
+            if (outsideResults.length === 4) break; // Limita a 4 resultados fora de Curitiba
+          }
+        }
+  
+        setMarkers((prevMarkers) => [
+          ...prevMarkers,
+          ...outsideResults.map((result) => ({
+            lat: parseFloat(result.lat),
+            lon: parseFloat(result.lon),
+            displayName: result.display_name,
+            color: "black", // Marcadores pretos
+          })),
+        ]);
+  
+        return true;
+      } else {
+        console.log("Nenhum resultado encontrado fora de Curitiba.");
+        return false;
+      }
+    } catch (error) {
+      console.error("Erro ao buscar fora de Curitiba:", error);
+      return false;
+    }
+  };
+  
+  const handleSearch = async () => {
+    if (!searchText) {
+      console.log("Nenhum endereço inserido.");
+      return;
+    }
+  
+    setMarkers([]); // Reseta os marcadores
+  
+    const foundInCuritiba = await searchInCuritiba(searchText);
+  
+    // Se encontrou em Curitiba, continue a busca fora de Curitiba para adicionar os outros 4
+    if (foundInCuritiba) {
+      setShowRedMarker(true);
+      console.log("Resultados encontrados em Curitiba. Buscando fora de Curitiba...");
+      await searchOutsideCuritiba(searchText); // Adiciona os marcadores fora de Curitiba
+    } else {
+      // Se não encontrou em Curitiba, busca fora de Curitiba e ajusta o centro
+      console.log("Nenhum resultado em Curitiba. Centralizando no resultado mais próximo fora de Curitiba.");
+      const outsideSearch = await searchOutsideCuritiba(searchText);
+  
+      if (outsideSearch) {
+        setShowRedMarker(true); // Certifique-se de ativar os marcadores vermelhos
+      }
+    }
+  };
+  
 
   return (
     <View style={myStyles.container}>
@@ -267,10 +363,16 @@ export default function Accept() {
       />
     </>
   )}
+ {showRedMarker && markers.length > 0 && markers.map((marker, index) => (
+  <Marker key={index} position={[marker.lat, marker.lon]} icon={redIcon}>
+    <Popup>
+      {marker.displayName} <br />
+      Latitude: {marker.lat}, Longitude: {marker.lon}
+    </Popup>
+  </Marker>
+))}
 
-  {/* Adicionando o marcador vermelho condicionalmente */}
-  {showRedMarker && <Marker position={mapCenter} icon={redIcon} />}
-</MapContainer>
+      </MapContainer>
       </View>
       <View style={myStyles.title1}>
         <TouchableOpacity style={myStyles.button} onPress={verificarProximidade}>

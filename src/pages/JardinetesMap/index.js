@@ -158,7 +158,10 @@ export default function JardinetesMap() {
                                 zoom={14}
                                 style={{ width: '100%', height: '100%', borderRadius: 10 }}
                             >
-                                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                               <TileLayer
+  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+/>
 
                                 {jardinetes.map((jardinetes, index) => (
                                     <Marker position={[jardinetes.coordenadas[0], jardinetes.coordenadas[1]]} icon={customIcon} key={index}>

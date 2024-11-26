@@ -425,7 +425,10 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
     zoom={selectedPlaceCoordinates ? 16 : 13}
     style={{ width: '100%', height: '100%', borderRadius: (10 / 1920) * width }}
 >
-    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+<TileLayer
+  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+/>
 
     {pracasData.map((praca) => (
         <Marker

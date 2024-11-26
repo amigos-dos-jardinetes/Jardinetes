@@ -14,7 +14,7 @@ import Slider from '@mui/material/Slider';
 import { MdZoomIn, MdZoomOut } from 'react-icons/md';
 import ImageEditor from "@react-native-community/image-editor";
 import * as ImageManipulator from 'expo-image-manipulator';
-import defaultImage from '../../assets/defaultNoImage.png';
+import defaultImage from '../../assets/defaultNoImage.jpg';
 const firebaseConfig = {
   // suas configurações do Firebase
 };
@@ -42,7 +42,7 @@ export default function Form() {
   const navigation = useNavigation();
   const route = useRoute();
   const novoJardineteDocId = route.params.novoJardineteDocId;
-  const [imagem, setImagem] = useState(null);
+  const [imagem, setImagem] = useState(defaultImage);
   const [localizacao, setLocalizacao] = useState('');
   const [nome, setNome] = useState('');
   const [area, setArea] = useState('');
@@ -64,6 +64,7 @@ export default function Form() {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [user, setUser] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
+  
   const [zoom, setZoom] = useState(1);
   const [showCropper, setShowCropper] = useState(false);
   const myStyles = styles();

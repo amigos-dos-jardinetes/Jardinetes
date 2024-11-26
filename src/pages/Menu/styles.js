@@ -491,7 +491,7 @@ popupButtonContainer: {
             backgroundColor: '#166034',
             position: 'absolute',
             bottom: 0,
-            top: width * 0.498,
+            top: ((1080 / 1080 ) * height),
             right: 0,
             width: '100%',
     
