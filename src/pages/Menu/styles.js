@@ -549,7 +549,26 @@ popupButtonContainer: {
         marginBottom: (10 / 1920) * width,
     },
     
+    authorizedButton: {
+        backgroundColor: "#4CAF50",
+        padding: width * 0.00625,
+        borderRadius: width * 0.00260416666666666666666666666667,
+        marginTop: width * 0.01041666666666666666666666666667,
+        alignItems: 'center',
+    },
 
+    authorizedButtonText: {
+        color: "#fff",
+        fontWeight: "bold",
+        fontSize: (16 / 1920 * width),
+    },
+    textButton: {
+        backgroundColor: '#FFF',
+        padding: width * 0.00625,
+        borderRadius: width * 0.00260416666666666666666666666667,
+        marginTop: width * 0.01041666666666666666666666666667,
+        alignItems: 'center',
 
+    },
 });
 };

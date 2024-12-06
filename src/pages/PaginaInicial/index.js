@@ -118,7 +118,7 @@ export default function PaginaInicial() {
 </View>
 <View style={myStyles.column3}>
     <Image source={require('../../assets/bemInicIcon.png')}  style={myStyles.bemInicIcon} />
-    <Text style={myStyles.valoresText3}>Bem estar</Text>
+    <Text style={myStyles.valoresText3}>Bem-estar</Text>
     <Image source={require('../../assets/educaInicIcon.png')}  style={myStyles.educaInicIcon} />
     <Text style={myStyles.valoresText4}>Educação</Text>
 </View>
@@ -155,7 +155,7 @@ export default function PaginaInicial() {
 <Image source={require('../../assets/curiosidadesTitle.png')}  style={myStyles.curiosidadestitle} />
 <View style={myStyles.curioText}>
 <Text style={myStyles.curiosidades}>1. Sou defensora das áreas verdes e estou sempre dedicada em preservar e proteger a biodiversidade.</Text>
-<Text style={myStyles.curiosidades}>2. Sou especialista em reciclagem e reutilização de materiais, promovo práticas sustentáveis de consumo e de redução de resíduos.</Text>
+<Text style={myStyles.curiosidades}>2. Sou especialista em reciclagem e reutilização de materiais, promovo práticas de consumo sustentável e de redução de resíduos.</Text>
 <Text style={myStyles.curiosidades}>3. Estou sempre pronta para oferecer orientação e inspiração para aqueles que desejam fazer a diferença no mundo.</Text>
 <Text style={myStyles.curiosidades}>4. Tenho compromisso com a preservação ambiental e me empenho para garantir um futuro sustentável para as próximas gerações.</Text>
 <Text style={myStyles.curiosidades}>5. Adoro ser fonte de inspirações para ações positivas, pois cada pequena ação pode fazer uma grande diferença na proteção do planeta.</Text>

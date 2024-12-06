@@ -27,6 +27,7 @@ import Form2 from '../pages/Form2'
 import Inventory2 from '../pages/inventory2';
 import Tree2 from '../pages/Tree2';
 import Impact2 from '../pages/Impact2';
+import Admin from '../pages/admin';
 
 export default function AppRoutes() {
   return (
@@ -59,6 +60,7 @@ export default function AppRoutes() {
         <Route path="/inventory2" element={<Inventory2 />} />
         <Route path="/tree2" element={<Tree2 />} />
         <Route path="/impact2" element={<Impact2 />} />
+        <Route path="/Admin" element={<Admin />} />
       </Routes>
     </Router>
   );

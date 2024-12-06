@@ -102,7 +102,13 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
         </div>
     );
 
+    const authorizedEmails = [
+        "eduardo@gmail.com",
+        "simonecrocetti@professores.utfpr.edu.br",
 
+    ];
+    
+    const isAuthorized = authorizedEmails.includes(email);
 
     const [request, response, promptAsync] = Google.useAuthRequest({
         iosClientId: '<IOS_CLIENT_ID>',
@@ -259,14 +265,21 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
         <View style={myStyles.container}>
 
             <View style={myStyles.backcontainer}>
+
+        
                 <ImageBackground source={wallpaper ? { uri: wallpaper } : require('../../assets/default_background.png')} style={myStyles.container}>
                     <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
                     <Text style={myStyles.title}>Bem-vindo, {userName}</Text>
 
+
                     <TouchableOpacity style={myStyles.textButtonConfig} onPress={() => navigation.navigate('Config')}>
                         <FontAwesomeIcon icon={faCog} color="black" size={(24 / 1920) * width} />
                     </TouchableOpacity>
-                    {/* Substituindo o botão de fechar por um texto "X" */}
+                 
+
+              
+
+
                     <TouchableOpacity style={myStyles.logoutButton} onPress={openSairModal}>
                         <Text style={myStyles.logoutButtonText}>X</Text>
                     </TouchableOpacity>
@@ -304,6 +317,15 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
                             <Text style={myStyles.textInfo}>Suporte</Text>
                         </TouchableOpacity>
 
+                        {isAuthorized && (
+                    <TouchableOpacity 
+                        style={myStyles.authorizedButton} 
+                        onPress={() => navigation.navigate('Admin')}
+                    >
+                        <Text style={myStyles.authorizedButtonText}>Página de Administrador</Text>
+                    </TouchableOpacity>
+                )}
+                
                     </View>
                 </ImageBackground>
             </View>
