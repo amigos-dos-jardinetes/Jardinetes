@@ -8,11 +8,11 @@ export default function Contato() {
   const scrollViewRef = useRef(null);
   const myStyles = styles();
   const openExternalLink = () => {
-    const externalLink = 'https://www.instagram.com/amigosdosjardinetes.ct/'; // Substitua com o link desejado
+  const externalLink = 'https://www.instagram.com/amigosdosjardinetes.ct/';
 
     Linking.openURL(externalLink).catch((err) => console.error('Error opening link:', err));
   };
-
+//Função para abrir o email
   const openEmailComposer = () => {
     const email = 'jardinetes-ct@utfpr.edu.br';
     const subject = 'Novas Informações!!!';
@@ -22,14 +22,14 @@ export default function Contato() {
     Linking.openURL(mailtoUrl).catch((err) => console.error('Error opening email:', err));
   };
 
-
+//Função para redirecionar ao link
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
 
   return (
     <ScrollView
-      horizontal  // Enable horizontal scrolling
+      horizontal
     >
       <ScrollView
         contentContainerStyle={myStyles.scrollViewContent}

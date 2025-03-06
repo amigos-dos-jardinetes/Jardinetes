@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, TouchableOpacity, Text, Image, Linking, ActivityIndicator, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Importa o CSS necessário
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../acoesSociais/styles.js';
-import { getFirestore, collection, getDocs } from 'firebase/firestore'; // Importar funções do Firebase
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 export default function acoesSociais() {
 
@@ -18,19 +18,20 @@ export default function acoesSociais() {
   const myStyles = styles();
   const { width, height } = useWindowDimensions(); 
   
+//Função para redirecionar ao link, ela o recebe como parâmetro na parte do front
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
-
+//Busca as informações de todos os Jardinetes registrados
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const db = getFirestore(); // Inicializa o Firestore
+        const db = getFirestore(); 
         const jardinetesCollection = collection(db, 'jardinetes');
         const jardinetesSnapshot = await getDocs(jardinetesCollection);
         const data = jardinetesSnapshot.docs.map(doc => doc.data());
   
-        // Define o estado com todos os jardinetes
+
         setJardinetes(data);
         setLoading(false);
       } catch (error) {
@@ -41,14 +42,14 @@ export default function acoesSociais() {
   
     fetchData();
   }, []);
-
+//Função para renderizar o carrossel com os Jardinetes
   const renderCarouselItem = (item) => (
     <div key={item.nome} style={myStyles.carouselItem}>
       <img src={item.jardinetePhoto} alt={item.nome} style={myStyles.carouselImage} />
       <p style={myStyles.carouselText}>{item.nome}</p>
     </div>
   );
-
+//Espera o loading para retornar visto que pode demorar a processar todos os Jardinetes e acabar não retornando nada sem o tempo de espera
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -149,7 +150,7 @@ export default function acoesSociais() {
     renderIndicator={(onClickHandler, isSelected, index, label) => {
       const indicatorStyle = {
         position: 'relative',
-        bottom: width * 0.0104166666666667,  // Ajusta essa propriedade para mover para cima
+        bottom: width * 0.0104166666666667,
         transform: 'translateX(-50%)',
         display: 'inline-block',
         marginRight: (8 / 1920) * width,

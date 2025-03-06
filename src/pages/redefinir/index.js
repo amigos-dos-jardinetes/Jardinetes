@@ -32,26 +32,26 @@ const auth = getAuth(app);
 
 export default function Redefinir() {
   const [email, setEmail] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // Estado para armazenar a mensagem de erro
+  const [errorMessage, setErrorMessage] = useState(''); 
   const navigation = useNavigation();
   const myStyles = styles();
   const { width, height } = useWindowDimensions(); 
   
   const handlePasswordReset = async () => {
-    setErrorMessage(''); // Limpa qualquer mensagem de erro anterior
-
+    setErrorMessage('');
+//Erro caso um email não tenha sido inserido
     if (!email) {
       setErrorMessage('Por favor, insira um e-mail.');
       return;
     }
-
+//Função de reset de senha do Firebase
     try {
       await sendPasswordResetEmail(auth, email);
       Alert.alert('Sucesso', 'Um e-mail com as instruções foi enviado para ' + email);
-      navigation.navigate('SignIn'); // Redireciona para a página de inserção do código
+      navigation.navigate('SignIn');
     } catch (error) {
-      console.log('Erro Firebase:', error.code); // Log para verificação do erro
-
+      console.log('Erro Firebase:', error.code);
+//Possíveis erros de escrita do usuário ao colocar o email cadastrado, porém o erro de email não cadastrado não está funcionando corretamente, acredito que o firebase não retorna esse código de erro
       if (error.code === 'auth/invalid-email') {
         setErrorMessage('O formato do e-mail é inválido.');
       } else if (error.code === 'auth/user-not-found') {
@@ -96,11 +96,11 @@ export default function Redefinir() {
                 value={email}
                 onChangeText={(text) => {
                   setEmail(text);
-                  setErrorMessage(''); // Limpa a mensagem de erro ao alterar o texto
+                  setErrorMessage(''); 
                 }}
               />
 
-              {/* Exibe a mensagem de erro abaixo do TextInput */}
+           
               {errorMessage ? (
                 <Text style={myStyles.errorText}>{errorMessage}</Text>
               ) : null}

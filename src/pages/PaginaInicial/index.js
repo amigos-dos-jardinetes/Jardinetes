@@ -11,14 +11,16 @@ export default function PaginaInicial() {
   const myStyles = styles();
   const { width, height } = useWindowDimensions(); 
 
+//Redirecionar para o link
   const handlePress = () => {
-    Linking.openURL('https://www.instagram.com/amigosdosjardinetes.ct/'); // Substitua pelo link desejado
+    Linking.openURL('https://www.instagram.com/amigosdosjardinetes.ct/');
   };
 
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
 
+//Scrollar para cima ao clicar
   const scrollToTop = () => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({

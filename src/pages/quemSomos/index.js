@@ -10,7 +10,8 @@ export default function quemSomos() {
   const scrollViewRef = useRef(null);
   const myStyles = styles();
   const { width, height } = useWindowDimensions(); 
-
+  
+//Função para redirecionar ao link
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };

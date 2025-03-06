@@ -12,7 +12,7 @@ import * as Google from 'expo-auth-session/providers/google';
 
 
 
-
+//Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
   authDomain: "amigosdosjardinetes.firebaseapp.com",
@@ -45,22 +45,23 @@ export default function SignIn() {
     redirectUri: "https://auth.expo.io/@jardinetes/Amigos_dos_Jardinetes/start"
   });
 
+//Função para Login e navegação até a página de Profile
   const handleLoginPress = async () => {
     try {
       setError(null);
       await signInWithEmailAndPassword(auth, email, password);
-      // Login successful
+
       console.log('Login successful');
       navigation.navigate('Menu');
     } catch (error) {
-      // Handle login error and update the error state
+
       console.error('Login error:', error);
       setError('Credenciais inválidas');
     }
   };
 
   const [userInfo, setUserInfo] = useState(false);
-
+//Verifica se o usuário já está logado para redirecionar ao Menu
   useEffect(() => {
     const checkLoggedInUser = async () => {
       try {
@@ -82,7 +83,7 @@ export default function SignIn() {
   useEffect(() => {
     checkLoggedInUser(auth, navigation);
   }, [navigation]);
-
+//Função de Login com o Google que não funcionou
   async function handleSignINWithGoogle() {
     try {
       const user = await AsyncStorage.getItem('@user');
@@ -97,7 +98,7 @@ export default function SignIn() {
       }
     } catch (error) {
       console.error('Error during Google login:', error);
-      // Log or handle the error appropriately
+
     }
   };
 
@@ -124,7 +125,7 @@ export default function SignIn() {
       setUserInfo(user);
     } catch (error) {
       console.error('Error fetching user info from Google:', error);
-      // Log or handle the error appropriately
+
     }
   };
   const scrollViewRef = useRef(null);

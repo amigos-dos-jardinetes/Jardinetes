@@ -259,11 +259,11 @@ export const styles = () => {
         borderColor: '#271C00',
       },
     
-      // Estilo para cada item do carrossel
+   
       carouselItem: {
         position: 'relative',
         width: '100%',
-        height: width * 0.234375, // Defina a altura desejada para os itens do carrossel
+        height: width * 0.234375,
         overflow: 'hidden',
         objectFit: 'cover', 
         alignSelf: 'center',
@@ -272,7 +272,7 @@ export const styles = () => {
 
       },
     
-      // Estilo para a imagem do jardinete
+
       carouselImage: {
        
         width: '100%',
@@ -282,7 +282,7 @@ export const styles = () => {
         justifyContent: 'center',
     },
     
-      // Estilo para o texto do nome do jardinete
+
       carouselText: {
         position: 'absolute',
         bottom: '20px',
@@ -295,7 +295,7 @@ export const styles = () => {
         textAlign: 'center',
       },
     
-      // Estilo para o botão de navegação do carrossel (setas)
+
       carouselButton: {
         position: 'absolute',
         top: '40%',
@@ -307,12 +307,12 @@ export const styles = () => {
         borderRadius: '50%',
       },
     
-      // Estilo para o botão de navegação do carrossel (seta esquerda)
+
       carouselButtonLeft: {
         left: 0,
       },
     
-      // Estilo para o botão de navegação do carrossel (seta direita)
+
       carouselButtonRight: {
         right: 0,
       },

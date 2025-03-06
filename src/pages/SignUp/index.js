@@ -8,6 +8,7 @@ import cadPage from '../../assets/cadPage.png';
 import { styles } from '../SignUp/styles';
 import { Ionicons } from '@expo/vector-icons'; 
 
+//Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
     authDomain: "amigosdosjardinetes.firebaseapp.com",
@@ -37,11 +38,12 @@ export default function SignUp() {
     const myStyles = styles();
     const { width, height } = useWindowDimensions(); 
     
+//Verifica se é um email
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     };
-
+//IFs para verificar as informações e validar o registro de um novo usuário
     const handleRegister = async () => {
         setEmailError('');
         setPasswordError('');
@@ -75,7 +77,7 @@ export default function SignUp() {
                 city
             });
             Alert.alert("Sucesso", "Usuário registrado com sucesso!");
-            navigation.navigate('Menu'); // Navegue para a tela de login ou qualquer outra tela após o registro
+            navigation.navigate('Menu');
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
                 setEmailError("Este email já está cadastrado.");

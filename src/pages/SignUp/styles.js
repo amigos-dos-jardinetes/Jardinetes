@@ -114,14 +114,14 @@ export const styles = () => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Cor de fundo semi-transparente
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     },
     termsModalContent: {
-        backgroundColor: '#fff', // Cor de fundo do conteúdo do modal
+        backgroundColor: '#fff', 
         borderRadius: (10 / 1920) * width,
         padding: (20 / 1920) * width,
-        width: '80%', // Largura do conteúdo do modal
-        maxHeight: '80%', // Altura máxima do conteúdo do modal
+        width: '80%', 
+        maxHeight: '80%', 
     },
     termsModalText: {
         fontSize: (16 / 1920) * width,
@@ -129,14 +129,14 @@ export const styles = () => {
         marginBottom: (20 / 1920) * width, 
     },
     agreeButton: {
-        color: 'blue', // Cor do texto do botão Concordo
+        color: 'blue', 
         textAlign: 'center',
         textDecorationLine: 'underline',
         marginBottom: (10 / 1920) * width,
         fontSize: (16 / 1920) * width,
     },
     disagreeButton: {
-        color: 'red', // Cor do texto do botão Não concordo
+        color: 'red', 
         textAlign: 'center',
         textDecorationLine: 'underline',
         fontSize: (16 / 1920) * width,
