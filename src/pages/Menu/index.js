@@ -17,7 +17,7 @@ import 'leaflet/dist/leaflet.css';
 import markerImage from '../../assets/marker.png';
 import L from 'leaflet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faCog } from '@fortawesome/free-solid-svg-icons'; // Importe o ícone de engrenagem aqui
+import { faChevronLeft, faChevronRight, faCog } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default function Menu() {
@@ -48,11 +48,10 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
     const openSairModal = () => {
         setModalVisible(true);
       };
-
+    //Marcadores posição do mapa
     const markers = [
         { position: [-25.43925924548977, -49.268820908320194], name: 'Local 1', image: 'URL 1' },
         { position: [/* ... */], name: 'Local 2', image: 'URL 2' },
-        // Adicione mais marcadores conforme necessário
     ];
 
     {
@@ -65,33 +64,33 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
                     click: () => setSelectedMarker(marker),
                 }}
             >
-                {/* ... conteúdo do Popup */}
+                
             </Marker>
         ))
     }
+    //Redireciona ao link
     const openLink = (url) => {
         Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
       };
 
     WebBrowser.maybeCompleteAuthSession();
-
+    //Antiga função de testes do carrossel
     const carouselData = [
         { image: 'https://wallpapers.com/images/hd/cherry-blossoms-anime-scenery-8xz0tezp5w5goyle.jpg' },
         { image: 'https://www.shutterstock.com/image-vector/enchanting-anime-landscape-mistcovered-mountain-600nw-2301778699.jpg' },
         { image: 'https://www.melhoresdestinos.com.br/wp-content/uploads/2019/02/passagens-aereas-curitiba-capa2019-02.jpg' },
-        // Adicione mais objetos conforme necessário
     ];
 
     const [carouselIndex, setCarouselIndex] = useState(0);
-
+    //Avança no carrossel
     const handleNextClick = () => {
         setCarouselIndex((prevIndex) => (prevIndex + 1) % carouselData.length);
     };
-
+    //Volta no carrossel
     const handlePrevClick = () => {
         setCarouselIndex((prevIndex) => (prevIndex - 1 + carouselData.length) % carouselData.length);
     };
-
+    //Função de renderização do carrossel
     const renderCarouselItem = (item, index) => (
         <div key={index} style={myStyles.carouselItem1}>
             <img
@@ -101,7 +100,7 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
             />
         </div>
     );
-
+    //Emails autorizados a receber a função de administrador
     const authorizedEmails = [
         "eduardo@gmail.com",
         "simonecrocetti@professores.utfpr.edu.br",
@@ -109,7 +108,7 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
     ];
     
     const isAuthorized = authorizedEmails.includes(email);
-
+    //Configução de autenticação
     const [request, response, promptAsync] = Google.useAuthRequest({
         iosClientId: '<IOS_CLIENT_ID>',
         androidClientId: '381072997535-926po31tefpm6knqfml8si4ki83hb9rj.apps.googleusercontent.com',
@@ -121,7 +120,7 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
     });
 
     const [userInfo, setUserInfo] = useState(false);
-
+    //Antiga tentativa das diferenças da página de profile a partir do login com o google
     async function handleSignINWithGoogle() {
         try {
             const user = await AsyncStorage.getItem('@user');
@@ -150,10 +149,11 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
         handleSignINWithGoogle();
     }, [response]);
 
+    //Busca as informações do usuário
     useEffect(() => {
         const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
-        // Ensure that unsubscribe is called when the component is unmounted
+        
         return () => {
             if (unsubscribe && typeof unsubscribe === 'function') {
                 unsubscribe();
@@ -161,16 +161,17 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
         };
     }, []);
 
+    //Ícone local
     const customIcon = new L.Icon({
         iconUrl: markerImage,
-        iconSize: [32, 32], // Defina o tamanho do ícone conforme necessário
-        iconAnchor: [16, 16], // Defina o ponto de ancoragem do ícone
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
     });
 
 
 
 
-
+    //Antiga função de praças seguidas que foi modificada para buscar os jardinetes do usuário
     useEffect(() => {
         const fetchPracasSeguidas = async () => {
             try {
@@ -194,7 +195,7 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
     }, []);
 
     const [pracasData, setPracasData] = useState([]);
-
+    //Busca os dados dos Jardinetes seguidos pelo usuário
     useEffect(() => {
         const fetchPracasData = async () => {
             try {
@@ -219,7 +220,7 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
 
         fetchPracasData();
     }, [pracasSeguidas]);
-
+    //Dados passados para o carrossel renderizar
     const carouselData1 = pracasData.map(praca => ({
         id: praca.id,
         nome: praca.nome,
@@ -239,7 +240,6 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
                 setSelectedPlaceCoordinates(item.coordenadas);
                 setMapLatitude(latitude);
                 setMapLongitude(longitude);
-                // Atualize a chave para forçar a recriação do MapContainer
                 setMapKey((prevKey) => prevKey + 1);
             }}
         >
@@ -247,8 +247,8 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
                 src={item.images}
                 alt={`Image ${item.id}`}
                 style={{
-                    width: '100%',  // Define a largura da imagem
-                    height: width * 0.15625, // Define a altura da imagem
+                    width: '100%', 
+                    height: width * 0.15625,
                     objectFit: 'cover',
                     overflow: 'hidden'
                   
@@ -294,7 +294,7 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
                         ) : (
                             <Image
                             style={myStyles.logoImage}
-                            source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+                            source={require('../../assets/defaultImage.png')}
                         />
                         )}
                      
@@ -404,7 +404,7 @@ const currentLongitude = MapLongitude !== null ? MapLongitude : initialLongitude
                     renderIndicator={(onClickHandler, isSelected, index, label) => {
                         const indicatorStyle = {
                           position: 'relative',
-                          bottom: width * 0.004,  // Ajusta essa propriedade para mover para cima
+                          bottom: width * 0.004,
                           transform: 'translateX(-50%)',
                           display: 'inline-block',
                           marginRight: (8 / 1920) * width,

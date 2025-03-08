@@ -19,21 +19,21 @@ import MoreInfo2 from '../moreInfo2';
 
 
 
-
+//Remove os acentos
 const normalize = (text) => {
     return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 };
-
+//Função para substituição de imagem
 const SelectedResultCard = ({ id, name, treeUrl, onRemoveResult, onSelectImage, firebaseDocId }) => {
-    const [docId, setDocId] = useState(firebaseDocId); // Estado para armazenar o ID do documento Firebase
+    const [docId, setDocId] = useState(firebaseDocId);
 
     const handleSelectImage = () => {
-        onSelectImage(id); // Passa o ID para a função onSelectImage
+        onSelectImage(id);
     };
 
     const myStyles = styles();
     const { width, height } = useWindowDimensions(); 
-    
+    //Renderização condicional
     return (
         <View style={myStyles.selectedResultCard}>
         <View style={myStyles.textContainer}>
@@ -51,7 +51,7 @@ const SelectedResultCard = ({ id, name, treeUrl, onRemoveResult, onSelectImage, 
                         width: '100%', 
                         height: '100%', 
                         resizeMode: 'cover', 
-                        borderRadius: 5, // Define o arredondamento nas laterais da imagem
+                        borderRadius: 5,
                     }} 
                 />
             ) : (
@@ -101,7 +101,7 @@ export default function Tree2() {
     const myStyles = styles();
     const { width, height } = useWindowDimensions(); 
 
-
+     //Remove a árvore do Firebase, do Jardinete e limpa os resultados
     const toggleNotSendingTrees = async () => {
         clearSearch();
         try {
@@ -109,11 +109,11 @@ export default function Tree2() {
                 await deleteDoc(doc(collection(firestore, 'tree'), result.docId));
                 console.log("Documento removido com sucesso:", result.docId);
 
-                // Remova a árvore do array do jardineiro
+                //Remove a árvore do array do jardinete
                 await removeTreeFromJardinete(result.docId);
             }
 
-            // Limpar os resultados selecionados
+            //Limpa os resultados selecionados
             setSelectedResults([]);
 
             setNotSendingTrees(prevState => !prevState);
@@ -126,7 +126,7 @@ export default function Tree2() {
     useEffect(() => {
         loadTrees();
     }, []);
-
+    //Função para ler o txt de possíveis árvores
     const loadTrees = async () => {
         try {
             const response = await fetch(require('../../data/tree.txt'));
@@ -142,7 +142,7 @@ export default function Tree2() {
             console.error('Erro ao carregar árvores:', error);
         }
     };
-
+    //Busca os dados do usuário
     useEffect(() => {
         const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -152,7 +152,7 @@ export default function Tree2() {
             }
         };
     }, []);
-
+    //Filtra os resultados, tanto o nome comum quanto o nome científico
     const filterTrees = (text) => {
         const filtered = allTrees.filter(tree =>
             normalize(tree.name.toLowerCase()).startsWith(normalize(text.toLowerCase())) ||
@@ -166,26 +166,26 @@ export default function Tree2() {
             setShowResults(false);
         }
     };
-
+    //Limpa a caixa de pesquisa
     const clearSearch = () => {
         setSearchText('');
         filterTrees('');
     };
-
+    //Redireciona ao link
     const openLink = (link) => {
         Linking.openURL(link);
     };
-
+    //Adiciona uma nova árvore ao Firebase e associa ao Jardinete correspondente
     const handleResultPress = async (name) => {
         try {
-            // Adicionar a árvore ao Firestore
+            //Adiciona a árvore ao Firestore
             const docRef = await addDoc(collection(firestore, 'tree'), {
                 nome: name,
                 treeUrl: ''
             });
             console.log("Document written with ID: ", docRef.id);
 
-            // Adicionar a árvore ao array do jardinete correspondente
+            //Adiciona a árvore ao array do jardinete correspondente
             await updateJardineteTreeArray(docRef.id);
 
             const id = selectedResultsIdCounter + 1;
@@ -196,7 +196,7 @@ export default function Tree2() {
             console.error("Error adding document: ", e);
         }
     };
-
+    //Adiciona o ID de uma nova árvore ao array do documento do Jardinete
     const updateJardineteTreeArray = async (treeDocId) => {
         try {
             const jardineteDocRef = doc(collection(firestore, 'jardinetes'), novoJardineteDocId);
@@ -208,12 +208,12 @@ export default function Tree2() {
             }
 
             const jardineteData = jardineteDocSnapshot.data();
-            const treesArray = jardineteData.trees || []; // Se o array de árvores não existir, cria um novo array vazio
+            const treesArray = jardineteData.trees || []; //Se o array de árvores não existir, cria um novo array vazio
 
-            // Adiciona o ID da nova árvore ao array
+            //Adiciona o ID da nova árvore ao array
             treesArray.push(treeDocId);
 
-            // Atualiza o array de árvores no documento do jardinete
+            //Atualiza o array de árvores no documento do Jardinete
             await updateDoc(jardineteDocRef, {
                 trees: treesArray
             });
@@ -224,9 +224,9 @@ export default function Tree2() {
         }
     };
 
-
+    //Remove o documento da árvore do Firebase e o ID da árvore do Jardinete
     const handleRemoveResult = async (id) => {
-        // Encontrar o documento na lista de resultados selecionados pelo ID
+        //Encontra o documento na lista de resultados selecionados pelo ID
         const selectedResult = selectedResults.find(result => result.id === id);
         if (!selectedResult) {
             console.error("Resultado selecionado não encontrado para o ID:", id);
@@ -234,45 +234,45 @@ export default function Tree2() {
         }
 
         try {
-            // Remover o documento do Firebase utilizando o ID do documento
+            //Remove o documento do Firebase utilizando o ID do documento
             await deleteDoc(doc(collection(firestore, 'tree'), selectedResult.docId));
             console.log("Documento removido com sucesso!");
 
-            // Aguardar a exclusão do documento da árvore antes de remover do jardim
+            //Aguarda a exclusão do documento da árvore antes de remover do jardinete
             await removeTreeFromJardinete(selectedResult.docId);
         } catch (error) {
             console.error("Erro ao remover documento:", error);
             Alert.alert('Erro ao remover documento');
         }
 
-        // Remover o card da lista de resultados selecionados
+        //Remove o card da lista de resultados selecionados
         setSelectedResults(prev => prev.filter(result => result.id !== id));
     };
-
+    //Remove a árvore da lista trees
     const removeTreeFromJardinete = async (treeDocId) => {
         try {
             const jardineteDocRef = doc(firestore, 'jardinetes', novoJardineteDocId);
 
-            // Obtenha os dados do documento do jardineiro
+            //Obtém os dados do documento do jardinete
             const jardineteDocSnapshot = await getDoc(jardineteDocRef);
             if (!jardineteDocSnapshot.exists()) {
                 console.error("Documento do jardinete não encontrado");
                 return;
             }
 
-            // Obtenha os dados do documento do jardineiro
+            //Obtém os dados do documento do jardinete
             const jardineteData = jardineteDocSnapshot.data();
 
-            // Verifique se o campo 'trees' existe no documento do jardineiro
+            //Verifica se o campo 'trees' existe no documento do jardinete
             if (!jardineteData.trees || !Array.isArray(jardineteData.trees)) {
                 console.error("O campo 'trees' não existe ou não é um array");
                 return;
             }
 
-            // Remova o ID da árvore do array 'trees'
+            //Remove o ID da árvore do array 'trees'
             const updatedTreesArray = jardineteData.trees.filter(id => id !== treeDocId);
 
-            // Atualize o array de árvores no documento do jardineiro
+            //Atualiza o array de árvores no documento do jardinete
             await updateDoc(jardineteDocRef, {
                 trees: updatedTreesArray
             });
@@ -283,7 +283,7 @@ export default function Tree2() {
         }
     };
 
-
+  //Abre o disco do usuário para escolha da imagem
   const pickImage = async (id) => {
     let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissionResult.granted === false) {
@@ -300,12 +300,12 @@ export default function Tree2() {
     if (!result.canceled && result.assets.length > 0) {
         const imageUri = result.assets[0].uri;
         setSelectedImage(imageUri);
-        setSelectedResultId(id); // Armazena o ID do resultado selecionado
+        setSelectedResultId(id);
         setShowCropper(true);
     }
 };
 
-
+    //Envia a imagem para o Firebase, obtém a URL criada e atauliza o documento do Jardinete
     const handleSelectImage = async (imageUri, id) => {
         try {
             const storageRef = ref(storage, `trees/${Date.now()}`);
@@ -323,10 +323,10 @@ export default function Tree2() {
                 return;
             }
 
-            // Obtém o ID do documento na coleção "tree" correspondente ao resultado selecionado
+            //Obtém o ID do documento na coleção "tree" correspondente ao resultado selecionado
             const docId = selectedResult.docId;
 
-            // Atualiza o campo treeUrl no documento específico na coleção "tree"
+            //Atualiza o campo treeUrl no documento específico na coleção "tree"
             await updateDoc(doc(collection(firestore, 'tree'), docId), {
                 treeUrl: treeUrl,
             });
@@ -347,7 +347,7 @@ export default function Tree2() {
         }
     };
 
-
+    //Renderiza os itens da lista de resultados
     const renderResultItem = ({ item, index }) => (
         <TouchableOpacity onPress={() => handleResultPress(item.name)}>
             <View style={[myStyles.resultItem, { backgroundColor: index % 2 === 0 ? '#166034' : '#4C6523' }]}>
@@ -358,29 +358,29 @@ export default function Tree2() {
             </View>
         </TouchableOpacity>
     );
-
+    //Renderiza os cartões criados pelo usuário em linhas de 3 cartões e configura a renderização
     const renderSelectedResults = () => {
         const rows = [];
         let currentRow = [];
 
-        // Dividir os resultados em linhas de 3 cartões
+        //Divide os resultados em linhas de 3 cartões
         selectedResults.forEach((result, index) => {
             currentRow.push(
                 <SelectedResultCard
                     key={result.id}
                     id={result.id}
                     name={result.name}
-                    treeUrl={result.treeUrl} // Passa a propriedade treeUrl
+                    treeUrl={result.treeUrl}
                     onRemoveResult={() => handleRemoveResult(result.id)}
                     onSelectImage={pickImage}
                     style={[
                         myStyles.selectedResultCard,
-                        { marginRight: 10 } // Define a margem à direita para os cartões
+                        { marginRight: 10 }
                     ]}
                 />
             );
 
-            // Se a linha estiver cheia (3 cartões) ou for a última linha, adicione à lista de linhas e reinicie a linha atual
+            //Se a linha estiver cheia (3 cartões) ou for a última linha, adiciona à lista de linhas e reinicia a linha atual
             if (currentRow.length === 3 || index === selectedResults.length - 1) {
                 rows.push(currentRow);
                 currentRow = [];
@@ -399,11 +399,12 @@ export default function Tree2() {
             </View>
         );
     };
+    //Recebe a imagem cortada
     const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
         setCroppedAreaPixels(croppedAreaPixels);
     }, []);
 
-
+//Função para o crop da imagem
  const cropImage = async () => {
     try {
         if (selectedImage && croppedAreaPixels && selectedResultId) {
@@ -431,7 +432,7 @@ export default function Tree2() {
 
             console.log('Cropped Image URL:', croppedImageUrl);
 
-            // Atualiza a imagem no Firebase
+            //Atualiza a imagem no Firebase
             const selectedResult = selectedResults.find(result => result.id === selectedResultId);
             if (!selectedResult) {
                 console.error("Não foi possível encontrar o resultado selecionado com o ID:", selectedResultId);
@@ -489,7 +490,7 @@ export default function Tree2() {
                     ) : (
                         <Image
                         style={myStyles.logoImage}
-                        source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+                        source={require('../../assets/defaultImage.png')}
                     />
                     )}
                 </View>
@@ -540,7 +541,7 @@ export default function Tree2() {
                 <View style={myStyles.searchBarContainer}>
                     <Ionicons name="search" size={width * 0.01041666666666666666666666666667} color="#ffffff" style={myStyles.searchIcon} />
                     <TextInput
-                        style={[myStyles.searchBar, { paddingLeft: width * 0.025 }, notSendingTrees ? myStyles.disabledTextInput : null]} // Adicione o estilo myStyles.disabledTextInput se a checkbox estiver marcada
+                        style={[myStyles.searchBar, { paddingLeft: width * 0.025 }, notSendingTrees ? myStyles.disabledTextInput : null]}
                         placeholder="Pesquisar Árvores..."
                         placeholderTextColor="#ffffff"
                         value={searchText}
@@ -548,7 +549,7 @@ export default function Tree2() {
                             setSearchText(text);
                             filterTrees(text);
                         }}
-                        editable={!notSendingTrees} // Desabilitar o TextInput se a checkbox estiver marcada
+                        editable={!notSendingTrees}
                     />
                     {searchText.length > 0 && (
                         <TouchableOpacity onPress={clearSearch} style={myStyles.clearButton}>
@@ -664,15 +665,15 @@ export default function Tree2() {
         aria-labelledby="zoom-slider"
         style={myStyles.slider}
         sx={{
-          color: '#166034', // Cor principal do slider (trilha mínima e polegar)
+          color: '#166034',
           '& .MuiSlider-thumb': {
-            backgroundColor: '#166034', // Cor do polegar
+            backgroundColor: '#166034',
           },
           '& .MuiSlider-track': {
-            backgroundColor: '68A180', // Cor da trilha ativa (mínima)
+            backgroundColor: '68A180',
           },
           '& .MuiSlider-rail': {
-            backgroundColor: '#d3d3d3', // Cor da trilha inativa (máxima)
+            backgroundColor: '#d3d3d3',
           },
         }}
       />
@@ -686,7 +687,7 @@ export default function Tree2() {
       </View>
     </View>
 
-    {/* Área de corte da imagem */}
+  
     <View style={myStyles.cropperWrapper}>
       <Cropper
         image={selectedImage}

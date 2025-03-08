@@ -33,7 +33,7 @@ export default function Inventory() {
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
-
+  //Busca os dados do usuário
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -43,7 +43,7 @@ export default function Inventory() {
       }
     };
   }, []);
-
+  //Todas as funções send envam o respectivo dado para o Firebase
   const sendDataToFirebase3 = async (banco) => {
     try {
       const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
@@ -53,7 +53,7 @@ export default function Inventory() {
       console.error('Erro ao enviar dado para o Firestore:', error);
     }
   };
-
+  //Envia para todos os dados do inventário "não" ao iniciar a página
   useEffect(() => {
     const sendInitialDataToFirebase = async () => {
       try {
@@ -248,7 +248,7 @@ export default function Inventory() {
   const [isClicked13, setIsClicked13] = useState(false);
   const [isClicked14, setIsClicked14] = useState(false);
 
-
+//As funções handlePress atualizam em tempo real o estado do botão para enviar o dado para o Firebase a partir das funções send
   const handlePress3 = () => {
     const newBanco = isClicked3 ? 'não' : 'sim';
     setIsClicked3(!isClicked3);
@@ -332,6 +332,7 @@ export default function Inventory() {
     setIsClicked10(!isClicked10);
     sendDataToFirebase10(newAcessibilidade);
   };
+  //As funções handlemouseenter e handlemouseleave atualizam o estado do botão confome os movimentos e interações do usuário ao utilizar o mouse
   const handleMouseEnter1 = () => {
     setIsMouseOver1(true);
   };
@@ -531,7 +532,7 @@ export default function Inventory() {
               ) : (
                 <Image
                 style={myStyles.logoImage}
-                source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+                source={require('../../assets/defaultImage.png')}
             />
               )}
             </View>

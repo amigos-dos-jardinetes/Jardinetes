@@ -163,7 +163,7 @@ export const styles = () => {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginRight: width * 0.0104166666666667, // Adiciona margem à direita
+        marginRight: width * 0.0104166666666667,
       },
 
       logoImage: {
@@ -219,13 +219,13 @@ export const styles = () => {
 
     searchContainer: {
       position: 'absolute',
-      top: width * 0.2, // Ajuste a posição do container de busca
+      top: width * 0.2,
       width: width * 0.9,
       flexDirection: 'row',
       alignItems: 'center',
       backgroundColor: '#FFFEF4',
       borderRadius: width * 0.005,
-      zIndex: 3, // Certifique-se de que a barra de busca fique acima do mapa
+      zIndex: 3,
 
     },
     

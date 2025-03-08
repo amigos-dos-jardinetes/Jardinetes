@@ -50,7 +50,7 @@ container3:{
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginRight: width * 0.0104166666666667, // Adiciona margem à direita
+    marginRight: width * 0.0104166666666667,
   },
 
   
@@ -305,17 +305,17 @@ modalContainer: {
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semi-transparente para destacar o modal
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
 },
 
 modalContent: {
-  width: '80%', // Define a largura do modal como 80% da tela
-  height: '40%', // Define a altura do modal como 40% da tela
+  width: '80%',
+  height: '40%',
   backgroundColor: 'white',
-  borderRadius: width * 0.0052083333333333, // Borda arredondada
-  padding: width * 0.0104166666666667, // Espaçamento interno
-  justifyContent: 'center', // Centraliza o conteúdo verticalmente
-  alignItems: 'center', // Centraliza o conteúdo horizontalmente
+  borderRadius: width * 0.0052083333333333,
+  padding: width * 0.0104166666666667,
+  justifyContent: 'center',
+  alignItems: 'center',
 },
 modalText: {
   fontSize: width * 0.009375,

@@ -49,7 +49,7 @@ export const styles = () => {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginRight: width * 0.0104166666666667, // Adiciona margem à direita
+        marginRight: width * 0.0104166666666667,
       },
 
       perfil: {

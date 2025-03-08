@@ -12,6 +12,7 @@ import { getStorage } from 'firebase/storage';
 import { getDistance } from 'geolib';
 import { Ionicons } from '@expo/vector-icons';
 
+//Configuração do firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
   authDomain: "amigosdosjardinetes.firebaseapp.com",
@@ -21,18 +22,19 @@ const firebaseConfig = {
   appId: "1:381072997535:web:157abb3a076162a90836aa"
 };
 
+//Icon local mapa
 const customIcon = new L.Icon({
   iconUrl: markerImage,
   iconSize: [32, 32],
   iconAnchor: [16, 16],
 });
-
+//Icon vermelho de busca
 const redIcon = new L.Icon({
   iconUrl: require('../../assets/redMarker.png'), // Substitua pelo caminho do seu ícone vermelho
   iconSize: [32, 32],
   iconAnchor: [16, 32],
 });
-
+//Função para pegar o ponto clicado e posteriormente colocar o marcador
 function MapWithClick({ onClick }) {
   useMapEvents({
     click(e) {
@@ -41,12 +43,12 @@ function MapWithClick({ onClick }) {
   });
   return null;
 }
-
+//Centraliza o mapa
 function MapComponent({ center }) {
   const map = useMap();
 
   useEffect(() => {
-    map.setView(center, 14); // 14 é o nível de zoom; ajuste conforme necessário
+    map.setView(center, 14);
   }, [center]);
 
   return null;
@@ -76,10 +78,11 @@ export default function Accept() {
   const [markers, setMarkers] = useState([]);
   const [markerPosition, setMarkerPosition] = useState(null); 
   
+//Função para redirecionar ao link
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
-
+//Busca de informações dos Jardinetes
   useEffect(() => {
     const fetchJardinetes = async () => {
       const jardinetesCollection = collection(firestore, 'jardinetes');
@@ -92,7 +95,7 @@ export default function Accept() {
 
     fetchJardinetes();
   }, []);
-
+//Busca de informações do Usuário
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -103,6 +106,7 @@ export default function Accept() {
     };
   }, []);
 
+//Inicia a criação do Jardinete e envia ao banco de dados
   const iniciarEnvioJardinete = async () => {
     try {
       const user = auth.currentUser;
@@ -127,14 +131,14 @@ export default function Accept() {
       console.error('Erro ao iniciar o envio do jardinete:', error);
     }
   };
-
+//Verifica se nenhum local foi selecionado para a criação de um Jardinete
   const verificarProximidade = () => {
     if (!tempMarkerPosition) {
       setVerificationMessage('Nenhum local selecionado. Por favor, escolha um local no mapa.');
       setIsVerificationSuccessful(false);
       return;
     }
-
+//Verifica se o local selecionado está dentro da área de outro Jardinete já criado
     const isTooClose = jardinetes.some(jardinete => {
       const distance = getDistance(
         { latitude: tempMarkerPosition.lat, longitude: tempMarkerPosition.lng },
@@ -151,11 +155,11 @@ export default function Accept() {
       setIsVerificationSuccessful(true);
     }
   };
-
+//Redireciona a página de Profile
   const voltarParaMenu = () => {
     navigation.navigate('Menu');
   };
-
+//Região de Curitiba
   const curitibaBounds = {
     minLat: -25.65,
     maxLat: -25.35,
@@ -185,7 +189,7 @@ export default function Accept() {
             lat: parseFloat(curitibaResult.lat),
             lon: parseFloat(curitibaResult.lon),
             displayName: curitibaResult.display_name,
-            color: "red", // Marcador vermelho
+            color: "red",
           },
         ]);
   
@@ -235,7 +239,7 @@ export default function Accept() {
             lat: parseFloat(result.lat),
             lon: parseFloat(result.lon),
             displayName: result.display_name,
-            color: "black", // Marcadores pretos
+            color: "black",
           })),
         ]);
   
@@ -256,11 +260,11 @@ export default function Accept() {
       return;
     }
   
-    setMarkers([]); // Reseta os marcadores
+    setMarkers([]);
   
     const foundInCuritiba = await searchInCuritiba(searchText);
   
-    // Se encontrou em Curitiba, continue a busca fora de Curitiba para adicionar os outros 4
+    // Se encontrou em Curitiba, continua a busca fora de Curitiba para adicionar os outros 4
     if (foundInCuritiba) {
       setShowRedMarker(true);
       console.log("Resultados encontrados em Curitiba. Buscando fora de Curitiba...");
@@ -271,7 +275,7 @@ export default function Accept() {
       const outsideSearch = await searchOutsideCuritiba(searchText);
   
       if (outsideSearch) {
-        setShowRedMarker(true); // Certifique-se de ativar os marcadores vermelhos
+        setShowRedMarker(true);
       }
     }
   };
@@ -294,7 +298,7 @@ export default function Accept() {
           ) : (
             <Image
             style={myStyles.logoImage}
-            source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+            source={require('../../assets/defaultImage.png')}
         />
           )}
         </View>

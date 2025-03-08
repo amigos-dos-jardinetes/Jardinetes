@@ -237,7 +237,7 @@ export const styles = () => {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginRight: width * 0.0104166666666667, // Adiciona margem à direita
+        marginRight: width * 0.0104166666666667,
     },
 
     checkboxContainer: {
@@ -247,9 +247,9 @@ export const styles = () => {
         alignItems: 'center',
     },
     checkboxLabel: {
-        marginLeft: width * 0.00520833333333333333333333333333, // Ajuste a margem esquerda conforme necessário
-        color: '#271C00', // Defina a cor do texto aqui
-        fontSize: width * 0.00833333333333333333333333333333, // Ajuste o tamanho da fonte conforme necessário
+        marginLeft: width * 0.00520833333333333333333333333333,
+        color: '#271C00',
+        fontSize: width * 0.00833333333333333333333333333333,
     },
 
 
@@ -257,11 +257,11 @@ export const styles = () => {
         color: '#271C00',
         fontSize: width * 0.01145833333333333333333333333333,
         fontWeight: 'bold',
-        textAlign: 'center', // Centraliza o texto horizontalmente
-        textAlignVertical: 'center', // Centraliza o texto verticalmente
+        textAlign: 'center',
+        textAlignVertical: 'center',
     },
     redSendImageButton: {
-        backgroundColor: '#FF0000', // Altere para a cor vermelha que desejar
+        backgroundColor: '#FF0000',
     },
 
     backButton: {
@@ -288,11 +288,11 @@ export const styles = () => {
         marginLeft: (10 / 1920) * width,
       },
       cropperWrapper: {
-        width: '80%', // Ajuste a largura do container do Cropper
-        height: width * 0.2083333333333333, // Defina a altura para limitar o tamanho da imagem
-        backgroundColor: '#f0f0f0', // Cor de fundo para o wrapper
-        overflow: 'hidden', // Garante que o Cropper não ultrapasse os limites
-        borderRadius: (10 / 1920) * width, // Adiciona bordas arredondadas
+        width: '80%',
+        height: width * 0.2083333333333333,
+        backgroundColor: '#f0f0f0',
+        overflow: 'hidden',
+        borderRadius: (10 / 1920) * width,
       },
       cropButton: {
         marginTop: (20 / 1920) * width,
@@ -339,7 +339,7 @@ export const styles = () => {
 
       modalContainer: {
         flex: 1,
-        backgroundColor: 'white', // Fundo do modal
+        backgroundColor: 'white',
         justifyContent: 'flex-start',
       },
 
@@ -384,7 +384,7 @@ export const styles = () => {
         bottom: 0,
       },
       navbarScroll: {
-        position: 'relative',  // Fica no final do conteúdo caso a página tenha rolagem
+        position: 'relative',
       },
 
       rowNav: {

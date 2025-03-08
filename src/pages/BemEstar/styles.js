@@ -46,7 +46,7 @@ export const styles = () => {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginRight: width * 0.0104166666666667, // Adiciona margem à direita
+        marginRight: width * 0.0104166666666667,
     },
 
     title: {
@@ -138,7 +138,7 @@ export const styles = () => {
             width: (width * 0.3932291666666667) * 0.62  * 0.75,
             height: (width * 0.184375) * 0.62  * 0.75,
             position: 'absolute',
-            transform: [{ rotate: '170deg' }, { scaleY: -1 }] // Adiciona esta linha
+            transform: [{ rotate: '170deg' }, { scaleY: -1 }]
         },
     
         petala802: {

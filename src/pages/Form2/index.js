@@ -15,14 +15,21 @@ import { MdZoomIn, MdZoomOut } from 'react-icons/md';
 import ImageEditor from "@react-native-community/image-editor";
 import * as ImageManipulator from 'expo-image-manipulator';
 import defaultImage from '../../assets/defaultNoImage.jpg';
-const firebaseConfig = {
-  // suas configurações do Firebase
-};
 
+//Configuração do firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
+  authDomain: "amigosdosjardinetes.firebaseapp.com",
+  projectId: "amigosdosjardinetes",
+  storageBucket: "amigosdosjardinetes.appspot.com",
+  messagingSenderId: "381072997535",
+  appId: "1:381072997535:web:157abb3a076162a90836aa"
+};
+//Abre o site do IPPUC
 const openIPPUCWebsite = () => {
   Linking.openURL('https://www.ippuc.org.br');
 };
-
+//Abre o site da prefeitura
 const openPrefeituraWebsite = () => {
   Linking.openURL('https://www.curitiba.pr.gov.br/conteudo/parques-e-bosques-de-curitiba/267');
 };
@@ -30,7 +37,7 @@ const openPrefeituraWebsite = () => {
 const openLink = (url) => {
   Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
 };
-
+//Inicializa o Firebase
 let firebaseApp;
 if (getApps().length === 0) {
   firebaseApp = initializeApp(firebaseConfig);
@@ -67,7 +74,7 @@ export default function Form2() {
   const [zoom, setZoom] = useState(1);
   const [showCropper, setShowCropper] = useState(false);
   const myStyles = styles();
-  
+  //Busca os dados do usuário
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -77,7 +84,7 @@ export default function Form2() {
       }
     };
   }, []);
-
+  //Busca os dados do jardinete se ele existe e atualiza os estados
   useEffect(() => {
     const loadJardineteData = async () => {
       try {
@@ -116,6 +123,7 @@ export default function Form2() {
       setShowImageError(true); // Exibe o erro caso a imagem não seja selecionada
       return;
     }
+    //Inicializa as constantes para serem enviadas ao Firebase
     try {
       const jardineteRef = doc(getFirestore(), 'jardinetes', novoJardineteDocId);
       const formData = {
@@ -135,7 +143,7 @@ export default function Form2() {
       console.error('Erro ao atualizar os dados do jardinete:', error);
     }
   };
-
+  //Abre o disco do usuário para buscar a imagem
   const selecionarImagem = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
@@ -152,20 +160,20 @@ export default function Form2() {
 
     if (!result.canceled) {
       setSelectedImage(result.uri);
-      setShowCropper(true);  // Mostra o modal de corte
+      setShowCropper(true);  //Mostra o modal de corte
     }
   };
-
+  //Atualiza o estado da imagem quando ela é recortada
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
 
-
+  //Função para cortar a imagem
   const cropImage = async () => {
     try {
       if (selectedImage && croppedAreaPixels) {
-        // Usando o ImageManipulator para cortar a imagem
+        //Usa o ImageManipulator para cortar a imagem
         const manipResult = await ImageManipulator.manipulateAsync(
           selectedImage,
           [
@@ -183,7 +191,7 @@ export default function Form2() {
 
         const { uri: croppedUri } = manipResult;
 
-        // Faça o upload da imagem cortada
+        //Faz o upload da imagem cortada
         const response = await fetch(croppedUri);
         const blob = await response.blob();
         const storageRef = ref(storage, `jardinetes/${novoJardineteDocId}/croppedImage.jpg`);
@@ -218,7 +226,7 @@ export default function Form2() {
           ) : (
             <Image
               style={myStyles.logoImage}
-              source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+              source={require('../../assets/defaultImage.png')}
             />
           )}
         </View>
@@ -232,7 +240,7 @@ export default function Form2() {
       {imagem ? (
   <TouchableOpacity onPress={selecionarImagem}>
     <Image
-      source={{ uri: imagem }}  // Exibe a imagem já existente
+      source={{ uri: imagem }}
       style={{ 
         width: (355.5555555555556 / 1920) * width, 
         height: (200 / 1920) * width, 
@@ -402,7 +410,7 @@ export default function Form2() {
       <Modal visible={showCropper} animationType="slide">
   <View style={myStyles.cropperContainer}>
     
-    {/* Slider e botões de zoom */}
+  
     <View style={myStyles.controlsContainer}>
       <Slider
         value={zoom}
@@ -413,15 +421,15 @@ export default function Form2() {
         aria-labelledby="zoom-slider"
         style={myStyles.slider}
         sx={{
-          color: '#166034', // Cor principal do slider (trilha mínima e polegar)
+          color: '#166034',
           '& .MuiSlider-thumb': {
-            backgroundColor: '#166034', // Cor do polegar
+            backgroundColor: '#166034',
           },
           '& .MuiSlider-track': {
-            backgroundColor: '68A180', // Cor da trilha ativa (mínima)
+            backgroundColor: '68A180',
           },
           '& .MuiSlider-rail': {
-            backgroundColor: '#d3d3d3', // Cor da trilha inativa (máxima)
+            backgroundColor: '#d3d3d3',
           },
         }}
       />
@@ -435,7 +443,7 @@ export default function Form2() {
       </View>
     </View>
 
-    {/* Área de corte da imagem */}
+
     <View style={myStyles.cropperWrapper}>
       <Cropper
         image={selectedImage}

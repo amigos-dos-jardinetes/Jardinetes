@@ -7,14 +7,14 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { userSearchData } from '../../../functions';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function AnaliseFinal() {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
-  const [initialLoading, setInitialLoading] = useState(true); // Novo estado para a tela de carregamento inicial
+  const [initialLoading, setInitialLoading] = useState(true);
   const [userInfo, setUserInfo] = useState(false);
-  const [documentData, setDocumentData] = useState(null); // Estado para armazenar dados do documento
+  const [documentData, setDocumentData] = useState(null);
   const auth = getAuth();
   const firestore = getFirestore();
   const storage = getStorage();
@@ -119,7 +119,7 @@ export default function AnaliseFinal() {
 
     }
 
-    // Chamar a função sempre que a largura mudar
+    // Chama a função sempre que a largura mudar
     updatePetalaStyles();
 
   }, [width, infraAverage, bemEstarAverage, segAverage, pertAverage, myStyles]);
@@ -134,8 +134,8 @@ export default function AnaliseFinal() {
 
         if (docSnap.exists()) {
           const data = docSnap.data();
-          console.log("Document data:", data); // Log completo dos dados do documento
-          setDocumentData(data); // Armazenar dados do documento no estado
+          console.log("Document data:", data);
+          setDocumentData(data);
 
           const pessoas = data.pessoas;
           const newPessoas = data.newPessoas;
@@ -165,7 +165,7 @@ export default function AnaliseFinal() {
            
           
           ) {
-            // Calcular média para infraestrutura ajustada pela quantidade de pessoas
+            // Calcula a média para infraestrutura ajustada pela quantidade de pessoas
             const infraSum = data.infraestrutura_01 + data.infraestrutura_02 + data.infraestrutura_03 + data.infraestrutura_04 + data.infraestrutura_05
             + data.newInfraestrutura_01 + data.newInfraestrutura_02 + data.newInfraestrutura_03 + data.newInfraestrutura_04 + data.newInfraestrutura_05;
             const infraAverage = (((infraSum / 5) / (pessoas + newPessoas)) * 20);
@@ -190,7 +190,7 @@ export default function AnaliseFinal() {
               setPetalaStyle(myStyles.petala1000);
             }
 
-            // Calcular média para bem-estar ajustada pela quantidade de pessoas
+            // Calcula a média para bem-estar ajustada pela quantidade de pessoas
             const bemEstarSum = data.bem_estar_01 + data.bem_estar_02 + data.bem_estar_03 + data.bem_estar_04 + data.bem_estar_05
             + data.newBem_estar_01 + data.newBem_estar_02 + data.newBem_estar_03 + data.newBem_estar_04 + data.newBem_estar_05;
             const bemEstarAverage = (((bemEstarSum / 5) / (pessoas + newPessoas)) * 20);
@@ -278,11 +278,11 @@ export default function AnaliseFinal() {
       } catch (error) {
         console.error("Error fetching document: ", error);
       } finally {
-        setLoading(false); // Finalize loading state
+        setLoading(false); //Finaliza o loading
       }
     }
 
-    // Simular um tempo de carregamento inicial de 2 segundos
+    //Tempo de carregamento inicial de 2 segundos
     setTimeout(() => {
       setInitialLoading(false);
       fetchData();
@@ -304,11 +304,11 @@ export default function AnaliseFinal() {
   }
 
   if (loading) {
-    return <Text>Loading...</Text>; // Show loading state while data is being fetched
+    return <Text>Loading...</Text>;
   }
 
   if (!documentData) {
-    return <Text>Erro ao carregar os dados.</Text>; // Handle case where data is not available
+    return <Text>Erro ao carregar os dados.</Text>;
   }
 
   return (

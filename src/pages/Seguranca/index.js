@@ -47,13 +47,14 @@ export default function Seguranca() {
   const [loading, setLoading] = useState(true);
   const [documentData, setDocumentData] = useState(null);
   const [segurancaAverages, setsegurancaAverages] = useState({});
+  //Redireciona ao link
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
-
+  //Busca os dados do usuário
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
-
+    //Busca os dados do Jardinete
     async function fetchData() {
       try {
         const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
@@ -61,11 +62,12 @@ export default function Seguranca() {
 
         if (docSnap.exists()) {
           const data = docSnap.data();
-          console.log("Document data:", data); // Log completo dos dados do documento
-          setDocumentData(data); // Armazenar dados do documento no estado
+          console.log("Document data:", data);
+          setDocumentData(data);
 
           const pessoas = data.pessoas;
           const newPessoas = data.newPessoas;
+          //As funções e comparações abaixo são para quantificar os itens de bem estar enviados a partir da página de impacto e executar a renderização condicional dos estilos dos gráficos
           if (
             (data.seguranca_01 !== undefined || data.newSeguranca_01 !== undefined) &&
             (data.seguranca_02 !== undefined || data.newSeguranca_02 !== undefined) &&
@@ -190,11 +192,11 @@ export default function Seguranca() {
       } catch (error) {
         console.error("Error fetching document: ", error);
       } finally {
-        setLoading(false); // Finalize loading state
+        setLoading(false);
       }
     }
 
-    // Simulate initial loading time
+    //Funções relacionadas ao loading inicial (Posteriormente foram retiradas, acredito que dê pra apagar)
     setTimeout(() => {
       setInitialLoading(false);
       fetchData();
@@ -216,11 +218,11 @@ export default function Seguranca() {
   }
 
   if (loading) {
-    return <Text>Loading...</Text>; // Show loading state while data is being fetched
+    return <Text>Loading...</Text>;
   }
 
   if (!documentData) {
-    return <Text>Erro ao carregar os dados.</Text>; // Handle case where data is not available
+    return <Text>Erro ao carregar os dados.</Text>;
   }
 
   return (
@@ -241,7 +243,7 @@ export default function Seguranca() {
             ) : (
               <Image
               style={myStyles.logoImage}
-              source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+              source={require('../../assets/defaultImage.png')}
           />
             )}
           </View>

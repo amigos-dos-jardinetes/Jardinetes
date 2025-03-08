@@ -284,7 +284,7 @@ export const styles = () => {
       selectedButton: {
         borderColor: '#271C00',
         borderWidth: width * 0.0041666666666667, 
-        borderRadius: '10%', // ou qualquer raio que você preferir
+        borderRadius: '10%',
       },
    
 

@@ -26,25 +26,25 @@ export default function JardinetesMap() {
     const myStyles = styles();
     const { width, height } = useWindowDimensions(); 
 
-
+    //Seleciona o Jardinete e deixa o botão "vamos lá" pronto
     const handleJardimPress = (jardim) => {
         console.log("Selected Jardim (handleJardimPress):", jardim);
         setSelectedJardim(jardim);
         setIsVamosLaClickable(true); 
     };
-
+    //Altera o estado do selectedjardim para receber o Jardinete
     const handleDetailsPress = (jardim) => {
         setSelectedJardim(jardim);
         setSelectedJardimId(jardim.id);
         setIsVamosLaClickable(true);
     };
-
+    //Função para retirar o contâiner com o nome do Jardinete ao clicar no "x"
     const handleCloseButtonClick = () => {
         setSelectedJardim(null);
         setSelectedJardimId(null);
         setIsVamosLaClickable(false);
     };
-
+    //Verifica o Jardinete selecionado e redireciona para a página de impacto
     const handleVamosLaPress = (jardim) => {
         console.log("Selected Jardim:", jardim);
         if (jardim) {
@@ -55,7 +55,7 @@ export default function JardinetesMap() {
             console.error('Nenhum jardim selecionado.');
         }
     };
-
+    //Verifica o Jardinete selecionado e redireciona para a página do gráfico
     const handleVamosLaPress1 = (jardim) => {
         console.log("Selected Jardim:", jardim);
         if (jardim) {
@@ -71,11 +71,11 @@ export default function JardinetesMap() {
         setSelectedJardim(jardim);
     };
 
-        
+    //Redireciona ao link
     const openLink = (url) => {
         Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
       };
-
+    //Busca os dados dos Jardinetes
     useEffect(() => {
         const fetchJardinetes = async () => {
             const jardinetesCollection = collection(firestore, 'jardinetes');
@@ -88,7 +88,7 @@ export default function JardinetesMap() {
     
         fetchJardinetes();
     }, []);
-
+    //Ordena os jardinetes da busca e desativa o botão se não houver texto
     useEffect(() => {
         if (searchText.trim() === '') {
             setFilteredJardinetes([]);
@@ -99,7 +99,7 @@ export default function JardinetesMap() {
         const sortedResults = sortResults(searchText.toLowerCase(), jardinetes);
         setFilteredJardinetes(sortedResults);
     }, [searchText, jardinetes]);
-
+    //Função de busca dos Jardinetes no banco de dados
     const sortResults = (text, results) => {
         return results.filter(jardim =>
             jardim.nome && jardim.nome.toLowerCase().startsWith(text)
@@ -110,7 +110,7 @@ export default function JardinetesMap() {
         });
     };
     
-
+    //Ícone local
     const customIcon = new L.Icon({
         iconUrl: markerImage,
         iconSize: [32, 32],

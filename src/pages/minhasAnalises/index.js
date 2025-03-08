@@ -21,15 +21,17 @@ export default function minhasAnalises() {
   const myStyles = styles();
   const { width, height } = useWindowDimensions(); 
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedJardineteId, setSelectedJardineteId] = useState(null); // Estado para armazenar o ID do jardinete selecionado para exclusão
+  const [selectedJardineteId, setSelectedJardineteId] = useState(null);
   const [userName, setUserName] = useState('');
   const [wallpaper, setWallpaper] = useState(null);
   const [email, setEmail] = useState('');
   const [pracasSeguidas, setPracasSeguidas] = useState([]);
+
+  //Redireciona ao link
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
-
+  //Busca os dados do usuário
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -40,7 +42,7 @@ export default function minhasAnalises() {
     };
   }, []);
 
-
+  //Busca os Jardinetes do usuário
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setJardinetes, setImageUrl);
 
@@ -50,7 +52,7 @@ export default function minhasAnalises() {
       }
     };
   }, []);
-
+  //Busca os dados e o ID dos Jardinetes do usuário
   const fetchJardineteDetails = async () => {
     const userRef = doc(firestore, 'users', auth.currentUser.uid);
     const userSnap = await getDoc(userRef);
@@ -63,7 +65,7 @@ export default function minhasAnalises() {
         const jardineteSnap = await getDoc(jardineteRef);
         
         if (jardineteSnap.exists()) {
-          return { id: jardineteSnap.id, ...jardineteSnap.data() }; // Inclui o ID
+          return { id: jardineteSnap.id, ...jardineteSnap.data() };
         } else {
           return null;
         }
@@ -76,7 +78,7 @@ export default function minhasAnalises() {
   useEffect(() => {
     fetchJardineteDetails();
   }, []);
-
+  //Configuração das páginas de Jardinetes em "Minha Ánalises", caso existam vários
   const jardinetesToShow = Array.isArray(jardinetes)
     ? jardinetes.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
     : [];
@@ -95,28 +97,28 @@ export default function minhasAnalises() {
     }
   };
 
-  // Função para abrir o modal e definir o ID do jardinete a ser excluído
+  //Função para abrir o modal e definir o ID do jardinete a ser excluído
   const openDeleteModal = (jardineteId) => {
     setSelectedJardineteId(jardineteId);
     setModalVisible(true);
   };
 
-  // Função para excluir o jardinete selecionado
+  //Função para excluir o jardinete selecionado
   const deleteJardinete = async () => {
     try {
-      // Exclui o documento do jardinete
+      //Exclui o documento do jardinete
       await deleteDoc(doc(firestore, 'jardinetes', selectedJardineteId));
   
-      // Remove o ID do jardinete do array de jardinetes no documento do usuário
+      //Remove o ID do jardinete do array de jardinetes no documento do usuário
       const userRef = doc(firestore, 'users', auth.currentUser.uid);
       await updateDoc(userRef, {
         jardinetes: arrayRemove(selectedJardineteId),
       });
   
-      // Atualiza o estado local, removendo o jardinete excluído
+      //Atualiza o estado local, removendo o jardinete excluído
       setJardinetes((prevJardinetes) => prevJardinetes.filter((j) => j.id !== selectedJardineteId));
   
-      setModalVisible(false); // Fecha o modal após a exclusão
+      setModalVisible(false); //Fecha o modal após a exclusão
     } catch (error) {
       console.error('Erro ao excluir o jardinete:', error);
     }
@@ -257,7 +259,7 @@ export default function minhasAnalises() {
 </View>
       </View>
 
-      {/* Modal de confirmação de exclusão */}
+   
       <Modal
   visible={modalVisible}
   transparent={true}

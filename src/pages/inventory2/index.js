@@ -32,7 +32,7 @@ export default function Inventory2() {
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
-
+  //Busca os dados do usuário
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
 
@@ -42,7 +42,7 @@ export default function Inventory2() {
       }
     };
   }, []);
-
+ //Todas as funções send envam o respectivo dado para o Firebase
   const sendDataToFirebase3 = async (banco) => {
     try {
       const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
@@ -188,7 +188,7 @@ export default function Inventory2() {
 
   
 
-
+  //Verifica os dados já enviados do inventário para atualizar o estado dos botões ao entrar na página, sem sobrescrever os dados
   const loadData = async () => {
     try {
       const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
@@ -254,7 +254,7 @@ export default function Inventory2() {
   const [isClicked13, setIsClicked13] = useState(false);
   const [isClicked14, setIsClicked14] = useState(false);
 
-
+  //As funções handlePress atualizam em tempo real o estado do botão para enviar o dado para o Firebase a partir das funções send
   const handlePress3 = () => {
     const newBanco = isClicked3 ? 'não' : 'sim';
     setIsClicked3(!isClicked3);
@@ -338,6 +338,7 @@ export default function Inventory2() {
     setIsClicked10(!isClicked10);
     sendDataToFirebase10(newAcessibilidade);
   };
+  //As funções handlemouseenter e handlemouseleave atualizam o estado do botão confome os movimentos e interações do usuário ao utilizar o mouse
   const handleMouseEnter1 = () => {
     setIsMouseOver1(true);
   };
@@ -519,7 +520,7 @@ export default function Inventory2() {
               ) : (
                 <Image
                 style={myStyles.logoImage}
-                source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+                source={require('../../assets/defaultImage.png')}
             />
               )}
             </View>

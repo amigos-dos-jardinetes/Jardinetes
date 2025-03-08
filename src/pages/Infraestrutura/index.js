@@ -47,14 +47,14 @@ export default function Infraestrutura() {
   const [loading, setLoading] = useState(true);
   const [documentData, setDocumentData] = useState(null);
   const [infraestruturaAverages, setinfraestruturaAverages] = useState({});
-
+  //Função que redireciona ao link
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
-
+  //Busca os dados do usuário
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
-
+    //Busca alguns dados dos Jardinetes
     async function fetchData() {
       try {
         const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
@@ -62,14 +62,14 @@ export default function Infraestrutura() {
 
         if (docSnap.exists()) {
           const data = docSnap.data();
-          console.log("Document data:", data); // Log completo dos dados do documento
-          setDocumentData(data); // Armazenar dados do documento no estado
+          console.log("Document data:", data);
+          setDocumentData(data);
 
           const pessoas = data.pessoas;
           const newPessoas = data.newPessoas;
 
           if (
-          
+  //Verifica se os dados existem e caso existam, executa as fórmulas para os cálculos dos respectivos valores        
   (data.infraestrutura_01 !== undefined || data.newInfraestrutura_01 !== undefined) &&
   (data.infraestrutura_02 !== undefined || data.newInfraestrutura_02 !== undefined) &&
   (data.infraestrutura_03 !== undefined || data.newInfraestrutura_03 !== undefined) &&
@@ -100,7 +100,7 @@ export default function Infraestrutura() {
             console.log("infraestruturaAverage3:", infraestruturaAverage3);
             console.log("infraestruturaAverage4:", infraestruturaAverage4);
             console.log("infraestruturaAverage5:", infraestruturaAverage5);
-
+//Condições para renderizar os gráficos com as pétalas a partir dos valores calculados
             if (infraestruturaAverage1 <= 30) {
               setinfraestruturaPetalaImage(require('../../assets/petala20.png'));
               setinfraestruturaPetalaStyle(myStyles.petala200);
@@ -197,11 +197,11 @@ export default function Infraestrutura() {
       } catch (error) {
         console.error("Error fetching document: ", error);
       } finally {
-        setLoading(false); // Finalize loading state
+        setLoading(false);
       }
     }
 
-    // Simulate initial loading time
+    //Loading inicial (Acabou sendo retirado)
     setTimeout(() => {
       setInitialLoading(false);
       fetchData();
@@ -223,11 +223,11 @@ export default function Infraestrutura() {
   }
 
   if (loading) {
-    return <Text>Loading...</Text>; // Show loading state while data is being fetched
+    return <Text>Loading...</Text>;
   }
 
   if (!documentData) {
-    return <Text>Erro ao carregar os dados.</Text>; // Handle case where data is not available
+    return <Text>Erro ao carregar os dados.</Text>;
   }
 
   return (
@@ -248,7 +248,7 @@ export default function Infraestrutura() {
             ) : (
               <Image
               style={myStyles.logoImage}
-              source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+              source={require('../../assets/defaultImage.png')}
           />
             )}
           </View>

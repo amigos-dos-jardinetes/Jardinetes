@@ -14,6 +14,7 @@
   import { MdZoomIn, MdZoomOut } from 'react-icons/md';
   import * as ImagePicker from 'expo-image-picker';
 
+  //Configuração do Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
     authDomain: "amigosdosjardinetes.firebaseapp.com",
@@ -56,7 +57,7 @@ const openLink = (url) => {
   Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
 };
 
-    // Fetch user data and imageUrl when the component mounts
+    //Busca as informações do usuário
     useEffect(() => {
       const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
   
@@ -67,12 +68,12 @@ const openLink = (url) => {
       };
     }, []);
   
-    // Monitora a autenticação e configura o usuário
+    //Verifica usuário logado
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
-          setUser(user);  // Salva o usuário logado no estado
-          setUserName(user.displayName || '');  // Opcional: pega o nome do usuário
+          setUser(user);
+          setUserName(user.displayName || '');
         }
       });
   
@@ -80,7 +81,7 @@ const openLink = (url) => {
         unsubscribe();
       };
     }, []);
-  
+ //Função para abrir o disco do usuário em busca da imagem 
     const selecionarImagem = async (isWallpaper = false) => {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== 'granted') {
@@ -98,21 +99,21 @@ const openLink = (url) => {
       if (!result.canceled) {
         setSelectedImage(result.uri);
         if (isWallpaper) {
-          setShowWallpaperCropper(true); // Abre o modal de corte para wallpaper
+          setShowWallpaperCropper(true); //Abre o modal de corte para wallpaper
         } else {
-          setShowCropper(true); // Abre o modal de corte para a foto de perfil
+          setShowCropper(true); //Abre o modal de corte para a foto de perfil
         }
       }
     };
-  
+    //Atualiza o estado da imagem quando ela é recortada
     const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
       setCroppedAreaPixels(croppedAreaPixels);
     }, []);
-  
+    //Função para recorte da imagem de perfil do usuário
     const cropImage = async () => {
       try {
-        if (selectedImage && croppedAreaPixels && user) { // Verifica se o usuário está logado
-          // Usando o ImageManipulator para cortar a imagem
+        if (selectedImage && croppedAreaPixels && user) {
+          //Usando o ImageManipulator para cortar a imagem
           const manipResult = await ImageManipulator.manipulateAsync(
             selectedImage,
             [
@@ -130,24 +131,24 @@ const openLink = (url) => {
   
           const { uri: croppedUri } = manipResult;
   
-          // Faz o upload da imagem cortada
+          //Faz o upload da imagem cortada
           const response = await fetch(croppedUri);
           const blob = await response.blob();
   
-          // Salva a imagem no Firebase Storage usando o ID do usuário
+          //Salva a imagem no Firebase Storage usando o ID do usuário
           const storageRef = ref(storage, `users/${user.uid}/profilePicture.jpg`);
           await uploadBytes(storageRef, blob);
   
-          // Obtém a URL da imagem cortada
+          //Obtém a URL da imagem cortada
           const croppedImageUrl = await getDownloadURL(storageRef);
           console.log('Cropped Image URL:', croppedImageUrl);
   
-          // Atualiza o campo imageUrl no documento do usuário no Firestore
+          //Atualiza o campo imageUrl no documento do usuário no Firestore
           const userDocRef = doc(firestore, 'users', user.uid);
           await updateDoc(userDocRef, { imageUrl: croppedImageUrl });
   
-          // Atualiza o estado local e esconde o cropper
-          setImageUrl(croppedImageUrl);  // Atualiza a imagem exibida na interface
+          //Atualiza o estado local e esconde o cropper
+          setImageUrl(croppedImageUrl);  //Atualiza a imagem exibida na interface
           setShowCropper(false);
         } else {
           console.error('Imagem selecionada ou área de corte não definida.');
@@ -157,7 +158,7 @@ const openLink = (url) => {
       }
     };
 
-
+    //Função para recorte da imagem de wallpaper do usuário
     const cropWallpaper = async () => {
       try {
         if (selectedImage && croppedAreaPixels && user) {
@@ -178,7 +179,7 @@ const openLink = (url) => {
     
           const { uri: croppedUri } = manipResult;
     
-          // Faz o upload da imagem cortada do wallpaper
+          //Faz o upload da imagem cortada do wallpaper
           const response = await fetch(croppedUri);
           const blob = await response.blob();
     
@@ -188,11 +189,11 @@ const openLink = (url) => {
           const croppedWallpaperUrl = await getDownloadURL(storageRef);
           console.log('Cropped Wallpaper URL:', croppedWallpaperUrl);
     
-          // Atualiza o campo wallpaper no documento do usuário no Firestore
+          //Atualiza o campo wallpaper no documento do usuário no Firestore
           const userDocRef = doc(firestore, 'users', user.uid);
           await updateDoc(userDocRef, { wallpaper: croppedWallpaperUrl });
     
-          // Atualiza o estado local e esconde o cropper
+          //Atualiza o estado local e esconde o cropper
           setWallpaper(croppedWallpaperUrl);
           setShowWallpaperCropper(false);
         }
@@ -213,7 +214,7 @@ const openLink = (url) => {
               {imageUrl ? (
                 <Image
                   style={myStyles.logoImage}
-                  source={{ uri: imageUrl }}  // Exibe a imagem de perfil do usuário
+                  source={{ uri: imageUrl }}
                 />
               ) : (
                 <Image
@@ -234,7 +235,7 @@ const openLink = (url) => {
                 <TouchableOpacity onPress={() => selecionarImagem(false)}>
 
                   <Image
-                    source={{ uri: imageUrl }}  // Exibe a imagem de perfil
+                    source={{ uri: imageUrl }}
                     style={{ 
                       width: (250 / 1920) * width, 
                       height: (250 / 1920) * width, 
@@ -334,11 +335,11 @@ const openLink = (url) => {
   <View style={myStyles.cropperContainer}>
     <View style={myStyles.controlsContainer}>
     <Slider
-  value={profileZoom}  // Use o estado profileZoom
+  value={profileZoom}
   min={1}
   max={3}
   step={0.1}
-  onChange={(e, newValue) => setProfileZoom(newValue)}  // Atualize o profileZoom corretamente
+  onChange={(e, newValue) => setProfileZoom(newValue)}
   aria-labelledby="zoom-slider"
   style={{
     color: '#166034',
@@ -366,13 +367,13 @@ const openLink = (url) => {
       </View>
     </View>
 
-    {/* Image cropper para a imagem de perfil */}
+
     <View style={myStyles.cropperWrapper}>
       <Cropper
         image={selectedImage}
-        crop={profileCrop} // Controle do crop para a imagem de perfil
+        crop={profileCrop} 
         zoom={profileZoom}
-        aspect={1} // Aspect ratio 16:16 para a imagem de perfil
+        aspect={1} 
         onCropChange={setProfileCrop}
         onCropComplete={onCropComplete}
         onZoomChange={setProfileZoom}
@@ -397,11 +398,11 @@ const openLink = (url) => {
   <View style={myStyles.cropperContainer}>
     <View style={myStyles.controlsContainer}>
     <Slider
-  value={wallpaperZoom}  // Use o estado wallpaperZoom
+  value={wallpaperZoom} 
   min={1}
   max={3}
   step={0.1}
-  onChange={(e, newValue) => setWallpaperZoom(newValue)}  // Atualize o wallpaperZoom corretamente
+  onChange={(e, newValue) => setWallpaperZoom(newValue)}  
   aria-labelledby="zoom-slider"
   style={{
     color: '#166034',
@@ -429,13 +430,13 @@ const openLink = (url) => {
       </View>
     </View>
 
-    {/* Image cropper para o wallpaper */}
+
     <View style={myStyles.cropperWrapper}>
       <Cropper
         image={selectedImage}
-        crop={wallpaperCrop} // Controle do crop para o wallpaper
+        crop={wallpaperCrop}
         zoom={wallpaperZoom}
-        aspect={9 / 16} // Aspect ratio 9:16 para o wallpaper
+        aspect={9 / 16}
         onCropChange={setWallpaperCrop}
         onCropComplete={onCropComplete}
         onZoomChange={setWallpaperZoom}

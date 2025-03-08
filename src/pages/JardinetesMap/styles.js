@@ -279,8 +279,8 @@ imageContainer33: {
     padding: width * 0.0260416666666667,
     top: width * 0.03,
     width: width * 0.256,
-    overflow: 'scroll', // permite rolagem vertical
-    overflowX: 'hidden', // desativa a rolagem horizontal
+    overflow: 'scroll',
+    overflowX: 'hidden',
     marginLeft: width * 0.0286458333333333,
     maxHeight: width * 0.1041666666666667,
 },

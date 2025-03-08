@@ -74,13 +74,13 @@ export default function Admin() {
             const jardineteData = { id: docSnap.id, ...docSnap.data() };
   
             try {
-              // Buscar todos os usuários na coleção 'users'
+              // Busca todos os usuários
               const usersRef = collection(firestore, 'users');
               const userQuery = query(usersRef, where('jardinetes', 'array-contains', jardineteData.id));
               const userSnapshot = await getDocs(userQuery);
   
               if (!userSnapshot.empty) {
-                // Pega o primeiro usuário que corresponde (assumindo que há apenas um)
+                // Pega o primeiro usuário
                 const userDoc = userSnapshot.docs[0];
                 const userData = userDoc.data();
   
@@ -107,34 +107,33 @@ export default function Admin() {
     fetchJardinetes();
   }, []);
   
-  // Função para editar jardinete
+  // Função para editar jardinetes
   const handleEdit = (id) => {
     navigation.navigate('Form2', { novoJardineteDocId: id });
   };
 
-  // Abrir o modal de exclusão
+  // Abre o modal de exclusão
   const handleOpenDeleteModal = (id) => {
     setSelectedJardinete(id);
     setModalVisible(true);
   };
 
-  // Fechar o modal
+  // Fecha o modal
   const handleCloseModal = () => {
     setModalVisible(false);
     setSelectedJardinete(null);
   };
 
-  // Excluir jardinete
+  // Exclui jardinete
   const handleDelete = async () => {
     if (!selectedJardinete) return;
 
     try {
       const jardineteId = selectedJardinete;
 
-      // Excluir o jardinete
       await deleteDoc(doc(firestore, 'jardinetes', jardineteId));
 
-      // Atualizar o array de jardinetes do usuário
+      // Atualiza o array de jardinetes do usuário
       const usersRef = collection(firestore, 'users');
       const userQuery = query(usersRef, where('jardinetes', 'array-contains', jardineteId));
       const userSnapshot = await getDocs(userQuery);
@@ -217,7 +216,7 @@ export default function Admin() {
         </View>
       ))}
 
-      {/* Modal de exclusão */}
+  
       <Modal
         animationType="slide"
         transparent

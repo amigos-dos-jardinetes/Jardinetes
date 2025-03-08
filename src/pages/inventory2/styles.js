@@ -139,8 +139,8 @@ export const styles = () => {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: width * 0.0104166666666667, // Espaçamento horizontal entre os botões
-    marginTop: width * 0.04, // Margem superior para separar dos outros elementos
+    paddingHorizontal: width * 0.0104166666666667,
+    marginTop: width * 0.04,
   },
 
 
@@ -148,49 +148,49 @@ export const styles = () => {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: width * 0.0104166666666667, // Espaçamento horizontal entre os botões
-    marginTop: width * 0.03125, // Margem superior para separar dos outros elementos
+    paddingHorizontal: width * 0.0104166666666667,
+    marginTop: width * 0.03125,
   },
 
   containerButton3: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: width * 0.0104166666666667, // Espaçamento horizontal entre os botões
-    marginTop: width * 0.03125, // Margem superior para separar dos outros elementos
+    paddingHorizontal: width * 0.0104166666666667,
+    marginTop: width * 0.03125,
   },
 
   containerButton4: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: width * 0.22760416666666666666666666666667, // Espaçamento horizontal entre os botões
-    marginTop: width * 0.03125, // Margem superior para separar dos outros elementos
+    paddingHorizontal: width * 0.22760416666666666666666666666667,
+    marginTop: width * 0.03125,
   },
 
 
   button: {
-    width: width * 0.15625, // 60 é a soma das margens horizontais (20 * 3)
-    height: width * 0.15625, // Mantendo o mesmo tamanho para quadrados
-    backgroundColor: '#809C30', // Cor de fundo verde
-    borderRadius: width * 0.0104166666666667, // Bordas arredondadas
-    marginBottom: width * 0.0104166666666667, // Espaçamento inferior entre os botões
+    width: width * 0.15625,
+    height: width * 0.15625,
+    backgroundColor: '#809C30',
+    borderRadius: width * 0.0104166666666667,
+    marginBottom: width * 0.0104166666666667,
   },
 
   button1: {
-    width: width * 0.15625, // 60 é a soma das margens horizontais (20 * 3)
-    height: width * 0.15625, // Mantendo o mesmo tamanho para quadrados
-    backgroundColor: '#1E6131', // Cor de fundo verde
-    borderRadius: width * 0.0104166666666667, // Bordas arredondadas
-    marginBottom: width * 0.0104166666666667, // Espaçamento inferior entre os botões
+    width: width * 0.15625,
+    height: width * 0.15625,
+    backgroundColor: '#1E6131',
+    borderRadius: width * 0.0104166666666667,
+    marginBottom: width * 0.0104166666666667,
   },
 
   button2: {
-    width: width * 0.15625, // 60 é a soma das margens horizontais (20 * 3)
-    height: width * 0.15625, // Mantendo o mesmo tamanho para quadrados
-    backgroundColor: '#F5F3E1', // Cor de fundo verde
-    borderRadius: width * 0.0104166666666667, // Bordas arredondadas
-    marginBottom: width * 0.0104166666666667, // Espaçamento inferior entre os botões
+    width: width * 0.15625,
+    height: width * 0.15625,
+    backgroundColor: '#F5F3E1',
+    borderRadius: width * 0.0104166666666667,
+    marginBottom: width * 0.0104166666666667,
   },
 
   image: {
@@ -293,7 +293,7 @@ export const styles = () => {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginRight: width * 0.0104166666666667, // Adiciona margem à direita
+    marginRight: width * 0.0104166666666667,
   },
 
   
@@ -303,7 +303,7 @@ backButton: {
 
 modalContainer: {
   flex: 1,
-  backgroundColor: 'white', // Fundo do modal
+  backgroundColor: 'white',
   justifyContent: 'flex-start',
 },
 closeButton: {

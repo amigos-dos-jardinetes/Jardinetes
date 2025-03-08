@@ -8,7 +8,7 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { userSearchData } from '../../../functions';
 import { getStorage } from 'firebase/storage';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'; // Importa os componentes do Leaflet
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import markerImage from '../../assets/marker.png';
 import markerImage2 from '../../assets/redMarker.png';
@@ -17,19 +17,19 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export default function moreInfo() {
   const navigation = useNavigation();
-  const route = useRoute(); // Obtenha o objeto route para acessar os parâmetros
+  const route = useRoute();
   const scrollViewRef = useRef(null);
   const [imageUrl, setImageUrl] = useState(null);
   const auth = getAuth();
   const firestore = getFirestore();
   const storage = getStorage();
-  const [jardineteNome, setJardineteNome] = useState(''); // Estado para armazenar o nome do jardinete
-  const [jardinetePhoto, setJardinetePhoto] = useState(''); // Estado para armazenar a imagem do jardinete
+  const [jardineteNome, setJardineteNome] = useState('');
+  const [jardinetePhoto, setJardinetePhoto] = useState('');
   const [userName, setUserName] = useState('');
   const [wallpaper, setWallpaper] = useState(null);
   const [email, setEmail] = useState('');
   const [pracasSeguidas, setPracasSeguidas] = useState([]);
-  const [mapKey, setMapKey] = useState(0); // Chave para forçar o reload do mapa
+  const [mapKey, setMapKey] = useState(0);
   const [MapLatitude, setMapLatitude] = useState(''); 
   const [MapLongitude, setMapLongitude] = useState(''); 
   const [areia, setAreia] = useState('');
@@ -55,41 +55,42 @@ export default function moreInfo() {
   const novoJardineteDocId = route.params.novoJardineteDocId;
   const myStyles = styles();
   const [ret1Height, setRet1Height] = useState(null);
+  //Redireciona ao link
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
 
 
   const { width, height } = useWindowDimensions(); 
-  // Carrega a fonte Lemon
+  //Carrega a fonte Lemon
   const [fontsLoaded] = useFonts({
     Lemon: require('../../assets/fonts/Lemon-Regular.ttf'),
   });
-
+  //Busca os dados do usuário
   useEffect(() => {
     const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
   
     const fetchJardineteData = async () => {
-      const { novoJardineteDocId } = route.params; // Obtenha o ID do jardinete da navegação
+      const { novoJardineteDocId } = route.params; //Obtém o ID do jardinete da navegação
       if (novoJardineteDocId) {
         try {
-          const docRef = doc(firestore, 'jardinetes', novoJardineteDocId); // Acessa o documento no Firestore
+          const docRef = doc(firestore, 'jardinetes', novoJardineteDocId); //Acessa o documento no Firestore
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             const jardineteData = docSnap.data();
-            setJardineteNome(jardineteData.nome); // Define o nome do Jardinente
-            setJardinetePhoto(jardineteData.jardinetePhoto); // Define a URL da imagem do Jardinente
-            setLocalizacao(jardineteData.localizacao || ''); // Localização
-            setArea(jardineteData.area || ''); // Área em metros quadrados
-            setBacia(jardineteData.bacia || ''); // Bacia hidrográfica
-            setPercapita(jardineteData.percapita || ''); // Área verde per capita
-            setDensidade(jardineteData.densidade || ''); // Densidade demográfica
-            setRenda(jardineteData.renda || ''); // Renda média
+            setJardineteNome(jardineteData.nome);
+            setJardinetePhoto(jardineteData.jardinetePhoto);
+            setLocalizacao(jardineteData.localizacao || '');
+            setArea(jardineteData.area || '');
+            setBacia(jardineteData.bacia || '');
+            setPercapita(jardineteData.percapita || '');
+            setDensidade(jardineteData.densidade || '');
+            setRenda(jardineteData.renda || '');
     
-            // Verifica se existe o array de coordenadas
+            //Verifica se existe o array de coordenadas
             if (jardineteData.coordenadas && jardineteData.coordenadas.length === 2) {
-              setMapLatitude(jardineteData.coordenadas[0]); // Latitude a partir do array de coordenadas
-              setMapLongitude(jardineteData.coordenadas[1]); // Longitude a partir do array de coordenadas
+              setMapLatitude(jardineteData.coordenadas[0]); //Latitude a partir do array de coordenadas
+              setMapLongitude(jardineteData.coordenadas[1]); //Longitude a partir do array de coordenadas
               setAreia(jardineteData.areia || '');
               setFeira(jardineteData.feira || '');
               setLixo(jardineteData.lixo || '');
@@ -116,24 +117,24 @@ export default function moreInfo() {
       }
     };
   
-    fetchJardineteData(); // Chama a função de busca ao montar o componente
+    fetchJardineteData(); //Chama a função de busca ao montar o componente
   
     return () => {
       if (unsubscribe && typeof unsubscribe === 'function') {
         unsubscribe();
       }
     };
-  }, [route.params]); // Adiciona route.params como dependência para reexecutar se mudar
+  }, [route.params]); //Adiciona route.params como dependência para reexecutar se mudar
   
  
-
+  //Marcador local
   const customIcon = new L.Icon({
     iconUrl: markerImage,
     iconSize: [32, 32],
     iconAnchor: [16, 16], 
 });
 
-
+//Marcador local
 const customIcon2 = new L.Icon({
     iconUrl: markerImage2,
     iconSize: [32, 32],
@@ -146,13 +147,13 @@ function MapCenter({ center }) {
   
     useEffect(() => {
       if (center) {
-        map.setView(center, map.getZoom()); // Centraliza o mapa nas coordenadas
+        map.setView(center, map.getZoom()); //Centraliza o mapa nas coordenadas
       }
     }, [center, map]);
   
     return null;
   }
-
+  //Muda o estilo das imagens do inventário presentes em "moreInfo"
   const getImageStyle = (value) => {
     return {
       borderWidth: width * 0.00625,
@@ -208,7 +209,7 @@ function MapCenter({ center }) {
           style={myStyles.ret1}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
-            setRet1Height(height); // Salvar a altura total de ret1 (incluindo padding) no estado
+            setRet1Height(height);
           }}
         >
   <Text style={myStyles.textData}>
@@ -249,7 +250,6 @@ function MapCenter({ center }) {
     </Popup>
   </Marker>
   
-  {/* Componente que centraliza o mapa nas novas coordenadas */}
   <MapCenter center={[MapLatitude, MapLongitude]} />
 </MapContainer>
               </View>

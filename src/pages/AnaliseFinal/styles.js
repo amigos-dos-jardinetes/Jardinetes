@@ -45,7 +45,7 @@ export const styles = () => {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginRight: width * 0.0104166666666667, // Adiciona margem à direita
+        marginRight: width * 0.0104166666666667,
     },
 
     navbar2: {
@@ -669,7 +669,7 @@ export const styles = () => {
         marginLeft: width * 0.0052083333333333,
         textAlign: 'justify',
         marginTop: width * 0.0052083333333333,
-        lineHeight: width * 0.015, // Aumente esse valor para aumentar o espaçamento entre linhas
+        lineHeight: width * 0.015,
         marginBottom: width * 0.0052083333333333,
     },
 

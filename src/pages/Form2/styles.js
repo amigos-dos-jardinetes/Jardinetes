@@ -52,13 +52,13 @@ export const styles = () => {
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: (20 / 1920) * width,
-    color: '#6f8a3b', // cor do título
+    color: '#6f8a3b',
   },
   label: {
     marginBottom: (5 / 1920) * width,
     fontSize: (28 / 1920) * width,
     fontWeight: 'bold',
-    color: '#271C00', // cor do texto das labels
+    color: '#271C00',
     flexDirection: 'row',
   
   },
@@ -67,7 +67,7 @@ export const styles = () => {
     marginBottom: (5 / 1920) * width,
     fontSize: (28 / 1920) * width,
     fontWeight: 'bold',
-    color: '#271C00', // cor do texto das labels
+    color: '#271C00',
     flexDirection: 'row',
     marginTop: (25 / 1920) * width,
   
@@ -172,7 +172,7 @@ export const styles = () => {
     flexDirection: 'row',
   },
   button: {
-    backgroundColor: '#6f8a3b', // verde do botão
+    backgroundColor: '#6f8a3b',
     paddingVertical: (10 / 1920) * width,
     paddingHorizontal: (20 / 1920) * width,
     borderRadius: (5 / 1920) * width,
@@ -290,7 +290,7 @@ export const styles = () => {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginRight: width * 0.0104166666666667, // Adiciona margem à direita
+    marginRight: width * 0.0104166666666667,
   },
 
   imageContainer33: {
@@ -360,11 +360,11 @@ zoomButtons: {
   marginLeft: 10,
 },
 cropperWrapper: {
-  width: '80%', // Ajuste a largura do container do Cropper
-  height: width * 0.2083333333333333, // Defina a altura para limitar o tamanho da imagem
-  backgroundColor: '#f0f0f0', // Cor de fundo para o wrapper
-  overflow: 'hidden', // Garante que o Cropper não ultrapasse os limites
-  borderRadius: 10, // Adiciona bordas arredondadas
+  width: '80%',
+  height: width * 0.2083333333333333,
+  backgroundColor: '#f0f0f0',
+  overflow: 'hidden',
+  borderRadius: 10,
 },
 cropButton: {
   marginTop: 20,

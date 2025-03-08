@@ -76,37 +76,37 @@ export default function Impact2() {
     };
 
     const validateValues = () => {
-      // Verifica se algum valor de bem-estar é 0
+      //Verifica se algum valor de bem-estar é 0
       const bemEstarInvalid = bemEstar01Value === 0 || bemEstar02Value === 0 || bemEstar03Value === 0 ||
                               bemEstar04Value === 0 || bemEstar05Value === 0;
     
-      // Verifica se algum valor de pertencimento é 0
+      //Verifica se algum valor de pertencimento é 0
       const pertencimentoInvalid = pertencimento01Value === 0 || pertencimento02Value === 0 || pertencimento03Value === 0 ||
                                    pertencimento04Value === 0 || pertencimento05Value === 0;
     
-      // Verifica se infraestrutura 1 e 2 são 0
+      //Verifica se infraestrutura 1 e 2 são 0
       const infraestrutura01Invalid = infraestrutura01Value === 0;
       const infraestrutura02Invalid = infraestrutura02Value === 0;
       
-      // Verifica se infraestrutura 3, 4 e 5 são 0 e a checkbox correspondente não está marcada
+      //Verifica se infraestrutura 3, 4 e 5 são 0 e a checkbox correspondente não está marcada
       const infraestrutura03Invalid = infraestrutura03Value === 0 && !isChecked;
       const infraestrutura04Invalid = infraestrutura04Value === 0 && !isChecked1;
       const infraestrutura05Invalid = infraestrutura05Value === 0 && !isChecked2;
     
-      // Verifica se algum valor de segurança é 0
+      //Verifica se algum valor de segurança é 0
       const segurancaInvalid = seguranca01Value === 0 || seguranca02Value === 0 || seguranca03Value === 0 ||
                                seguranca04Value === 0 || seguranca05Value === 0;
     
-      // Verifica se pessoas é 0
+      //Verifica se pessoas é 0
       const pessoasInvalid = pessoas === 0;
     
-      // Retorna false se algum valor é inválido
+      //Retorna false se algum valor é inválido
       if (bemEstarInvalid || pertencimentoInvalid || infraestrutura01Invalid || infraestrutura02Invalid ||
           infraestrutura03Invalid || infraestrutura04Invalid || infraestrutura05Invalid || segurancaInvalid || pessoasInvalid) {
         return false;
       }
     
-      // Se passou em todas as verificações, retorna true
+      //Se passou em todas as verificações, retorna true
       return true;
     };
 
@@ -137,7 +137,7 @@ export default function Impact2() {
       4: require('../../assets/blue.png'),
     });
     
-    
+    //Busca as informações do usuário
     useEffect(() => {
         const unsubscribe = userSearchData(auth, firestore, storage, navigation, setUserName, setWallpaper, setImageUrl, setEmail, setPracasSeguidas);
    
@@ -147,7 +147,7 @@ export default function Impact2() {
           }
         };
       }, []);
-
+      //Atualiza o número de pessoas no Firebase
       const updatePessoasValue = async (incrementValue) => {
         try {
             const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
@@ -169,7 +169,7 @@ export default function Impact2() {
             console.error('Erro ao atualizar valor de pessoas no Firebase:', error);
         }
     };
-
+    //Essas funções renderizam os botões cinza caso a checkbox esteja marcada e os botões coloridos caso não estejam (Na parte de infraestrutura)
     useEffect(() => {
       if (isChecked) {
         setButtonImageSource({
@@ -235,7 +235,7 @@ export default function Impact2() {
         });
       }
     }, [isChecked2]);
-
+    //Nessa parte é atribuído o valor 0 ao respectivo parâmetro quando a checkbox está marcada
     useEffect(() => {
       if (isChecked) {
         setSelectedButtonIndex7(null);
@@ -256,7 +256,7 @@ export default function Impact2() {
         setInfraestrutura05Value(0);
       }
     }, [isChecked2]);
-
+      //As funções abaixo servem pra enviar ou atualizar os dados referentes a tela de impacto
       const updateBemEstar01Value = async (incrementValue) => {
         try {
             const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
@@ -732,7 +732,7 @@ async function getUserJardinetes(userId) {
   
   if (userDoc.exists()) {
     const userData = userDoc.data();
-    return userData.jardinetes || []; // Retorna o array de jardinetes ou um array vazio se não existir
+    return userData.jardinetes || []; //Retorna o array de jardinetes ou um array vazio se não existir
   } else {
     throw new Error("Usuário não encontrado.");
   }
@@ -796,11 +796,11 @@ const handleContinuarPress = async () => {
     let userJardinetes = [];
 
     try {
-      const user = await getCurrentUser(); // Tenta obter o usuário logado
+      const user = await getCurrentUser(); //Tenta obter o usuário logado
 
       if (user) {
-        userJardinetes = await getUserJardinetes(user.uid); // Obtém o array de jardinetes do usuário
-        jardineteExists = userJardinetes.includes(novoJardineteDocId); // Verifica se o jardinete já está no array
+        userJardinetes = await getUserJardinetes(user.uid); //Obtém o array de jardinetes do usuário
+        jardineteExists = userJardinetes.includes(novoJardineteDocId); //Verifica se o jardinete já está no array
       }
     } catch (error) {
       console.warn("Nenhum usuário logado ou erro ao obter dados do usuário.");
@@ -808,7 +808,7 @@ const handleContinuarPress = async () => {
 
     if (validateValues()) {
       if (jardineteExists) {
-        // Envia dados diferentes se o jardinete já existir
+        //Envia dados diferentes se o jardinete já existir
         await sendDataToFirebase(novoJardineteDocId, bemEstar01Value, 'newBem_estar_01');
         await sendDataToFirebase(novoJardineteDocId, bemEstar02Value, 'newBem_estar_02');
         await sendDataToFirebase(novoJardineteDocId, bemEstar03Value, 'newBem_estar_03');
@@ -831,7 +831,7 @@ const handleContinuarPress = async () => {
         await sendDataToFirebase(novoJardineteDocId, seguranca05Value, 'newSeguranca_05');
         await sendDataToFirebase(novoJardineteDocId, pessoas, 'newPessoas');
       } else {
-        // Envia os dados normalmente
+        //Envia os dados normalmente
         updateBemEstar01Value(bemEstar01Value, 'bem_estar_01');
         updateBemEstar02Value(bemEstar02Value, 'bem_estar_02');
         updateBemEstar03Value(bemEstar03Value, 'bem_estar_03');
@@ -889,7 +889,7 @@ const handleContinuarPress = async () => {
               ) : (
                 <Image
                 style={myStyles.logoImage}
-                source={require('../../assets/defaultImage.png')} // Ajuste o caminho para a imagem padrão
+                source={require('../../assets/defaultImage.png')}
             />
               )}
             </View>

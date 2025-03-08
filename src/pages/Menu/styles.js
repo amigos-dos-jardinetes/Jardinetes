@@ -13,7 +13,7 @@ export const styles = () => {
     containerLogo: {
         marginTop: width * 0.01,
         flex: 2,
-        backgroundColor: 'transparent',  // Alteração aqui
+        backgroundColor: 'transparent',
         padding: width * 0.02604166666666666666666666666667,
         alignItems: 'center',
         top: (100 / 1920) * width,
@@ -39,8 +39,8 @@ export const styles = () => {
     logoutButton: {
         backgroundColor: '#FFFEF4',
         borderRadius: width * 0.00520833333333333333333333333333,
-        width: width * 0.02604166666666666666666666666667, // Largura do botão
-        height: width * 0.02604166666666666666666666666667, // Altura do botão
+        width: width * 0.02604166666666666666666666666667,
+        height: width * 0.02604166666666666666666666666667,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
@@ -60,8 +60,8 @@ export const styles = () => {
         borderRadius: '50%',
     },
     backcontainer: {
-        width: '37%',  // Alteração aqui
-        flex: 1,        // Adição aqui
+        width: '37%',
+        flex: 1,
         justifyContent: 'flex-start',
 
 
@@ -79,8 +79,8 @@ export const styles = () => {
     textButtonConfig: {
         backgroundColor: '#FFFEF4',
         borderRadius: width * 0.00520833333333333333333333333333,
-        width: width * 0.02604166666666666666666666666667, // Largura do botão
-        height: width * 0.02604166666666666666666666666667, // Altura do botão
+        width: width * 0.02604166666666666666666666666667,
+        height: width * 0.02604166666666666666666666666667,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
@@ -92,17 +92,17 @@ export const styles = () => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semi-transparente para destacar o modal
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
       },
       
       modalContent: {
-        width: '80%', // Define a largura do modal como 80% da tela
-        height: '40%', // Define a altura do modal como 40% da tela
+        width: '80%',
+        height: '40%',
         backgroundColor: 'white',
-        borderRadius: width * 0.0052083333333333, // Borda arredondada
-        padding: width * 0.0104166666666667, // Espaçamento interno
-        justifyContent: 'center', // Centraliza o conteúdo verticalmente
-        alignItems: 'center', // Centraliza o conteúdo horizontalmente
+        borderRadius: width * 0.0052083333333333,
+        padding: width * 0.0104166666666667,
+        justifyContent: 'center',
+        alignItems: 'center',
       },
       modalText: {
         fontSize: width * 0.009375,
@@ -157,8 +157,8 @@ export const styles = () => {
     buttons: {
         marginBottom: width * 0.05208333333333333333333333333333,
         alignContent: 'center',
-        width: '80%', // Defina a largura desejada para os botões
-        alignSelf: 'center', // Alinha os botões ao centro horizontalmente
+        width: '80%',
+        alignSelf: 'center',
         position: 'absolute',
     },
     navbar: {
@@ -177,7 +177,7 @@ export const styles = () => {
 
     navbarButton: {
 
-        fontSize: width * 0.01666666666666666666666666666667, // Tamanho do texto dos botões
+        fontSize: width * 0.01666666666666666666666666666667,
 
     },
 
@@ -194,7 +194,7 @@ export const styles = () => {
         alignItems: 'center',
         height: '45%',
         position: 'absolute',
-        top: '10%', // Mude de top para bottom
+        top: '10%',
         right: 0,
         width: '63%',
 
@@ -203,7 +203,7 @@ export const styles = () => {
     car2: {
         backgroundColor: '#FFFEF4',
         flexDirection: 'row',
-        justifyContent: 'space-around', // Centraliza horizontalmente
+        justifyContent: 'space-around',
         height: '45%',
         position: 'absolute',
         top: '55%',
@@ -213,7 +213,7 @@ export const styles = () => {
 
     car3: {
         flexDirection: 'row',
-        justifyContent: 'space-around', // Centraliza horizontalmente
+        justifyContent: 'space-around',
         height: '82%',
         position: 'absolute',
         top: '12%',
@@ -225,8 +225,8 @@ export const styles = () => {
 
     container_map: {
         flexDirection: 'row',
-        justifyContent: 'space-around', // Centraliza horizontalmente
-        alignItems: 'center',    // Centraliza verticalmente
+        justifyContent: 'space-around',
+        alignItems: 'center',
         height: '100%',
         position: 'absolute',
         right: 0,
@@ -261,12 +261,12 @@ export const styles = () => {
     carouselItem1: {
         position: 'relative',
         width: '100%',
-        height: '60%', // Defina a altura desejada para os itens do carrossel
+        height: '60%',
         borderRadius: (8 / 1920) * width,
         overflow: 'hidden',
 
         alignItems: 'center',
-        justifyContent: 'center', // Centraliza verticalmente e horizontalmente
+        justifyContent: 'center',
         overflow: 'hidden',
     },
 
@@ -280,7 +280,7 @@ export const styles = () => {
     carouselItem: {
         position: 'relative',
         width: '100%',
-        height: '100%', // Defina a altura desejada para os itens do carrossel
+        height: '100%',
         overflow: 'hidden',
         objectFit: 'cover', 
         alignSelf: 'center',
@@ -301,7 +301,7 @@ export const styles = () => {
         textAlign: 'center',
         color: 'white',
         borderRadius: (8 / 1920) * width,
-        // Adicione mais estilos conforme necessário
+    
     },
     carouselContainer: {
         
@@ -386,7 +386,7 @@ popupButtonContainer: {
   },
 
     mapContainer: {
-        // Estilos compartilhados para ambos container_map e container_map1
+      
         borderWidth: width * 0.00104166666666666666666666666667,
 
         borderRadius: width * 0.00520833333333333333333333333333,
@@ -394,15 +394,15 @@ popupButtonContainer: {
     },
     borderedContainer: {
         borderWidth: width * 0.0078125,
-        borderColor: '#271c00',  // ou qualquer cor desejada para a borda
-        borderRadius: width * 0.00625,  // ou qualquer valor desejado para a borda arredondada
+        borderColor: '#271c00',
+        borderRadius: width * 0.00625,
 
     },
 
     borderedContainer2: {
         borderWidth: width * 0.007,
-        borderColor: '#271c00',  // ou qualquer cor desejada para a borda
-        borderRadius: width * 0.00625,  // ou qualquer valor desejado para a borda arredondada
+        borderColor: '#271c00',
+        borderRadius: width * 0.00625,
         height: '93%',
         width: '70%',
         alignItems: 'center',
@@ -416,7 +416,7 @@ popupButtonContainer: {
         width: '75%',
         position: 'absolute',
         top: '12%',
-        backgroundColor: 'transparent',  // Alteração aqui
+        backgroundColor: 'transparent',
     },
 
     container1: {
@@ -424,7 +424,7 @@ popupButtonContainer: {
         justifyContent: 'space-around',
         alignItems: 'center',
         heigh: '100%',
-        width: '100%',  // Alteração aqui
+        width: '100%',
     },
 
     borderedContainer3: {
@@ -444,8 +444,8 @@ popupButtonContainer: {
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        paddingHorizontal: width * 0.00833333333333333333333333333333, // ou qualquer valor que você preferir
-        bottom: width * 0.01041666666666666666666666666667, // ou qualquer valor que você preferir
+        paddingHorizontal: width * 0.00833333333333333333333333333333,
+        bottom: width * 0.01041666666666666666666666666667,
     },
 
     carouselButton: {
@@ -454,7 +454,7 @@ popupButtonContainer: {
         borderRadius: width * 0.02604166666666666666666666666667,
         borderWidth: 1,
         borderColor: 'white',
-        marginRight: width * 0.00416666666666666666666666666667, // ou qualquer valor que você preferir
+        marginRight: width * 0.00416666666666666666666666666667,
     },
 
     cliqueText: {
