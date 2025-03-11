@@ -15,8 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "googleServicesFile": "./GoogleService-Info.plist",
-      "supportsTablet": true
+     
     },
     "android": {
       "googleServicesFile": "./google-services.json",
