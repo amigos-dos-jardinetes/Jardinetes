@@ -1,11 +1,14 @@
+# Usa a versão mais recente, caso não seja especificada
+ARG NODE_VERSION=latest
+
 # Usa a imagem leve do Node.js
-FROM node:18-alpine
+FROM node:${NODE_VERSION}
 
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
 
 # Copia os arquivos essenciais primeiro
-COPY package.json package-lock.json ./ 
+COPY package.json package-lock.json ./
 
 # Instala as dependências
 RUN npm install --legacy-peer-deps --omit=dev
