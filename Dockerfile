@@ -16,6 +16,7 @@ RUN npm install --legacy-peer-deps --omit=dev
 # Copia o restante dos arquivos da aplicação
 COPY . .
 
+RUN yarn install
 # Exporte a versão web explicitamente para o diretório "web-build"
 RUN npx expo export:web
 
