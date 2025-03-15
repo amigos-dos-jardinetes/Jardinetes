@@ -91,7 +91,7 @@ fi
 
 # Gera comandos export na saída padrao
 # Para injetar as variáveis em um terminal interativo ou script, p. ex.:
-#   eval $(./aws-auth.sh)
+#   eval $(./aws-idp-auth.sh)
 cat > /dev/stdout <<EOF
 export AWS_ACCESS_KEY_ID=$(jq -r .Credentials.AccessKeyId <<< $AWS_CREDS)
 export AWS_SECRET_ACCESS_KEY=$(jq -r .Credentials.SecretAccessKey <<< $AWS_CREDS)
