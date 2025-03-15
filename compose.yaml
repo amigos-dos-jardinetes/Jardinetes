@@ -6,6 +6,8 @@ services:
     image: "${COMPOSE_PROJECT_NAME}:node-${NODE_VERSION}"
     build:
       context: .
+      platforms:
+        - ${PLATFORM}
       args:
         PLATFORM: ${PLATFORM}
         PROJECT: ${COMPOSE_PROJECT_NAME}
