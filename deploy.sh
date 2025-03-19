@@ -19,7 +19,7 @@ fi
 source .env
 source ${PROJECT_ENV}
 
-# algumas variáveis de ambiente precisam ser passados ao compose
+# algumas variáveis de ambiente precisam ser passadas ao compose
 export NODE_VERSION
 docker compose -p ${PROJECT} build
 
