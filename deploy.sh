@@ -1,6 +1,5 @@
 #!/bin/bash
-# Carrega a imagem no ECR
-# A imagem preferencial usada no ECS será aquela com tag latest
+# Carrega o site estático no S3
 
 PROJECT=$1
 

@@ -10,7 +10,7 @@
 #                        sem reautenticar (quando disponível)
 #   OIDC_SCOPE: escopos a serem usados para obteção do token OIDC
 # Para usar estas variáveis em um terminal interativo ou script:
-#   $ eval $(./aws-auth.sh)
+#   $ eval $(./aws-idp-auth.sh)
 # Autor: Wilson Horstmeyer Bogado <wilson@utfpr.edu.br>
 
 # Para executar este script são necessários alguns programas auxiliares:
@@ -36,7 +36,7 @@ fi
 
 source ${CONFFILE}
 
-# Caso não seja informado usa o nome de usuário logado
+# Caso não seja informado, usa o nome de usuário logado
 USERNAME=${1:-${UTFPR_USERNAME:-$USER}}
 
 # Obtém a senha do usuário para autenticação via OIDC
