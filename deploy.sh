@@ -1,6 +1,5 @@
 #!/bin/bash
-# Carrega a imagem no ECR
-# A imagem preferencial usada no ECS será aquela com tag latest
+# Carrega o site estático no S3
 
 PROJECT=$1
 
@@ -20,18 +19,14 @@ fi
 source .env
 source ${PROJECT_ENV}
 
-export ECR_REPO=${ECR_REPO_BASE}
-ECR_REPO_URI=${ECR_URI}/${ECR_REPO}
-TAGS="node-${NODE_VERSION} latest"
-
-# algumas variáveis de ambiente precisam ser passados ao compose
+# algumas variáveis de ambiente precisam ser passadas ao compose
 export NODE_VERSION
 docker compose -p ${PROJECT} build
 
-# aplica os tags à imagem
-for t in $TAGS; do
-    docker tag ${ECR_REPO}:node-${NODE_VERSION} ${ECR_REPO_URI}:${t}
-done
-
-# autentica no ECR e faz o upload da imagem
-docker push --all-tags ${ECR_REPO_URI}
+# executa o contêiner e copia os arquivos para o bucket S3
+docker compose up -d
+rm -rf ./dist
+docker cp jardinetes-ct:/app/web-build ./dist
+docker compose down
+aws s3 rm s3://${S3_BUCKET} --recursive
+aws s3 cp ./dist/ s3://${S3_BUCKET}/ --recursive
