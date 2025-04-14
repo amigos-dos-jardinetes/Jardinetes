@@ -298,7 +298,7 @@ export const styles = () => {
 
       carouselButton: {
         position: 'absolute',
-        top: '40%',
+        top: '60%',
         zIndex: 2,
         background: 'rgba(0, 0, 0, 0.5)',
         border: 'none',
