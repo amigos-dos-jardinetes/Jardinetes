@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, useWindowDi
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { styles } from '../Form2/styles';
+import { styles } from '../Form/styles';
 import * as ImagePicker from 'expo-image-picker';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,11 +19,11 @@ import defaultImage from '../../assets/defaultNoImage.jpg';
 //Configuração do firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBe8nNAzDIXpriQ2fqE7QFHAMtETRbiN84",
-  authDomain: "amigosdosjardinetes.firebaseapp.com",
-  projectId: "amigosdosjardinetes",
-  storageBucket: "amigosdosjardinetes.appspot.com",
-  messagingSenderId: "381072997535",
-  appId: "1:381072997535:web:157abb3a076162a90836aa"
+    authDomain: "amigosdosjardinetes.firebaseapp.com",
+    projectId: "amigosdosjardinetes",
+    storageBucket: "amigosdosjardinetes.appspot.com",
+    messagingSenderId: "381072997535",
+    appId: "1:381072997535:web:157abb3a076162a90836aa"
 };
 //Abre o site do IPPUC
 const openIPPUCWebsite = () => {
@@ -42,14 +42,14 @@ let firebaseApp;
 if (getApps().length === 0) {
   firebaseApp = initializeApp(firebaseConfig);
 } else {
-  firebaseApp = getApp(); // Use o app já inicializado
+  firebaseApp = getApp();
 }
 
-export default function Form2() {
+export default function Form() {
   const navigation = useNavigation();
   const route = useRoute();
   const novoJardineteDocId = route.params.novoJardineteDocId;
-  const [imagem, setImagem] = useState(null);
+  const [imagem, setImagem] = useState(defaultImage);
   const [localizacao, setLocalizacao] = useState('');
   const [nome, setNome] = useState('');
   const [area, setArea] = useState('');
@@ -71,6 +71,7 @@ export default function Form2() {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [user, setUser] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
+  
   const [zoom, setZoom] = useState(1);
   const [showCropper, setShowCropper] = useState(false);
   const myStyles = styles();
@@ -84,7 +85,7 @@ export default function Form2() {
       }
     };
   }, []);
-  //Busca os dados do jardinete se ele existe e atualiza os estados
+//Busca os dados do jardinete se ele existe e atualiza os estados
   useEffect(() => {
     const loadJardineteData = async () => {
       try {
@@ -99,6 +100,7 @@ export default function Form2() {
           setPercapita(jardineteData.percapita || '');
           setDensidade(jardineteData.densidade || '');
           setRenda(jardineteData.renda || '');
+          setPatrimonio(jardineteData.patrimonio || '');
   
           // Verifica se o documento possui uma imagem e a define
           if (jardineteData.jardinetePhoto) {
@@ -134,11 +136,11 @@ export default function Form2() {
         percapita,
         densidade,
         renda,
-        jardinetePhoto: imagem,
+        jardinetePhoto: imagem
       };
       await updateDoc(jardineteRef, formData);
       console.log('Dados do jardinete atualizados com sucesso!');
-      navigation.navigate('Inventory2', { novoJardineteDocId });
+      navigation.navigate('Inventory', { novoJardineteDocId });
     } catch (error) {
       console.error('Erro ao atualizar os dados do jardinete:', error);
     }
@@ -168,7 +170,25 @@ export default function Form2() {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
+  //Envia os dados iniciais para o Firebase para que já apareça na página de formulário
+  useEffect(() => {
+    const sendInitialDataToFirebase = async () => {
+      try {
+        const docRef = doc(firestore, 'jardinetes', novoJardineteDocId);
+        await updateDoc(docRef, {
+          nome: 'Sem nome',
+          jardinetePhoto: defaultImage,
+        });
+        console.log('Dados enviados com sucesso para o Firestore!');
+      } catch (error) {
+        console.error('Erro ao enviar dados para o Firestore:', error);
+      }
+    };
 
+    sendInitialDataToFirebase();
+    return () => {
+    };
+  }, []);
   //Função para cortar a imagem
   const cropImage = async () => {
     try {
@@ -232,8 +252,27 @@ export default function Form2() {
         </View>
       </View>
 
+      <View style={myStyles.stepView}>
+      <View style={myStyles.circ1}>
+      <Text style={myStyles.stepText}>1</Text>
+      </View>
+      <View style={myStyles.ret1}></View>
+      <View style={myStyles.circ2}>
+      <Text style={myStyles.stepText}>2</Text>
+      </View>
+      <View style={myStyles.ret2}></View>
+      <View style={myStyles.circ3}>
+      <Text style={myStyles.stepText}>3</Text>
+      </View>
+      <View style={myStyles.ret3}></View>
+      <View style={myStyles.circ4}>
+      <Text style={myStyles.stepText}>4</Text>
+      </View>
+      </View>
+
       <Image source={require('../../assets/vamoscomecar.png')} style={myStyles.vamos} />
 
+   
       <View style={myStyles.container}>
      
 
@@ -364,7 +403,7 @@ export default function Form2() {
           <View style={myStyles.imageContainer22}>
               <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
           </View>
-       
+        
           <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
               <Text style={myStyles.textNav}>Quem somos nós</Text>
           </TouchableOpacity>
@@ -373,7 +412,7 @@ export default function Form2() {
 
       <View style={myStyles.column2nav}>
           
-         
+        
           <TouchableOpacity style={myStyles.navBt}>
               <Text style={myStyles.textNav}>Termos de uso</Text>
           </TouchableOpacity>
@@ -443,7 +482,7 @@ export default function Form2() {
       </View>
     </View>
 
-
+   
     <View style={myStyles.cropperWrapper}>
       <Cropper
         image={selectedImage}

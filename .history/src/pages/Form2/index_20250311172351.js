@@ -346,7 +346,7 @@ export default function Form2() {
           <Text style={myStyles.errorText}>Por favor, selecione uma imagem antes de enviar.</Text>
         )}
         <TouchableOpacity style={myStyles.button} onPress={handleSubmit}>
-          <Text style={myStyles.buttonText2}>Salvar e Continuar</Text>
+          <Text style={myStyles.buttonText2}>Continuar</Text>
         </TouchableOpacity>
       </View>
 
