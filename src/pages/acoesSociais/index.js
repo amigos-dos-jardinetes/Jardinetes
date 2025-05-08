@@ -66,7 +66,7 @@ export default function acoesSociais() {
 
         <View style={myStyles.navbar}>
             <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
-                <Text style={myStyles.navbarButton}>PÁGINA INICIAL</Text>
+                <Text style={myStyles.navbarButton}>Teste</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
