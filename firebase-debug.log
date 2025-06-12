@@ -1,0 +1,28 @@
+[debug] [2025-06-12T15:13:54.936Z] ----------------------------------------------------------------------
+[debug] [2025-06-12T15:13:54.941Z] Command:       D:\Prog\node.exe C:\Users\leona\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js use --add
+[debug] [2025-06-12T15:13:54.942Z] CLI Version:   14.6.0
+[debug] [2025-06-12T15:13:54.942Z] Platform:      win32
+[debug] [2025-06-12T15:13:54.942Z] Node Version:  v22.14.0
+[debug] [2025-06-12T15:13:54.942Z] Time:          Thu Jun 12 2025 12:13:54 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2025-06-12T15:13:54.943Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-06-12T15:13:55.359Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-12T15:13:55.360Z] > authorizing via signed-in user (amigos.dos.jardinetes@gmail.com)
+[debug] [2025-06-12T15:13:55.362Z] Checked if tokens are valid: true, expires at: 1749744018360
+[debug] [2025-06-12T15:13:55.362Z] Checked if tokens are valid: true, expires at: 1749744018360
+[debug] [2025-06-12T15:13:55.364Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2025-06-12T15:13:56.234Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-06-12T15:13:56.234Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2025-06-12T15:14:42.335Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (C:\Users\leona\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@inquirer\core\dist\commonjs\lib\create-prompt.js:101:37)
+    at Interface.emit (node:events:518:28)
+    at Interface.emit (node:domain:489:12)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1124:18)
+    at ReadStream.onkeypress (node:internal/readline/interface:263:20)
+    at ReadStream.emit (node:events:530:35)
+    at ReadStream.emit (node:domain:489:12)
+    at emitKeys (node:internal/readline/utils:370:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+[error] 
+[error] Error: An unexpected error has occurred.
