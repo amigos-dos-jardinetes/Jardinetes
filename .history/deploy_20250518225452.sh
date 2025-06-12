@@ -1,4 +1,4 @@
-    #!/bin/bash
+#!/bin/bash
 # Carrega o site estático no S3
 
 PROJECT=$1
