@@ -103,38 +103,35 @@ export default function Contato() {
       </View>
 
 
-      <View style={myStyles.column2nav}>
-          
-          
-          <TouchableOpacity style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Termos de uso</Text>
-          </TouchableOpacity>
-          <View  style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Plataforma digital patenteada</Text>
-          </View >
-      </View>
-
-
-      <View style={myStyles.column3nav}>
-          
-          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
-              <Text style={myStyles.textNav}>Contato</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Fale conosco</Text>
-          </TouchableOpacity>
-       
-      </View>
-
-      <View style={myStyles.column4nav}>
-          
-          <TouchableOpacity style={myStyles.navBt} onPress={() => openLink('https://www.utfpr.edu.br/acesso-a-informacao/lgpd')}>
-              <Text style={myStyles.textNav}>LGPD</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
-          <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
-          </TouchableOpacity>
-      </View>
+         <TouchableOpacity style={myStyles.navBt}>
+                    <Text style={myStyles.textNav}>Termos de uso</Text>
+                </TouchableOpacity>
+                <View  style={myStyles.navBt}>
+                    <Text style={myStyles.textNav}>Plataforma digital patenteada</Text>
+                </View >
+            </View>
+      
+      
+            <View style={myStyles.column3nav}>
+                
+                <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
+                    <Text style={myStyles.textNav}>Contato</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={myStyles.navBt}>
+                    <Text style={myStyles.textNav}>Fale conosco</Text>
+                </TouchableOpacity>
+             
+            </View>
+      
+            <View style={myStyles.column4nav}>
+                
+                <TouchableOpacity style={myStyles.navBt} onPress={() => openLink('https://www.utfpr.edu.br/acesso-a-informacao/lgpd')}>
+                    <Text style={myStyles.textNav}>LGPD</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
+                <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
+                </TouchableOpacity>
+            </View>
 
     </View>
 </View>

@@ -273,9 +273,9 @@ export default function JardinetesMap() {
           <TouchableOpacity style={myStyles.navBt}>
               <Text style={myStyles.textNav}>Termos de uso</Text>
           </TouchableOpacity>
-          <View  style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Plataforma digital patenteada</Text>
-          </View >
+          <TouchableOpacity style={myStyles.navBt} onPress={() => openLink('https://www.utfpr.edu.br/acesso-a-informacao/lgpd')}>
+              <Text style={myStyles.textNav}>LGPD</Text>
+          </TouchableOpacity>
       </View>
 
 
@@ -292,10 +292,9 @@ export default function JardinetesMap() {
 
       <View style={myStyles.column4nav}>
           
-          
-          <TouchableOpacity style={myStyles.navBt} onPress={() => openLink('https://www.utfpr.edu.br/acesso-a-informacao/lgpd')}>
-              <Text style={myStyles.textNav}>LGPD</Text>
-          </TouchableOpacity>
+          <View  style={myStyles.navBt}>
+              <Text style={myStyles.textNav}>Plataforma digital</Text>
+          </View >
           <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
           <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
           </TouchableOpacity>

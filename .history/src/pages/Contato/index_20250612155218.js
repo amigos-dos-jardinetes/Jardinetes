@@ -110,7 +110,7 @@ export default function Contato() {
               <Text style={myStyles.textNav}>Termos de uso</Text>
           </TouchableOpacity>
           <View  style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Plataforma digital patenteada</Text>
+              <Text style={myStyles.textNav}>Plataforma digital</Text>
           </View >
       </View>
 
