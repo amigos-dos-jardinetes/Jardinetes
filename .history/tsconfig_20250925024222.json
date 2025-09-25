@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "types": ["node"], 
+    "lib": ["esnext"],
+    "noEmit": true
+  },
+  "include": ["src/**/*"]
+}
