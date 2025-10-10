@@ -1,20 +1,42 @@
-
-import WebNavigator from './WebNavigator';
-
-import { Platform } from 'react-native';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import SignIn from './src/pages/SignIn';
+import SignUp from './src/pages/SignUp';
+import Menu from './src/pages/Menu';
+import Config from './src/pages/Config';
+import Inventory from './src/pages/inventory';
+import PaginaInicial from './src/pages/PaginaInicial';
+import Contato from './src/pages/Contato';
+import Accept from './src/pages/Accept';
+import Form from './src/pages/Form';
+import Tree from './src/pages/Tree';
+import Impact from './src/pages/Impact';
+import JardinetesMap from './src/pages/JardinetesMap';
+import ImpactSolo from './src/pages/ImpactSolo';
+import AnaliseFinal from './src/pages/AnaliseFinal';
+import BemEstar from './src/pages/BemEstar';
+import Infraestrutura from './src/pages/Infraestrutura';
+import Seguranca from './src/pages/Seguranca';
+import Pertencimento from './src/pages/Pertencimento';
+import Redefinir from './src/pages/redefinir';
+import quemSomos from './src/pages/quemSomos';
+import acoesSociais from './src/pages/acoesSociais';
+import minhasAnalises from './src/pages/minhasAnalises';
+import moreInfo from './src/pages/moreInfo';
+import moreInfo2 from './src/pages/moreInfo2';
+import Form2 from './src/pages/Form2'
+import Inventory2 from './src/pages/inventory2';
+import Tree2 from './src/pages/Tree2';
+import Impact2 from './src/pages/Impact2';
+import Admin from './src/pages/admin';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  if (Platform.OS === 'web') {
-    return <WebNavigator />;
-  }
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="PaginaInicial">
-        {/* ...existing code... */}
         <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
         <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />

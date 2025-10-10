@@ -32,7 +32,7 @@
 
       
     },
-    "scheme": ["com.jardinetes.amigosdosjardinetes"],
+    "scheme": "com.jardinetes.amigos_dos_jardinetes",
     "originalFullName": "@jardinetes/Amigos_dos_Jardinetes",
     "plugins": [
       "@react-native-firebase/app"
