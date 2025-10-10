@@ -3,9 +3,6 @@
 # dependencies
 node_modules/
 
-#são instalados via npm install ou yarn install, prestar atenção apenas ao passar para novatos
-node_modules/ 
-
 # Expo
 .expo/
 dist/
