@@ -70,7 +70,7 @@ projetoUTFPR: {
 orangeRet: {
   marginTop: width * 0.0260416666666667,
   width: width * 0.5734375,
-  height: width * 0.1733333333333333,
+  height: width * 0.1933333333333333,
   backgroundColor: '#B68F40',
   borderRadius: (10 / 1920) * width,
 
@@ -236,7 +236,7 @@ retMenorText3: {
 
 conheca: {
   marginTop: width * 0.01,
-  width: width * 0.7578125,
+  width: width * 0.6578125,
   height: width * 0.0682291666666667,
 },
 
@@ -375,7 +375,7 @@ ponta2: {
         backgroundColor: '#166034',
         position: 'absolute',
         bottom: 0,
-        top: width * 3.61,
+        top: width * 4.11,
         right: 0,
         width: '100%',
 
@@ -440,7 +440,7 @@ ponta2: {
         zIndex: -1,
         backgroundColor: '#4C6523',
         right: '50%',
-        top: width * 1,
+        top: width * 1.25,
       },
 
 

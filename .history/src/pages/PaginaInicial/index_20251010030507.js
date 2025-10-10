@@ -40,7 +40,7 @@ export default function PaginaInicial() {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
-                <Text style={myStyles.navbarButton}>JARDINETES</Text>
+                <Text style={myStyles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
@@ -51,14 +51,13 @@ export default function PaginaInicial() {
                 <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
+                <Text style={myStyles.navbarButton}>CONTATO</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
                 <Text style={myStyles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-                <Text style={myStyles.navbarButton}></Text>
-            </TouchableOpacity>
-
         </View>
 
 <View style={myStyles.greenCircle}></View>
@@ -71,9 +70,8 @@ export default function PaginaInicial() {
 
 <View style={myStyles.titleView}>
 <Image source={require('../../assets/amigosTitle.png')}  style={myStyles.amigosTitle} />
-<View style={myStyles.orangeRet}><Text style={myStyles.orangeText}>O programa Amigos dos Jardinetes é um Projeto de Extensão, ligado a disciplina Introdução à Sustentabilidade, ambos do DAELN - Departamento de Eletrônica - da UTFPR Curitiba. Ambos tem como objetivo realizar atividades relacionadas aos Jardinetes - pequenas áreas verdes, ou jardins, urbanos. 
-</Text></View>
-<Image source={require('../../assets/illustration.png')}  style={myStyles.illustration} />
+<Image source={require('../../assets/oneProject.png')}  style={myStyles.projetoUTFPR} />
+<View style={myStyles.orangeRet}><Text style={myStyles.orangeText}>A Universidade Tecnológica Federal do Paraná (UTFPR) é uma instituição pública de ensino superior com foco em ciência e tecnologia. Tem como missão desenvolver a educação tecnológica de excelência, construir e compartilhar o conhecimento voltado à solução dos reais desafios da sociedade.</Text></View>
 <Image source={require('../../assets/sobreProjeto.png')}  style={myStyles.sobreProjeto} />
 <View style={myStyles.row}>
   <View style={myStyles.retBig}>

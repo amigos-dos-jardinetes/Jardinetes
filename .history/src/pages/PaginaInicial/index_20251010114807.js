@@ -51,14 +51,13 @@ export default function PaginaInicial() {
                 <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
-                <Text style={myStyles.navbarButton}>LOGIN</Text>
-            </TouchableOpacity>
-
             <TouchableOpacity onPress={() => navigation.replace('Contato')}>
                 <Text style={myStyles.navbarButton}></Text>
             </TouchableOpacity>
 
+            <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
+                <Text style={myStyles.navbarButton}>LOGIN</Text>
+            </TouchableOpacity>
         </View>
 
 <View style={myStyles.greenCircle}></View>

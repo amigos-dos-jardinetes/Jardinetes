@@ -2,6 +2,66 @@ import React, { useRef } from 'react';
 import { View, ScrollView, TouchableOpacity, Text, Image, Linking, useWindowDimensions } from 'react-native';
 import { styles } from '../PaginaInicial/styles';
 import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, ScrollView, TouchableOpacity, Text, Image, Linking, ActivityIndicator, useWindowDimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { styles } from '../acoesSociais/styles.js';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+
+export default function acoesSociais() {
+
+  const navigation = useNavigation();
+  const scrollViewRef = useRef(null);
+  const [jardinetes, setJardinetes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const myStyles = styles();
+  const { width, height } = useWindowDimensions(); 
+  
+//Função para redirecionar ao link, ela o recebe como parâmetro na parte do front
+  const openLink = (url) => {
+    Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
+  };
+//Busca as informações de todos os Jardinetes registrados
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const db = getFirestore(); 
+        const jardinetesCollection = collection(db, 'jardinetes');
+        const jardinetesSnapshot = await getDocs(jardinetesCollection);
+        const data = jardinetesSnapshot.docs.map(doc => doc.data());
+  
+
+        setJardinetes(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Erro ao buscar dados: ", error);
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  }, []);
+//Função para renderizar o carrossel com os Jardinetes
+  const renderCarouselItem = (item) => (
+    <div key={item.nome} style={myStyles.carouselItem}>
+      <img src={item.jardinetePhoto} alt={item.nome} style={myStyles.carouselImage} />
+      <p style={myStyles.carouselText}>{item.nome}</p>
+    </div>
+  );
+//Espera o loading para retornar visto que pode demorar a processar todos os Jardinetes e acabar não retornando nada sem o tempo de espera
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size={width * 0.09} color="#0000ff" />
+      </View>
+    );
+  }
+
 
 
 export default function PaginaInicial() {
@@ -21,11 +81,12 @@ export default function PaginaInicial() {
   };
 
 //Scrollar para cima ao clicar
-  const scrollToTop = () => {
+  const scrollToTopstyles,  = () => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({
-        y: 0,
-        animated: true,
+, collection, getDocs, getFirestore        y: 0,
+        animatedimport React from 'react';
+: true,
       });
     }
   };
@@ -40,7 +101,7 @@ export default function PaginaInicial() {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
-                <Text style={myStyles.navbarButton}>JARDINETES</Text>
+                <Text style={myStyles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
@@ -51,14 +112,13 @@ export default function PaginaInicial() {
                 <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
+                <Text style={myStyles.navbarButton}>CONTATO</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
                 <Text style={myStyles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-                <Text style={myStyles.navbarButton}></Text>
-            </TouchableOpacity>
-
         </View>
 
 <View style={myStyles.greenCircle}></View>
@@ -71,8 +131,81 @@ export default function PaginaInicial() {
 
 <View style={myStyles.titleView}>
 <Image source={require('../../assets/amigosTitle.png')}  style={myStyles.amigosTitle} />
-<View style={myStyles.orangeRet}><Text style={myStyles.orangeText}>O programa Amigos dos Jardinetes é um Projeto de Extensão, ligado a disciplina Introdução à Sustentabilidade, ambos do DAELN - Departamento de Eletrônica - da UTFPR Curitiba. Ambos tem como objetivo realizar atividades relacionadas aos Jardinetes - pequenas áreas verdes, ou jardins, urbanos. 
-</Text></View>
+ showThumbs={false}
+    showStatus={false}
+    showIndicators={false} 
+    infiniteLoop={true}
+    autoPlay={true}
+    renderArrowPrev={(onClickHandler, hasPrev, label) =>
+      hasPrev && (
+        <button
+          type="button"
+          onClick={onClickHandler}
+          style={{
+            position: 'absolute',
+            top: '40%',
+            left: 0,
+            zIndex: 2,
+            background: 'rgba(0, 0, 0, 0.5)',
+            border: 'none',
+            color: 'white',
+            padding: (10 / 1920) * width,
+            borderRadius: '20%',
+          }}
+        >
+          <FontAwesomeIcon icon={faChevronLeft} size="2x" style={{ fontSize: width * 0.03 }} />
+        </button>
+      )
+    }
+    renderArrowNext={(onClickHandler, hasNext, label) =>
+      hasNext && (
+        <button
+          type="button"
+          onClick={onClickHandler}
+          style={{
+            position: 'absolute',
+            top: '40%',
+            right: 0,
+            zIndex: 2,
+            background: 'rgba(0, 0, 0, 0.5)',
+            border: 'none',
+            color: 'white',
+            padding: (10 / 1920) * width,
+            borderRadius: '20%',
+          }}
+        >
+          <FontAwesomeIcon icon={faChevronRight} size="2x" style={{ fontSize: width * 0.03 }} />
+        </button>
+      )
+    }
+    renderIndicator={(onClickHandler, isSelected, index, label) => {
+      const indicatorStyle = {
+        position: 'relative',
+        bottom: width * 0.0104166666666667,
+        transform: 'translateX(-50%)',
+        display: 'inline-block',
+        marginRight: (8 / 1920) * width,
+        cursor: 'pointer',
+        borderRadius: '50%',
+        width: isSelected ? width * 0.00625 : width * 0.0052083333333333,
+        height: isSelected ? width * 0.00625 : width * 0.0052083333333333,
+        backgroundColor: isSelected ? '#fff' : '#ccc',
+      };
+
+      return (
+        <div
+          key={index}
+          style={indicatorStyle}
+          onClick={onClickHandler}
+          role="button"
+          tabIndex={0}
+          aria-label={`${label} ${index + 1}`}
+        />
+      );
+    }}
+  >
+    {jardinetes.map(renderCarouselItem)}
+<View style={myStyles.orangeRet}><Text style={myStyles.orangeText}>O programa Amigos dos Jardinetes é um Projeto de Extensão, ligado a disciplina Introdução à Sustentabilidade, ambos do DAELN - Departamento de Eletrônica - da UTFPR Curitiba. Ambos tem como objetivo realizar atividades relacionadas aos Jardinetes - pequenas áreas verdes, ou jardins, urbanos. </Text></View>
 <Image source={require('../../assets/illustration.png')}  style={myStyles.illustration} />
 <Image source={require('../../assets/sobreProjeto.png')}  style={myStyles.sobreProjeto} />
 <View style={myStyles.row}>

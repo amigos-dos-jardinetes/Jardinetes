@@ -375,7 +375,7 @@ ponta2: {
         backgroundColor: '#166034',
         position: 'absolute',
         bottom: 0,
-        top: width * 3.61,
+        top: width * 4.11,
         right: 0,
         width: '100%',
 
@@ -434,13 +434,13 @@ ponta2: {
       },
 
       greenCircle3: {
-        width: width * 0.3645833333333333,
+        width: width * 0.3145833333333333,
         height: width * 0.3645833333333333,
         borderRadius: width * 0.1822916666666667,
         zIndex: -1,
         backgroundColor: '#4C6523',
         right: '50%',
-        top: width * 1,
+        top: width * 1.25,
       },
 
 

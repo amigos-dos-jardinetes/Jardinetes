@@ -375,7 +375,7 @@ ponta2: {
         backgroundColor: '#166034',
         position: 'absolute',
         bottom: 0,
-        top: width * 3.61,
+        top: width * 4.11,
         right: 0,
         width: '100%',
 

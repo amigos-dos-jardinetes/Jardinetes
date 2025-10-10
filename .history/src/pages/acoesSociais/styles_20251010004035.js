@@ -69,7 +69,7 @@ export const styles = () => {
 
       retConheca1: {
           backgroundColor: '#271C00',
-          width: width * 0.8125,
+          width: width * 0.3125,
           height: width * 0.0260416666666667,
           borderRadius: (20 / 1920) * width,
       },

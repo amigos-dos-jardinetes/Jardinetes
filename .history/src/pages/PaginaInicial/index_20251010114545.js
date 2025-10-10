@@ -40,7 +40,7 @@ export default function PaginaInicial() {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
-                <Text style={myStyles.navbarButton}>JARDINETES</Text>
+                <Text style={myStyles.navbarButton}>AÇÕES SOCIAIS</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
@@ -51,14 +51,13 @@ export default function PaginaInicial() {
                 <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
+                <Text style={myStyles.navbarButton}>CONTATO</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
                 <Text style={myStyles.navbarButton}>LOGIN</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-                <Text style={myStyles.navbarButton}></Text>
-            </TouchableOpacity>
-
         </View>
 
 <View style={myStyles.greenCircle}></View>
