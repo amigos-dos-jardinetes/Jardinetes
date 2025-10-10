@@ -126,24 +126,24 @@ export default function JardinetesMap() {
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
-                        <Text style={myStyles.navbarButton}>JARDINETES</Text>
+                        <Text style={myStyles.navbarButton}>AÇÕES SOCIAIS</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
                         <Text style={myStyles.navbarButton}>FAÇA SUA PARTE</Text>
-                     </TouchableOpacity>
+                    </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('quemSomos')}>
-                          <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
+                        <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => navigation.replace('Contato')}>
+                        <Text style={myStyles.navbarButton}>CONTATO</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
                         <Text style={myStyles.navbarButton}>LOGIN</Text>
-                     </TouchableOpacity>
-
-                     <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-                        <Text style={myStyles.navbarButton}></Text>
-                     </TouchableOpacity>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={myStyles.encontre}>
