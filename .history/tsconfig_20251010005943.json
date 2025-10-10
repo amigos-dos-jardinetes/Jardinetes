@@ -4,10 +4,17 @@
     "checkJs": false,
     "skipLibCheck": true,
     "noImplicitAny": false,
-    "types": ["node"],
-    "lib": ["esnext"],
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "esnext"
+    ],
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*", "typedoc.d.ts"]
+  "include": [
+    "src/**/*",
+    "typedoc.d.ts"
+  ]
 }
