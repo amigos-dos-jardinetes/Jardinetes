@@ -70,10 +70,10 @@ export default function quemSomos() {
             </View>
             <View style={myStyles.card3}>
                 <View style={myStyles.imageContainer}>
-                    <Image source={require('../../assets/programmer2Photo.png')}  style={myStyles.photoContainer} />
+                    <Image source={require('../../assets/designerPhoto.png')}  style={myStyles.photoContainer} />
                 </View>
                 <Text style={myStyles.titleText}>Designer e Programador</Text>
-                <Text style={myStyles.titleText2}>LEONARDO WITT</Text>
+                <Text style={myStyles.titleText2}>JORDANA DE OLIVEIRA FURLAN</Text>
                 <Text style={myStyles.text}>  Programador Full Stack e designer, cursando Engenharia de Computação e pai de plantas</Text>
             </View>
         </View>

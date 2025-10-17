@@ -86,6 +86,30 @@ export default function quemSomos() {
             <View style={myStyles.circVerde4}></View>
         </View>
 
+                <View style={myStyles.card}>
+        
+                    <TouchableOpacity onPress={openEmailComposer}>
+                      <Image source={require('../../assets/Email1.png')} style={myStyles.buttonEmail} />
+                      <Text style={myStyles.buttonText}>Email</Text>
+                    </TouchableOpacity>
+        
+                    <TouchableOpacity onPress={openExternalLink}>
+                      <Image source={require('../../assets/Instagram1.png')} style={myStyles.buttonInstagram} />
+                      <Text style={myStyles.buttonText2}>Instagram</Text>
+                    </TouchableOpacity>
+        
+                  </View>
+                  <View style={myStyles.imageContainer33}>
+                  <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias} />
+                
+              </View>
+        
+                  <View style={myStyles.imageContainer44}>
+                  <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias2} />
+                
+              </View>
+              
+
         <View style={myStyles.araucariaContainer}>
              <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias} />
              <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias2} />

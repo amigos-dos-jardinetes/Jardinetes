@@ -86,6 +86,8 @@ export default function quemSomos() {
             <View style={myStyles.circVerde4}></View>
         </View>
 
+        
+
         <View style={myStyles.araucariaContainer}>
              <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias} />
              <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias2} />

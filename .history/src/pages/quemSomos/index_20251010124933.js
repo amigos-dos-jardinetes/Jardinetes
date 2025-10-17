@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { View, ScrollView, TouchableOpacity, Text, Image, Linking, useWindowDimensions } from 'react-native';
 import { styles } from '../quemSomos/styles.js';
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { styles } from '../Contato/styles.js';
 
 
 export default function quemSomos() {
@@ -15,6 +17,35 @@ export default function quemSomos() {
   const openLink = (url) => {
     Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
   };
+import React, { useRef, useEffect } from 'react';
+import { View, ScrollView, ImageBackground, TouchableOpacity, Text, Linking, Image } from 'react-native';
+import { styles } from '../Contato/styles';
+import { useNavigation } from '@react-navigation/native';
+
+export default function Contato() {
+  const navigation = useNavigation();
+  const scrollViewRef = useRef(null);
+  const myStyles = styles();
+  const openExternalLink = () => {
+  const externalLink = 'https://www.instagram.com/amigosdosjardinetes.ct/';
+
+    Linking.openURL(externalLink).catch((err) => console.error('Error opening link:', err));
+  };
+//Função para abrir o email
+  const openEmailComposer = () => {
+    const email = 'jardinetes-ct@utfpr.edu.br';
+    const subject = 'Novas Informações!!!';
+
+    const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+
+    Linking.openURL(mailtoUrl).catch((err) => console.error('Error opening email:', err));
+  };
+
+//Função para redirecionar ao link
+  const openLink = (url) => {
+    Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
+  };
+
   
   return (
     <ScrollView ref={scrollViewRef}  style={myStyles.container3}>
@@ -85,6 +116,8 @@ export default function quemSomos() {
             <View style={myStyles.circVerde3}></View>
             <View style={myStyles.circVerde4}></View>
         </View>
+
+        
 
         <View style={myStyles.araucariaContainer}>
              <Image source={require('../../assets/araucarias.png')}  style={myStyles.araucarias} />
