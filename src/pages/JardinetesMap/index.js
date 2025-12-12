@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, ScrollView, Image, TextInput, useWindowDimensions, Linking} from 'react-native';
+import { View, TouchableOpacity, Text, ScrollView, Image, TextInput, useWindowDimensions, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
@@ -20,17 +20,17 @@ export default function JardinetesMap() {
     const [searchText, setSearchText] = useState('');
     const [filteredJardinetes, setFilteredJardinetes] = useState([]);
     const [selectedJardim, setSelectedJardim] = useState(null);
-    const [isVamosLaClickable, setIsVamosLaClickable] = useState(false); 
-    const [isVamosLaClickable1, setIsVamosLaClickable1] = useState(false); 
-    const [selectedJardimId, setSelectedJardimId] = useState(null); 
+    const [isVamosLaClickable, setIsVamosLaClickable] = useState(false);
+    const [isVamosLaClickable1, setIsVamosLaClickable1] = useState(false);
+    const [selectedJardimId, setSelectedJardimId] = useState(null);
     const myStyles = styles();
-    const { width, height } = useWindowDimensions(); 
+    const { width, height } = useWindowDimensions();
 
     //Seleciona o Jardinete e deixa o botão "vamos lá" pronto
     const handleJardimPress = (jardim) => {
         console.log("Selected Jardim (handleJardimPress):", jardim);
         setSelectedJardim(jardim);
-        setIsVamosLaClickable(true); 
+        setIsVamosLaClickable(true);
     };
     //Altera o estado do selectedjardim para receber o Jardinete
     const handleDetailsPress = (jardim) => {
@@ -74,7 +74,8 @@ export default function JardinetesMap() {
     //Redireciona ao link
     const openLink = (url) => {
         Linking.openURL(url).catch(err => console.error("Erro ao abrir o link:", err));
-      };
+    };
+
     //Busca os dados dos Jardinetes
     useEffect(() => {
         const fetchJardinetes = async () => {
@@ -85,9 +86,10 @@ export default function JardinetesMap() {
             });
             setJardinetes(jardinetesData);
         };
-    
+
         fetchJardinetes();
     }, []);
+
     //Ordena os jardinetes da busca e desativa o botão se não houver texto
     useEffect(() => {
         if (searchText.trim() === '') {
@@ -99,6 +101,7 @@ export default function JardinetesMap() {
         const sortedResults = sortResults(searchText.toLowerCase(), jardinetes);
         setFilteredJardinetes(sortedResults);
     }, [searchText, jardinetes]);
+
     //Função de busca dos Jardinetes no banco de dados
     const sortResults = (text, results) => {
         return results.filter(jardim =>
@@ -109,7 +112,7 @@ export default function JardinetesMap() {
             return aName.localeCompare(bName);
         });
     };
-    
+
     //Ícone local
     const customIcon = new L.Icon({
         iconUrl: markerImage,
@@ -131,23 +134,82 @@ export default function JardinetesMap() {
 
                     <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
                         <Text style={myStyles.navbarButton}>FAÇA SUA PARTE</Text>
-                     </TouchableOpacity>
+                    </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('quemSomos')}>
-                          <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
+                        <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
                         <Text style={myStyles.navbarButton}>LOGIN</Text>
-                     </TouchableOpacity>
+                    </TouchableOpacity>
 
-                     <TouchableOpacity onPress={() => navigation.replace('Contato')}>
+                    <TouchableOpacity onPress={() => navigation.replace('Contato')}>
                         <Text style={myStyles.navbarButton}></Text>
-                     </TouchableOpacity>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={myStyles.encontre}>
                     <Image source={require('../../assets/encontre.png')} style={myStyles.encontreImage} />
+                </View>
+
+                <View style={myStyles.container2} contentContainerStyle={myStyles.container2Content}>
+                    <View style={myStyles.card}>
+                        <View style={myStyles.searchContainer}>
+                            <Ionicons name="search" size={width * 0.02} color="#ffffff" style={myStyles.searchIcon} />
+                            {searchText.trim() !== '' && (
+                                <TouchableOpacity style={myStyles.clearButton} onPress={() => setSearchText('')}>
+                                    <Ionicons name="close" size={width * 0.01} color="#ffffff" />
+                                </TouchableOpacity>
+                            )}
+                            {searchText.trim() !== '' && (
+                                <View style={myStyles.resultsContainer}>
+                                    <View style={myStyles.resultsInnerContainer}>
+                                        {filteredJardinetes.map((jardim, index) => (
+                                            <TouchableOpacity key={index} style={[myStyles.resultItem, index % 2 === 0 ? myStyles.evenResult : myStyles.oddResult]} onPress={() => handleJardimPress(jardim)}>
+                                                <Text style={myStyles.resultText}>{jardim.nome}</Text>
+                                            </TouchableOpacity>
+                                        ))}
+                                    </View>
+                                </View>
+                            )}
+                            <TextInput
+                                style={myStyles.searchBar}
+                                placeholder="Busque um jardinete"
+                                onChangeText={text => setSearchText(text)}
+                                value={searchText}
+                            />
+                            {searchText.length > 0 && (
+                                <TouchableOpacity onPress={() => setSearchText('')} style={myStyles.clearButton}>
+                                    <Text style={myStyles.clearButtonText}>X</Text>
+                                </TouchableOpacity>
+                            )}
+                        </View>
+                        <View style={myStyles.gradientButtonContainer}>
+                            <TouchableOpacity
+                                style={[myStyles.gradientButton, !isVamosLaClickable && myStyles.disabledButton]}
+                                onPress={() => isVamosLaClickable && handleVamosLaPress(selectedJardim)}
+                            >
+                                <LinearGradient
+                                    colors={['#166034', '#2BBD67']}
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    style={myStyles.linearGradient}
+                                >
+                                    <Text style={myStyles.gradientButtonText}>Vamos lá!</Text>
+                                </LinearGradient>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    {selectedJardim && (
+                        <View style={myStyles.detailsContainer}>
+                            <Text style={myStyles.jardimName}>{selectedJardim.nome}</Text>
+                            <TouchableOpacity onPress={handleCloseButtonClick} style={myStyles.closeButton}>
+                                <Text style={myStyles.closeButtonText}>X</Text>
+                            </TouchableOpacity>
+                        </View>
+                    )}
                 </View>
 
                 <View style={myStyles.map}>
@@ -158,11 +220,10 @@ export default function JardinetesMap() {
                                 zoom={14}
                                 style={{ width: '100%', height: '100%', borderRadius: 10 }}
                             >
-                               <TileLayer
-  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-/>
-
+                                <TileLayer
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                />
                                 {jardinetes.map((jardinetes, index) => (
                                     <Marker position={[jardinetes.coordenadas[0], jardinetes.coordenadas[1]]} icon={customIcon} key={index}>
                                         <Popup>
@@ -184,125 +245,49 @@ export default function JardinetesMap() {
                             </MapContainer>
                         </View>
                     </View>
+                </View>
 
-                    <View style={myStyles.container2}>
-                        <View style={myStyles.card}>
-                            <View style={myStyles.searchContainer}>
-                                <Ionicons name="search" size={width * 0.01041666666666666666666666666667} color="#ffffff" style={myStyles.searchIcon} />
-                                {searchText.trim() !== '' && (
-                                    <TouchableOpacity style={myStyles.clearButton} onPress={() => setSearchText('')}>
-                                        <Ionicons name="close" size={width * 0.01041666666666666666666666666667} color="#ffffff" />
-                                    </TouchableOpacity>
-                                )}
-                                {searchText.trim() !== '' && (
-                                    <View style={myStyles.resultsContainer}>
-                                        <View style={myStyles.resultsInnerContainer}>
-                                            {filteredJardinetes.map((jardim, index) => (
-                                                <TouchableOpacity key={index} style={[myStyles.resultItem, index % 2 === 0 ? myStyles.evenResult : myStyles.oddResult]} onPress={() => handleJardimPress(jardim)}>
-                                                    <Text style={myStyles.resultText}>{jardim.nome}</Text>
-                                                </TouchableOpacity>
-                                            ))}
-                                        </View>
-                                    </View>
-                                )}
-                                <TextInput
-                                    style={[myStyles.searchBar, { paddingLeft: width * 0.0260416666666667, fontSize: width * 0.0072916666666667 }]}
-                                    placeholder="Busque um jardinete"
-                                    onChangeText={text => setSearchText(text)}
-                                    value={searchText}
-                                />
-                                {searchText.length > 0 && (
-                                    <TouchableOpacity onPress={() => setSearchText('')} style={myStyles.clearButton}>
-                                        <Text style={myStyles.clearButtonText}>X</Text>
-                                    </TouchableOpacity>
-                                )}
-                            </View>
-
-                            <View style={myStyles.gradientButtonContainer}>
-                                <TouchableOpacity 
-                                    style={[myStyles.gradientButton, !isVamosLaClickable && myStyles.disabledButton]} 
-                                    onPress={() => isVamosLaClickable && handleVamosLaPress(selectedJardim)}
-                                >
-                                    <LinearGradient
-                                        colors={['#166034', '#2BBD67']}
-                                        start={{ x: 0, y: 0 }}
-                                        end={{ x: 1, y: 0 }}
-                                        style={myStyles.linearGradient}
-                                    >
-                                        <Text style={myStyles.gradientButtonText}>Vamos lá!</Text>
-                                    </LinearGradient>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-
-                        {selectedJardim && (
-                            <View style={myStyles.detailsContainer}>
-                                <Text style={myStyles.jardimName}>{selectedJardim.nome}</Text>
-                                <TouchableOpacity onPress={handleCloseButtonClick} style={myStyles.closeButton}>
-                                    <Text style={myStyles.closeButtonText}>X</Text>
-                                </TouchableOpacity>
-                            </View>
-                        )}
-                    </View>
+                <View style={myStyles.imageContainer33}>
+                    <Image source={require('../../assets/araucarias.png')} style={myStyles.araucarias} />
                 </View>
             </View>
 
-        
-
-            <View style={myStyles.imageContainer33}>
-                <Image source={require('../../assets/araucarias.png')} style={myStyles.araucarias} />
+            <View style={myStyles.navbar2}>
+                <View style={myStyles.rowNav}>
+                    <View style={myStyles.column1nav}>
+                        <View style={myStyles.imageContainer22}>
+                            <Image source={require('../../assets/UtfprBottom.png')} style={myStyles.utfprImage3} />
+                        </View>
+                        <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
+                            <Text style={myStyles.textNav}>Quem somos nós</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={myStyles.column2nav}>
+                        <TouchableOpacity style={myStyles.navBt}>
+                            <Text style={myStyles.textNav}>Termos de uso</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={myStyles.navBt} onPress={() => openLink('https://www.utfpr.edu.br/acesso-a-informacao/lgpd')}>
+                            <Text style={myStyles.textNav}>LGPD</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={myStyles.column3nav}>
+                        <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
+                            <Text style={myStyles.textNav}>Contato</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={myStyles.navBt}>
+                            <Text style={myStyles.textNav}>Fale conosco</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={myStyles.column4nav}>
+                        <View style={myStyles.navBt}>
+                            <Text style={myStyles.textNav}>Plataforma digital</Text>
+                        </View >
+                        <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
+                            <Image source={require('../../assets/instagramNav.png')} style={myStyles.instaNav} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
-
-          
-<View style={myStyles.navbar2}>
-<View style={myStyles.rowNav}>
-      <View style={myStyles.column1nav}>
-          <View style={myStyles.imageContainer22}>
-              <Image source={require('../../assets/UtfprBottom.png')}  style={myStyles.utfprImage3} />
-          </View>
-         
-          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('quemSomos')}>
-              <Text style={myStyles.textNav}>Quem somos nós</Text>
-          </TouchableOpacity>
-      </View>
-
-
-      <View style={myStyles.column2nav}>
-          
-     
-          <TouchableOpacity style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Termos de uso</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={myStyles.navBt} onPress={() => openLink('https://www.utfpr.edu.br/acesso-a-informacao/lgpd')}>
-              <Text style={myStyles.textNav}>LGPD</Text>
-          </TouchableOpacity>
-      </View>
-
-
-      <View style={myStyles.column3nav}>
-          
-          <TouchableOpacity style={myStyles.navBt} onPress={() => navigation.navigate('Contato')}>
-              <Text style={myStyles.textNav}>Contato</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Fale conosco</Text>
-          </TouchableOpacity>
-       
-      </View>
-
-      <View style={myStyles.column4nav}>
-          
-          <View  style={myStyles.navBt}>
-              <Text style={myStyles.textNav}>Plataforma digital</Text>
-          </View >
-          <TouchableOpacity onPress={() => openLink('https://www.instagram.com/amigosdosjardinetes.ct/')}>
-          <Image source={require('../../assets/instagramNav.png')}  style={myStyles.instaNav} />
-          </TouchableOpacity>
-      </View>
-
-    </View>
-</View>
-
         </ScrollView>
     );
 }
