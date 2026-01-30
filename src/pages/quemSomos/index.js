@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { View, ScrollView, TouchableOpacity, Text, Image, Linking, useWindowDimensions } from 'react-native';
 import { styles } from '../quemSomos/styles.js';
 import { useNavigation } from '@react-navigation/native';
+import Menu from '../../components/Menu/Menu';
+import Rodape from '../../components/Rodape/Rodape';
 
 
 export default function quemSomos() {
@@ -20,34 +22,9 @@ export default function quemSomos() {
     <ScrollView ref={scrollViewRef}  style={myStyles.container3}>
         
     <View style={myStyles.container}>
-        <View style={myStyles.navbar}>
-            <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
-                <Text style={myStyles.navbarButton}>PÁGINA INICIAL</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
-                <Text style={myStyles.navbarButton}>AÇÕES SOCIAIS</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
-                <Text style={myStyles.navbarButton}>FAÇA SUA PARTE</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('quemSomos')}>
-                <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-                <Text style={myStyles.navbarButton}>CONTATO</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
-                <Text style={myStyles.navbarButton}>LOGIN</Text>
-            </TouchableOpacity>
-        </View>
+                    <Menu titulo="Quem somos" />
 
 
-        <Image source={require('../../assets/conhecaTitle.png')}  style={myStyles.title} />
 
         
 

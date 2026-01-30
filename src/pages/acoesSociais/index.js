@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { styles } from '../acoesSociais/styles.js';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import Menu from '../../components/Menu/Menu';
+import Rodape from '../../components/Rodape/Rodape';
 
 export default function acoesSociais() {
 
@@ -64,31 +66,8 @@ export default function acoesSociais() {
           <View style={myStyles.circle2}></View>
     <View style={myStyles.container}>
 
-        <View style={myStyles.navbar}>
-            <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
-                <Text style={myStyles.navbarButton}>PÁGINA INICIAL</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
-                <Text style={myStyles.navbarButton}>JARDINETES</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
-                <Text style={myStyles.navbarButton}>FAÇA SUA PARTE</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('quemSomos')}>
-                <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
-                <Text style={myStyles.navbarButton}>LOGIN</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-                <Text style={myStyles.navbarButton}></Text>
-            </TouchableOpacity>
-        </View>
+        
+                        <Menu titulo="Encontre no mapa seu jardinete" />
 
         
         <View style={myStyles.row}>

@@ -1,35 +1,43 @@
-import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
+import { useFonts, Lemon_400Regular } from '@expo-google-fonts/lemon';
 
-export default function Menu() {
+export default function Menu({ titulo }) {
     const navigation = useNavigation();
+    const myStyles = styles();
+    const [fontsLoaded] = useFonts({ Lemon_400Regular });
     return (
-                <View style={styles.navbar}>
-                    <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
-                        <Text style={styles.navbarButton}>PÁGINA INICIAL</Text>
-                    </TouchableOpacity>
+        <>
+            <View style={myStyles.navbar}>
+                <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
+                    <Text style={myStyles.navbarButton}>PÁGINA INICIAL</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
-                        <Text style={styles.navbarButton}>JARDINETES</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.replace('acoesSociais')}>
+                    <Text style={myStyles.navbarButton}>JARDINETES</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
-                        <Text style={styles.navbarButton}>FAÇA SUA PARTE</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.replace('JardinetesMap')}>
+                    <Text style={myStyles.navbarButton}>FAÇA SUA PARTE</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => navigation.replace('quemSomos')}>
-                        <Text style={styles.navbarButton}>QUEM SOMOS</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.replace('quemSomos')}>
+                    <Text style={myStyles.navbarButton}>QUEM SOMOS</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
-                        <Text style={styles.navbarButton}>LOGIN</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.replace('SignIn')}>
+                    <Text style={myStyles.navbarButton}>LOGIN</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => navigation.replace('Contato')}>
-                        <Text style={styles.navbarButton}></Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity onPress={() => navigation.replace('Contato')}>
+                    <Text style={myStyles.navbarButton}></Text>
+                </TouchableOpacity>
+            </View>
+
+            <View style={myStyles.title}>
+                <Text style={[myStyles.lemon, fontsLoaded && { fontFamily: 'Lemon_400Regular' }]}>{titulo}</Text>
+            </View>
+        </>
     );
 }

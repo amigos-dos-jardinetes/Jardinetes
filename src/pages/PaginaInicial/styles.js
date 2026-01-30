@@ -38,8 +38,7 @@ navbar: {
   },
 
   titleView:{
-    top: width * 0.1041666666666667,
-    position: 'absolute',
+    top: width * 0.104,
     alignItems: 'center',
     justifyContent: 'center',
   },

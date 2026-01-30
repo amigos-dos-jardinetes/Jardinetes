@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Inicio from './src/pages/inicio';
 import SignIn from './src/pages/SignIn';
 import SignUp from './src/pages/SignUp';
 import Menu from './src/pages/Menu';
 import Config from './src/pages/Config';
 import Inventory from './src/pages/inventory';
-import PaginaInicial from './src/pages/PaginaInicial';
 import Contato from './src/pages/Contato';
 import Accept from './src/pages/Accept';
 import Form from './src/pages/Form';
@@ -36,13 +36,13 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="PaginaInicial">
+      <Stack.Navigator initialRouteName="Inicio">
         <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
         <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
         <Stack.Screen name="Config" component={Config} options={{ headerShown: false }} />
         <Stack.Screen name="Inventory" component={Inventory} options={{ headerShown: false }} />
-        <Stack.Screen name="PaginaInicial" component={PaginaInicial} options={{ headerShown: false }} />
+        <Stack.Screen name="Inicio" component={Inicio} options={{ headerShown: false }} />
         <Stack.Screen name="Contato" component={Contato} options={{ headerShown: false }} />
         <Stack.Screen name="Accept" component={Accept} options={{ headerShown: false }} />
         <Stack.Screen name="Form" component={Form} options={{ headerShown: false }} />
