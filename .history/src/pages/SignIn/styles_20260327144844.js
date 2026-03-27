@@ -2,6 +2,7 @@ import { StyleSheet, useWindowDimensions, Platform } from 'react-native';
 
 const DESIGN_WIDTH = 1440;
 const DESIGN_HEIGHT = 1024;
+
 export const styles = () => {
   const { width, height } = useWindowDimensions();
 
