@@ -12,8 +12,7 @@ export const styles = () => {
 
 		// espaço reservado para evitar sobreposição do conteúdo
 		spacer: {
-			// sempre reservar pelo menos 120px para garantir que o rodapé caiba
-			height: Math.max(footerHeight + araucariasHeight * 0.9, 120),
+			height: footerHeight + araucariasHeight * 0.9,
 			width: '100%',
 		},
 

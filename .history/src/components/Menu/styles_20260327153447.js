@@ -20,7 +20,23 @@ export const styles = () => {
 			fontWeight: 'bold'
 		},
 
+		lemon: {
+			color: '#89985c',
+			fontFamily: "Lemon",
+			fontWeight: 400,
+			fontStyle: 'normal',
+			fontSize: width * 0.08,
+			marginTop: width * 0.04,
+			textAlign: 'center',
+			textShadowColor: '#4c6523',
+			textShadowOffset: { width: 5, height: 2 },
+			textShadowRadius: 0,
+		},
 
+		title: {
+			height: width * 0.140,
+			width: '100%',
+		}
 
 	});
 };

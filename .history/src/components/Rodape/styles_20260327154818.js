@@ -3,38 +3,32 @@ import { StyleSheet, useWindowDimensions } from 'react-native';
 export const styles = () => {
 	const { width, height } = useWindowDimensions();
 
-	// dimensões responsivas
-	const footerHeight = Math.max(56, width * 0.09);
-	const araucariasHeight = Math.max(72, width * 0.13);
+
+	const footerHeight = Math.max(56, width * 0.10);
+	const araucariasHeight = Math.max(80, width * 0.14);
 	const logoScale = Math.max(0.04, width * 0.0007);
 
 	return StyleSheet.create({
 
-		// espaço reservado para evitar sobreposição do conteúdo
 		spacer: {
-			// sempre reservar pelo menos 120px para garantir que o rodapé caiba
-			height: Math.max(footerHeight + araucariasHeight * 0.9, 120),
+			height: footerHeight + araucariasHeight * 0.4,
 			width: '100%',
 		},
 
-		// imagem araucarias posicionada acima do rodapé, no canto direito
 		araucarias: {
-			position: 'absolute',
-			right: width * 0.04,
-			bottom: footerHeight + (araucariasHeight * 0.05),
-			width: araucariasHeight * 1.4,
+			width: '100%',
 			height: araucariasHeight,
-			resizeMode: 'contain',
-			zIndex: 11,
+			alignItems: 'flex-end',
+			paddingRight: width * 0.05,
+			backgroundColor: 'transparent',
 		},
 
 		imgAraucarias: {
-			width: '100%',
-			height: '100%',
+			width: araucariasHeight * 1.2,
+			height: araucariasHeight,
 			resizeMode: 'contain',
 		},
 
-		// rodapé fixo
 		rodape: {
 			position: 'absolute',
 			left: 0,

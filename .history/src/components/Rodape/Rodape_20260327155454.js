@@ -8,15 +8,10 @@ export default function Rodape() {
     const myStyles = styles();
     return (
         <>
-            {/* spacer para evitar que o conteúdo seja coberto pelo rodapé */}
-            <View style={myStyles.spacer} />
-
-            {/* araucarias posicionado acima do rodapé, no canto direito */}
-            <View style={myStyles.araucarias} pointerEvents="none">
+            <View style={myStyles.araucarias}>
                 <Image source={require('../../assets/araucarias.png')} style={myStyles.imgAraucarias} />
             </View>
-
-            <View style={myStyles.rodape} accessible accessibilityRole="contentinfo">
+            <View style={myStyles.rodape}>
                 <View style={myStyles.linha}>
                     <View style={myStyles.coluna}>
                         <View>

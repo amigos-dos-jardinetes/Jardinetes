@@ -9,7 +9,7 @@ export default function Menu({ titulo }) {
     return (
         <>
             <View style={myStyles.navbar}>
-                <TouchableOpacity onPress={() => navigation.replace('Inicio')}>
+                <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
                     <Text style={myStyles.navbarButton}>PÁGINA INICIAL</Text>
                 </TouchableOpacity>
 

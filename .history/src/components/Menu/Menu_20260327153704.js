@@ -1,15 +1,16 @@
 import { View, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
-import Title from '../Title/Title';
+import { useFonts, Lemon_400Regular } from '@expo-google-fonts/lemon';
 
 export default function Menu({ titulo }) {
     const navigation = useNavigation();
     const myStyles = styles();
+    const [fontsLoaded] = useFonts({ Lemon_400Regular });
     return (
         <>
             <View style={myStyles.navbar}>
-                <TouchableOpacity onPress={() => navigation.replace('Inicio')}>
+                <TouchableOpacity onPress={() => navigation.replace('PaginaInicial')}>
                     <Text style={myStyles.navbarButton}>PÁGINA INICIAL</Text>
                 </TouchableOpacity>
 
@@ -34,7 +35,9 @@ export default function Menu({ titulo }) {
                 </TouchableOpacity>
             </View>
 
-            <Title>{titulo}</Title>
+            <View style={myStyles.title}>
+                <Text style={[myStyles.lemon, fontsLoaded && { fontFamily: 'Lemon_400Regular' }]}>{titulo}</Text>
+            </View>
         </>
     );
 }
